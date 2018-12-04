@@ -1,6 +1,40 @@
 <div class="top-header">
   <app-header></app-header>
 </div>
-<div class="bg-ivory">
-  <h1>This is home</h1>
+<div class="bg-p">
+  <div class="row">
+    <div class="col bordered segment rounded padding bg-bluish">
+      this
+    </div>
+    <div class="col bordered segment">
+      this
+    </div>
+    <div class="col bordered segment">
+      this
+    </div>
+  </div>
+  <div class="row">
+    <div class="col rounded-s bordered segment padding bg-white">
+      <p class="no-margin" *ngFor="let bar of graph.bars">
+        {{bar.height}}
+      </p>
+    </div>
+    <div class="col rounded-s bordered segment padding bg-white">
+      this
+    </div>
+  </div>
+  <div class="row">
+    <div class="col rounded-s bordered segment padding bg-white">
+      this
+    </div>
+    <div class="col rounded-s bordered segment padding bg-white">
+      this
+    </div>
+    <div class="col rounded-s bordered segment padding bg-white">
+      this
+    </div>
+    <div class="col rounded-s bordered segment padding bg-white">
+      this
+    </div>
+  </div>
 </div>

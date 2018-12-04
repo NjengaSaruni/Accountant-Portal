@@ -1,8 +1,105 @@
 /* You can add global styles to this file, and also import other style files */
-
+body {
+  font-family: Ubuntu;
+}
 .bg-beige {
   background: beige;
 }
 .bg-ivory {
   background: ivory;
+}
+
+.bg-p {
+  background: #DADADA;
+}
+
+.bg-white {
+  background: #FFFFFF;
+}
+
+.bg-bluish {
+  background: #c3fff7;
+}
+.color-p {
+  color: #0E5A77;
+}
+.color-s {
+  color: #777529;
+}
+
+.row {
+  display: inline-flex;
+  width: 100%;
+  .col {
+    margin: 8px;
+    width: 100%;
+  }
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.margin {
+  margin: 8px;
+}
+
+.margin-s {
+  margin: 16px;
+}
+
+.margin-h {
+  margin: 8px 0;
+}
+
+.margin-v {
+  margin: 0 8px;
+}
+.no.padding {
+  padding: 0;
+}
+
+.padding {
+  padding: 8px;
+}
+
+.padding-h {
+  padding: 8px 0;
+}
+
+
+.padding-v {
+  padding: 0 8px;
+}
+
+.padding-s {
+  padding: 8px;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+.rounded-s {
+  border-radius: 8px;
+}
+
+.raised {
+  box-shadow: 2px 1px 1px 0 silver;
+}
+
+.centered {
+  justify-content: center;
+}
+
+.segment {
+  min-height: 240px;
+}
+
+.bordered {
+  border: 1px solid #DADADA;
+}
+
+.circular {
+  border-radius: 50%;
 }
