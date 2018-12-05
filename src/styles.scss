@@ -2,6 +2,7 @@
 //             External theming              //
 ///////////////////////////////////////////////
 
+@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
   font-family: Ubuntu;
@@ -14,9 +15,8 @@ body {
 }
 
 .bg-p {
-  background: #DADADA;
+  background: #f6f1f8;
 }
-
 .bg-white {
   background: #FFFFFF;
 }
@@ -109,9 +109,15 @@ body {
 }
 
 .top-header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  opacity: 1;
+  background: white;
 }
 
 .content {
   position: relative;
+  margin-top: 58px;
 }
