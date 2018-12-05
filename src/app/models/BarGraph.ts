@@ -9,9 +9,9 @@ export class Bar {
 }
 
 export class BarGraph {
-  private numberOfBars: number;
   bars: Bar[];
 
+  constructor() {}
   get numberOfBars(): number {
     return this.bars.length;
   }

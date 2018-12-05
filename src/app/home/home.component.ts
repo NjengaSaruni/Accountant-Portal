@@ -13,10 +13,13 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   async ngOnInit() {
-    for (const i of await range(0, 10)) {
+    this.graph = new BarGraph();
+    for (let i = 0; i < 10; i++) {
       const bar: Bar = new Bar(i ** 2);
       this.graph.bars[i] = bar;
     }
+
+    console.log(this.graph.bars);
   }
 
 }
