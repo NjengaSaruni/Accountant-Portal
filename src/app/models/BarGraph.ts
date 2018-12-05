@@ -10,10 +10,12 @@ export class Bar {
 
 export class BarGraph {
   bars: Bar[];
-
-  constructor() {}
   get numberOfBars(): number {
     return this.bars.length;
+  }
+
+  add(bar: Bar) {
+    this.bars.push(bar);
   }
 }
 

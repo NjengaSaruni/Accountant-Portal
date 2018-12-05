@@ -89,11 +89,11 @@ body {
 }
 
 .raised {
-  box-shadow: 2px 1px 1px 0 silver;
-}
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);}
 
 .centered {
   justify-content: center;
+  align-items: center;
 }
 
 .segment {
@@ -106,4 +106,12 @@ body {
 
 .circular {
   border-radius: 50%;
+}
+
+.top-header {
+  position: relative;
+}
+
+.content {
+  position: relative;
 }

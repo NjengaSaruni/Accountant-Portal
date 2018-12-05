@@ -1,40 +1,60 @@
 <div class="top-header">
   <app-header></app-header>
 </div>
-<div class="bg-p">
-  <div class="row">
-    <div class="col bordered segment rounded-s padding bg-bluish">
-      this
+<div class="content">
+  <div class="bg-p">
+    <div class="row">
+      <div class="col bordered segment rounded-s padding bg-bluish">
+        this
+      </div>
+      <div class="col bordered segment rounded-s padding bg-bluish">
+        this
+      </div>
+      <div class="col bordered segment rounded-s padding bg-bluish">
+        this
+      </div>
     </div>
-    <div class="col bordered segment rounded-s padding bg-bluish">
-      this
+    <div class="row">
+      <div class="col rounded-s bordered segment padding bg-white">
+        <div class="row" [ngStyle]="{'height.px': max}">
+          <div class="col bg-bluish" *ngFor="let bar of graph.bars" [ngStyle]="{'height': bar.height + '%'}">
+            {{bar.height}}
+          </div>
+        </div>
+
+      </div>
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
     </div>
-    <div class="col bordered segment rounded-s padding bg-bluish">
-      this
+    <div class="row">
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
+    </div>
+    <div class="row">
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
+      <div class="col rounded-s bordered segment padding bg-white">
+        this
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col rounded-s bordered segment padding bg-white">
-      <p class="no-margin" *ngFor="let bar of graph.bars">
-        {{bar.height}}
-      </p>
-    </div>
-    <div class="col rounded-s bordered segment padding bg-white">
-      this
-    </div>
-  </div>
-  <div class="row">
-    <div class="col rounded-s bordered segment padding bg-white">
-      this
-    </div>
-    <div class="col rounded-s bordered segment padding bg-white">
-      this
-    </div>
-    <div class="col rounded-s bordered segment padding bg-white">
-      this
-    </div>
-    <div class="col rounded-s bordered segment padding bg-white">
-      this
-    </div>
-  </div>
+
 </div>

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Bar, BarGraph} from '../models/BarGraph';
-import {range} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,17 +8,16 @@ import {range} from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   graph: BarGraph;
+  max = 10 ** 2;
 
   constructor() { }
 
   async ngOnInit() {
     this.graph = new BarGraph();
-    for (let i = 0; i < 10; i++) {
-      const bar: Bar = new Bar(i ** 2);
-      this.graph.bars[i] = bar;
+    this.graph.bars = [];
+    for (let i = 1; i <= 10; i++) {
+      this.graph.add(new Bar((Math.ceil(i ** 2 / this.max * 100))));
     }
-
-    console.log(this.graph.bars);
   }
 
 }
