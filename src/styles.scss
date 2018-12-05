@@ -52,6 +52,38 @@ body {
   margin: 16px;
 }
 
+.margin-b {
+  margin-bottom: 8px;
+}
+
+.margin-bs {
+  margin-bottom: 16px;
+}
+
+.margin-t {
+  margin-top: 8px;
+}
+
+.margin-ts {
+  margin-top: 16px;
+}
+
+.margin-l {
+  margin-left: 8px;
+}
+
+.margin-ls {
+  margin-left: 16px;
+}
+
+.margin-r {
+  margin-right: 8px;
+}
+
+.margin-ls {
+  margin-right: 16px;
+}
+
 .margin-h {
   margin: 8px 0;
 }
@@ -96,6 +128,13 @@ body {
   align-items: center;
 }
 
+.centered-v {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 .segment {
   min-height: 240px;
 }

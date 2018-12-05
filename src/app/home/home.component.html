@@ -4,18 +4,18 @@
 <div class="content">
   <div class="bg-p">
     <div class="row">
-      <div class="col bordered segment rounded-s padding bg-bluish">
-        this
-      </div>
-      <div class="col bordered segment rounded-s padding bg-bluish">
-        this
-      </div>
-      <div class="col bordered segment rounded-s padding bg-bluish">
-        this
+      <div class="col">
+        <div class="main-title">
+          <div class="centered-v title">
+            <span>Dashboard</span>
+            <fa name="dashboard" class="padding"></fa>
+          </div>
+
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col rounded-s bordered segment padding bg-white">
+      <div class="col rounded-s bordered segment bg-white">
         <div class="row" [ngStyle]="{'height.px': max}">
           <div class="col bg-bluish" *ngFor="let bar of graph.bars" [ngStyle]="{'height': bar.height + '%'}">
             {{bar.height}}
@@ -27,34 +27,5 @@
         this
       </div>
     </div>
-    <div class="row">
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-    </div>
-    <div class="row">
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        this
-      </div>
-    </div>
   </div>
-
 </div>
