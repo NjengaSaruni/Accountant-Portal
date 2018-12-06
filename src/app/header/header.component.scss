@@ -14,14 +14,20 @@
         }
       }
     }
-
-    .main-title {
-      font-size: 20px;
-      height: 60px;
+    .elements {
       position: relative;
+      display: inline-flex;
+      .element {
+        .main-title {
+          font-size: 20px;
+          height: 60px;
+          position: relative;
 
-      .title {
-
+          .title {
+            border-left: 2px solid #DADADA;
+            display: inline-flex;
+          }
+        }
       }
     }
   }
