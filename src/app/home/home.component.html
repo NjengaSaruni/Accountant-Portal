@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col rounded-s bordered segment bg-white">
         <div class="row" [ngStyle]="{'height.px': max}">
-          <div class="col bg-bluish" *ngFor="let bar of graph.bars" [ngStyle]="{'height': bar.height + '%'}">
+          <div class="col bg-red" *ngFor="let bar of graph.bars" [ngStyle]="{'height': bar.height + '%'}">
             {{bar.height}}
           </div>
         </div>
