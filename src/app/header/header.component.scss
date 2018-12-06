@@ -1,17 +1,31 @@
 .header-wrapper {
   height: 50px;
-  .logo-wrapper {
-    width: 100px;
 
-    .logo {
-      p {
-        font-size: 50px;
-        font-weight: 700;
-        margin: 0;
-        font-family: "DejaVu Sans Mono";
+  .navigation {
+    display: inline-flex;
+
+    .logo-wrapper {
+      .logo {
+        p {
+          font-size: 50px;
+          font-weight: 700;
+          margin: 0;
+          font-family: "DejaVu Sans Mono";
+        }
+      }
+    }
+
+    .main-title {
+      font-size: 20px;
+      height: 60px;
+      position: relative;
+
+      .title {
+
       }
     }
   }
+
 
   .options {
     float: right;
@@ -24,6 +38,7 @@
       }
     }
   }
+
 }
 
 //Can be used for the sidebar later
