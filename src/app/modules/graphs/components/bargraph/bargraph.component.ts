@@ -25,7 +25,7 @@ export class BargraphComponent implements AfterViewInit {
 
     this.cx.lineWidth = 3;
     this.cx.lineCap = 'round';
-    this.cx.strokeStyle = '#000';
+    this.cx.strokeStyle = '#1cbcff';
 
     this.captureEvents(canvasEl);
   }
