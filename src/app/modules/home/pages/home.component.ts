@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Bar, BarGraph} from '../../shared/models/BarGraph';
+import {Bar, BarGraph} from '../../../shared/models/BarGraph';
 
 @Component({
   selector: 'app-home',
