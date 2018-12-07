@@ -1,0 +1,5 @@
+<div class="row" [ngStyle]="{'height.px': max}">
+  <div class="col bg-red" *ngFor="let bar of graph.bars" [ngStyle]="{'height': bar.height + '%'}">
+    {{bar.height}}
+  </div>
+</div>

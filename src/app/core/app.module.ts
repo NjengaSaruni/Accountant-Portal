@@ -3,21 +3,20 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from '../shared/components/header/header.component';
-import {HomeComponent} from '../modules/home/pages/home.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import {BargraphComponent} from '../modules/graphs/components/bargraph/bargraph.component';
+import {HomeModule} from '../modules/home/home.module';
+import {GraphsModule} from '../modules/graphs/graphs.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    BargraphComponent
-  ],
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    HomeModule,
+    GraphsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
