@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/c
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {BarGraph} from '../../../../shared/models/BarGraph';
+import {randomInt} from '../../../../shared/utils/randomInt';
 
 
 @Component({
@@ -33,7 +34,10 @@ export class BargraphComponent implements AfterViewInit {
 
     let i = 0;
     while (i <= this.graph.bars.length) {
-      this.cx.fillRect(i * 100, 600, 100, -this.graph.bars[i].height);
+      this.cx.fillStyle = `rgba(255,255,255)`;
+      this.cx.fillRect(i * 100, 600, 10, -600);
+      this.cx.fillStyle = `rgba(${randomInt(0, 100)},${randomInt(0, 100)},${randomInt(0, 100)},0.9)`;
+      this.cx.fillRect(i * 100 + 10, 600, 90, -this.graph.bars[i].height);
       i++;
     }
 
