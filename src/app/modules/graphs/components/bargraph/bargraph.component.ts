@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {BarGraph} from '../../../../shared/models/BarGraph';
@@ -33,7 +33,7 @@ export class BargraphComponent implements AfterViewInit {
 
     let i = 0;
     while (i <= this.graph.bars.length) {
-      this.cx.fillRect(i * 100, 0, 100, i * 20);
+      this.cx.fillRect(i * 100, 0, 100, this.graph.bars[i].height);
       i++;
     }
 
