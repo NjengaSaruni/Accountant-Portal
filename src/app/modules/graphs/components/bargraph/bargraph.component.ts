@@ -33,15 +33,25 @@ export class BargraphComponent implements AfterViewInit {
     this.cx.strokeStyle = '#1cbcff';
 
     let i = 0;
-    while (i <= this.graph.bars.length) {
+    while (i < this.graph.bars.length) {
       this.cx.fillStyle = `rgba(255,255,255)`;
       this.cx.fillRect(i * 100, 600, 10, -600);
-      this.cx.fillStyle = `rgba(${randomInt(0, 100)},${randomInt(0, 100)},${randomInt(0, 100)},0.9)`;
+      this.cx.fillStyle = `rgba(${randomInt(100, 100)},${randomInt(100, 100)},${randomInt(0, 100)},0.9)`;
       this.cx.fillRect(i * 100 + 10, 600, 90, -this.graph.bars[i].height);
       i++;
     }
 
-    this.captureEvents(canvasEl);
+    this.cx.beginPath();
+    this.cx.moveTo(55, 600 - this.graph.bars[0].height);
+    i = 1;
+    while (i < this.graph.bars.length) {
+      this.cx.lineTo(i * 100 + 55, 600 - this.graph.bars[i].height);
+      i++;
+    }
+
+    this.cx.stroke();
+
+    // this.captureEvents(canvasEl);
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
