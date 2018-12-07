@@ -7,10 +7,14 @@ import {BarGraph} from '../../../../shared/models/BarGraph';
   styleUrls: ['./piechart.component.scss']
 })
 export class PiechartComponent implements OnInit {
-  @Input graph: BarGraph;
-  constructor() { }
+  @Input() graph: BarGraph;
+  @Input() max: number;
 
-  ngOnInit() {
+  constructor(
+  ) { }
+
+  ngOnInit(
+  ) {
   }
 
 }

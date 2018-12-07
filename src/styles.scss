@@ -6,6 +6,7 @@
 
 body {
   font-family: Ubuntu;
+  margin: 0;
 }
 .bg-beige {
   background: beige;
@@ -132,6 +133,8 @@ body {
 .centered {
   justify-content: center;
   align-items: center;
+  display: block;
+  margin: auto;
 }
 
 .centered-v {

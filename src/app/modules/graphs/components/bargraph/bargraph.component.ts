@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-bargraph',
   templateUrl: './bargraph.component.html',

@@ -1,49 +1,55 @@
 <div class="top-header">
   <app-header></app-header>
 </div>
-<div class="content">
-  <div class="bg-p">
-    <div class="row">
-      <div class="col rounded-s bordered segment bg-white">
-
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-      <div class="col rounded-s bordered segment padding bg-white">
-        <app-bargraph></app-bargraph>
-      </div>
-    </div>
+<div class="content" #content>
+  <!--<app-piechart [graph]="graph" [max]="max"></app-piechart>-->
+  <div >
+    <app-bargraph [height]="height" [width]="width"></app-bargraph>
   </div>
+
+
+  <!--  <div class="bg-p">
+      <div class="row">
+        <div class="col rounded-s bordered segment bg-white">
+          <app-piechart [graph]="graph" [max]="max"></app-piechart>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+        <div class="col rounded-s bordered segment padding bg-white">
+          <app-bargraph></app-bargraph>
+        </div>
+      </div>
+    </div>-->
 </div>
