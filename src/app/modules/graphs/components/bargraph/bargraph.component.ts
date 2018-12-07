@@ -33,7 +33,7 @@ export class BargraphComponent implements AfterViewInit {
 
     let i = 0;
     while (i <= this.graph.bars.length) {
-      this.cx.fillRect(i * 100, 0, 100, this.graph.bars[i].height);
+      this.cx.fillRect(i * 100, 600, 100, -this.graph.bars[i].height);
       i++;
     }
 
