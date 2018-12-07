@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
+import {BarGraph} from '../../../../shared/models/BarGraph';
 
 
 @Component({
@@ -11,6 +12,8 @@ import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 export class BargraphComponent implements AfterViewInit {
 
   @ViewChild('canvas') public canvas: ElementRef;
+  @Input() graph: BarGraph;
+  @Input() max: number;
 
   @Input() public width = 400;
   @Input() public height = 400;
@@ -27,6 +30,12 @@ export class BargraphComponent implements AfterViewInit {
     this.cx.lineWidth = 3;
     this.cx.lineCap = 'round';
     this.cx.strokeStyle = '#1cbcff';
+
+    let i = 0;
+    while (i <= this.graph.bars.length) {
+      this.cx.fillRect(i * 100, 0, 100, i * 20);
+      i++;
+    }
 
     this.captureEvents(canvasEl);
   }

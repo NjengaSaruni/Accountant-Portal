@@ -11,7 +11,7 @@ declare let window: any;
 export class HomeComponent implements OnInit {
   graph: BarGraph;
   max = 10 ** 2;
-  width = 900;
+  width = 1000;
   height = 600;
   constructor() { }
 
