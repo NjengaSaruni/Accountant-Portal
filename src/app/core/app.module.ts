@@ -5,12 +5,14 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from '../shared/components/header/header.component';
 import {HomeComponent} from '../modules/home/pages/home.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {BargraphComponent} from '../modules/graphs/components/bargraph/bargraph.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    BargraphComponent
   ],
   imports: [
     BrowserModule,
