@@ -1,5 +1,6 @@
 export class Bar {
   height: number;
+  currentHeight = 0;
   width: number;
 
   constructor(height?: number, width?: number) {

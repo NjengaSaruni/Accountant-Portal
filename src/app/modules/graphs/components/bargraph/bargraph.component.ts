@@ -61,13 +61,14 @@ export class BargraphComponent implements AfterViewInit {
     this.cx.clearRect(0, 0, this.width, this.height);
 
     for (let i = 0; i < this.graph.bars.length; i++) {
-      let j = -600;
-      this.cx.fillStyle = `rgba(255,255,255)`;
-      this.cx.fillRect(i * 100, 600, 5, -600);
       this.cx.fillStyle = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
-      this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].height);
+      this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].currentHeight);
 
-      this.graph.bars[i].height--;
+      if (this.graph.bars[i].currentHeight < this.graph.bars[i].height) {
+        this.graph.bars[i].currentHeight += 5;
+      }
+      // console.log(this.graph.bars[i].currentHeight);
+      // if (i === 0) { break; }
     }
   }
   private captureEvents(canvasEl: HTMLCanvasElement) {
