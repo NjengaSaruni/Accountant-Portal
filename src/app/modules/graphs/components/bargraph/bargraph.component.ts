@@ -40,36 +40,30 @@ export class BargraphComponent implements AfterViewInit {
     this.cx.lineCap = 'round';
     this.cx.strokeStyle = '#1cbcff';
 
-    let i = 0;
     this.cx.beginPath();
     this.cx.moveTo(20, 600 - this.graph.bars[0].height);
     this.animateGraph();
-
-    i = 1;
-    while (i < this.graph.bars.length) {
-      this.cx.lineTo(i * 50 + 55, 600 - this.graph.bars[i].height);
-      i++;
-    }
+    this.cx.stroke();
 
     // this.captureEvents(canvasEl);
   }
 
   private animateGraph() {
+    // if (this.graph.bars[this.graph.bars.length - 1].currentHeight < this.graph.bars[this.graph.bars.length - 1].height) {
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
+    // }
 
     for (let i = 0; i < this.graph.bars.length; i++) {
       this.cx.fillStyle = this.graph.bars[i].color;
-      this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].currentHeight);
-      this.cx.lineTo(i * 50 + 55, 600 - this.graph.bars[i].currentHeight);
-      this.cx.stroke();
-
+      this.cx.fillRect(i * this.graph.bars[i].width - 5, 600, this.graph.bars[i].width, -this.graph.bars[i].currentHeight);
 
       if (this.graph.bars[i].currentHeight < this.graph.bars[i].height) {
-        this.graph.bars[i].currentHeight += 5;
+        this.graph.bars[i].currentHeight += 10;
+      } else {
+        this.graph.bars[i].currentHeight -= 10;
       }
-      // console.log(this.graph.bars[i].currentHeight);
-      // if (i === 0) { break; }
     }
+
   }
   private captureEvents(canvasEl: HTMLCanvasElement) {
     // this will capture all mousedown events from the canvas element
