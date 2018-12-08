@@ -3,6 +3,8 @@ import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {BarGraph} from '../../../../shared/models/BarGraph';
 import {randomInt} from '../../../../shared/utils/randomInt';
+import {animate} from '@angular/animations';
+import {Color} from '../../../../shared/models/Color';
 
 
 @Component({
@@ -15,13 +17,18 @@ export class BargraphComponent implements AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
   @Input() graph: BarGraph;
   @Input() max: number;
+  @Input() barWidth: number;
 
   @Input() public width = 400;
   @Input() public height = 400;
 
   private cx: CanvasRenderingContext2D;
-
+  private value = 0;
+  private colors: Color[];
   public ngAfterViewInit() {
+    this.colors.push(new Color(255, 71, 71));
+    this.colors.push(new Color(0, 206, 237));
+    this.colors.push(new Color(255, 255, 71));
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
 
@@ -34,24 +41,39 @@ export class BargraphComponent implements AfterViewInit {
 
     let i = 0;
     while (i < this.graph.bars.length) {
-      this.cx.fillStyle = `rgba(255,255,255)`;
-      this.cx.fillRect(i * 100, 600, 10, -600);
-      this.cx.fillStyle = `rgba(${randomInt(100, 100)},${randomInt(100, 100)},${randomInt(0, 100)},0.9)`;
-      this.cx.fillRect(i * 100 + 10, 600, 90, -this.graph.bars[i].height);
-      i++;
+      i = this.animateBar(i);
     }
 
     this.cx.beginPath();
-    this.cx.moveTo(55, 600 - this.graph.bars[0].height);
+    this.cx.moveTo(20, 600 - this.graph.bars[0].height);
     i = 1;
     while (i < this.graph.bars.length) {
-      this.cx.lineTo(i * 100 + 55, 600 - this.graph.bars[i].height);
+      this.cx.lineTo(i * 50 + 55, 600 - this.graph.bars[i].height);
       i++;
     }
 
     this.cx.stroke();
 
     // this.captureEvents(canvasEl);
+  }
+
+  private animateBar(i: number) {
+    this.cx.fillStyle = `rgba(255,255,255)`;
+    this.cx.fillRect(i * 100, 600, 5, -600);
+    this.cx.fillStyle = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
+    this.draw(i);
+    i++;
+    return i;
+  }
+
+  private draw(i: number) {
+    requestAnimationFrame(animate);
+    this.value = -600;
+    while (this.value <= -this.graph.bars[i].height) {
+      this.cx.fillRect(i * 50 + 5, 600, 40, this.value);
+      this.value++;
+    }
+    this.value = -600;
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
