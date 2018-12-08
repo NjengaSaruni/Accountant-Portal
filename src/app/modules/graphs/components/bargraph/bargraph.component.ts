@@ -41,28 +41,28 @@ export class BargraphComponent implements AfterViewInit {
     this.cx.strokeStyle = '#1cbcff';
 
     let i = 0;
-    this.animateGraph();
-
     this.cx.beginPath();
     this.cx.moveTo(20, 600 - this.graph.bars[0].height);
+    this.animateGraph();
+
     i = 1;
     while (i < this.graph.bars.length) {
       this.cx.lineTo(i * 50 + 55, 600 - this.graph.bars[i].height);
       i++;
     }
 
-    this.cx.stroke();
-
     // this.captureEvents(canvasEl);
   }
 
   private animateGraph() {
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
-    this.cx.clearRect(0, 0, this.width, this.height);
 
     for (let i = 0; i < this.graph.bars.length; i++) {
       this.cx.fillStyle = this.graph.bars[i].color;
       this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].currentHeight);
+      this.cx.lineTo(i * 50 + 55, 600 - this.graph.bars[i].currentHeight);
+      this.cx.stroke();
+
 
       if (this.graph.bars[i].currentHeight < this.graph.bars[i].height) {
         this.graph.bars[i].currentHeight += 5;
