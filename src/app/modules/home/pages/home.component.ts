@@ -8,17 +8,26 @@ import {randomInt} from '../../../shared/utils/randomInt';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  graph: BarGraph;
-  width = 800;
-  height = 600;
-  barWidth = 200;
+  graphs: BarGraph[] = [];
   constructor() { }
 
   async ngOnInit() {
-    this.graph = new BarGraph();
-    this.graph.bars = [];
+    this.graphs.push(new BarGraph());
+    this.graphs[0].bars = [];
     for (let i = 1; i <= 10; i++) {
-      this.graph.add(new Bar(randomInt(0, 300), 800 / 10));
+      const w = 800 / 10;
+      const bar: Bar = new Bar(randomInt(0, 300), w);
+      this.graphs[0].add(bar);
+      this.graphs[0].width += w;
+    }
+
+    this.graphs.push(new BarGraph());
+    this.graphs[1].bars = [];
+    for (let i = 1; i <= 10; i++) {
+      const w = 800 / 10;
+      const bar: Bar = new Bar(randomInt(0, 300), w);
+      this.graphs[1].add(bar);
+      this.graphs[1].width += w;
     }
     // this.width = window.innerWidth;
     // this.height = window.innerHeight;

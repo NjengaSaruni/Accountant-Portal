@@ -2,7 +2,6 @@ import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/c
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {BarGraph} from '../../../../shared/models/BarGraph';
-import {randomInt} from '../../../../shared/utils/randomInt';
 import {Color} from '../../../../shared/models/Color';
 import {WindowRefService} from '../../../../shared/services/window-ref.service';
 
@@ -22,36 +21,21 @@ export class BargraphComponent implements AfterViewInit {
   @Input() public height = 400;
 
   private cx: CanvasRenderingContext2D;
-  private value = 0;
-  private colors: Color[] = [];
 
   constructor(private winRef: WindowRefService) {}
   public ngAfterViewInit() {
-    this.colors.push(new Color(255, 71, 71));
-    this.colors.push(new Color(0, 206, 237));
-    this.colors.push(new Color(255, 255, 71));
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
 
-    canvasEl.width = this.width;
-    canvasEl.height = this.height;
+    canvasEl.width = this.graph.width;
 
-    this.cx.lineWidth = 3;
-    this.cx.lineCap = 'round';
-    this.cx.strokeStyle = '#1cbcff';
-
-    this.cx.beginPath();
-    this.cx.moveTo(20, 600 - this.graph.bars[0].height);
     this.animateGraph();
-    this.cx.stroke();
 
     // this.captureEvents(canvasEl);
   }
 
   private animateGraph() {
-    // if (this.graph.bars[this.graph.bars.length - 1].currentHeight < this.graph.bars[this.graph.bars.length - 1].height) {
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
-    // }
 
     for (let i = 0; i < this.graph.bars.length; i++) {
       this.cx.fillStyle = this.graph.bars[i].color;

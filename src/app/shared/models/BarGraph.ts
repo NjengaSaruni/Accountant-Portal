@@ -14,6 +14,7 @@ export class Bar {
 
 export class BarGraph {
   bars: Bar[];
+  width: number = 0;
   get numberOfBars(): number {
     return this.bars.length;
   }
