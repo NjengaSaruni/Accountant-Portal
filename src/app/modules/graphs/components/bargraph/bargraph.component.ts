@@ -24,7 +24,7 @@ export class BargraphComponent implements AfterViewInit {
 
   private cx: CanvasRenderingContext2D;
   private value = 0;
-  private colors: Color[];
+  private colors: Color[] = [];
   public ngAfterViewInit() {
     this.colors.push(new Color(255, 71, 71));
     this.colors.push(new Color(0, 206, 237));
@@ -68,12 +68,7 @@ export class BargraphComponent implements AfterViewInit {
 
   private draw(i: number) {
     requestAnimationFrame(animate);
-    this.value = -600;
-    while (this.value <= -this.graph.bars[i].height) {
-      this.cx.fillRect(i * 50 + 5, 600, 40, this.value);
-      this.value++;
-    }
-    this.value = -600;
+    this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].height);
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {

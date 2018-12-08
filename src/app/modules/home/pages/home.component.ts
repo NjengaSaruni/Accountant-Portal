@@ -9,7 +9,7 @@ import {randomInt} from '../../../shared/utils/randomInt';
 })
 export class HomeComponent implements OnInit {
   graph: BarGraph;
-  width = 800;
+  width = 1600;
   height = 600;
   barWidth = 100;
   constructor() { }
