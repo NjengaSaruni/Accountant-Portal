@@ -1,7 +1,10 @@
+import {randomInt} from '../utils/randomInt';
+
 export class Bar {
   height: number;
   currentHeight = 0;
   width: number;
+  color = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
 
   constructor(height?: number, width?: number) {
     this.height = height;

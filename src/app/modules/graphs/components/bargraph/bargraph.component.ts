@@ -61,7 +61,7 @@ export class BargraphComponent implements AfterViewInit {
     this.cx.clearRect(0, 0, this.width, this.height);
 
     for (let i = 0; i < this.graph.bars.length; i++) {
-      this.cx.fillStyle = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
+      this.cx.fillStyle = this.graph.bars[i].color;
       this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].currentHeight);
 
       if (this.graph.bars[i].currentHeight < this.graph.bars[i].height) {
