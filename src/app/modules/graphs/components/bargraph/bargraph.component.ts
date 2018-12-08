@@ -3,9 +3,10 @@ import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {BarGraph} from '../../../../shared/models/BarGraph';
 import {randomInt} from '../../../../shared/utils/randomInt';
-import {animate} from '@angular/animations';
 import {Color} from '../../../../shared/models/Color';
+import {WindowRefService} from '../../../../shared/services/window-ref.service';
 
+declare var window: any;
 
 @Component({
   selector: 'app-bargraph',
@@ -25,6 +26,8 @@ export class BargraphComponent implements AfterViewInit {
   private cx: CanvasRenderingContext2D;
   private value = 0;
   private colors: Color[] = [];
+
+  constructor(private winRef: WindowRefService) {}
   public ngAfterViewInit() {
     this.colors.push(new Color(255, 71, 71));
     this.colors.push(new Color(0, 206, 237));
@@ -40,9 +43,7 @@ export class BargraphComponent implements AfterViewInit {
     this.cx.strokeStyle = '#1cbcff';
 
     let i = 0;
-    while (i < this.graph.bars.length) {
-      i = this.animateBar(i);
-    }
+    this.animateGraph();
 
     this.cx.beginPath();
     this.cx.moveTo(20, 600 - this.graph.bars[0].height);
@@ -57,20 +58,23 @@ export class BargraphComponent implements AfterViewInit {
     // this.captureEvents(canvasEl);
   }
 
-  private animateBar(i: number) {
-    this.cx.fillStyle = `rgba(255,255,255)`;
-    this.cx.fillRect(i * 100, 600, 5, -600);
-    this.cx.fillStyle = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
-    this.draw(i);
-    i++;
-    return i;
-  }
+  private animateGraph() {
+    window.requestAnimationFrame(this.animateGraph.bind(this));
 
-  private draw(i: number) {
-    requestAnimationFrame(animate);
-    this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].height);
+    for (let i = 0; i < this.graph.bars.length; i++) {
+      this.cx.fillStyle = `rgba(255,255,255)`;
+      this.cx.fillRect(i * 100, 600, 5, -600);
+      this.cx.fillStyle = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
+      let j = -600;
+      while (j < this.graph.bars[i].height ) {
+        this.cx.save();
+        this.cx.fillRect(i * 50 + 5, 600, 40, -j);
+        this.cx.restore();
+        // console.log(j);
+        j += 5;
+      }
+    }
   }
-
   private captureEvents(canvasEl: HTMLCanvasElement) {
     // this will capture all mousedown events from the canvas element
     fromEvent(canvasEl, 'mousedown')
@@ -120,6 +124,4 @@ export class BargraphComponent implements AfterViewInit {
       this.cx.stroke();
     }
   }
-
-
 }

@@ -8,6 +8,6 @@ import { PiechartComponent } from './components/piechart/piechart.component';
   imports: [
     CommonModule
   ],
-  exports:[ BargraphComponent, PiechartComponent ]
+  exports: [ BargraphComponent, PiechartComponent ]
 })
 export class GraphsModule { }

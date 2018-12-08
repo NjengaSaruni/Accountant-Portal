@@ -4,6 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeModule} from '../modules/home/home.module';
 import {GraphsModule} from '../modules/graphs/graphs.module';
+import {WindowRefService} from '../shared/services/window-ref.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import {GraphsModule} from '../modules/graphs/graphs.module';
     HomeModule,
     GraphsModule
   ],
-  providers: [],
+  providers: [
+    WindowRefService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
