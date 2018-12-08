@@ -6,8 +6,6 @@ import {randomInt} from '../../../../shared/utils/randomInt';
 import {Color} from '../../../../shared/models/Color';
 import {WindowRefService} from '../../../../shared/services/window-ref.service';
 
-declare var window: any;
-
 @Component({
   selector: 'app-bargraph',
   templateUrl: './bargraph.component.html',
@@ -59,20 +57,17 @@ export class BargraphComponent implements AfterViewInit {
   }
 
   private animateGraph() {
-    window.requestAnimationFrame(this.animateGraph.bind(this));
+    this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
+    this.cx.clearRect(0, 0, this.width, this.height);
 
     for (let i = 0; i < this.graph.bars.length; i++) {
+      let j = -600;
       this.cx.fillStyle = `rgba(255,255,255)`;
       this.cx.fillRect(i * 100, 600, 5, -600);
       this.cx.fillStyle = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
-      let j = -600;
-      while (j < this.graph.bars[i].height ) {
-        this.cx.save();
-        this.cx.fillRect(i * 50 + 5, 600, 40, -j);
-        this.cx.restore();
-        // console.log(j);
-        j += 5;
-      }
+      this.cx.fillRect(i * 50 + 5, 600, 40, -this.graph.bars[i].height);
+
+      this.graph.bars[i].height--;
     }
   }
   private captureEvents(canvasEl: HTMLCanvasElement) {
