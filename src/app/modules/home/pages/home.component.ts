@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     this.graphs.push(new BarGraph());
     this.graphs[0].bars = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 5; i++) {
       const w = 800 / 10;
       const bar: Bar = new Bar(randomInt(0, 300), w);
       this.graphs[0].add(bar);

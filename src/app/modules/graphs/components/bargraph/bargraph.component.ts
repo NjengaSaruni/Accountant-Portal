@@ -14,11 +14,6 @@ export class BargraphComponent implements AfterViewInit {
 
   @ViewChild('canvas') public canvas: ElementRef;
   @Input() graph: BarGraph;
-  @Input() max: number;
-  @Input() barWidth: number;
-
-  @Input() public width = 400;
-  @Input() public height = 400;
 
   private cx: CanvasRenderingContext2D;
 
@@ -28,6 +23,7 @@ export class BargraphComponent implements AfterViewInit {
     this.cx = canvasEl.getContext('2d');
 
     canvasEl.width = this.graph.width;
+    canvasEl.height = 800;
 
     this.animateGraph();
 
@@ -43,8 +39,6 @@ export class BargraphComponent implements AfterViewInit {
 
       if (this.graph.bars[i].currentHeight < this.graph.bars[i].height) {
         this.graph.bars[i].currentHeight += 10;
-      } else {
-        this.graph.bars[i].currentHeight -= 10;
       }
     }
 

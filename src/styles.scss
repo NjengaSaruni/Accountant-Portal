@@ -41,6 +41,8 @@ body {
 .row {
   display: inline-flex;
   width: 100%;
+  justify-content: space-around;
+
   .col {
     margin: 0 8px;
     width: 100%;
@@ -133,7 +135,7 @@ body {
 .centered {
   justify-content: center;
   align-items: center;
-  display: block;
+  display: flex;
   margin: auto;
 }
 
