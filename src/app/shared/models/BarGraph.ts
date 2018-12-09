@@ -13,6 +13,20 @@ export class Bar {
 }
 
 export class BarGraph {
+  get description(): string {
+    return this._description;
+  }
+
+  set description(value: string) {
+    this._description = value;
+  }
+  get subtitle(): string {
+    return this._subtitle;
+  }
+
+  set subtitle(value: string) {
+    this._subtitle = value;
+  }
   get width(): number {
     return this._width;
   }
@@ -37,6 +51,8 @@ export class BarGraph {
   private _title: string;
   private _bars: Bar[];
   private _width = 0;
+  private _subtitle: string;
+  private _description: string;
   get numberOfBars(): number {
     return this._bars.length;
   }
