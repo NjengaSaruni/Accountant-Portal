@@ -13,6 +13,13 @@ export class Bar {
 }
 
 export class BarGraph {
+  get width(): number {
+    return this._width;
+  }
+
+  set width(value: number) {
+    this._width = value;
+  }
   get bars(): Bar[] {
     return this._bars;
   }
@@ -29,7 +36,7 @@ export class BarGraph {
   }
   private _title: string;
   private _bars: Bar[];
-  width = 0;
+  private _width = 0;
   get numberOfBars(): number {
     return this._bars.length;
   }

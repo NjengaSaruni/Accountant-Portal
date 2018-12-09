@@ -2,7 +2,6 @@ import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/c
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {BarGraph} from '../../../../shared/models/BarGraph';
-import {Color} from '../../../../shared/models/Color';
 import {WindowRefService} from '../../../../shared/services/window-ref.service';
 
 @Component({
