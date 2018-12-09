@@ -13,14 +13,29 @@ export class Bar {
 }
 
 export class BarGraph {
-  bars: Bar[];
-  width: number = 0;
+  get bars(): Bar[] {
+    return this._bars;
+  }
+
+  set bars(value: Bar[]) {
+    this._bars = value;
+  }
+  get title(): string {
+    return this._title;
+  }
+
+  set title(value: string) {
+    this._title = value;
+  }
+  private _title: string;
+  private _bars: Bar[];
+  width = 0;
   get numberOfBars(): number {
-    return this.bars.length;
+    return this._bars.length;
   }
 
   add(bar: Bar) {
-    this.bars.push(bar);
+    this._bars.push(bar);
   }
 }
 
