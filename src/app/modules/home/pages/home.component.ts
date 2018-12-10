@@ -13,17 +13,17 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.graphs.push(new BarGraph());
-    this.graphs[0].bars = [];
-    this.graphs[0].title = `Bar Graph A`;
-    this.graphs[0].subtitle = `A graph of weekly expenditure in Kshs`;
-    for (let i = 1; i <= 5; i++) {
+    const graph = this.graphs[0];
+    graph.bars = [];
+    graph.title = `Bar Graph A`;
+    graph.subtitle = `A graph of weekly expenditure in Kshs`;
+    for (let i = 1; i <= 6; i++) {
       const w = 800 / 10;
-      const bar: Bar = new Bar(randomInt(0, 700), w);
+      // TODO debug effect of random height on bar display
+      const bar: Bar = new Bar(randomInt(0, 300), w);
       bar.title = `Bar ${i}`;
-      this.graphs[0].add(bar);
-      this.graphs[0].width += w;
+      graph.add(bar);
     }
-
     this.graphs.push(new BarGraph());
     this.graphs[1].title = `Bar Graph B`;
     this.graphs[1].subtitle = `A graph of monthly expenditure in Kshs`;
@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
       const bar: Bar = new Bar(randomInt(0, 300), w);
       bar.title = `Bar ${i}`;
       this.graphs[1].add(bar);
-      this.graphs[1].width += w;
     }
     // this.width = window.innerWidth;
     // this.height = window.innerHeight;

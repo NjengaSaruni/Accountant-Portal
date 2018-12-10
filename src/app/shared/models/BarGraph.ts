@@ -49,6 +49,13 @@ export class Bar {
 }
 
 export class BarGraph {
+  get velocity(): number {
+    return this._velocity;
+  }
+
+  set velocity(value: number) {
+    this._velocity = value;
+  }
   get height(): number {
     return this._height;
   }
@@ -97,6 +104,7 @@ export class BarGraph {
   private _subtitle: string;
   private _description: string;
   private _height = 0;
+  private _velocity = 1;
   get size(): number {
     return this._bars.length;
   }
@@ -106,6 +114,9 @@ export class BarGraph {
     if (bar.height + 30 > this.height) {
       this.height = bar.height + 30;
     }
+
+    this.width += bar.width;
+    this.velocity = this.height / 50;
   }
 
   get(i: number): Bar {

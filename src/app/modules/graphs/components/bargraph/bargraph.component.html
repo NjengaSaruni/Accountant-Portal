@@ -9,18 +9,21 @@
       <p class="sub-title">{{graph.subtitle}}</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <canvas class="segment centered" #canvas></canvas>
+  <div class="graph-container">
+    <div class="row">
+      <div class="col">
+        <canvas class="segment centered" #canvas></canvas>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="centered" [ngStyle]="{'width.px': graph.width}">
-        <div *ngFor="let bar of graph.bars" [ngStyle]="{'width.px': bar.width}" class="centered">
-          <span>{{bar.title}}</span>
+    <div class="row">
+      <div class="col">
+        <div class="centered" [ngStyle]="{'width.px': graph.width}">
+          <div *ngFor="let bar of graph.bars" [ngStyle]="{'width.px': bar.width}" class="centered">
+            <span>{{bar.title}}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
