@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
     for (let i = 1; i <= 5; i++) {
       const w = 800 / 10;
       const bar: Bar = new Bar(randomInt(0, 300), w);
+      bar.title = `Bar ${i}`;
       this.graphs[0].add(bar);
       this.graphs[0].width += w;
     }
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
     for (let i = 1; i <= 10; i++) {
       const w = 800 / 10;
       const bar: Bar = new Bar(randomInt(0, 300), w);
+      bar.title = `Bar ${i}`;
       this.graphs[1].add(bar);
       this.graphs[1].width += w;
     }

@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
-import {BarGraph} from '../../../../shared/models/BarGraph';
+import {Bar, BarGraph} from '../../../../shared/models/BarGraph';
 import {WindowRefService} from '../../../../shared/services/window-ref.service';
 
 @Component({
@@ -33,13 +33,13 @@ export class BargraphComponent implements AfterViewInit {
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
 
     for (let i = 0; i < this.graph.size; i++) {
-      this.cx.fillStyle = this.graph.get(i).color;
-      this.cx.fillRect(i * this.graph.get(i).width, 600, this.graph.get(i).width - 10, -this.graph.get(i).currentHeight);
-      // this.cx.fillStyle = '#FFFFFF';
-      // this.cx.fillRect(i * this.graph.bars[i].width, 600, this.graph.bars[i].width, -this.graph.bars[i].currentHeight);
-
-      if (this.graph.get(i).currentHeight < this.graph.get(i).height) {
-        this.graph.get(i).currentHeight += 10;
+      const bar: Bar = this.graph.get(i);
+      this.cx.fillStyle = bar.color;
+      this.cx.fillRect(i * bar.width, 550, bar.width - 10, - bar.currentHeight);
+      this.cx.font = '30px Arial';
+      this.cx.fillText(bar.title, i * bar.width, 600);
+      if (bar.currentHeight < bar.height) {
+        bar.currentHeight += 10;
       }
     }
 
