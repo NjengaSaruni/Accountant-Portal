@@ -26,11 +26,11 @@ export class BargraphComponent implements AfterViewInit {
     canvasEl.width = this.graph.width;
     canvasEl.height = this.graph.height;
     const unit = this.graph.height / 10 + 10 - (this.graph.height / 10) % 10;
-    this.cx.setLineDash([3, 3]);
+    this.cx.setLineDash(this.graph.pattern);
     for (let i = this.graph.height; i >= 0; i -= unit ) {
       this.cx.fillText(Math.ceil(this.graph.height - i).toString(), 0, i);
       this.cx.beginPath();
-      this.cx.moveTo(0, i);
+      this.cx.moveTo(20, i);
       this.cx.lineTo(this.graph.width, i);
       this.cx.stroke();
     }
@@ -49,7 +49,7 @@ export class BargraphComponent implements AfterViewInit {
 
       // Use the bar's set color for the actual bar
       this.cx.fillStyle = bar.color;
-      this.cx.fillRect(i * bar.width, this.graph.height, bar.width - 10, - bar.currentHeight);
+      this.cx.fillRect(i * bar.width + 30, this.graph.height, bar.width - 10, - bar.currentHeight);
       if (bar.currentHeight < bar.height) {
         bar.currentHeight += this.graph.velocity;
       }

@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     graph.bars = [];
     graph.title = `Bar Graph A`;
     graph.subtitle = `A graph of weekly expenditure in Kshs`;
+    graph.pattern = [15, 3, 3, 3];
     for (let i = 1; i <= 6; i++) {
       const w = 800 / 10;
       // TODO debug effect of random height on bar display
@@ -24,15 +25,18 @@ export class HomeComponent implements OnInit {
       bar.title = `Bar ${i}`;
       graph.add(bar);
     }
-    this.graphs.push(new BarGraph());
-    this.graphs[1].title = `Bar Graph B`;
-    this.graphs[1].subtitle = `A graph of monthly expenditure in Kshs`;
-    this.graphs[1].bars = [];
+
+    const graph1 = new BarGraph();
+    this.graphs.push(graph1);
+    graph1.title = `Bar Graph B`;
+    graph1.subtitle = `A graph of monthly expenditure in Kshs`;
+    graph1.bars = [];
+    graph1.pattern = [4, 8];
     for (let i = 1; i <= 10; i++) {
       const w = 800 / 10;
       const bar: Bar = new Bar(randomInt(0, 300), w);
       bar.title = `Bar ${i}`;
-      this.graphs[1].add(bar);
+      graph1.add(bar);
     }
     // this.width = window.innerWidth;
     // this.height = window.innerHeight;

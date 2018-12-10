@@ -49,6 +49,13 @@ export class Bar {
 }
 
 export class BarGraph {
+  get pattern(): number[] {
+    return this._pattern;
+  }
+
+  set pattern(value: number[]) {
+    this._pattern = value;
+  }
   get velocity(): number {
     return this._velocity;
   }
@@ -100,11 +107,12 @@ export class BarGraph {
   }
   private _title: string;
   private _bars: Bar[];
-  private _width = 0;
+  private _width = 50;
   private _subtitle: string;
   private _description: string;
   private _height = 0;
   private _velocity = 1;
+  private _pattern = [1, 1];
   get size(): number {
     return this._bars.length;
   }
