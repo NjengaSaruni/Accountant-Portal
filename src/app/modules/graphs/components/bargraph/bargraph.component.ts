@@ -25,8 +25,8 @@ export class BargraphComponent implements AfterViewInit {
 
     canvasEl.width = this.graph.width;
     canvasEl.height = this.graph.height;
-    const unit = this.graph.height / 10;
-    this.cx.setLineDash([5, 3]);
+    const unit = this.graph.height / 10 + 10 - (this.graph.height / 10) % 10;
+    this.cx.setLineDash([3, 3]);
     for (let i = this.graph.height; i >= 0; i -= unit ) {
       this.cx.fillText(Math.ceil(this.graph.height - i).toString(), 0, i);
       this.cx.beginPath();
