@@ -1,68 +1,22 @@
-import {randomInt} from '../utils/randomInt';
-
-export class Bar {
-  get color(): string {
-    return this._color;
-  }
-
-  set color(value: string) {
-    this._color = value;
-  }
-  get title(): string {
-    return this._title;
-  }
-
-  set title(value: string) {
-    this._title = value;
-  }
-  get width(): number {
-    return this._width;
-  }
-
-  set width(value: number) {
-    this._width = value;
-  }
-  get currentHeight(): number {
-    return this._currentHeight;
-  }
-
-  set currentHeight(value: number) {
-    this._currentHeight = value;
-  }
-  get height(): number {
-    return this._height;
-  }
-
-  set height(value: number) {
-    this._height = value;
-  }
-  private _height: number;
-  private _currentHeight = 0;
-  private _width: number;
-  private _title: string;
-  private _color = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
-
-  constructor(height?: number, width?: number) {
-    this._height = height;
-    this._width = width;
-  }
-}
+import {Bar} from './Bar';
+import {BarGraphLine} from './BarGraphLine';
 
 export class BarGraph {
-  get lineWidth(): number {
-    return this._lineWidth;
+  get line(): BarGraphLine {
+    return this._line;
   }
 
-  set lineWidth(value: number) {
-    this._lineWidth = value;
+  set line(value: BarGraphLine) {
+    this._line = value;
   }
-  get pattern(): number[] {
-    return this._pattern;
+  get backgroundColor(): string {
+    return this._backgroundColor;
   }
 
-  set pattern(value: number[]) {
-    this._pattern = value;
+  set backgroundColor(value: string) {
+    this._backgroundColor = value;
   }
+
   get velocity(): number {
     return this._velocity;
   }
@@ -113,14 +67,14 @@ export class BarGraph {
     this._title = value;
   }
   private _title: string;
-  private _bars: Bar[];
+  private _bars: Bar[] = [];
   private _width = 50;
   private _subtitle: string;
   private _description: string;
   private _height = 0;
   private _velocity = 1;
-  private _pattern = [1, 1];
-  private _lineWidth = 1;
+  private _line = new BarGraphLine();
+  private _backgroundColor = '#FFFFFF';
   get size(): number {
     return this._bars.length;
   }

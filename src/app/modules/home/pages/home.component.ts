@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Bar, BarGraph} from '../../../shared/models/BarGraph';
+import {BarGraph} from '../../../shared/models/graphs/BarGraph';
 import {randomInt} from '../../../shared/utils/randomInt';
+import {Bar} from '../../../shared/models/graphs/Bar';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +15,14 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     this.graphs.push(new BarGraph());
     const graph = this.graphs[0];
-    graph.bars = [];
     graph.title = `Bar Graph A`;
     graph.subtitle = `A graph of weekly expenditure in Kshs`;
-    graph.pattern = [15, 3, 3, 3];
-    graph.lineWidth = 0.3;
+
+    graph.line.pattern = [15, 3, 3, 3];
+    graph.line.width = 0.3;
+    graph.line.color = '#fff';
+
+    graph.backgroundColor = '#2c2c2c';
     for (let i = 1; i <= 6; i++) {
       const w = 800 / 10;
       // TODO debug effect of random height on bar display
@@ -31,8 +35,7 @@ export class HomeComponent implements OnInit {
     this.graphs.push(graph1);
     graph1.title = `Bar Graph B`;
     graph1.subtitle = `A graph of monthly expenditure in Kshs`;
-    graph1.bars = [];
-    graph1.pattern = [4, 8];
+    graph1.line.pattern = [4, 8];
     for (let i = 1; i <= 10; i++) {
       const w = 800 / 10;
       const bar: Bar = new Bar(randomInt(0, 300), w);

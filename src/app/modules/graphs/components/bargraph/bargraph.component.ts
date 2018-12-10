@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
-import {Bar, BarGraph} from '../../../../shared/models/BarGraph';
+import {BarGraph} from '../../../../shared/models/graphs/BarGraph';
 import {WindowRefService} from '../../../../shared/services/window-ref.service';
 import {ColorService} from '../../../../shared/services/color.service';
+import {Bar} from '../../../../shared/models/graphs/Bar';
 
 @Component({
   selector: 'app-bargraph',
@@ -26,9 +27,14 @@ export class BargraphComponent implements AfterViewInit {
     canvasEl.width = this.graph.width;
     canvasEl.height = this.graph.height;
 
+    this.cx.fillStyle = this.graph.backgroundColor;
+    this.cx.fillRect(0, 0, this.graph.width, this.graph.height);
+
     const unit = this.graph.height / 10 + 10 - (this.graph.height / 10) % 10;
-    this.cx.setLineDash(this.graph.pattern);
-    this.cx.lineWidth = this.graph.lineWidth;
+    this.cx.setLineDash(this.graph.line.pattern);
+    this.cx.lineWidth = this.graph.line.width;
+    this.cx.strokeStyle = this.graph.line.color;
+
     for (let i = this.graph.height; i >= 0; i -= unit ) {
       this.cx.fillText(Math.ceil(this.graph.height - i).toString(), 0, i);
       this.cx.beginPath();
