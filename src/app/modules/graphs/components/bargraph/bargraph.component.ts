@@ -36,15 +36,14 @@ export class BargraphComponent implements AfterViewInit {
     for (let i = 0; i < this.graph.size; i++) {
       const bar: Bar = this.graph.get(i);
 
-      // Use the bar's set color
-      this.cx.fillStyle = bar.color;
-
       // Bar's title
       this.cx.font = '14px';
       this.cx.textAlign = 'center';
-      this.cx.fillText(bar.title, i * bar.width, 600);
+      this.cx.fillStyle = '#000';
+      this.cx.fillText(bar.title, (i + 1) * bar.width  - bar.width / 2,  570);
 
-      // Actual bar
+      // Use the bar's set color for the actual bar
+      this.cx.fillStyle = bar.color;
       this.cx.fillRect(i * bar.width, 550, bar.width - 10, - bar.currentHeight);
       if (bar.currentHeight < bar.height) {
         bar.currentHeight += 10;

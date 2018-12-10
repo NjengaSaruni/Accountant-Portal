@@ -6,10 +6,11 @@ export class Color {
   public g: number;
   public b: number;
   public a: number;
+  public name: string;
 
-  constructor(colorxStr?: string)
-  constructor(r?: string | number, g?: number, b?: number)
-  constructor(r?: string | number, g?: number, b?: number, a?: number) {
+  constructor(name: string, colorxStr?: string)
+  constructor(name: string, r?: string | number, g?: number, b?: number)
+  constructor(name: string, r?: string | number, g?: number, b?: number, a?: number) {
     if (typeof r === 'string') {
       r = r.trim();
       if (r.indexOf('#') === 0) {
