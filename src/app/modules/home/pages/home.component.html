@@ -5,59 +5,8 @@
   <!--<app-piechart [graph]="graph" [max]="max"></app-piechart>-->
 
   <div class="row" >
-    <div class="col">
-      <div class="col">
-        <app-bargraph [graph]="graphs[0]"></app-bargraph>
-      </div>
-    </div>
-    <div class="col">
-      <app-bargraph [graph]="graphs[1]"></app-bargraph>
+    <div class="col" *ngFor="let graph of graphs">
+      <app-bargraph [graph]="graph"></app-bargraph>
     </div>
   </div>
-
-
-  <!--  <div class="bg-p">
-      <div class="row">
-        <div class="col rounded-s bordered segment bg-white">
-          <app-piechart [graph]="graph" [max]="max"></app-piechart>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-        <div class="col rounded-s bordered segment padding bg-white">
-          <app-bargraph></app-bargraph>
-        </div>
-      </div>
-    </div>-->
 </div>
