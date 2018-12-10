@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     for (let i = 1; i <= 6; i++) {
       const w = 800 / 10;
       // TODO debug effect of random height on bar display
-      const bar: Bar = new Bar(randomInt(0, 300), w);
+      const bar: Bar = new Bar(randomInt(0, 700), w);
       bar.title = `Bar ${i}`;
       graph.add(bar);
     }
