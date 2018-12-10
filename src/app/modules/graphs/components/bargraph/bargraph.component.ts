@@ -27,14 +27,17 @@ export class BargraphComponent implements AfterViewInit {
     canvasEl.width = this.graph.width;
     canvasEl.height = this.graph.height;
 
+    // Place the background color
     this.cx.fillStyle = this.graph.backgroundColor;
     this.cx.fillRect(0, 0, this.graph.width, this.graph.height);
 
+    // Configure the dashed lines
     const unit = this.graph.height / 10 + 10 - (this.graph.height / 10) % 10;
     this.cx.setLineDash(this.graph.line.pattern);
     this.cx.lineWidth = this.graph.line.width;
     this.cx.strokeStyle = this.graph.line.color;
 
+    // Place the dashed lines
     for (let i = this.graph.height; i >= 0; i -= unit ) {
       this.cx.fillText(Math.ceil(this.graph.height - i).toString(), 0, i);
       this.cx.beginPath();
