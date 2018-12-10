@@ -49,6 +49,13 @@ export class Bar {
 }
 
 export class BarGraph {
+  get lineWidth(): number {
+    return this._lineWidth;
+  }
+
+  set lineWidth(value: number) {
+    this._lineWidth = value;
+  }
   get pattern(): number[] {
     return this._pattern;
   }
@@ -113,6 +120,7 @@ export class BarGraph {
   private _height = 0;
   private _velocity = 1;
   private _pattern = [1, 1];
+  private _lineWidth = 1;
   get size(): number {
     return this._bars.length;
   }

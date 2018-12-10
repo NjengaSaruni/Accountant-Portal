@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     graph.title = `Bar Graph A`;
     graph.subtitle = `A graph of weekly expenditure in Kshs`;
     graph.pattern = [15, 3, 3, 3];
+    graph.lineWidth = 0.3;
     for (let i = 1; i <= 6; i++) {
       const w = 800 / 10;
       // TODO debug effect of random height on bar display
