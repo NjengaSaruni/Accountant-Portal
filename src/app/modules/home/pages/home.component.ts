@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     this.graphs[0].subtitle = `A graph of weekly expenditure in Kshs`;
     for (let i = 1; i <= 5; i++) {
       const w = 800 / 10;
-      const bar: Bar = new Bar(randomInt(0, 300), w);
+      const bar: Bar = new Bar(randomInt(0, 700), w);
       bar.title = `Bar ${i}`;
       this.graphs[0].add(bar);
       this.graphs[0].width += w;

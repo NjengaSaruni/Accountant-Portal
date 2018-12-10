@@ -3,6 +3,7 @@ import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {Bar, BarGraph} from '../../../../shared/models/BarGraph';
 import {WindowRefService} from '../../../../shared/services/window-ref.service';
+import {ColorService} from '../../../../shared/services/color.service';
 
 @Component({
   selector: 'app-bargraph',
@@ -16,13 +17,14 @@ export class BargraphComponent implements AfterViewInit {
 
   private cx: CanvasRenderingContext2D;
 
-  constructor(private winRef: WindowRefService) {}
+  constructor(private winRef: WindowRefService,
+              private colorService: ColorService) {}
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
 
     canvasEl.width = this.graph.width;
-    canvasEl.height = 800;
+    canvasEl.height = this.graph.height;
 
     this.animateGraph();
 
@@ -36,15 +38,9 @@ export class BargraphComponent implements AfterViewInit {
     for (let i = 0; i < this.graph.size; i++) {
       const bar: Bar = this.graph.get(i);
 
-      // Bar's title
-      this.cx.font = '14px';
-      this.cx.textAlign = 'center';
-      this.cx.fillStyle = '#000';
-      this.cx.fillText(bar.title, (i + 1) * bar.width  - bar.width / 2,  570);
-
       // Use the bar's set color for the actual bar
       this.cx.fillStyle = bar.color;
-      this.cx.fillRect(i * bar.width, 550, bar.width - 10, - bar.currentHeight);
+      this.cx.fillRect(i * bar.width, this.graph.height, bar.width - 10, - bar.currentHeight);
       if (bar.currentHeight < bar.height) {
         bar.currentHeight += 10;
       }

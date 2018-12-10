@@ -5,15 +5,21 @@ import {Color} from '../models/Color';
   providedIn: 'root'
 })
 export class ColorService {
-  get colors(): Map<string, Color> {
+  get colors(): Map<string, string> {
     return this._colors;
   }
 
-  set colors(value: Map<string, Color>) {
+  set colors(value: Map<string, string>) {
     this._colors = value;
   }
   constructor() {
     this.colors['grey'] = '#DADADA';
   }
-  private _colors =  new Map<string, Color>();
+  private _colors =  new Map<string, string>();
+
+  get(name: string) {
+    if (this.colors.has(name)) {
+      return this.colors[name];
+    }
+  }
 }

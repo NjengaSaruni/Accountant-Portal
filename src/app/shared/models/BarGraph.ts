@@ -49,6 +49,13 @@ export class Bar {
 }
 
 export class BarGraph {
+  get height(): number {
+    return this._height;
+  }
+
+  set height(value: number) {
+    this._height = value;
+  }
   get description(): string {
     return this._description;
   }
@@ -89,12 +96,16 @@ export class BarGraph {
   private _width = 0;
   private _subtitle: string;
   private _description: string;
+  private _height = 0;
   get size(): number {
     return this._bars.length;
   }
 
   add(bar: Bar) {
     this._bars.push(bar);
+    if (bar.height + 30 > this.height) {
+      this.height = bar.height + 30;
+    }
   }
 
   get(i: number): Bar {
