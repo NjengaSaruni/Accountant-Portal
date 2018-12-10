@@ -32,14 +32,14 @@ export class BargraphComponent implements AfterViewInit {
   private animateGraph() {
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
 
-    for (let i = 0; i < this.graph.bars.length; i++) {
-      this.cx.fillStyle = this.graph.bars[i].color;
-      this.cx.fillRect(i * this.graph.bars[i].width, 600, this.graph.bars[i].width - 10, -this.graph.bars[i].currentHeight);
+    for (let i = 0; i < this.graph.size; i++) {
+      this.cx.fillStyle = this.graph.get(i).color;
+      this.cx.fillRect(i * this.graph.get(i).width, 600, this.graph.get(i).width - 10, -this.graph.get(i).currentHeight);
       // this.cx.fillStyle = '#FFFFFF';
       // this.cx.fillRect(i * this.graph.bars[i].width, 600, this.graph.bars[i].width, -this.graph.bars[i].currentHeight);
 
-      if (this.graph.bars[i].currentHeight < this.graph.bars[i].height) {
-        this.graph.bars[i].currentHeight += 10;
+      if (this.graph.get(i).currentHeight < this.graph.get(i).height) {
+        this.graph.get(i).currentHeight += 10;
       }
     }
 

@@ -89,12 +89,16 @@ export class BarGraph {
   private _width = 0;
   private _subtitle: string;
   private _description: string;
-  get numberOfBars(): number {
+  get size(): number {
     return this._bars.length;
   }
 
   add(bar: Bar) {
     this._bars.push(bar);
+  }
+
+  get(i: number): Bar {
+    return this.bars[i];
   }
 }
 
