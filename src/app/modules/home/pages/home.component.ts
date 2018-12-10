@@ -20,9 +20,9 @@ export class HomeComponent implements OnInit {
 
     graph.line.pattern = [15, 3, 3, 3];
     graph.line.width = 0.3;
-    graph.line.color = '#fff';
+    graph.line.color = '#1945ff';
 
-    graph.backgroundColor = '#2c2c2c';
+    // graph.backgroundColor = '#2c2c2c';
     for (let i = 1; i <= 6; i++) {
       const w = 800 / 10;
       // TODO debug effect of random height on bar display
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     graph1.title = `Bar Graph B`;
     graph1.subtitle = `A graph of monthly expenditure in Kshs`;
     graph1.line.pattern = [4, 8];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 12; i++) {
       const w = 800 / 10;
       const bar: Bar = new Bar(randomInt(0, 300), w);
       bar.title = `Bar ${i}`;
