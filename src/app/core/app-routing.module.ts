@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: '../modules/home/home.module#HomeModule'
   },
   {
+    path: 'auth',
+    loadChildren: '../modules/auth/auth.module#AuthModule'
+  },
+  {
     path: '',
     pathMatch: 'prefix', //default
     redirectTo: 'home'

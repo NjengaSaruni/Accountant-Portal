@@ -7,10 +7,10 @@ import {WindowRefService} from '../shared/services/window-ref.service';
 @NgModule({
   declarations: [
     AppComponent,
- ],
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     WindowRefService
