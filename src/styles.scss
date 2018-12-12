@@ -4,6 +4,23 @@
 
 @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+
+///////////////////////////////////////////////
+//                Variables                  //
+///////////////////////////////////////////////
+
+$colors: (
+  'primary': #0E5A77,
+  'secondary': #777529,
+  'accent': #5a1321,
+  'foreground': #191919,
+  'background': #f6f1f8
+);
+
+///////////////////////////////////////////////
+//             Internal styles               //
+///////////////////////////////////////////////
+
 body {
   font-family: Ubuntu;
   margin: 0;
