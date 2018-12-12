@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    pathMatch: 'prefix', //default
+    pathMatch: 'prefix',
     redirectTo: 'home'
   }
 ];

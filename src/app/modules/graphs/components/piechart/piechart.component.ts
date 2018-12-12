@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BarGraph} from '../../../../shared/models/graphs/BarGraph';
+import {BarGraph} from '../../../../common/models/graphs/BarGraph';
 
 @Component({
   selector: 'app-piechart',
