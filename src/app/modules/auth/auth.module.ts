@@ -4,6 +4,7 @@ import {RegisterComponent} from './pages/register/register.component';
 import {AuthRoutingModule} from './auth-routing.module';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,9 +12,14 @@ import {SharedModule} from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    AngularFontAwesomeModule,
+
+    // Internal modules
     SharedModule,
+
+    // routing
     AuthRoutingModule,
-    AngularFontAwesomeModule
   ]
 })
 export class AuthModule { }

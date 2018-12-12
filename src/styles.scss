@@ -4,27 +4,15 @@
 
 @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-
-///////////////////////////////////////////////
-//                Variables                  //
-///////////////////////////////////////////////
-
-$acp-colors: (
-  'primary': #0E5A77,
-  'secondary': #777529,
-  'accent': #5a1321,
-  'foreground': #191919,
-  'background': #f6f1f8
-);
-
 ///////////////////////////////////////////////
 //             Internal styles               //
 ///////////////////////////////////////////////
 
-body {
+body, p {
   font-family: Ubuntu;
   margin: 0;
 }
+
 .bg-beige {
   background: beige;
 }
@@ -55,13 +43,16 @@ body {
   color: #777529;
 }
 
+.color-grey {
+  color: #586069;
+}
+
 .row {
   display: inline-flex;
   width: 100%;
   justify-content: space-around;
 
   .col {
-    margin: 0 8px;
     width: 100%;
   }
 }
@@ -135,7 +126,14 @@ body {
 }
 
 .padding-s {
-  padding: 8px;
+  padding: 16px;
+}
+.padding-hs {
+  padding: 16px 0;
+}
+
+.padding-vs {
+  padding: 0 16px;
 }
 
 .rounded {
@@ -187,7 +185,11 @@ body {
 .content {
   position: relative;
   margin-top: 74px;
-  //height: 100vh;
+  height: 100vh;
   //background: url('assets/backgrounds/mountain+range.png') no-repeat center;
-  //background-size: cover;
+  background-size: cover;
+}
+
+.full-width {
+  width: 100%;
 }
