@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {WindowRefService} from '../common/services/window-ref.service';
+import {SharedModule} from '../modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {WindowRefService} from '../common/services/window-ref.service';
     BrowserModule,
 
     // Internal modules
+    SharedModule,
 
     // Primary routing module
     AppRoutingModule,
