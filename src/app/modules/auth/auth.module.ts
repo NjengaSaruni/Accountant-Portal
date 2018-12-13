@@ -6,6 +6,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import { RegisterFormComponent } from './forms/register-form/register-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RegisterFormComponent } from './forms/register-form/register-form.compo
     CommonModule,
     RouterModule,
     AngularFontAwesomeModule,
+    ReactiveFormsModule,
 
     // Internal modules
     SharedModule,
