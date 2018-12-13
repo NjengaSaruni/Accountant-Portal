@@ -7,7 +7,7 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  signingUp: boolean;
   constructor(private title: Title) { }
 
   ngOnInit() {

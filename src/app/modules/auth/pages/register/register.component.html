@@ -1,6 +1,7 @@
 <div class="raised top-header">
   <app-header></app-header>
 </div>
+
 <div class="centered-h content">
   <div class="padding-s main-body">
 
@@ -54,7 +55,7 @@
         </div>
       </div>
     </div>
-    <app-loader></app-loader>
+    <app-loader *ngIf="signingUp"></app-loader>
 
     <div class="signup-container margin-ts">
       <div class="full-width margin-rs segment signup-form ">
