@@ -1,0 +1,22 @@
+<form [formGroup]="profileForm" novalidate class="signup-form">
+  <div class="form-control margin-ts">
+    <label for="signup-email">
+      Email:
+    </label>
+    <input type="text" id="signup-email" formControlName="email" class="margin-t bg-ivory">
+    <p class="info margin-h">We’ll occasionally send updates about your account to this inbox. We’ll never share your email address with anyone.</p>
+  </div>
+
+  <div class="form-control margin-ts">
+    <label for="signup-password">
+      Password:
+    </label>
+    <input type="text" id="signup-password"formControlName="password" class="margin-t bg-ivory">
+    <p class="info margin-h">Make sure it's more than 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
+  </div>
+
+  <p class="info margin-hs">By clicking “Create an account” below, you agree to our <a class="link">terms of service</a> and <a class="link">privacy statement</a>. We’ll occasionally send you account related emails.</p>
+
+  <app-button [text]="'Create an account'"></app-button>
+
+</form>

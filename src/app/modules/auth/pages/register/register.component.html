@@ -1,0 +1,69 @@
+<div class="top-header">
+  <app-header></app-header>
+</div>
+<div class="centered content">
+  <div class="padding-s main-body">
+    <div class="headline">
+      <div class="headline-title">
+        <p>Join AccountPlus</p>
+      </div>
+      <div class="headline-subtitle">
+        <p>The best personal finance manager</p>
+      </div>
+    </div>
+    <div class="bordered rounded full-width row margin-ts steps">
+      <div class="col padding-vs step" routerLink="/auth/register" routerLinkActive="active">
+        <div class="step-icon">
+          <fa name="user" class="padding-s color-p"></fa>
+        </div>
+        <div class="step-detail padding-s">
+          <div class="step-title">
+            <p>Step 1:</p>
+          </div>
+          <div class="step-description">
+            Create an account
+          </div>
+        </div>
+      </div>
+      <div class="col padding-vs step" routerLink="/auth/register/choose-plan" routerLinkActive="active">
+        <div class="step-icon">
+          <fa name="magic" class="padding-s"></fa>
+        </div>
+        <div class="step-detail padding-s">
+          <div class="step-title">
+            <p>Step 2:</p>
+          </div>
+          <div class="step-description">
+            Choose your plan
+          </div>
+        </div>
+      </div>
+      <div class="col padding-vs step" routerLink="/auth/register/configure" routerLinkActive="active">
+        <div class="step-icon">
+          <fa name="cog" class="padding-s"></fa>
+        </div>
+        <div class="step-detail padding-s">
+          <div class="step-title">
+            <p>Step 3:</p>
+          </div>
+          <div class="step-description">
+            Tailor your experience
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="signup-container margin-ts">
+      <div class="full-width margin-rs segment signup-form ">
+        <div class="signup-title">
+          <p>Create your personal account</p>
+        </div>
+        <app-register-form></app-register-form>
+      </div>
+      <div class="bordered raised rounded-s signup-benefits">
+        <div class="padding-s  bordered-b benefits-title">
+          <p>Why AccountPlus?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

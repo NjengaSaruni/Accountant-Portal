@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {BarGraph} from '../../../shared/models/graphs/BarGraph';
-import {randomInt} from '../../../shared/utils/randomInt';
-import {Bar} from '../../../shared/models/graphs/Bar';
+import {BarGraph} from '../../../common/models/graphs/BarGraph';
+import {randomInt} from '../../../common/utils/randomInt';
+import {Bar} from '../../../common/models/graphs/Bar';
 
 @Component({
   selector: 'app-home',

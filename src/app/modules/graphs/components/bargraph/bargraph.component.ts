@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
-import {BarGraph} from '../../../../shared/models/graphs/BarGraph';
-import {WindowRefService} from '../../../../shared/services/window-ref.service';
-import {ColorService} from '../../../../shared/services/color.service';
-import {Bar} from '../../../../shared/models/graphs/Bar';
+import {BarGraph} from '../../../../common/models/graphs/BarGraph';
+import {WindowRefService} from '../../../../common/services/window-ref.service';
+import {ColorService} from '../../../../common/services/color.service';
+import {Bar} from '../../../../common/models/graphs/Bar';
 
 @Component({
   selector: 'app-bargraph',

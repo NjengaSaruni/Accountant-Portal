@@ -1,15 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from '../modules/home/pages/home.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    loadChildren: '../modules/home/home.module#HomeModule'
+  },
+  {
+    path: 'auth',
+    loadChildren: '../modules/auth/auth.module#AuthModule'
   },
   {
     path: '',
-    pathMatch: 'prefix', //default
+    pathMatch: 'prefix',
     redirectTo: 'home'
   }
 ];
