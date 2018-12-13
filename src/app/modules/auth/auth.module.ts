@@ -5,10 +5,12 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
+import { RegisterFormComponent } from './forms/register-form/register-form.component';
 
 @NgModule({
   declarations: [
-    RegisterComponent
+    RegisterComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,

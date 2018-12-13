@@ -1,0 +1,15 @@
+<form [formGroup]="profileForm" novalidate>
+
+  <label>
+    Email:
+    <input type="text" formControlName="email">
+  </label>
+
+  <label>
+    Password:
+    <input type="text" formControlName="password">
+  </label>
+
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+</form>
