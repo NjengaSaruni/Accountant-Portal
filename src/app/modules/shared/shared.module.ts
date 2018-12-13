@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import {HeaderComponent} from './components/header/header.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {RouterModule} from '@angular/router';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    ButtonComponent
   ],
   imports: [
     // External modules
@@ -15,7 +17,8 @@ import {RouterModule} from '@angular/router';
     RouterModule,
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    ButtonComponent
   ]
 })
 export class SharedModule { }

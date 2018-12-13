@@ -312,9 +312,11 @@ input {
   -webkit-border-image: none;
   -webkit-text-orientation: v;
 }
-a {
-  color: color($acp-colors, primary);
-  text-underline: #0E5A77;
+input:focus {
+  border-bottom-color: color($acp-colors, secondary);
+}
+.link {
+  color: #0E5A77;
 }
 .bg-beige {
   background: beige;
@@ -390,8 +392,14 @@ a {
 .margin-h {
   margin: 8px 0;
 }
+.margin-hs {
+  margin: 16px 0;
+}
 .margin-v {
   margin: 0 8px;
+}
+.margin-vs {
+  margin: 0 16px;
 }
 .no.padding {
   padding: 0;
@@ -479,6 +487,5 @@ a {
 }
 
 .info {
-  font-size: 12px;
-  margin: 6px 0;
+  font-size: 13px;
 }
