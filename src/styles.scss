@@ -1,8 +1,11 @@
 @import url('../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css');
+
 @import "variables";
 body, p {
-  font-family: Ubuntu;
   margin: 0;
+  font-family: montserrat, sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 input {
   align-content: normal;
@@ -313,7 +316,10 @@ input {
   -webkit-text-orientation: v;
 }
 input:focus {
-  border-bottom-color: color($acp-colors, secondary);
+  border-bottom-color: #90bfbc
+}
+li {
+  list-style: none;
 }
 .link {
   color: #0E5A77;
@@ -444,6 +450,10 @@ input:focus {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.centered-h {
+  display: flex;
+  justify-content: center;
+}
 .segment {
   min-height: 240px;
 }
@@ -474,6 +484,7 @@ input:focus {
   width: 100%;
   opacity: 1;
   background: white;
+  height: 70px;
 }
 .content {
   position: relative;

@@ -1,8 +1,10 @@
-<div class="top-header">
+<div class="raised top-header">
   <app-header></app-header>
 </div>
-<div class="centered content">
+
+<div class="centered-h content">
   <div class="padding-s main-body">
+
     <div class="headline">
       <div class="headline-title">
         <p>Join AccountPlus</p>
@@ -11,6 +13,7 @@
         <p>The best personal finance manager</p>
       </div>
     </div>
+
     <div class="bordered rounded full-width row margin-ts steps">
       <div class="col padding-vs step" routerLink="/auth/register" routerLinkActive="active">
         <div class="step-icon">
@@ -20,7 +23,7 @@
           <div class="step-title">
             <p>Step 1:</p>
           </div>
-          <div class="step-description">
+          <div class="info step-description">
             Create an account
           </div>
         </div>
@@ -33,7 +36,7 @@
           <div class="step-title">
             <p>Step 2:</p>
           </div>
-          <div class="step-description">
+          <div class="info step-description">
             Choose your plan
           </div>
         </div>
@@ -46,12 +49,14 @@
           <div class="step-title">
             <p>Step 3:</p>
           </div>
-          <div class="step-description">
+          <div class="info step-description">
             Tailor your experience
           </div>
         </div>
       </div>
     </div>
+    <app-loader *ngIf="signingUp"></app-loader>
+
     <div class="signup-container margin-ts">
       <div class="full-width margin-rs segment signup-form ">
         <div class="signup-title">
@@ -63,7 +68,19 @@
         <div class="padding-s  bordered-b benefits-title">
           <p>Why AccountPlus?</p>
         </div>
+        <div class="benefit-items">
+          <ul>
+            <li>
+              <p><b>Unlimited</b> accounts</p>
+            </li>
+            <li>
+              <p><b>Unlimited</b> transactions</p>
+            </li>
+
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
+

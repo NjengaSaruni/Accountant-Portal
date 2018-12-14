@@ -4,11 +4,13 @@ import {HeaderComponent} from './components/header/header.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {RouterModule} from '@angular/router';
 import { ButtonComponent } from './components/button/button.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    LoaderComponent
   ],
   imports: [
     // External modules
@@ -18,7 +20,8 @@ import { ButtonComponent } from './components/button/button.component';
   ],
   exports: [
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }
