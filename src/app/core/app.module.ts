@@ -4,6 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {WindowRefService} from '../common/services/global/window-ref.service';
 import {SharedModule} from '../modules/shared/shared.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {SharedModule} from '../modules/shared/shared.module';
   imports: [
     // External modules
     BrowserModule,
+    HttpClientModule,
 
     // Internal modules
     SharedModule,
