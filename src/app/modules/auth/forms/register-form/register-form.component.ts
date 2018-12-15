@@ -27,19 +27,21 @@ export class RegisterFormComponent implements OnInit {
 
   signUp() {
     this.loaderService.show();
-    this.authService.register(
-      this.profileForm.get('email').value,
-      this.profileForm.get('password').value,
-      this.profileForm.get('password').value,
-    ).subscribe(
-      data => {
-        console.log(data);
-        this.loaderService.hide();
-      },
-      error => {
-        console.log(error);
-        this.loaderService.hide();
-      }
-    );
+    setTimeout(() => {
+      this.authService.register(
+        this.profileForm.get('email').value,
+        this.profileForm.get('password').value,
+        this.profileForm.get('password').value,
+      ).subscribe(
+        data => {
+          console.log(data);
+          this.loaderService.hide();
+        },
+        error => {
+          console.log(error);
+          this.loaderService.hide();
+        }
+      );
+    }, 6000);
   }
 }
