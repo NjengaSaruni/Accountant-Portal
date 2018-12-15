@@ -1,12 +1,328 @@
-///////////////////////////////////////////////
-//             External theming              //
-///////////////////////////////////////////////
+@import url('../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css');
 
-@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-body {
-  font-family: Ubuntu;
+@import "variables";
+body, p {
   margin: 0;
+  font-family: montserrat, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+input {
+  align-content: normal;
+  align-items: normal;
+  align-self: auto;
+  alignment-baseline: auto;
+  animation-delay: 0s;
+  animation-direction: normal;
+  animation-duration: 0s;
+  animation-fill-mode: none;
+  animation-iteration-count: 1;
+  animation-name: none;
+  animation-play-state: running;
+  animation-timing-function: ease;
+  backface-visibility: visible;
+  background-attachment: scroll;
+  background-blend-mode: normal;
+  background-clip: border-box;
+  background-image: none;
+  background-origin: padding-box;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-size: auto;
+  baseline-shift: 0px;
+  block-size: 55px;
+  border-block-end-color: rgb(170,184,194);
+  border-block-end-style: solid;
+  border-block-end-width: 2px;
+  border-block-start-color: rgb(170,184,194);
+  border-block-start-style: inset;
+  border-block-start-width: 0px;
+  border-collapse: separate;
+  border-image-outset: 0px;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-inline-end-color: rgb(170,184,194);
+  border-inline-end-style: inset;
+  border-inline-end-width: 0px;
+  border-inline-start-color: rgb(170,184,194);
+  border-inline-start-style: inset;
+  border-inline-start-width: 0px;
+  border-radius: 0px;
+  border: 0px inset rgb(170, 184, 194);
+  border-bottom: 2px solid;
+  bottom: auto;
+  box-shadow: none;
+  box-sizing: border-box;
+  break-after: auto;
+  break-before: auto;
+  break-inside: auto;
+  buffered-rendering: auto;
+  caption-side: top;
+  caret-color: color($acp-colors, primary);
+  clear: none;
+  clip: auto;
+  clip-path: none;
+  clip-rule: nonzero;
+  color: rgb(0,0,0);
+  color-interpolation: sRGB;
+  color-interpolation-filters: linearRGB;
+  color-rendering: auto;
+  column-count: auto;
+  column-fill: balance;
+  column-gap: normal;
+  column-rule-color: rgb(0,0,0);
+  column-rule-style: none;
+  column-rule-width: 0px;
+  column-span: none;
+  column-width: auto;
+  contain: none;
+  content: normal;
+  counter-increment: none;
+  counter-reset: none;
+  cursor: text;
+  cx: 0px;
+  cy: 0px;
+  d: none;
+  direction: ltr;
+  display: block;
+  dominant-baseline: auto;
+  empty-cells: show;
+  fill: rgb(0,0,0);
+  fill-opacity: 1;
+  fill-rule: nonzero;
+  filter: none;
+  flex-basis: auto;
+  flex-direction: row;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
+  float: none;
+  flood-color: rgb(0,0,0);
+  flood-opacity: 1;
+  font-feature-settings: normal;
+  font-kerning: auto;
+  font-size: 19px;
+  font-stretch: 100%;
+  font-style: normal;
+  font-variant-caps: normal;
+  font-variant-east-asian: normal;
+  font-variant-ligatures: normal;
+  font-variant-numeric: normal;
+  font-variation-settings: normal;
+  font-weight: 400;
+  grid-auto-columns: auto;
+  grid-auto-flow: row;
+  grid-auto-rows: auto;
+  grid-column-end: auto;
+  grid-column-start: auto;
+  grid-row-end: auto;
+  grid-row-start: auto;
+  grid-template-areas: none;
+  grid-template-columns: none;
+  grid-template-rows: none;
+  height: 55px;
+  hyphens: manual;
+  image-rendering: auto;
+  inline-size: 522px;
+  isolation: auto;
+  justify-content: normal;
+  justify-items: normal;
+  justify-self: auto;
+  left: auto;
+  letter-spacing: normal;
+  lighting-color: rgb(255,255,255);
+  line-break: auto;
+  line-height: normal;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+  margin-block-end: 1px;
+  margin-block-start: 0px;
+  margin-bottom: 1px;
+  margin-inline-end: 0px;
+  margin-inline-start: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  marker-end: none;
+  marker-mid: none;
+  marker-start: none;
+  mask: none;
+  mask-type: luminance;
+  max-block-size: none;
+  max-height: none;
+  max-inline-size: none;
+  max-width: none;
+  min-block-size: auto;
+  min-height: auto;
+  min-inline-size: auto;
+  min-width: auto;
+  mix-blend-mode: normal;
+  object-fit: fill;
+  object-position: 50% 50%;
+  offset-distance: 0px;
+  offset-path: none;
+  offset-rotate: auto 0deg;
+  opacity: 1;
+  order: 0;
+  orphans: 2;
+  outline-color: rgb(0,0,0);
+  outline-offset: 0px;
+  outline-style: none;
+  outline-width: 0px;
+  overflow-anchor: auto;
+  overflow-wrap: break-word;
+  overflow-x: visible;
+  overflow-y: visible;
+  overscroll-behavior-x: auto;
+  overscroll-behavior-y: auto;
+  padding-block-end: 15px;
+  padding-block-start: 15px;
+  padding-bottom: 15px;
+  padding-inline-end: 10px;
+  padding-inline-start: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  paint-order: fill stroke markers;
+  perspective: none;
+  perspective-origin: 261px 27.5px;
+  pointer-events: auto;
+  position: static;
+  r: 0px;
+  resize: none;
+  right: auto;
+  row-gap: normal;
+  rx: auto;
+  ry: auto;
+  scroll-behavior: auto;
+  scroll-margin-block-end: 0px;
+  scroll-margin-block-start: 0px;
+  scroll-margin-bottom: 0px;
+  scroll-margin-inline-end: 0px;
+  scroll-margin-inline-start: 0px;
+  scroll-margin-left: 0px;
+  scroll-margin-right: 0px;
+  scroll-margin-top: 0px;
+  scroll-snap-stop: normal;
+  scroll-snap-type: none;
+  shape-image-threshold: 0;
+  shape-margin: 0px;
+  shape-outside: none;
+  shape-rendering: auto;
+  speak: normal;
+  stop-color: rgb(0,0,0);
+  stop-opacity: 1;
+  stroke: none;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0px;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
+  stroke-opacity: 1;
+  stroke-width: 1px;
+  tab-size: 8;
+  table-layout: auto;
+  text-align: start;
+  text-align-last: auto;
+  text-anchor: start;
+  text-combine-upright: none;
+  text-decoration-color: rgb(0,0,0);
+  text-decoration-line: none;
+  text-decoration-skip-ink: auto;
+  text-decoration-style: solid;
+  text-indent: 0px;
+  text-orientation: mixed;
+  text-overflow: clip;
+  text-rendering: auto;
+  text-shadow: none;
+  text-size-adjust: 100%;
+  text-transform: none;
+  text-underline-position: auto;
+  top: auto;
+  touch-action: auto;
+  transform: none;
+  transform-box: view-box;
+  transform-origin: 261px 27.5px;
+  transform-style: flat;
+  transition-delay: 0s;
+  transition-duration: 0s;
+  transition-property: all;
+  transition-timing-function: ease;
+  unicode-bidi: isolate;
+  user-select: auto;
+  vector-effect: none;
+  vertical-align: baseline;
+  visibility: visible;
+  white-space: pre-wrap;
+  widows: 2;
+  width: 522px;
+  will-change: auto;
+  word-break: normal;
+  word-spacing: 0px;
+  writing-mode: horizontal-tb;
+  x: 0px;
+  y: 0px;
+  z-index: auto;
+  zoom: 1;
+  -webkit-app-region: none;
+  -webkit-appearance: none;
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+  -webkit-box-align: stretch;
+  -webkit-box-decoration-break: slice;
+  -webkit-box-direction: normal;
+  -webkit-box-flex: 0;
+  -webkit-box-ordinal-group: 1;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: start;
+  -webkit-box-reflect: none;
+  -webkit-highlight: none;
+  -webkit-hyphenate-character: auto;
+  -webkit-line-clamp: none;
+  -webkit-locale: "en";
+  -webkit-margin-after-collapse: collapse;
+  -webkit-margin-before-collapse: collapse;
+  -webkit-margin-bottom-collapse: collapse;
+  -webkit-margin-top-collapse: collapse;
+  -webkit-mask-box-image-outset: 0px;
+  -webkit-mask-box-image-repeat: stretch;
+  -webkit-mask-box-image-slice: 0 fill;
+  -webkit-mask-box-image-source: none;
+  -webkit-mask-box-image-width: auto;
+  -webkit-mask-composite: source-over;
+  -webkit-mask-image: none;
+  -webkit-mask-position-x: 0%;
+  -webkit-mask-position-y: 0%;
+  -webkit-mask-size: auto;
+  -webkit-print-color-adjust: economy;
+  -webkit-rtl-ordering: logical;
+  -webkit-ruby-position: before;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-text-combine: none;
+  -webkit-text-decorations-in-effect: none;
+  -webkit-text-emphasis-color: rgb(0,0,0);
+  -webkit-text-emphasis-position: over right;
+  -webkit-text-emphasis-style: none;
+  -webkit-text-fill-color: rgb(0,0,0);
+  -webkit-text-security: none;
+  -webkit-text-stroke-color: rgb(0,0,0);
+  -webkit-text-stroke-width: 0px;
+  -webkit-user-drag: auto;
+  -webkit-user-modify: read-only;
+  -webkit-border-image: none;
+  -webkit-text-orientation: v;
+}
+input:focus {
+  border-bottom-color: #90bfbc
+}
+li {
+  list-style: none;
+}
+.link {
+  color: #0E5A77;
 }
 .bg-beige {
   background: beige;
@@ -14,7 +330,6 @@ body {
 .bg-ivory {
   background: ivory;
 }
-
 .bg-p {
   background: #f6f1f8;
 }
@@ -27,7 +342,6 @@ body {
 .bg-blue {
   background: #1a20ff;
 }
-
 .bg-bluish {
   background: #c3fff7;
 }
@@ -37,108 +351,98 @@ body {
 .color-s {
   color: #777529;
 }
-
+.color-grey {
+  color: #586069;
+}
 .row {
   display: inline-flex;
   width: 100%;
   justify-content: space-around;
-
   .col {
-    margin: 0 8px;
     width: 100%;
   }
 }
-
 .no-margin {
   margin: 0;
 }
-
 .margin {
   margin: 8px;
 }
-
 .margin-s {
   margin: 16px;
 }
-
 .margin-b {
   margin-bottom: 8px;
 }
-
 .margin-bs {
   margin-bottom: 16px;
 }
-
 .margin-t {
   margin-top: 8px;
 }
-
 .margin-ts {
   margin-top: 16px;
 }
-
 .margin-l {
   margin-left: 8px;
 }
-
 .margin-ls {
   margin-left: 16px;
 }
-
 .margin-r {
   margin-right: 8px;
 }
-
-.margin-ls {
+.margin-rs {
   margin-right: 16px;
 }
-
 .margin-h {
   margin: 8px 0;
 }
-
+.margin-hs {
+  margin: 16px 0;
+}
 .margin-v {
   margin: 0 8px;
+}
+.margin-vs {
+  margin: 0 16px;
 }
 .no.padding {
   padding: 0;
 }
-
 .padding {
   padding: 8px;
 }
-
 .padding-h {
   padding: 8px 0;
 }
-
-
 .padding-v {
   padding: 0 8px;
 }
-
 .padding-s {
-  padding: 8px;
+  padding: 16px;
 }
-
+.padding-hs {
+  padding: 16px 0;
+}
+.padding-vs {
+  padding: 0 16px;
+}
 .rounded {
   border-radius: 4px;
 }
-
 .rounded-s {
   border-radius: 8px;
 }
-
 .raised {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);}
-
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+}
 .centered {
   justify-content: center;
   align-items: center;
   display: flex;
   margin: auto;
 }
-
 .centered-v {
   margin: 0;
   position: absolute;
@@ -146,18 +450,33 @@ body {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.centered-h {
+  display: flex;
+  justify-content: center;
+}
 .segment {
   min-height: 240px;
 }
+// Custom borders
 
 .bordered {
   border: 1px solid #DADADA;
 }
-
+.bordered-t {
+  border-top: 1px solid #DADADA;
+}
+.bordered-r {
+  border-right: 1px solid #DADADA;
+}
+.bordered-b {
+  border-bottom: 1px solid #DADADA;
+}
+.bordered-l {
+  border-left: 1px solid #DADADA;
+}
 .circular {
   border-radius: 50%;
 }
-
 .top-header {
   position: fixed;
   top: 0;
@@ -165,12 +484,19 @@ body {
   width: 100%;
   opacity: 1;
   background: white;
+  height: 70px;
 }
-
 .content {
   position: relative;
   margin-top: 74px;
-  //height: 100vh;
+  height: 100vh;
   //background: url('assets/backgrounds/mountain+range.png') no-repeat center;
-  //background-size: cover;
+  background-size: cover;
+}
+.full-width {
+  width: 100%;
+}
+
+.info {
+  font-size: 13px;
 }
