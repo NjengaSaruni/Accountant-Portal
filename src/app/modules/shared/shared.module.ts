@@ -5,6 +5,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {RouterModule} from '@angular/router';
 import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import {LoaderService} from './components/loader/loader.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     HeaderComponent,
     ButtonComponent,
     LoaderComponent
+  ],
+  providers: [
+    LoaderService
   ]
 })
 export class SharedModule { }
