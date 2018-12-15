@@ -5,15 +5,15 @@ import {LoaderState} from '../../../../common/models/auth';
 @Injectable()
 export class LoaderService {
   private loaderSubject = new Subject<LoaderState>();
-  loaderState = this.loaderSubject.asObservable();
+  loaderState = false;
 
   constructor() { }
 
   show() {
-    this.loaderSubject.next(<LoaderState>{show: true});
+    this.loaderState = true;
   }
 
   hide() {
-    this.loaderSubject.next(<LoaderState>{show: false});
+    this.loaderState = false;
   }
 }

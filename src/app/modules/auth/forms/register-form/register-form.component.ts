@@ -19,6 +19,9 @@ export class RegisterFormComponent implements OnInit {
   }
 
   signUp() {
-    this.loaderService.hide();
+    this.loaderService.show();
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 4000);
   }
 }
