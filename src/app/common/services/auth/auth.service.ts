@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {SettingsService} from '../global/settings.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
+  get registrationAPI(): string {
+    return this.settings.apiHost + 'rest-auth/registration/';
+  }
 
-  constructor() {
+  set registrationAPI(value: string) {
+    this._registrationAPI = value;
+  }
+  isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
+  private _registrationAPI: string;
+
+  constructor(private _http: HttpClient, private settings: SettingsService) {
   }
 
   /**
@@ -21,9 +32,21 @@ export class AuthService {
   /**
    *  Login the user then tell all the subscribers about the new status
    */
-  login(): void {
-    localStorage.setItem('token', 'JWT');
-    this.isLoginSubject.next(true);
+  login(username: string, password: string): void {
+    this._http.post(this.registrationAPI, {
+      username, password
+    }).subscribe(
+      data => console.log(data),
+      error => console.log(error)
+    );
+  }
+  /**
+   *  Register the user then tell all the subscribers about the new status
+   */
+  register(username: string, password1: string, password2: string): Observable<any> {
+    return this._http.post(this.registrationAPI, {
+      username, password1, password2
+    });
   }
 
 

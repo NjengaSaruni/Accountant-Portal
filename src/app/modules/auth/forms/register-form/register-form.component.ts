@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
+import {AuthService} from '../../../../common/services/auth/auth.service';
 
 @Component({
   selector: 'app-register-form',
@@ -12,16 +13,33 @@ export class RegisterFormComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl(''),
   });
-  constructor(private loaderService: LoaderService) {
+  constructor(private loaderService: LoaderService,
+              private authService: AuthService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.profileForm = this.formBuilder.group({
+      email: [''],
+      password: ['']
+    });
   }
 
   signUp() {
     this.loaderService.show();
-    setTimeout(() => {
-      this.loaderService.hide();
-    }, 4000);
+    this.authService.register(
+      this.profileForm.get('email').value,
+      this.profileForm.get('password').value,
+      this.profileForm.get('password').value,
+    ).subscribe(
+      data => {
+        console.log(data);
+        this.loaderService.hide();
+      },
+      error => {
+        console.log(error);
+        this.loaderService.hide();
+      }
+    );
   }
 }
