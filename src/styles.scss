@@ -65,7 +65,7 @@ input {
   clip: auto;
   clip-path: none;
   clip-rule: nonzero;
-  color: rgb(0,0,0);
+  //color: rgb(0,0,0);
   color-interpolation: sRGB;
   color-interpolation-filters: linearRGB;
   color-rendering: auto;
@@ -106,6 +106,7 @@ input {
   font-size: 19px;
   font-stretch: 100%;
   font-style: normal;
+  font-family: montserrat;
   font-variant-caps: normal;
   font-variant-east-asian: normal;
   font-variant-ligatures: normal;
@@ -488,9 +489,9 @@ li {
 }
 .content {
   position: relative;
-  margin-top: 74px;
+  margin-top: 70px;
   height: 100vh;
-  //background: url('assets/backgrounds/mountain+range.png') no-repeat center;
+  background: #d7e2e1;
   background-size: cover;
 }
 .full-width {
