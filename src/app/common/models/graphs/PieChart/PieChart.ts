@@ -32,17 +32,25 @@ export class PieChart extends BaseChart {
   private _pies: Pie[] = [];
   private _total = 0;
 
-  private addSector(obj: PieDataObject) {
+  public addSector(obj: PieDataObject) {
     this._total += obj.value;
     const pie = new Pie((obj.value / this.total) * 2 * Math.PI);
     pie.title = obj.name;
     pie.color = obj.color;
     this.add(pie);
   }
+
+  public populate(data: PieDataObject[]) {
+    for (const dataObject of data) {
+      this.addSector(dataObject);
+    }
+  }
+
   private configure() {
     this.height = this.outerCircle.diameter + this.padding;
     this.width = this.outerCircle.diameter + this.padding;
   }
+
   add(pie: Pie) {
     this._pies.push(pie);
   }

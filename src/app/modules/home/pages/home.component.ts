@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {BarGraph} from '../../../common/models/graphs/BarChart/BarGraph';
-import {randomInt} from '../../../common/utils/randomInt';
+import {randomColor, randomInt} from '../../../common/utils/randomInt';
 import {Bar} from '../../../common/models/graphs/BarChart/Bar';
 import {PieChart} from '../../../common/models/graphs/PieChart/PieChart';
+import {PieDataObject} from '../../../common/models/graphs/PieChart/PieDataObject';
 
 @Component({
   selector: 'app-home',
@@ -45,8 +46,16 @@ export class HomeComponent implements OnInit {
       graph1.add(bar);
     }
 
-    this.pieChart = new PieChart(50);
+    this.pieChart = new PieChart(200);
     this.pieChart.title = 'A simple pie chart';
+    this.pieChart.populate([
+      <PieDataObject>{name: 'A', value: 122, color: randomColor()},
+      <PieDataObject>{name: 'B', value: 10, color: randomColor()},
+      <PieDataObject>{name: 'C', value: 190, color: randomColor()},
+      <PieDataObject>{name: 'D', value: 67, color: randomColor()},
+    ]);
+
+    console.log(this.pieChart.size());
   }
 
 }

@@ -15,19 +15,18 @@ export class Pie {
   set title(value: string) {
     this._title = value;
   }
-  get sliceAngle(): number {
-    return this._sliceAngle;
+  get angle(): number {
+    return this._angle;
   }
 
-  set sliceAngle(value: number) {
-    this._sliceAngle = value;
+  set angle(value: number) {
+    this._angle = value;
   }
-  private _sliceAngle: number;
-  private _middleAngle: number;
+  private _angle: number;
   private _title: string;
   private _color = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
 
   constructor(angle: number) {
-    this.sliceAngle = angle;
+    this.angle = angle;
   }
 }

@@ -24,31 +24,20 @@ export class PiechartComponent implements OnInit, AfterViewInit {
     canvasEl.width = this.chart.width;
     this.cx = canvasEl.getContext('2d');
 
-    const results = [
-      {name: 'Satisfied', count: 1043, color: 'red'},
-      {name: 'Neutral', count: 563, color: 'blue'},
-      {name: 'Unsatisfied', count: 510, color: 'green'},
-      {name: 'No comment', count: 175, color: 'silver'},
-   ];
-    const total = results.reduce(function (sum, choice) {
-      return sum + choice.count;
-    }, 0);
-
     // start at the top
     let currentAngle = -0.5 * Math.PI;
     const centerX = this.chart.outerCircle.radius;
     const centerY = this.chart.outerCircle.radius;
 
-    for (const result of results) {
-      const sliceAngle = (result.count / total) * 2 * Math.PI;
-      const middleAngle = currentAngle + 0.5 * sliceAngle;
+    for (const pie of this.chart.pies) {
+      const middleAngle = currentAngle + 0.5 * pie.angle;
 
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(centerX, centerY, this.chart.outerCircle.radius, currentAngle, currentAngle + sliceAngle);
-      currentAngle += sliceAngle;
+      this.cx.arc(centerX, centerY, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.angle);
+      currentAngle += pie.angle;
       this.cx.lineTo(centerX, centerY);
-      this.cx.fillStyle = result.color;
+      this.cx.fillStyle = pie.color;
       this.cx.fill();
 
       // labels
@@ -58,7 +47,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
         this.cx.textAlign = 'left';
       }
       this.cx.textBaseline = 'middle';
-      this.cx.fillText(result.name,
+      this.cx.fillText(pie.title,
         Math.cos(middleAngle) * 120 + centerX,
         Math.sin(middleAngle) * 120 + centerY);
     }
