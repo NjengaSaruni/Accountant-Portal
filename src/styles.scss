@@ -461,19 +461,19 @@ li {
 // Custom borders
 
 .bordered {
-  border: 1px solid #DADADA;
+  border: 0.3px solid #f2f5ed;
 }
 .bordered-t {
-  border-top: 1px solid #DADADA;
+  border-top: 1px solid #f2f5ed;
 }
 .bordered-r {
-  border-right: 1px solid #DADADA;
+  border-right: 1px solid #f2f5ed;
 }
 .bordered-b {
-  border-bottom: 1px solid #DADADA;
+  border-bottom: 1px solid #f2f5ed;
 }
 .bordered-l {
-  border-left: 1px solid #DADADA;
+  border-left: 1px solid #f2f5ed;
 }
 .circular {
   border-radius: 50%;
@@ -491,7 +491,7 @@ li {
   position: relative;
   margin-top: 70px;
   height: 100vh;
-  background: #d7e2e1;
+  background: #fffdf0;
   background-size: cover;
 }
 .full-width {
