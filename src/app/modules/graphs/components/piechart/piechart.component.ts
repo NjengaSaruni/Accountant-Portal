@@ -6,7 +6,10 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
   styleUrls: ['./piechart.component.scss']
 })
 export class PiechartComponent implements OnInit, AfterViewInit {
-  @Input() max: number;
+  @Input() height: number;
+  @Input() width: number;
+  @Input() title: number;
+
   @ViewChild('canvas') public canvas: ElementRef;
   private cx: CanvasRenderingContext2D;
 
@@ -15,21 +18,23 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
+    canvasEl.height = 500;
+    canvasEl.width = 500;
     this.cx = canvasEl.getContext('2d');
 
     const results = [
-      {name: 'Satisfied', count: 1043, color: 'lightblue'},
-      {name: 'Neutral', count: 563, color: 'lightgreen'},
-      {name: 'Unsatisfied', count: 510, color: 'pink'},
-      {name: 'No comment', count: 175, color: 'silver'}
-    ];
+      {name: 'Satisfied', count: 1043, color: 'red'},
+      {name: 'Neutral', count: 563, color: 'blue'},
+      {name: 'Unsatisfied', count: 510, color: 'green'},
+      {name: 'No comment', count: 175, color: 'silver'},
+   ];
     const total = results.reduce(function (sum, choice) {
       return sum + choice.count;
     }, 0);
 
     // start at the top
     let currentAngle = -0.5 * Math.PI;
-    const centerX = 75, centerY = 75;
+    const centerX = 200, centerY = 200;
 
     for (const result of results) {
       const sliceAngle = (result.count / total) * 2 * Math.PI;
@@ -37,7 +42,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(centerX, centerY, 75, currentAngle, currentAngle + sliceAngle);
+      this.cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle);
       currentAngle += sliceAngle;
       this.cx.lineTo(centerX, centerY);
       this.cx.fillStyle = result.color;
@@ -54,6 +59,12 @@ export class PiechartComponent implements OnInit, AfterViewInit {
         Math.cos(middleAngle) * 120 + centerX,
         Math.sin(middleAngle) * 120 + centerY);
     }
+
+    // pie slices
+    this.cx.beginPath();
+    this.cx.arc(centerX, centerY, 25, 0, 2 * Math.PI);
+    this.cx.fillStyle = 'white';
+    this.cx.fill();
   }
 
   ngOnInit() {
