@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {BarGraph} from '../../../common/models/graphs/BarGraph';
+import {BarGraph} from '../../../common/models/graphs/BarChart/BarGraph';
 import {randomInt} from '../../../common/utils/randomInt';
-import {Bar} from '../../../common/models/graphs/Bar';
+import {Bar} from '../../../common/models/graphs/BarChart/Bar';
+import {PieChart} from '../../../common/models/graphs/PieChart/PieChart';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import {Bar} from '../../../common/models/graphs/Bar';
 })
 export class HomeComponent implements OnInit {
   graphs: BarGraph[] = [];
+  pieChart: PieChart;
   constructor() { }
 
   async ngOnInit() {
@@ -42,8 +44,9 @@ export class HomeComponent implements OnInit {
       bar.title = `Bar ${i}`;
       graph1.add(bar);
     }
-    // this.width = window.innerWidth;
-    // this.height = window.innerHeight;
+
+    this.pieChart = new PieChart(50);
+    this.pieChart.title = 'A simple pie chart';
   }
 
 }

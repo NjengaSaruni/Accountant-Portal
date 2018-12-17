@@ -1,6 +1,6 @@
 import {Bar} from './Bar';
 import {BarGraphLine} from './BarGraphLine';
-import {BaseChart} from './BaseChart';
+import {BaseChart} from '../BaseChart';
 
 export class BarGraph extends BaseChart {
   get line(): BarGraphLine {

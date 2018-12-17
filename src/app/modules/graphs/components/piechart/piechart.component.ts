@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {PieChart} from '../../../../common/models/graphs/PieChart/PieChart';
 
 @Component({
   selector: 'app-piechart',
@@ -9,6 +10,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   @Input() height: number;
   @Input() width: number;
   @Input() title: number;
+  @Input() chart: PieChart;
 
   @ViewChild('canvas') public canvas: ElementRef;
   private cx: CanvasRenderingContext2D;
@@ -18,8 +20,8 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
-    canvasEl.height = 500;
-    canvasEl.width = 500;
+    canvasEl.height = this.chart.height;
+    canvasEl.width = this.chart.width;
     this.cx = canvasEl.getContext('2d');
 
     const results = [
@@ -34,7 +36,8 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
     // start at the top
     let currentAngle = -0.5 * Math.PI;
-    const centerX = 200, centerY = 200;
+    const centerX = this.chart.outerCircle.radius;
+    const centerY = this.chart.outerCircle.radius;
 
     for (const result of results) {
       const sliceAngle = (result.count / total) * 2 * Math.PI;
@@ -42,7 +45,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle);
+      this.cx.arc(centerX, centerY, this.chart.outerCircle.radius, currentAngle, currentAngle + sliceAngle);
       currentAngle += sliceAngle;
       this.cx.lineTo(centerX, centerY);
       this.cx.fillStyle = result.color;
