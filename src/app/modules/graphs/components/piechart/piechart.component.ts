@@ -29,7 +29,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
     // start at the top
     let currentAngle = -0.5 * Math.PI;
-    const centerX = 300, centerY = 150;
+    const centerX = 75, centerY = 75;
 
     for (const result of results) {
       const sliceAngle = (result.count / total) * 2 * Math.PI;
@@ -37,7 +37,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle);
+      this.cx.arc(centerX, centerY, 75, currentAngle, currentAngle + sliceAngle);
       currentAngle += sliceAngle;
       this.cx.lineTo(centerX, centerY);
       this.cx.fillStyle = result.color;
