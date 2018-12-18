@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.button.disabled {
+  opacity: 0.4;
+}
+
 .button:hover {
 
 }

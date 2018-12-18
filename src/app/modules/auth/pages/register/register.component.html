@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="bordered rounded full-width row margin-ts steps">
+    <div class="bordered full-width row margin-ts steps bg-white">
       <div class="col padding-vs step" routerLink="/auth/register" routerLinkActive="active">
         <div class="step-icon">
           <fa name="user" class="padding-s color-p"></fa>
@@ -57,14 +57,14 @@
     </div>
     <app-loader *ngIf="signingUp"></app-loader>
 
-    <div class="signup-container margin-ts">
-      <div class="full-width margin-rs segment signup-form ">
+    <div class="signup-container  margin-ts">
+      <div class="bordered bg-white padding-s full-width margin-rs segment signup-form ">
         <div class="signup-title">
           <p>Create your personal account</p>
         </div>
         <app-register-form></app-register-form>
       </div>
-      <div class="bordered raised rounded-s signup-benefits">
+      <div class="bg-white signup-benefits">
         <div class="padding-s  bordered-b benefits-title">
           <p>Why AccountPlus?</p>
         </div>

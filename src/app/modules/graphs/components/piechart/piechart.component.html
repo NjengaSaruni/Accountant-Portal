@@ -1,5 +1,13 @@
-<div class="row" [ngStyle]="{'height.px': max}">
-  <div class="col bg-red" *ngFor="let bar of graph.bars" [ngStyle]="{'height': bar.height + '%'}">
-    {{bar.height}}
+<div style="height: 400px">
+  <div class="row">
+    <div class="col">
+      <p>{{graph.title}}</p>
+    </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <canvas class="raised centered padding-s margin-s"#canvas></canvas>
+    </div>
+  </div>
+
 </div>
