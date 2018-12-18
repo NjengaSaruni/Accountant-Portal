@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     this.pieChart = new PieChart(200);
     this.pieChart.title = 'A simple pie chart';
     this.pieChart.populate([
-      <PieDataObject>{name: 'A', value: 122, color: randomColor()},
+      <PieDataObject>{name: 'A', value: randomInt(0, 10), color: randomColor()},
       <PieDataObject>{name: 'B', value: 10, color: randomColor()},
       <PieDataObject>{name: 'C', value: 190, color: randomColor()},
       <PieDataObject>{name: 'D', value: 67, color: randomColor()},

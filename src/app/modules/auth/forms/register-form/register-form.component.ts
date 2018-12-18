@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
 import {AuthService} from '../../../../common/services/auth/auth.service';
 
@@ -9,10 +9,7 @@ import {AuthService} from '../../../../common/services/auth/auth.service';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  profileForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
+  profileForm: FormGroup;
   constructor(private loaderService: LoaderService,
               private authService: AuthService,
               private formBuilder: FormBuilder) {
@@ -20,8 +17,20 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = this.formBuilder.group({
-      email: [''],
-      password: ['']
+      email: new FormControl(
+        '',
+        [
+          Validators.pattern('[^ @]*@[^ @]*'),
+          Validators.required
+        ]
+      ),
+      password: new FormControl(
+        '',
+        [
+          Validators.minLength(8),
+          Validators.required
+        ]
+      ),
     });
   }
 

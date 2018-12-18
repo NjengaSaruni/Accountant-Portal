@@ -6,6 +6,11 @@
     'background-color': background,
     'color': color,
     'font-size.px': fontSize
-  }">
+  }"
+  [ngClass]="{
+    'disabled': disabled
+  }"
+  [disabled]="disabled"
+  >
   {{ text }}
 </button>
