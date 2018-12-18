@@ -4,6 +4,11 @@
       Email:
     </label>
     <input type="text" id="signup-email" formControlName="email" class="margin-t bg-ivory" placeholder="name@example.com">
+    <div class="info error" *ngIf="profileForm.get('email').invalid && profileForm.get('email').dirty">
+      <span>
+        Incorrect email format
+      </span>
+    </div>
     <p class="info margin-h">We’ll occasionally send updates about your account to this inbox. We’ll never share your email address with anyone.</p>
   </div>
 
@@ -12,10 +17,14 @@
       Password:
     </label>
     <input type="password" id="signup-password"formControlName="password" class="margin-t bg-ivory">
-    <p class="info margin-h">Make sure it's more than 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
+    <div class="info error" *ngIf="profileForm.get('password').invalid && profileForm.get('password').dirty">
+      <span>
+        Password must be more than 15 characters OR at least 8 characters including a number and a lowercase letter.
+      </span>
+    </div>
   </div>
 
   <p class="info margin-hs">By clicking “Create an account” below, you agree to our <a class="link">terms of service</a> and <a class="link">privacy statement</a>. We’ll occasionally send you account related emails.</p>
 
-  <app-button [text]="'Create an account'" (click)="signUp()"></app-button>
+  <app-button [text]="'Create an account'" (click)="signUp()" [disabled]="profileForm.invalid"></app-button>
 </form>
