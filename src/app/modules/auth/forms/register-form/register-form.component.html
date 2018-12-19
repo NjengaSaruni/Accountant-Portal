@@ -19,7 +19,7 @@
     <input type="password" id="signup-password"formControlName="password" class="margin-t bg-ivory">
     <div class="info error" *ngIf="profileForm.get('password').invalid && profileForm.get('password').dirty">
       <span>
-        Password must be more than 15 characters OR at least 8 characters including a number and a lowercase letter.
+        Password must be at least 8 characters including a number and a lowercase letter.
       </span>
     </div>
   </div>
