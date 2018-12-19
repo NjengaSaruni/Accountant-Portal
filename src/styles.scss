@@ -198,11 +198,18 @@ li {
   position: relative;
   margin-top: 70px;
   height: 100vh;
-  background: url("assets/backgrounds/mountain+range.png");
+  //background: url("assets/backgrounds/mountain+range.png");
+  background: url("assets/backgrounds/laptop-money-manage.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .full-width {
   width: 100%;
+}
+
+.full-height {
+  height: 100%;
 }
 
 .info {
@@ -247,4 +254,17 @@ li {
 
 .float-left {
   float: left;
+}
+.shaded {
+  -webkit-border-image: -webkit-gradient(linear, left top, left bottom, from(#0e5a77), to(#fff), color-stop(0.5, #fff), color-stop(1, #66CBFE)) 129 1 1 1;
+}
+.relative {
+  position: relative;
+}
+
+.height-transition {
+  -webkit-transition: height 500ms ease-out 1s;
+  -moz-transition: height 500ms ease-out 1s;
+  -o-transition: height 500ms ease-out 1s;
+  transition: height 500ms ease-out 1s;
 }

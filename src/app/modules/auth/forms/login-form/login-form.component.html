@@ -1,27 +1,28 @@
-<div class="form-control margin-ts">
-  <label for="login-email">
-    Email:
-  </label>
-  <input type="text" id="login-email" class="margin-t bg-ivory" placeholder="name@example.com">
-  <div class="info error" *ngIf="profileForm.get('email').invalid && profileForm.get('email').dirty">
-      <span>
-        Incorrect email format
-      </span>
+<form [formGroup]="loginForm" novalidate class="login-form-content relative">
+  <div class="form-control margin-ts">
+    <label for="login-email" *ngIf="formLabels.email && loginForm.get('email').value.length">
+      Email:
+    </label>
+    <input type="text" id="login-email" class="margin-t" placeholder="Email" formControlName="email" (focus)="formLabels.email = true">
   </div>
-  <p class="info margin-h">We’ll occasionally send updates about your account to this inbox. We’ll never share your email address with anyone.</p>
-</div>
-<div class="form-control margin-ts">
-  <label for="login-password">
-    Password:
-  </label>
-  <input type="password" id="login-password" class="margin-t bg-ivory">
-  <div class="info error">
-      <span>
-        Password must be at least 8 characters including a number and a lowercase letter.
-      </span>
+  <div class="form-control margin-ts">
+    <label for="login-password" *ngIf="formLabels.password && loginForm.get('password').value.length">
+      Password:
+    </label>
+    <input type="password" id="login-password" class="margin-t" placeholder="Password" formControlName="password"
+           (focus)="formLabels.password = true"
+           (keydown.enter)="signIn()"
+    >
   </div>
-</div>
-<div class="margin-ts float-right">
-  <app-button [text]="'Login'"  [width]="600" (click)="signIn()"></app-button>
-</div>
+
+  <div class="login-actions margin-ts">
+    <div>
+      <app-button [text]="'Login'"  [width]="200" (click)="signIn()" [disabled]="loginForm.invalid"></app-button>
+    </div>
+    <div class="full-width">
+      <a href="" class="info link ">Forgot Password?</a>
+    </div>
+  </div>
+</form>
+
 
