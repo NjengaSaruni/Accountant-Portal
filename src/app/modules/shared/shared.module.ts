@@ -6,12 +6,15 @@ import {RouterModule} from '@angular/router';
 import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import {LoaderService} from './components/loader/loader.service';
+import { MessageComponent } from './components/message/message.component';
+import {MessageService} from './components/message/message.service';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     ButtonComponent,
-    LoaderComponent
+    LoaderComponent,
+    MessageComponent
   ],
   imports: [
     // External modules
@@ -22,10 +25,12 @@ import {LoaderService} from './components/loader/loader.service';
   exports: [
     HeaderComponent,
     ButtonComponent,
-    LoaderComponent
+    LoaderComponent,
+    MessageComponent
   ],
   providers: [
-    LoaderService
+    LoaderService,
+    MessageService
   ]
 })
 export class SharedModule { }

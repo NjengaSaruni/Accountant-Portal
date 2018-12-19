@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" novalidate class="login-form-content relative">
+  <div class="form-control margin-ts">
+    <label for="login-email" *ngIf="formLabels.email && loginForm.get('email').value.length">
+      Email:
+    </label>
+    <input type="text" id="login-email" class="margin-t" placeholder="Email" formControlName="email" (focus)="formLabels.email = true">
+  </div>
+  <div class="form-control margin-ts">
+    <label for="login-password" *ngIf="formLabels.password && loginForm.get('password').value.length">
+      Password:
+    </label>
+    <input type="password" id="login-password" class="margin-t" placeholder="Password" formControlName="password"
+           (focus)="formLabels.password = true"
+           (keydown.enter)="signIn()"
+    >
+  </div>
+
+  <div class="login-actions margin-ts">
+    <div>
+      <app-button [text]="'Login'"  [width]="200" (click)="signIn()" [disabled]="loginForm.invalid"></app-button>
+    </div>
+    <div class="full-width">
+      <a href="" class="info link ">Forgot Password?</a>
+    </div>
+  </div>
+</form>
+
+
