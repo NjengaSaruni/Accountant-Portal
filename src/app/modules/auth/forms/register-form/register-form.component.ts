@@ -20,7 +20,7 @@ export class RegisterFormComponent implements OnInit {
       email: new FormControl(
         '',
         [
-          Validators.pattern('[^ @]*@[^ @]*'),
+          Validators.email,
           Validators.required
         ]
       ),

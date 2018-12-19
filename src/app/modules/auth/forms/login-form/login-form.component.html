@@ -1,0 +1,27 @@
+<div class="form-control margin-ts">
+  <label for="login-email">
+    Email:
+  </label>
+  <input type="text" id="login-email" class="margin-t bg-ivory" placeholder="name@example.com">
+  <div class="info error" *ngIf="profileForm.get('email').invalid && profileForm.get('email').dirty">
+      <span>
+        Incorrect email format
+      </span>
+  </div>
+  <p class="info margin-h">We’ll occasionally send updates about your account to this inbox. We’ll never share your email address with anyone.</p>
+</div>
+<div class="form-control margin-ts">
+  <label for="login-password">
+    Password:
+  </label>
+  <input type="password" id="login-password" class="margin-t bg-ivory">
+  <div class="info error">
+      <span>
+        Password must be at least 8 characters including a number and a lowercase letter.
+      </span>
+  </div>
+</div>
+<div class="margin-ts float-right">
+  <app-button [text]="'Login'"  [width]="600" (click)="signIn()"></app-button>
+</div>
+
