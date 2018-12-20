@@ -31,14 +31,12 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
     // Inner circle
     this.cx.beginPath();
-    this.cx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
+    this.cx.arc(centerX, centerY, this.chart.innerCircle.radius, 0, 2 * Math.PI);
     this.cx.fillStyle = 'white';
     this.cx.fill();
   }
 
   private animateGraph() {
-    // this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
-
     // start at the top
     let currentAngle = -0.5 * Math.PI;
     const centerX = this.chart.outerCircle.radius;
@@ -47,10 +45,14 @@ export class PiechartComponent implements OnInit, AfterViewInit {
     for (const pie of this.chart.pies) {
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(centerX, centerY, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.angle);
+      this.cx.arc(centerX, centerY, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.rendered_angle);
       this.cx.lineTo(centerX, centerY);
       this.cx.fillStyle = pie.color;
       this.cx.fill();
+
+      if (pie.rendered_angle < pie.angle) {
+        pie.rendered_angle += 0.03;
+      }
 
       currentAngle += pie.angle;
       const middleAngle = currentAngle + 0.5 * pie.angle;
@@ -66,6 +68,9 @@ export class PiechartComponent implements OnInit, AfterViewInit {
       this.cx.fillStyle = 'white';
 
     }
+    this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
+
+
     return {centerX, centerY};
   }
 

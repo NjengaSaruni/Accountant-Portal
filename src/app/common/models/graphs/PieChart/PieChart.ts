@@ -6,6 +6,13 @@ import {PieDataObject} from './PieDataObject';
 import * as _ from 'lodash';
 
 export class PieChart extends BaseChart {
+  get innerCircle(): Circle {
+    return this._innerCircle;
+  }
+
+  set innerCircle(value: Circle) {
+    this._innerCircle = value;
+  }
   get total(): number {
     return this._total;
   }
@@ -29,6 +36,7 @@ export class PieChart extends BaseChart {
     this.configure();
   }
   private _outerCircle: Circle;
+  private _innerCircle: Circle;
   private _padding = 0;
   private _pies: Pie[] = [];
   private _total = 0;
@@ -41,6 +49,10 @@ export class PieChart extends BaseChart {
     this.add(pie);
   }
 
+  /**
+   * Populates a PieChart instance with Pie instances from the given PieDataObject array.
+   * @param data - An array PieDataObject instances to populate the PieChart
+   */
   public populate(data: PieDataObject[]) {
     for (const dataObject of data) {
       this.addSector(dataObject);
@@ -60,11 +72,21 @@ export class PieChart extends BaseChart {
     }
   }
 
+  /**
+   * The number of pies in this PieChart
+   */
   size(): number {
     return this._pies.length;
   }
+
+  /**
+   * Represents a PieChart instance.
+   * @param outerRadius - The radius of the PieChart in pixels.
+   * @param innerRadius - The radius of the inner circle of the PieChart in pixels.
+   */
   constructor(outerRadius: number, innerRadius = 0) {
     super();
     this.outerCircle = new Circle(outerRadius);
+    this.innerCircle = new Circle(innerRadius);
   }
 }
