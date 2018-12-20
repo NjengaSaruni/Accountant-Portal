@@ -6,6 +6,13 @@ import {PieDataObject} from './PieDataObject';
 import * as _ from 'lodash';
 
 export class PieChart extends BaseChart {
+  get unit(): string {
+    return this._unit;
+  }
+
+  set unit(value: string) {
+    this._unit = value;
+  }
   get innerCircle(): Circle {
     return this._innerCircle;
   }
@@ -40,6 +47,7 @@ export class PieChart extends BaseChart {
   private _padding = 0;
   private _pies: Pie[] = [];
   private _total = 0;
+  private _unit: string;
 
   public addSector(obj: PieDataObject) {
     this._total += obj.value;

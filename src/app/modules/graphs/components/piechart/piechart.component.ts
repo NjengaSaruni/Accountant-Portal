@@ -27,26 +27,17 @@ export class PiechartComponent implements OnInit, AfterViewInit {
     canvasEl.width = this.chart.width;
     this.cx = canvasEl.getContext('2d');
 
-    const {centerX, centerY} = this.animateGraph();
-
-    // Inner circle
-    this.cx.beginPath();
-    this.cx.arc(centerX, centerY, this.chart.innerCircle.radius, 0, 2 * Math.PI);
-    this.cx.fillStyle = 'white';
-    this.cx.fill();
+    this.animateGraph();
   }
 
   private animateGraph() {
     // start at the top
     let currentAngle = -0.5 * Math.PI;
-    const centerX = this.chart.outerCircle.radius;
-    const centerY = this.chart.outerCircle.radius;
-
     for (const pie of this.chart.pies) {
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(centerX, centerY, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.rendered_angle);
-      this.cx.lineTo(centerX, centerY);
+      this.cx.arc(this.chart.outerCircle.radius, this.chart.outerCircle.radius, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.rendered_angle);
+      this.cx.lineTo(this.chart.outerCircle.radius, this.chart.outerCircle.radius);
       this.cx.fillStyle = pie.color;
       this.cx.fill();
 
@@ -68,10 +59,12 @@ export class PiechartComponent implements OnInit, AfterViewInit {
       this.cx.fillStyle = 'white';
 
     }
+    // Inner circle
+    this.cx.beginPath();
+    this.cx.arc(this.chart.outerCircle.radius, this.chart.outerCircle.radius, this.chart.innerCircle.radius, 0, 2 * Math.PI);
+    this.cx.fillStyle = 'white';
+    this.cx.fill();
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
-
-
-    return {centerX, centerY};
   }
 
   ngOnInit() {

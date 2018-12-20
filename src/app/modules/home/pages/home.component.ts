@@ -46,20 +46,21 @@ export class HomeComponent implements OnInit {
       graph1.add(bar);
     }
 
-    this.pieChart = new PieChart(120, 70);
+    this.pieChart = new PieChart(300, 120);
     this.pieChart.title = 'A simple pie chart';
+    this.pieChart.unit = 'KES';
     this.pieChart.populate([
-      new PieDataObject('A', randomInt(1, 10), randomColor()),
-      new PieDataObject('B', randomInt(1, 10), randomColor()),
-      new PieDataObject('C', randomInt(1, 10), randomColor()),
-      new PieDataObject('D', randomInt(1, 10), randomColor()),
-      new PieDataObject('E', randomInt(1, 10), randomColor()),
-      new PieDataObject('F', randomInt(1, 10), randomColor()),
-      new PieDataObject('G', randomInt(1, 10), randomColor()),
-      new PieDataObject('H', randomInt(1, 10), randomColor()),
-      new PieDataObject('I', randomInt(1, 10), randomColor()),
-      new PieDataObject('J', randomInt(1, 10), randomColor()),
-      new PieDataObject('K', randomInt(1, 10), randomColor())
+      new PieDataObject('Animals', randomInt(1, 10), randomColor()),
+      new PieDataObject('Birds', randomInt(1, 10), randomColor()),
+      new PieDataObject('Crocodiles', randomInt(1, 10), randomColor()),
+      new PieDataObject('Dinosaurs', randomInt(1, 10), randomColor()),
+      new PieDataObject('Elephants', randomInt(1, 10), randomColor()),
+      new PieDataObject('Fish', randomInt(1, 10), randomColor()),
+      new PieDataObject('Girrafes', randomInt(1, 10), randomColor()),
+      new PieDataObject('Hyena', randomInt(1, 10), randomColor()),
+      new PieDataObject('Iguanas', randomInt(1, 10), randomColor()),
+      new PieDataObject('Jaguars', randomInt(1, 10), randomColor()),
+      new PieDataObject('Koalas', randomInt(1, 10), randomColor())
     ]);
 
     console.log(this.pieChart.size());

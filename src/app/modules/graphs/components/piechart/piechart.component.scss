@@ -1,3 +1,17 @@
+.pie-chart {
+  display: inline-flex;
+
+  .keys {
+    .key {
+      display: inline-flex;
+
+      .color {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+}
 canvas {
   //height: 200px;
 }

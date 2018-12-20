@@ -1,13 +1,21 @@
-<div class="raised padding-s margin-s" [ngStyle]="{'width.px' : chart.width + 100}">
-  <p class="centered padding">{{chart.title}}</p>
-  <canvas class="centered" #canvas></canvas>
+<div class="raised padding-s margin-s pie-chart" [ngStyle]="{'width.px' : chart.width + 300}">
+  <div class="padding">
+    <p class="centered padding">{{chart.title}}</p>
+    <canvas class="centered" #canvas></canvas>
+  </div>
   <div class="keys">
-    <div *ngFor="let pie of chart.pies" [ngStyle]="{
-        'border-color': pie.color,
-        'border-width.px': 2,
-        'border-style': 'solid'
+    <div *ngFor="let pie of chart.pies" class="full-width padding key">
+      <div class="padding-s color"
+           [ngStyle]="{
+        'background-color': pie.color
        }">
-      {{ pie.title }} - {{ pie.value }} - {{ pie.angle }}
+      </div>
+      <div class="padding-s color-title">
+        {{ pie.title }}
+      </div>
+      <div class="centered key-value">
+        {{ pie.value }} {{ chart.unit }}
+      </div>
     </div>
   </div>
 </div>
