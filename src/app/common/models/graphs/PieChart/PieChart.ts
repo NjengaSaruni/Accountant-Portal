@@ -3,6 +3,7 @@ import {Circle} from './Circle';
 import {Pie} from './Pie';
 import {PieDataObject} from './PieDataObject';
 
+import * as _ from 'lodash';
 
 export class PieChart extends BaseChart {
   get total(): number {
@@ -28,13 +29,13 @@ export class PieChart extends BaseChart {
     this.configure();
   }
   private _outerCircle: Circle;
-  private _padding = 20;
+  private _padding = 0;
   private _pies: Pie[] = [];
   private _total = 0;
 
   public addSector(obj: PieDataObject) {
     this._total += obj.value;
-    const pie = new Pie((obj.value / this.total) * 2 * Math.PI);
+    const pie = new Pie(obj.value);
     pie.title = obj.name;
     pie.color = obj.color;
     this.add(pie);
@@ -53,6 +54,10 @@ export class PieChart extends BaseChart {
 
   add(pie: Pie) {
     this._pies.push(pie);
+    this._pies = _.orderBy(this._pies, 'value', 'desc');
+    for (const _pie: Pie of this.pies) {
+      _pie.angle = (_pie.value / this.total ) * 2 * Math.PI;
+    }
   }
 
   size(): number {

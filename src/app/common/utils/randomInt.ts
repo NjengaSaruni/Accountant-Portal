@@ -12,5 +12,5 @@ export function randomInt(min, max) {
 }
 
 export function randomColor() {
-  return `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
+  return `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},1)`;
 }

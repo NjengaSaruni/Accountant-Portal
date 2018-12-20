@@ -13,6 +13,7 @@ export class ButtonComponent implements OnInit {
   @Input() width = 240;
   @Input() height = 50;
   @Input() disabled = false;
+  @Input() fullWidth: false;
 
   constructor() { }
 

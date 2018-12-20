@@ -1,6 +1,13 @@
 import {randomInt} from '../../../utils/randomInt';
 
 export class Pie {
+  get value(): number {
+    return this._value;
+  }
+
+  set value(value: number) {
+    this._value = value;
+  }
   get color(): string {
     return this._color;
   }
@@ -25,8 +32,9 @@ export class Pie {
   private _angle: number;
   private _title: string;
   private _color = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
+  private _value: number;
 
-  constructor(angle: number) {
-    this.angle = angle;
+  constructor(value: number) {
+    this.value = value;
   }
 }
