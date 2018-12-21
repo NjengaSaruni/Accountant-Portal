@@ -75,8 +75,9 @@ export class PieChart extends BaseChart {
   add(pie: Pie) {
     this._pies.push(pie);
     this._pies = _.orderBy(this._pies, 'value', 'desc');
-    for (const _pie: Pie of this.pies) {
+    for (const _pie of this.pies) {
       _pie.angle = (_pie.value / this.total ) * 2 * Math.PI;
+      _pie.percentage = (_pie.value / this.total) * 100;
     }
   }
 

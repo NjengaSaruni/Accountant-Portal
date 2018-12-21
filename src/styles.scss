@@ -175,6 +175,18 @@ li {
   display: flex;
   margin: auto;
 }
+.centered-l {
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  margin: auto;
+}
+.centered-r {
+  justify-content: right;
+  align-items: center;
+  display: flex;
+  margin: auto;
+}
 .centered-v {
   margin: 0;
   position: absolute;

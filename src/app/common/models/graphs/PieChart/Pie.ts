@@ -1,6 +1,13 @@
 import {randomInt} from '../../../utils/randomInt';
 
 export class Pie {
+  get percentage(): number {
+    return this._percentage;
+  }
+
+  set percentage(value: number) {
+    this._percentage = value;
+  }
   get rendered_angle(): number {
     return this._rendered_angle;
   }
@@ -41,6 +48,7 @@ export class Pie {
   private _title: string;
   private _color = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
   private _value: number;
+  private _percentage: number;
 
   constructor(value: number) {
     this.value = value;

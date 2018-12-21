@@ -6,8 +6,20 @@
       display: inline-flex;
 
       .color {
-        height: 30px;
-        width: 30px;
+        height: 10px;
+        width: 10px;
+        border-radius: 10px;
+        //border: 2px dotted blueviolet;
+      }
+
+      .color-title {
+        width: 40%;
+      }
+
+      p {
+        text-align: right;
+        display: block;
+        margin: auto;
       }
     }
   }
