@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
 
     this.pieChart = new PieChart(80, 50);
     this.pieChart.title = 'A simple pie chart';
+    this.pieChart.subtitle = 'A graph of all transactions';
     this.pieChart.unit = 'KES';
     this.pieChart.populate([
       new PieDataObject('Animals', randomInt(1, 400), randomColor()),
