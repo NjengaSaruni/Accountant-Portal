@@ -10,6 +10,8 @@ import {AuthService} from '../../../../common/services/auth/auth.service';
 })
 export class RegisterFormComponent implements OnInit {
   profileForm: FormGroup;
+  formLabels: any = {email: false, password: false};
+
   constructor(private loaderService: LoaderService,
               private authService: AuthService,
               private formBuilder: FormBuilder) {
@@ -35,6 +37,9 @@ export class RegisterFormComponent implements OnInit {
   }
 
   signUp() {
+    if (this.profileForm.invalid) {
+      return;
+    }
     this.loaderService.show();
     setTimeout(() => {
       this.authService.register(
