@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '../../../../common/store';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<fromStore.ReportsState>) { }
 
   ngOnInit() {
+    this.store.select(fromStore.getAllMessages).subscribe(
+      state => console.log(state),
+    );
   }
 
 }
