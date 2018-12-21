@@ -15,14 +15,10 @@
     >
   </div>
 
-  <div class="login-actions margin-ts">
-    <div>
-      <app-button [text]="'Login'"  [width]="200" (click)="signIn()" [disabled]="loginForm.invalid"></app-button>
-    </div>
-    <div class="full-width">
-      <a href="" class="info link ">Forgot Password?</a>
-    </div>
+  <div class="margin-ts">
+    <app-button [text]="'Login'" [fullWidth]="true" (click)="signIn()" [disabled]="loginForm.invalid" class="centered"></app-button>
   </div>
+
 </form>
 
 

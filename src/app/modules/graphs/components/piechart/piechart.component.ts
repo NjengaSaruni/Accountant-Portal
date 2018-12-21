@@ -17,37 +17,36 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   ) { }
 
   public ngAfterViewInit() {
+    const initialValue = 0;
+    const sum = this.chart.pies.reduce(function (accumulator, pie) {
+      return accumulator + pie.angle;
+    }, initialValue);
+    console.log(sum);
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     canvasEl.height = this.chart.height;
     canvasEl.width = this.chart.width;
     this.cx = canvasEl.getContext('2d');
 
-    const {centerX, centerY} = this.animateGraph();
-
-    // pie slices
-    this.cx.beginPath();
-    this.cx.arc(centerX, centerY, 25, 0, 2 * Math.PI);
-    this.cx.fillStyle = 'white';
-    this.cx.fill();
+    this.animateGraph();
   }
 
   private animateGraph() {
-    this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
-
     // start at the top
     let currentAngle = -0.5 * Math.PI;
-    const centerX = this.chart.outerCircle.radius;
-    const centerY = this.chart.outerCircle.radius;
-
     for (const pie of this.chart.pies) {
-      const middleAngle = currentAngle + 0.5 * pie.angle;
-      currentAngle += pie.angle;
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(centerX, centerY, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.angle);
-      this.cx.lineTo(centerX, centerY);
+      this.cx.arc(this.chart.outerCircle.radius, this.chart.outerCircle.radius, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.rendered_angle);
+      this.cx.lineTo(this.chart.outerCircle.radius, this.chart.outerCircle.radius);
       this.cx.fillStyle = pie.color;
       this.cx.fill();
+
+      if (pie.rendered_angle < pie.angle) {
+        pie.rendered_angle += 0.03;
+      }
+
+      currentAngle += pie.angle;
+      const middleAngle = currentAngle + 0.5 * pie.angle;
 
       // labels
       if (middleAngle < -0.5 * Math.PI || middleAngle > 0.5 * Math.PI) {
@@ -56,12 +55,16 @@ export class PiechartComponent implements OnInit, AfterViewInit {
         this.cx.textAlign = 'left';
       }
       this.cx.textBaseline = 'middle';
-      this.cx.fillText(pie.title,
-        Math.cos(middleAngle) * 120 + centerX,
-        Math.sin(middleAngle) * 120 + centerY);
+      this.cx.strokeStyle = 'white';
+      this.cx.fillStyle = 'white';
 
     }
-    return {centerX, centerY};
+    // Inner circle
+    this.cx.beginPath();
+    this.cx.arc(this.chart.outerCircle.radius, this.chart.outerCircle.radius, this.chart.innerCircle.radius, 0, 2 * Math.PI);
+    this.cx.fillStyle = 'white';
+    this.cx.fill();
+    this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
   }
 
   ngOnInit() {

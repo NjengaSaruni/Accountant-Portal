@@ -11,6 +11,12 @@ export function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function randomColor() {
-  return `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
+/**
+ * @description
+ * A utility method that returns a random rgba color
+ * @param opacity The opacity of the randomly generated color
+ * @return random rgba color with specified opacity or 1
+ */
+export function randomColor(opacity: number = 1) {
+  return `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},${opacity})`;
 }

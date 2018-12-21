@@ -46,16 +46,26 @@ export class HomeComponent implements OnInit {
       graph1.add(bar);
     }
 
-    this.pieChart = new PieChart(200);
+    this.pieChart = new PieChart(80, 50);
     this.pieChart.title = 'A simple pie chart';
+    this.pieChart.unit = 'KES';
     this.pieChart.populate([
-      <PieDataObject>{name: 'A', value: randomInt(0, 10), color: randomColor()},
-      <PieDataObject>{name: 'B', value: 10, color: randomColor()},
-      <PieDataObject>{name: 'C', value: 190, color: randomColor()},
-      <PieDataObject>{name: 'D', value: 67, color: randomColor()},
+      new PieDataObject('Animals', randomInt(1, 400), randomColor()),
+      new PieDataObject('Birds', randomInt(1, 200), randomColor()),
+      new PieDataObject('Python', randomInt(1, 10), randomColor()),
+      new PieDataObject('Dinosaurs', randomInt(1, 10), randomColor()),
+      new PieDataObject('Elephants', randomInt(1, 10), randomColor()),
+      // new PieDataObject('Fish', randomInt(1, 10), randomColor()),
+      // new PieDataObject('Girrafes', randomInt(1, 10), randomColor()),
+      // new PieDataObject('Hyena', randomInt(1, 10), randomColor()),
+      // new PieDataObject('Iguanas', randomInt(1, 10), randomColor()),
+      // new PieDataObject('Jaguars', randomInt(1, 10), randomColor()),
+      // new PieDataObject('Koalas', randomInt(1, 10), randomColor())
     ]);
 
     console.log(this.pieChart.size());
   }
 
 }
+
+
