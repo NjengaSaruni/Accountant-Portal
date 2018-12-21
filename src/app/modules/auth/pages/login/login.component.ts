@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../../../common/store';
+import {Message} from '../../../../common/models/messages/Message';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +11,12 @@ import * as fromStore from '../../../../common/store';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  messages$: Observable<Message[]>;
 
   constructor(private store: Store<fromStore.ReportsState>) { }
 
   ngOnInit() {
-    this.store.select(fromStore.getAllMessages).subscribe(
-      state => console.log(state),
-    );
+    this.messages$ = this.store.select(fromStore.getAllMessages);
   }
 
 }
