@@ -5,6 +5,10 @@ import {AppComponent} from './app.component';
 import {WindowRefService} from '../common/services/global/window-ref.service';
 import {SharedModule} from '../modules/shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
+import {MetaReducer, StoreModule} from '@ngrx/store';
+
+export const metaReducers: MetaReducer<any>[] = [];
+
 
 @NgModule({
   declarations: [
@@ -14,6 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
     // External modules
     BrowserModule,
     HttpClientModule,
+    StoreModule.forRoot({}, { metaReducers }),
 
     // Internal modules
     SharedModule,

@@ -15,6 +15,11 @@
         <div class="centered login-intro">
           <p>to your account</p>
         </div>
+        <div class="errors">
+          <div class="error">
+            <p *ngFor="let message of (messages$ | async)">{{message.title}}</p>
+          </div>
+        </div>
         <div class="login-form">
           <app-login-form></app-login-form>
         </div>
