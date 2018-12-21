@@ -9,6 +9,8 @@ import { RegisterFormComponent } from './forms/register-form/register-form.compo
 import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
+import {StoreModule} from '@ngrx/store';
+import {reducers} from '../../common/store/reducers';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { LoginFormComponent } from './forms/login-form/login-form.component';
     RouterModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
+    StoreModule.forFeature('reports', reducers),
 
     // Internal modules
     SharedModule,

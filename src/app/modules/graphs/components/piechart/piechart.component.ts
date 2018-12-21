@@ -21,7 +21,6 @@ export class PiechartComponent implements OnInit, AfterViewInit {
     const sum = this.chart.pies.reduce(function (accumulator, pie) {
       return accumulator + pie.angle;
     }, initialValue);
-    console.log(sum);
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     canvasEl.height = this.chart.height;
     canvasEl.width = this.chart.width;
@@ -43,6 +42,8 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
       if (pie.rendered_angle < pie.angle) {
         pie.rendered_angle += 0.03;
+      } else {
+        pie.rendered_angle = pie.angle;
       }
 
       currentAngle += pie.angle;
