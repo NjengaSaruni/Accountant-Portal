@@ -13,10 +13,11 @@ import {Observable} from 'rxjs';
 export class LoginComponent implements OnInit {
   messages$: Observable<Message[]>;
 
-  constructor(private store: Store<fromStore.ReportsState>) { }
+  constructor(private store: Store<fromStore.ACPSState>) { }
 
   ngOnInit() {
     this.messages$ = this.store.select(fromStore.getAllMessages);
+    this.store.dispatch(new fromStore.CreateMessages());
   }
 
 }

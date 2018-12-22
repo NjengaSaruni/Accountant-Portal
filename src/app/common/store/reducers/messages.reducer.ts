@@ -1,13 +1,13 @@
 import * as fromMessages from '../actions/messages.action';
 import {Message} from '../../models/messages/Message';
 
-export interface MessageState {
+export interface IMessageState {
   data: Message[];
   loaded: boolean;
   loading: boolean;
 }
 
-const initialState: MessageState = {
+const initialState: IMessageState = {
   data: [
     new Message('This is the message title')
   ],
@@ -18,7 +18,7 @@ const initialState: MessageState = {
 export function reducer(
   state = initialState,
   action: fromMessages.MessagesAction
-): MessageState {
+): IMessageState {
 
   switch (action.type) {
     case (fromMessages.LOAD_MESSAGES): {
@@ -43,10 +43,19 @@ export function reducer(
         loaded: false
       };
     }
+
+    case (fromMessages.CREATE_MESSAGES): {
+      return {
+        ...state,
+        data: action.payload,
+        loading: false,
+        loaded: false
+      };
+    }
   }
   return state;
 }
 
-export const getMessagesLoading =  (state: MessageState) => state.loading;
-export const getMessagesLoaded = (state: MessageState) => state.loaded;
-export const getMessages = (state: MessageState) => state.data;
+export const getMessagesLoading =  (state: IMessageState) => state.loading;
+export const getMessagesLoaded = (state: IMessageState) => state.loaded;
+export const getMessages = (state: IMessageState) => state.data;

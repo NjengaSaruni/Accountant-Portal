@@ -3,8 +3,8 @@ import {Message} from '../../models/messages/Message';
 
 export const LOAD_MESSAGES = '[ACP] Load Messages';
 export const LOAD_MESSAGES_ERROR = '[ACP] Load Messages Error';
-
 export const LOAD_MESSAGES_SUCCESS = '[ACP] Load Messages Success';
+export const CREATE_MESSAGES = '[ACP] Create Messages';
 
 export class LoadMessages implements Action {
   readonly type = LOAD_MESSAGES;
@@ -20,5 +20,10 @@ export class LoadMessageSuccess implements Action {
   constructor (public payload: Message[]) {}
 }
 
+export class CreateMessages implements Action {
+  readonly type = CREATE_MESSAGES;
+  constructor (public payload: Message[]) {}
+}
 
-export type MessagesAction = LoadMessages | LoadMessagesError | LoadMessageSuccess;
+
+export type MessagesAction = LoadMessages | LoadMessagesError | LoadMessageSuccess | CreateMessages;
