@@ -17,12 +17,12 @@ export class MessagesEffect {
 
   @Effect()
   createMessages$: Observable<Action> = this.actions$.pipe(
-    ofType(messageActions.CREATE_MESSAGES),
+    ofType(messageActions.LOAD_MESSAGES),
     switchMap(() => {
       return this.messageService.getMessages()
         .pipe(
           map((messages) => {
-            return new messageActions.CreateMessages(messages);
+            return new messageActions.LoadMessageSuccess(messages);
           })
         );
     })

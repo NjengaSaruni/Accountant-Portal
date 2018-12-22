@@ -31,23 +31,13 @@ export function reducer(
     case (fromMessages.LOAD_MESSAGES_SUCCESS): {
       return {
         ...state,
-        loading: false,
-        loaded: true
+        data: action.payload
       };
     }
 
     case (fromMessages.LOAD_MESSAGES_ERROR): {
       return {
         ...state,
-        loading: false,
-        loaded: false
-      };
-    }
-
-    case (fromMessages.CREATE_MESSAGES): {
-      return {
-        ...state,
-        data: action.payload,
         loading: false,
         loaded: false
       };

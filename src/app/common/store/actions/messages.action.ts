@@ -20,10 +20,5 @@ export class LoadMessageSuccess implements Action {
   constructor (public payload: Message[]) {}
 }
 
-export class CreateMessages implements Action {
-  readonly type = CREATE_MESSAGES;
-  constructor (public payload: Message[]) {}
-}
 
-
-export type MessagesAction = LoadMessages | LoadMessagesError | LoadMessageSuccess | CreateMessages;
+export type MessagesAction = LoadMessages | LoadMessagesError | LoadMessageSuccess;
