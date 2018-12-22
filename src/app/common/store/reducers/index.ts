@@ -1,22 +1,22 @@
-import * as fromMessages from '../reducers/messages.reducer';
+import * as fromMessages from './messages.reducer';
 import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
 
-export interface ReportsState {
-  messages: fromMessages.MessageState;
+export interface ACPSState {
+  messages: fromMessages.IMessageState;
 }
 
-export const reducers: ActionReducerMap<ReportsState> = {
+export const reducers: ActionReducerMap<ACPSState> = {
   messages: fromMessages.reducer,
 };
 
-export const getReportsState = createFeatureSelector<ReportsState> (
-  'reports'
+export const getACPState = createFeatureSelector<ACPSState> (
+  'acp'
 );
 
 // message State
 export const getMessageState = createSelector (
-  getReportsState,
-  (state: ReportsState) => state.messages
+  getACPState,
+  (state: ACPSState) => state.messages
 );
 
 export const getAllMessages = createSelector (

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {BarGraph} from '../../../common/models/graphs/BarChart/BarGraph';
+import {BarGraph} from '../../graphs/models/graphs/BarChart/BarGraph';
 import {randomColor, randomInt} from '../../../common/utils/randomInt';
-import {Bar} from '../../../common/models/graphs/BarChart/Bar';
-import {PieChart} from '../../../common/models/graphs/PieChart/PieChart';
-import {PieDataObject} from '../../../common/models/graphs/PieChart/PieDataObject';
+import {Bar} from '../../graphs/models/graphs/BarChart/Bar';
+import {PieChart} from '../../graphs/models/graphs/PieChart/PieChart';
+import {PieDataObject} from '../../graphs/models/graphs/PieChart/PieDataObject';
 
 @Component({
   selector: 'app-home',
@@ -46,14 +46,14 @@ export class HomeComponent implements OnInit {
       graph1.add(bar);
     }
 
-    this.pieChart = new PieChart(80, 50);
+    this.pieChart = new PieChart(280, 50);
     this.pieChart.title = 'A simple pie chart';
     this.pieChart.subtitle = 'A graph of all transactions';
     this.pieChart.unit = 'KES';
     this.pieChart.populate([
       new PieDataObject('Animals', randomInt(1, 400), randomColor()),
-      new PieDataObject('Birds', randomInt(1, 200), randomColor()),
-      new PieDataObject('Python', randomInt(1, 10), randomColor()),
+      new PieDataObject('Birds', randomInt(1, 400), randomColor()),
+      new PieDataObject('Python', randomInt(1, 400), randomColor()),
       new PieDataObject('Dinosaurs', randomInt(1, 10), randomColor()),
       new PieDataObject('Elephants', randomInt(1, 10), randomColor()),
       // new PieDataObject('Fish', randomInt(1, 10), randomColor()),
@@ -64,8 +64,7 @@ export class HomeComponent implements OnInit {
       // new PieDataObject('Koalas', randomInt(1, 10), randomColor())
     ]);
 
-    console.log(this.pieChart.size());
-  }
+ }
 
 }
 
