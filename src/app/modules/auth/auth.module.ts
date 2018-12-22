@@ -10,7 +10,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import {StoreModule} from '@ngrx/store';
-import {reducers} from '../../common/store/reducers';
+import { EffectsModule} from '@ngrx/effects';
+import { reducers, effects } from '../../common/store';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,13 @@ import {reducers} from '../../common/store/reducers';
     RouterModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('reports', reducers),
+    StoreModule.forFeature('acp', reducers),
+    EffectsModule.forFeature(effects),
+
 
     // Internal modules
     SharedModule,
+
 
     // routing
     AuthRoutingModule,

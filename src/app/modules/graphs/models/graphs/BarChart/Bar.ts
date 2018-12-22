@@ -1,4 +1,4 @@
-import {randomInt} from '../../../utils/randomInt';
+import {randomInt} from '../../../../../common/utils/randomInt';
 
 export class Bar {
   get color(): string {

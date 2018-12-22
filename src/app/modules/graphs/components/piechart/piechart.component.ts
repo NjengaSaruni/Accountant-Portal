@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {PieChart} from '../../../../common/models/graphs/PieChart/PieChart';
-import {WindowRefService} from '../../../../common/services/global/window-ref.service';
+import {PieChart} from '../../models/graphs/PieChart/PieChart';
+import {WindowRefService} from '../../../../common/services/window-ref.service';
 
 @Component({
   selector: 'app-piechart',
@@ -35,13 +35,18 @@ export class PiechartComponent implements OnInit, AfterViewInit {
     for (const pie of this.chart.pies) {
       // pie slices
       this.cx.beginPath();
-      this.cx.arc(this.chart.outerCircle.radius, this.chart.outerCircle.radius, this.chart.outerCircle.radius, currentAngle, currentAngle + pie.rendered_angle);
+      this.cx.arc(
+        this.chart.outerCircle.radius,
+        this.chart.outerCircle.radius,
+        this.chart.outerCircle.radius,
+        currentAngle, currentAngle + pie.rendered_angle
+      );
       this.cx.lineTo(this.chart.outerCircle.radius, this.chart.outerCircle.radius);
       this.cx.fillStyle = pie.color;
       this.cx.fill();
 
       if (pie.rendered_angle < pie.angle) {
-        pie.rendered_angle += 0.03;
+        pie.rendered_angle += 0.12;
       } else {
         pie.rendered_angle = pie.angle;
       }
