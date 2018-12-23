@@ -23,25 +23,26 @@ export function reducer(
   switch (action.type) {
     case (fromMessages.LOAD_MESSAGES): {
       return {
-        ...state,
-        loading: true
+      ...state,
+          loading: true
       };
     }
 
     case (fromMessages.LOAD_MESSAGES_SUCCESS): {
+      const data = action.payload;
       return {
-        ...state,
-        data: action.payload,
-        loading: false,
-        loaded: true
+      ...state,
+          data,
+          loading: false,
+          loaded: true
       };
     }
 
     case (fromMessages.LOAD_MESSAGES_ERROR): {
       return {
-        ...state,
-        loading: false,
-        loaded: false
+      ...state,
+          loading: false,
+          loaded: false
       };
     }
   }
