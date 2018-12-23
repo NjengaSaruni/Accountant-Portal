@@ -31,7 +31,9 @@ export function reducer(
     case (fromMessages.LOAD_MESSAGES_SUCCESS): {
       return {
         ...state,
-        data: action.payload
+        data: action.payload,
+        loading: false,
+        loaded: true
       };
     }
 

@@ -1,13 +1,16 @@
 <div class="raised padding-s margin-s" [ngStyle]="{'width.px' : chart.width + 400}">
-  <p class="centered bold padding">{{chart.title}}</p>
-  <p class="centered info color-grey">{{chart.subtitle }}</p>
+  <div class="padding-s margin-bs">
+    <p class="centered bold padding">{{chart.title}}</p>
+    <p class="centered info color-grey">{{chart.subtitle }}</p>
+  </div>
+
   <div class="pie-chart">
-    <div class="padding">
+    <div class="margin-rs padding">
       <canvas class="centered" #canvas></canvas>
     </div>
-    <div class="keys">
-      <div *ngFor="let pie of chart.pies" class="full-width padding relative key">
-        <div class="centered padding-s raised color"
+    <div class="keys padding-s">
+      <div *ngFor="let pie of chart.pies" class="full-width key">
+        <div class="centered padding-s color"
              [ngStyle]="{
         'background-color': pie.color
        }">
@@ -16,7 +19,9 @@
           {{ pie.title }}
         </div>
         <div class="full-width centered key-value">
-          <p class="full-height bold centered-l">{{ chart.unit }}  {{ pie.value | number : '1.2-2'}} - {{ pie.percentage | number : '1.2-2' }} %</p>
+          <p class="full-height text-left full-width bold">{{ chart.unit }}  {{ pie.value | number : '1.2-2'}} </p>
+          <p class="centered">-</p>
+          <p class="text-right full-width bold">{{ pie.percentage | number : '1.2-2' }} %</p>
         </div>
       </div>
     </div>

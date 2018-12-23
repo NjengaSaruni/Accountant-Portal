@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
       graph1.add(bar);
     }
 
-    this.pieChart = new PieChart(280, 50);
+    this.pieChart = new PieChart(240, 200);
     this.pieChart.title = 'A simple pie chart';
     this.pieChart.subtitle = 'A graph of all transactions';
     this.pieChart.unit = 'KES';
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       new PieDataObject('Python', randomInt(1, 400), randomColor()),
       new PieDataObject('Dinosaurs', randomInt(1, 10), randomColor()),
       new PieDataObject('Elephants', randomInt(1, 10), randomColor()),
-      // new PieDataObject('Fish', randomInt(1, 10), randomColor()),
+      new PieDataObject('Fish', randomInt(1, 1000), randomColor()),
       // new PieDataObject('Girrafes', randomInt(1, 10), randomColor()),
       // new PieDataObject('Hyena', randomInt(1, 10), randomColor()),
       // new PieDataObject('Iguanas', randomInt(1, 10), randomColor()),
