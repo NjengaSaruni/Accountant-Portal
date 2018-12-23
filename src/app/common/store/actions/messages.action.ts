@@ -4,7 +4,6 @@ import {Message} from '../../models/messages/Message';
 export const LOAD_MESSAGES = '[ACP] Load Messages';
 export const LOAD_MESSAGES_ERROR = '[ACP] Load Messages Error';
 export const LOAD_MESSAGES_SUCCESS = '[ACP] Load Messages Success';
-export const CREATE_MESSAGES = '[ACP] Create Messages';
 
 export class LoadMessages implements Action {
   readonly type = LOAD_MESSAGES;

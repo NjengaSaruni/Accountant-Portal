@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.messages$ = this.store.select(fromStore.getAllMessages);
-    this.store.dispatch(new fromStore.LoadMessages());
   }
 
 }
