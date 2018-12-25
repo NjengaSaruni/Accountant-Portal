@@ -19,9 +19,16 @@ export const getMessageState = createSelector (
   (state: ACPSState) => state.messages
 );
 
-export const getAllMessages = createSelector (
+export const getMessagesEntities = createSelector (
   getMessageState,
-  fromMessages.getMessages
+  fromMessages.getMessagesEntities
+);
+
+export const getAllMessages = createSelector(
+  getMessagesEntities,
+  (entities) => {
+    return Object.keys(entities).map(id => entities[id]);
+  }
 );
 
 export const getMessagesLoaded = createSelector (
