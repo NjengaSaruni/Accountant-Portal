@@ -1,4 +1,11 @@
 export class Message {
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
   get description(): string {
     return this._description;
   }
@@ -13,6 +20,7 @@ export class Message {
   set title(value: string) {
     this._title = value;
   }
+  private _id: number;
   private _title: string;
   private _description: string;
 

@@ -8,9 +8,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {effects} from '../common/store/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../../environments/environment';
 
 export const metaReducers: MetaReducer<any>[] = [];
-
 
 @NgModule({
   declarations: [
@@ -21,6 +22,10 @@ export const metaReducers: MetaReducer<any>[] = [];
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({}, { metaReducers }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
     EffectsModule.forRoot(effects),
     HttpClientModule,
 

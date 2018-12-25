@@ -2,15 +2,13 @@ import * as fromMessages from '../actions/messages.action';
 import {Message} from '../../models/messages/Message';
 
 export interface IMessageState {
-  data: Message[];
+  entities: { [id: number]: Message};
   loaded: boolean;
   loading: boolean;
 }
 
 const initialState: IMessageState = {
-  data: [
-    new Message('This is the message title')
-  ],
+  entities: {},
   loaded: false,
   loading: false
 };
@@ -23,15 +21,24 @@ export function reducer(
   switch (action.type) {
     case (fromMessages.LOAD_MESSAGES): {
       return {
-        ...state,
-        loading: true
+      ...state,
+          loading: true
       };
     }
 
     case (fromMessages.LOAD_MESSAGES_SUCCESS): {
+      const messages = action.payload;
+      const entities = messages.reduce((_entities: {[id: number]: Message}, message: Message) => {
+        return {
+          ..._entities,
+          [message.id]: message
+        };
+      }, {
+        ...state.entities
+      });
       return {
         ...state,
-        data: action.payload,
+        entities,
         loading: false,
         loaded: true
       };
@@ -39,9 +46,9 @@ export function reducer(
 
     case (fromMessages.LOAD_MESSAGES_ERROR): {
       return {
-        ...state,
-        loading: false,
-        loaded: false
+      ...state,
+          loading: false,
+          loaded: false
       };
     }
   }
@@ -50,4 +57,4 @@ export function reducer(
 
 export const getMessagesLoading =  (state: IMessageState) => state.loading;
 export const getMessagesLoaded = (state: IMessageState) => state.loaded;
-export const getMessages = (state: IMessageState) => state.data;
+export const getMessagesEntities = (state: IMessageState) => state.entities;
