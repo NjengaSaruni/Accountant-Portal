@@ -1,4 +1,4 @@
-import {randomColor} from '../../../../../common/utils/randomInt';
+import {randomColor} from '../../../../common/utils/randomInt';
 
 export class PieDataObject {
   get color(): string {

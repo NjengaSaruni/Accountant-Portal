@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {BarGraph} from '../../graphs/models/graphs/BarChart/BarGraph';
+import {BarGraph} from '../../graphs/models/BarChart/BarGraph';
 import {randomColor, randomInt} from '../../../common/utils/randomInt';
-import {Bar} from '../../graphs/models/graphs/BarChart/Bar';
-import {PieChart} from '../../graphs/models/graphs/PieChart/PieChart';
-import {PieDataObject} from '../../graphs/models/graphs/PieChart/PieDataObject';
+import {Bar} from '../../graphs/models/BarChart/Bar';
+import {PieChart} from '../../graphs/models/PieChart/PieChart';
+import {PieDataObject} from '../../graphs/models/PieChart/PieDataObject';
 
 @Component({
   selector: 'app-home',
