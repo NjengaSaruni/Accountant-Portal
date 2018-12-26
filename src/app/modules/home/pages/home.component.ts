@@ -4,6 +4,8 @@ import {randomColor, randomInt} from '../../../common/utils/randomInt';
 import {Bar} from '../../graphs/models/BarChart/Bar';
 import {PieChart} from '../../graphs/models/PieChart/PieChart';
 import {PieDataObject} from '../../graphs/models/PieChart/PieDataObject';
+import {LineChart} from '../../graphs/models/LineChart/LineChart';
+import {LineChartPointDataObject} from '../../graphs/models/LineChart/LineChartPointDataObject';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,8 @@ import {PieDataObject} from '../../graphs/models/PieChart/PieDataObject';
 export class HomeComponent implements OnInit {
   graphs: BarGraph[] = [];
   pieChart: PieChart;
+  lineChart: LineChart;
+
   constructor() { }
 
   async ngOnInit() {
@@ -57,14 +61,27 @@ export class HomeComponent implements OnInit {
       new PieDataObject('Dinosaurs', randomInt(1, 10), randomColor()),
       new PieDataObject('Elephants', randomInt(1, 10), randomColor()),
       new PieDataObject('Fish', randomInt(1, 1000), randomColor()),
-      // new PieDataObject('Girrafes', randomInt(1, 10), randomColor()),
-      // new PieDataObject('Hyena', randomInt(1, 10), randomColor()),
-      // new PieDataObject('Iguanas', randomInt(1, 10), randomColor()),
-      // new PieDataObject('Jaguars', randomInt(1, 10), randomColor()),
-      // new PieDataObject('Koalas', randomInt(1, 10), randomColor())
     ]);
 
- }
+    this.lineChart = new LineChart(500, 500);
+    this.lineChart.populate([
+        new LineChartPointDataObject('Jan', randomInt(1, 400)),
+        new LineChartPointDataObject('Feb', randomInt(1, 400)),
+        new LineChartPointDataObject('Mar', randomInt(1, 400)),
+        new LineChartPointDataObject('Apr', randomInt(1, 400)),
+        new LineChartPointDataObject('May', randomInt(1, 400)),
+        new LineChartPointDataObject('Jun', randomInt(1, 400)),
+        new LineChartPointDataObject('Jul', randomInt(1, 400)),
+        new LineChartPointDataObject('Aug', randomInt(1, 400)),
+        new LineChartPointDataObject('Sep', randomInt(1, 400)),
+        new LineChartPointDataObject('Oct', randomInt(1, 400)),
+      ]
+    );
+
+    console.log(this.lineChart.size());
+
+
+  }
 
 }
 
