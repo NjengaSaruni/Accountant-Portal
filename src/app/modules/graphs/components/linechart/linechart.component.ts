@@ -31,14 +31,17 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     const toMoveWith = canvasEl.width / this.graph.size();
     let left =  0;
     let prev = this.graph.points[0];
-    this.cx.strokeStyle = 'red';
+
+    // Line styles
+    this.cx.strokeStyle = this.graph.line.color;
+    this.cx.lineWidth = this.graph.line.width;
+    this.cx.lineCap = 'round';
+
+
     for (let i = 0; i < this.graph.size(); i++) {
       this.cx.beginPath();
       this.cx.moveTo(prev.x, prev.y);
       this.cx.lineTo(this.graph.points[i].x, this.graph.points[i].y);
-      // this.cx.lineWidth = 5;
-      // this.cx.lineCap = 'round';
-
       prev = this.graph.points[i];
       left += toMoveWith;
 

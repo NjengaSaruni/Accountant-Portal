@@ -1,8 +1,17 @@
 import {BaseChart} from '../BaseChart';
 import {LineChartPointDataObject} from './LineChartPointDataObject';
 import {LineChartPoint} from './LineChartPoint';
+import {LineChartLine} from './LineChartLine';
 
 export class LineChart extends BaseChart {
+  get line(): LineChartLine {
+    return this._line;
+  }
+
+  set line(value: LineChartLine) {
+    this._line = value;
+  }
+
   get max(): number {
     return this._max;
   }
@@ -23,10 +32,12 @@ export class LineChart extends BaseChart {
   private _interval = 10;
   private _max = -Infinity;
   private _min = Infinity;
+  private _line: LineChartLine;
 
   constructor(width: number, height: number) {
     super();
     this.width = width; this.height = height;
+    this._line = new LineChartLine();
   }
 
   private static getMinPoint(data: LineChartPointDataObject[]): number {
