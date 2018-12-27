@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
       graph1.add(bar);
     }
 
-    this.pieChart = new PieChart(240, 200);
+    this.pieChart = new PieChart(200, 80);
     this.pieChart.title = 'A simple pie chart';
     this.pieChart.subtitle = 'A graph of all transactions';
     this.pieChart.unit = 'KES';
@@ -64,6 +64,7 @@ export class HomeComponent implements OnInit {
     ]);
 
     this.lineChart = new LineChart(500, 500);
+    this.lineChart.title = 'A sample line chart';
     this.lineChart.populate([
         new LineChartPointDataObject('Jan', randomInt(350, 400)),
         new LineChartPointDataObject('Feb', randomInt(350, 400)),
@@ -80,7 +81,7 @@ export class HomeComponent implements OnInit {
       ]
     );
     this.lineChart.line.color = '#fa8967';
-    this.lineChart.line.width = 9;
+    // this.lineChart.line.width = 9;
   }
 
 }

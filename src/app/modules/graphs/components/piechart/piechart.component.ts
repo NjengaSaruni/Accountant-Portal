@@ -10,7 +10,7 @@ import {WindowRefService} from '../../../../common/services/window-ref.service';
 export class PiechartComponent implements OnInit, AfterViewInit {
   @Input() chart: PieChart;
 
-  @ViewChild('canvas') public canvas: ElementRef;
+  @ViewChild('canvas1') public canvas: ElementRef;
   private cx: CanvasRenderingContext2D;
 
   constructor(private winRef: WindowRefService
