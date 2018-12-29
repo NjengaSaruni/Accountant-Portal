@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
       new PieDataObject('Others', randomInt(1, 1000), randomColor()),
     ]);
 
-    this.lineChart = new LineChart(500, 500);
+    this.lineChart = new LineChart(800, 500);
     this.lineChart.title = 'A sample line chart';
     this.lineChart.populate([
         new LineChartPointDataObject('Jan', randomInt(350, 400)),
