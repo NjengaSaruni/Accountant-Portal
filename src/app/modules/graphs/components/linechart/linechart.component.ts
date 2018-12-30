@@ -38,23 +38,37 @@ export class LinechartComponent implements OnInit, AfterViewInit {
 
 
     for (let i = 0; i < this.graph.size(); i++) {
+      // Draw X axis labels
+      this.invertScale(canvasEl);
+      this.cx.font = '12px Arial';
+      this.cx.strokeText(i.toString(), this.graph.points[i].x, canvasEl.height - 10);
+      this.invertScale(canvasEl);
+
+      // Draw line
       this.cx.beginPath();
       this.cx.moveTo(prev.x, prev.y);
       this.cx.lineTo(this.graph.points[i].x, this.graph.points[i].y);
-      prev = this.graph.points[i];
-      left += toMoveWith;
       this.cx.stroke();
 
-      // this.cx.translate(0, canvasEl.height);
-      this.invertScale(canvasEl);
-      this.cx.font = '12px Arial';
-      this.cx.lineWidth = this.graph.line.width;
-      this.cx.strokeText(i.toString(), this.graph.points[i].x, canvasEl.height - 10);
-      this.invertScale(canvasEl);
+      prev = this.graph.points[i];
+      left += toMoveWith;
+    }
+
+    const interval = this.graph.height / 10;
+    this.cx.lineWidth = 1;
+    this.cx.translate(0, canvasEl.height);
+    this.cx.scale(1, -1);
+
+    for (let i = this.graph.height; i >= 0; i -= interval ) {
+      // this.invertScale(canvasEl);
+      this.cx.strokeText(i.toString(), 10, Math.abs(i - this.graph.height));
+      // this.invertScale(canvasEl);
     }
   }
 
   invertScale(canvasEl: HTMLCanvasElement) {
+    this.cx.lineWidth = this.cx.lineWidth === 1 ? this.graph.line.width : 1;
+    this.cx.strokeStyle = this.cx.strokeStyle === '#000' ? this.graph.line.color : '#000';
     this.cx.translate(0, canvasEl.height);
     this.cx.scale(1, -1);
   }

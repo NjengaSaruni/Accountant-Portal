@@ -77,7 +77,17 @@ export class HomeComponent implements OnInit {
         new LineChartPointDataObject('Sep', randomInt(350, 400)),
         new LineChartPointDataObject('Oct', randomInt(350, 400)),
         new LineChartPointDataObject('Nov', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400))
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
       ]
     );
     this.lineChart.line.color = '#fa8967';

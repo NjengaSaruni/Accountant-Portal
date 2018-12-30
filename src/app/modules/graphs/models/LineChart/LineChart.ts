@@ -54,7 +54,7 @@ export class LineChart extends BaseChart {
   public populate(data: LineChartPointDataObject[]) {
     this._max = LineChart.getMaxPoint(data);
     this._min = LineChart.getMinPoint(data);
-    this._interval = this.width / data.length;
+    this._interval = (this.width - 20) / data.length;
     this.createPoints(data);
   }
 
@@ -62,7 +62,7 @@ export class LineChart extends BaseChart {
     for (let i = 0; i < data.length; i++) {
       const point = new LineChartPoint(data[i].value);
       point.y = (point.value / this._max) * this.height;
-      point.x = (i * this._interval);
+      point.x = (i * this._interval) + 20;
       this._points.push(point);
     }
   }
