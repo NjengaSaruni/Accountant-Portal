@@ -23,8 +23,7 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     canvasEl.width = this.graph.width;
     canvasEl.height = this.graph.height;
 
-    this.cx.translate(0, canvasEl.height);
-    this.cx.scale(1, -1);
+    this.invertScale(canvasEl);
 
     this.cx.fillStyle = '#f6f6f6';
     this.cx.fillRect(0, 0, canvasEl.width, canvasEl.height);
@@ -44,8 +43,19 @@ export class LinechartComponent implements OnInit, AfterViewInit {
       this.cx.lineTo(this.graph.points[i].x, this.graph.points[i].y);
       prev = this.graph.points[i];
       left += toMoveWith;
-
       this.cx.stroke();
+
+      // this.cx.translate(0, canvasEl.height);
+      this.invertScale(canvasEl);
+      this.cx.font = '12px Arial';
+      this.cx.lineWidth = this.graph.line.width;
+      this.cx.strokeText(i.toString(), this.graph.points[i].x, canvasEl.height - 10);
+      this.invertScale(canvasEl);
     }
+  }
+
+  invertScale(canvasEl: HTMLCanvasElement) {
+    this.cx.translate(0, canvasEl.height);
+    this.cx.scale(1, -1);
   }
 }
