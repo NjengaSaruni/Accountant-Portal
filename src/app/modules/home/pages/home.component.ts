@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
         new LineChartPointDataObject('Mar', randomInt(350, 400)),
         new LineChartPointDataObject('Apr', randomInt(40, 400)),
         new LineChartPointDataObject('May', randomInt(0, 400)),
-        new LineChartPointDataObject('Jun', randomInt(350, 400)),
+        new LineChartPointDataObject('Jun', randomInt(350, 4000)),
         new LineChartPointDataObject('Jul', randomInt(350, 400)),
         new LineChartPointDataObject('Aug', randomInt(6, 400)),
         new LineChartPointDataObject('Sep', randomInt(350, 400)),

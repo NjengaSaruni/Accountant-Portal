@@ -33,7 +33,7 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     // Draw y axis line
     this.cx.beginPath();
     this.cx.moveTo(40, 0);
-    this.cx.lineTo(40, this.graph.height);
+    this.cx.lineTo(40, this.graph.height - 10);
     this.cx.stroke();
     this.cx.closePath();
 
@@ -48,12 +48,27 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     this.cx.strokeText('Month', this.graph.width / 2,  this.graph.height - 10);
 
 
-    // Draw Y axis labels
+    // Draw Y axis labels and lines
     const interval = this.graph.height / 10;
     for (let i = 0; i < this.graph.height; i += interval ) {
-      this.cx.strokeText(i.toString(), 10, (this.graph.height - 50) - i);
-    }
+      const y = (this.graph.height - 50) - i;
 
+      const label = ((i * interval) / this.graph.height) * this.graph.max;
+      this.cx.strokeText(label, 10, y);
+
+      // Set strokeStyle for line
+      this.cx.strokeStyle = '#9ccdda';
+
+      // Draw line
+      this.cx.beginPath();
+      this.cx.moveTo(10, y);
+      this.cx.lineTo(this.graph.width, y);
+      this.cx.stroke();
+
+      // Reset strokeStyle
+      this.cx.strokeStyle = 'black';
+
+    }
     // Draw X axis labels
     for (let i = 0; i < this.graph.size(); i++) {
       this.cx.strokeText(i.toString(), this.graph.points[i].x + 20, canvasEl.height - 30);
@@ -68,8 +83,8 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.graph.size(); i++) {
       // Draw line
       this.cx.beginPath();
-      this.cx.moveTo(prev.x + 30, prev.y + 50);
-      this.cx.lineTo(this.graph.points[i].x + 30, this.graph.points[i].y + 50);
+      this.cx.moveTo(prev.x + 20, prev.y + 50);
+      this.cx.lineTo(this.graph.points[i].x + 20, this.graph.points[i].y + 50);
       this.cx.stroke();
 
       prev = this.graph.points[i];
