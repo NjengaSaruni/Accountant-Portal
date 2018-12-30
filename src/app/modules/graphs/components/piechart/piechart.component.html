@@ -1,4 +1,4 @@
-<div class="raised padding-s margin-s" [ngStyle]="{'width.px' : chart.width + 400}">
+<div class="padding-s margin-s bordered rounded-s chart" [ngStyle]="{'width.px' : chart.width + 400}">
   <div class="padding-s margin-bs">
     <p class="centered bold padding">{{chart.title}}</p>
     <p class="centered info color-grey">{{chart.subtitle }}</p>
@@ -6,7 +6,7 @@
 
   <div class="pie-chart">
     <div class="margin-rs padding">
-      <canvas class="centered" #canvas></canvas>
+      <canvas class="centered" #canvas1></canvas>
     </div>
     <div class="keys padding-s">
       <div *ngFor="let pie of chart.pies" class="full-width key">

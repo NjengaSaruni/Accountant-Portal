@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
       graph1.add(bar);
     }
 
-    this.pieChart = new PieChart(240, 200);
+    this.pieChart = new PieChart(200, 80);
     this.pieChart.title = 'A simple pie chart';
     this.pieChart.subtitle = 'A graph of all transactions';
     this.pieChart.unit = 'KES';
@@ -63,24 +63,35 @@ export class HomeComponent implements OnInit {
       new PieDataObject('Others', randomInt(1, 1000), randomColor()),
     ]);
 
-    this.lineChart = new LineChart(500, 500);
+    this.lineChart = new LineChart(800, 500);
+    this.lineChart.title = 'A sample line chart';
     this.lineChart.populate([
         new LineChartPointDataObject('Jan', randomInt(350, 400)),
         new LineChartPointDataObject('Feb', randomInt(350, 400)),
         new LineChartPointDataObject('Mar', randomInt(350, 400)),
-        new LineChartPointDataObject('Apr', randomInt(350, 400)),
-        new LineChartPointDataObject('May', randomInt(350, 400)),
-        new LineChartPointDataObject('Jun', randomInt(350, 400)),
+        new LineChartPointDataObject('Apr', randomInt(40, 400)),
+        new LineChartPointDataObject('May', randomInt(0, 400)),
+        new LineChartPointDataObject('Jun', randomInt(350, 4000)),
         new LineChartPointDataObject('Jul', randomInt(350, 400)),
-        new LineChartPointDataObject('Aug', randomInt(350, 400)),
+        new LineChartPointDataObject('Aug', randomInt(6, 400)),
         new LineChartPointDataObject('Sep', randomInt(350, 400)),
         new LineChartPointDataObject('Oct', randomInt(350, 400)),
         new LineChartPointDataObject('Nov', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400))
+        new LineChartPointDataObject('Dec', randomInt(4, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(56, 400)),
+        new LineChartPointDataObject('Dec', randomInt(23, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new LineChartPointDataObject('Dec', randomInt(350, 400)),
       ]
     );
     this.lineChart.line.color = '#fa8967';
-    this.lineChart.line.width = 9;
+    // this.lineChart.line.width = 9;
   }
 
 }
