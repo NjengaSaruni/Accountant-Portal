@@ -23,12 +23,8 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     canvasEl.width = this.graph.width;
     canvasEl.height = this.graph.height;
 
-
     this.cx.fillStyle = '#f6f6f6';
     this.cx.fillRect(0, 0, canvasEl.width, canvasEl.height);
-    const toMoveWith = canvasEl.width / this.graph.size();
-    let left =  0;
-    let prev = this.graph.points[0];
 
     // Draw y axis line
     this.cx.beginPath();
@@ -47,14 +43,12 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     // Stroke x axis title
     this.cx.strokeText('Month', this.graph.width / 2,  this.graph.height - 10);
 
-
-    // Draw Y axis labels and lines
-    const interval = this.graph.height / 10;
-    for (let i = 0; i < this.graph.height; i += interval ) {
+    // Draw Y axis labels and lines;
+    for (let i = 0; i < this.graph.height; i += this.graph.intervalY ) {
       const y = (this.graph.height - 50) - i;
 
-      const label = ((i * interval) / this.graph.height) * this.graph.max;
-      this.cx.strokeText(label, 10, y);
+      const label = Math.ceil((i / (this.graph.height - (this.graph.startY * 2)) * this.graph.max));
+      this.cx.strokeText(label.toString(), 10, y);
 
       // Set strokeStyle for line
       this.cx.strokeStyle = '#9ccdda';
@@ -71,7 +65,7 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     }
     // Draw X axis labels
     for (let i = 0; i < this.graph.size(); i++) {
-      this.cx.strokeText(i.toString(), this.graph.points[i].x + 20, canvasEl.height - 30);
+      this.cx.strokeText(this.graph.points[i].title, this.graph.points[i].x + 20, canvasEl.height - 30);
     }
 
     // Line styles for actual line
@@ -79,16 +73,17 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     this.cx.lineWidth = this.graph.line.width;
     this.cx.lineCap = 'round';
     this.cx.strokeStyle = 'blue';
+
     this.invertScale(canvasEl);
+    let prev = this.graph.points[0];
     for (let i = 0; i < this.graph.size(); i++) {
       // Draw line
       this.cx.beginPath();
-      this.cx.moveTo(prev.x + 20, prev.y + 50);
-      this.cx.lineTo(this.graph.points[i].x + 20, this.graph.points[i].y + 50);
+      this.cx.moveTo(prev.x + 20, prev.y);
+      this.cx.lineTo(this.graph.points[i].x + 20, this.graph.points[i].y);
       this.cx.stroke();
 
       prev = this.graph.points[i];
-      left += toMoveWith;
     }
   }
 
