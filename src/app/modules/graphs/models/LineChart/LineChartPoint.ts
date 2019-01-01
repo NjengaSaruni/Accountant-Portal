@@ -1,9 +1,9 @@
 export class LineChartPoint {
-  get title(): number {
+  get title(): string {
     return this._title;
   }
 
-  set title(value: number) {
+  set title(value: string) {
     this._title = value;
   }
   get value(): number {
@@ -29,7 +29,7 @@ export class LineChartPoint {
   }
   private _x: number;
   private _y: number;
-  private _title: number;
+  private _title: string;
   private _value: number;
 
   constructor(value: number) {

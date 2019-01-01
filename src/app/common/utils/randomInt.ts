@@ -7,7 +7,7 @@
  * @param max Maximum number exclusive
  * @return random generated integer
  */
-export function randomInt(min, max) {
+export function randomInt(min = 0, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 

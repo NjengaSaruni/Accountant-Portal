@@ -1,8 +1,19 @@
 import {Bar} from './Bar';
 import {BarGraphLine} from './BarGraphLine';
-import {BaseChart} from '../BaseChart';
+import {DataObject} from '../BaseChart/DataObject';
+import {BaseChart} from '../BaseChart/BaseChart';
+import {LineChartLine} from '../LineChart/LineChartLine';
 
 export class BarGraph extends BaseChart {
+  get min(): number {
+    return this._min;
+  }
+  get max(): number {
+    return this._max;
+  }
+  get barPadding(): number {
+    return this._barPadding;
+  }
   get line(): BarGraphLine {
     return this._line;
   }
@@ -23,18 +34,36 @@ export class BarGraph extends BaseChart {
     return this._bars;
   }
 
-  set bars(value: Bar[]) {
-    this._bars = value;
-  }
-
   private _bars: Bar[] = [];
-
   private _velocity = 1;
   private _line = new BarGraphLine();
+  private _barPadding = 10;
+  private _max: number;
+  private _min: number;
+
+  constructor(width?: number, height?: number) {
+    super();
+    this.width = width; this.height = height;
+  }
 
   get size(): number {
     return this._bars.length;
   }
+
+  public populate(data: DataObject[]) {
+    this._max = BaseChart.getMaxPoint(data);
+    this._min = BaseChart.getMinPoint(data);
+    for (const obj of data) {
+      const height = ( obj.value / this._max ) * this.height;
+      const bar: Bar = new Bar(height);
+      bar.title = obj.title;
+      this.add(bar);
+    }
+    for (const bar of this._bars) {
+      bar.width = (this.width - (this.size * this.barPadding * 2)) / this.size;
+    }
+  }
+
 
   add(bar: Bar) {
     this._bars.push(bar);
@@ -42,7 +71,6 @@ export class BarGraph extends BaseChart {
       this.height = bar.height + 30;
     }
 
-    this.width += bar.width;
     this.velocity = this.height / 50;
   }
 

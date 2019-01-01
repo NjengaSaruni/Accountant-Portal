@@ -23,38 +23,32 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     canvasEl.width = this.graph.width;
     canvasEl.height = this.graph.height;
 
-
     this.cx.fillStyle = '#f6f6f6';
     this.cx.fillRect(0, 0, canvasEl.width, canvasEl.height);
-    const toMoveWith = canvasEl.width / this.graph.size();
-    let left =  0;
-    let prev = this.graph.points[0];
 
     // Draw y axis line
     this.cx.beginPath();
     this.cx.moveTo(40, 0);
-    this.cx.lineTo(40, this.graph.height - 10);
+    this.cx.lineTo(40, this.graph.height - this.graph.startY);
     this.cx.stroke();
     this.cx.closePath();
 
     // Draw x axis line
     this.cx.beginPath();
-    this.cx.moveTo(0, Math.abs(50 - this.graph.height));
-    this.cx.lineTo(this.graph.width,  Math.abs(50 - this.graph.height));
+    this.cx.moveTo(0, Math.abs(this.graph.startY - this.graph.height));
+    this.cx.lineTo(this.graph.width,  Math.abs(this.graph.startY - this.graph.height));
     this.cx.stroke();
     this.cx.closePath();
 
     // Stroke x axis title
     this.cx.strokeText('Month', this.graph.width / 2,  this.graph.height - 10);
 
-
-    // Draw Y axis labels and lines
-    const interval = this.graph.height / 10;
-    for (let i = 0; i < this.graph.height; i += interval ) {
+    // Draw Y axis labels and lines;
+    for (let i = 0; i < this.graph.height; i += this.graph.intervalY ) {
       const y = (this.graph.height - 50) - i;
 
-      const label = ((i * interval) / this.graph.height) * this.graph.max;
-      this.cx.strokeText(label, 10, y);
+      const label = Math.ceil((i / (this.graph.height - (this.graph.startY * 2)) * this.graph.max));
+      this.cx.strokeText(label.toString(), 10, y);
 
       // Set strokeStyle for line
       this.cx.strokeStyle = '#9ccdda';
@@ -69,32 +63,42 @@ export class LinechartComponent implements OnInit, AfterViewInit {
       this.cx.strokeStyle = 'black';
 
     }
-    // Draw X axis labels
+    // Draw X axis labels & lines
     for (let i = 0; i < this.graph.size(); i++) {
-      this.cx.strokeText(i.toString(), this.graph.points[i].x + 20, canvasEl.height - 30);
-    }
+      this.cx.strokeText(this.graph.points[i].title, this.graph.points[i].x + 15, canvasEl.height - 30);
+      if (i > 0) {
+        // Set strokeStyle for line
+        this.cx.strokeStyle = '#9ccdda';
+
+        // Draw line
+        this.cx.beginPath();
+        this.cx.moveTo(this.graph.points[i].x + 20, Math.abs(this.graph.startY - this.graph.height));
+        this.cx.lineTo(this.graph.points[i].x + 20, 0);
+        this.cx.stroke();
+
+        // Reset strokeStyle
+        this.cx.strokeStyle = 'black';
+      }
+     }
 
     // Line styles for actual line
     this.cx.strokeStyle = this.graph.line.color;
     this.cx.lineWidth = this.graph.line.width;
     this.cx.lineCap = 'round';
-    this.cx.strokeStyle = 'blue';
-    this.invertScale(canvasEl);
+
+    // Invert scale
+    this.cx.translate(0, canvasEl.height);
+    this.cx.scale(1, -1);
+
+    let prev = this.graph.points[0];
     for (let i = 0; i < this.graph.size(); i++) {
       // Draw line
       this.cx.beginPath();
-      this.cx.moveTo(prev.x + 20, prev.y + 50);
-      this.cx.lineTo(this.graph.points[i].x + 20, this.graph.points[i].y + 50);
+      this.cx.moveTo(prev.x + 20, prev.y);
+      this.cx.lineTo(this.graph.points[i].x + 20, this.graph.points[i].y);
       this.cx.stroke();
 
       prev = this.graph.points[i];
-      left += toMoveWith;
     }
-  }
-
-  invertScale(canvasEl: HTMLCanvasElement) {
-    this.cx.lineWidth = this.cx.lineWidth === 1 ? this.graph.line.width : 1;
-    this.cx.translate(0, canvasEl.height);
-    this.cx.scale(1, -1);
   }
 }

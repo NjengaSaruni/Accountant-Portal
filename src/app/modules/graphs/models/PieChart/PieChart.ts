@@ -1,9 +1,9 @@
-import {BaseChart} from '../BaseChart';
 import {Circle} from './Circle';
 import {Pie} from './Pie';
-import {PieDataObject} from './PieDataObject';
+import {DataObject} from '../BaseChart/DataObject';
 
 import * as _ from 'lodash';
+import {BaseChart} from '../BaseChart/BaseChart';
 
 export class PieChart extends BaseChart {
   get unit(): string {
@@ -49,19 +49,19 @@ export class PieChart extends BaseChart {
   private _total = 0;
   private _unit: string;
 
-  public addSector(obj: PieDataObject) {
+  public addSector(obj: DataObject) {
     this._total += obj.value;
     const pie = new Pie(obj.value);
-    pie.title = obj.name;
+    pie.title = obj.title;
     pie.color = obj.color;
     this.add(pie);
   }
 
   /**
-   * Populates a PieChart instance with Pie instances from the given PieDataObject array.
-   * @param data - An array PieDataObject instances to populate the PieChart
+   * Populates a PieChart instance with Pie instances from the given DataObject array.
+   * @param data - An array DataObject instances to populate the PieChart
    */
-  public populate(data: PieDataObject[]) {
+  public populate(data: DataObject[]) {
     for (const dataObject of data) {
       this.addSector(dataObject);
     }

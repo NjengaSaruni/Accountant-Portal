@@ -1,3 +1,5 @@
+import {DataObject} from './DataObject';
+
 export class BaseChart {
   get title(): string {
     return this._title;
@@ -48,5 +50,14 @@ export class BaseChart {
   private _title: string;
   private _subtitle: string;
   private _description: string;
+
+  public static getMinPoint(data: DataObject[]): number {
+    return data.reduce((min, p) => p.value < min ? p.value : min, data[0].value);
+  }
+  public static getMaxPoint(data: DataObject[]): number {
+    let m = data.reduce((max, p) => p.value > max ? p.value : max, data[0].value);
+    m = Math.ceil(m / 10) * 10;
+    return m;
+  }
 
 }
