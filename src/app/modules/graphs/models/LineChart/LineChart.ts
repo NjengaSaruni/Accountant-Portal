@@ -1,7 +1,8 @@
-import {BaseChart} from '../BaseChart';
+
 import {LineChartPoint} from './LineChartPoint';
 import {LineChartLine} from './LineChartLine';
 import {DataObject} from '../BaseChart/DataObject';
+import {BaseChart} from '../BaseChart/BaseChart';
 
 export class LineChart extends BaseChart {
   get startX(): number {
@@ -49,22 +50,13 @@ export class LineChart extends BaseChart {
     this._line = new LineChartLine();
   }
 
-  private static getMinPoint(data: DataObject[]): number {
-    return data.reduce((min, p) => p.value < min ? p.value : min, data[0].value);
-  }
-  private static getMaxPoint(data: DataObject[]): number {
-    let m = data.reduce((max, p) => p.value > max ? p.value : max, data[0].value);
-    m = Math.ceil(m / 10) * 10;
-    return m;
-  }
-
   public size() {
     return this._points.length;
   }
 
   public populate(data: DataObject[]) {
-    this._max = LineChart.getMaxPoint(data);
-    this._min = LineChart.getMinPoint(data);
+    this._max = BaseChart.getMaxPoint(data);
+    this._min = BaseChart.getMinPoint(data);
     this._intervalX = (this.width - this._startX) / data.length;
     this.createPoints(data);
   }

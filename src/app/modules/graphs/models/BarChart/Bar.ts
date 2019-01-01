@@ -1,6 +1,13 @@
 import {randomInt} from '../../../../common/utils/randomInt';
 
 export class Bar {
+  get value(): number {
+    return this._value;
+  }
+
+  set value(value: number) {
+    this._value = value;
+  }
   get color(): string {
     return this._color;
   }
@@ -46,9 +53,9 @@ export class Bar {
   private _width: number;
   private _title: string;
   private _color = `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},0.9)`;
+  private _value: number;
 
-  constructor(height?: number, width?: number) {
+  constructor(height?: number) {
     this._height = height;
-    this._width = width;
   }
 }

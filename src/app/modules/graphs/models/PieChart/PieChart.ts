@@ -1,9 +1,9 @@
-import {BaseChart} from '../BaseChart';
 import {Circle} from './Circle';
 import {Pie} from './Pie';
 import {DataObject} from '../BaseChart/DataObject';
 
 import * as _ from 'lodash';
+import {BaseChart} from '../BaseChart/BaseChart';
 
 export class PieChart extends BaseChart {
   get unit(): string {

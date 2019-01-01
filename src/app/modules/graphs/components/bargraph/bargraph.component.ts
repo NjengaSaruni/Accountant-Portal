@@ -13,7 +13,7 @@ import {Bar} from '../../models/BarChart/Bar';
 })
 export class BargraphComponent implements AfterViewInit {
 
-  @ViewChild('canvas') public canvas: ElementRef;
+  @ViewChild('canvas2') public canvas: ElementRef;
   @Input() graph: BarGraph;
 
   private cx: CanvasRenderingContext2D;
@@ -41,7 +41,7 @@ export class BargraphComponent implements AfterViewInit {
     for (let i = this.graph.height; i >= 0; i -= unit ) {
       this.cx.fillText(Math.ceil(this.graph.height - i).toString(), 0, i);
       this.cx.beginPath();
-      this.cx.moveTo(20, i);
+      this.cx.moveTo(this.graph.barPadding, i);
       this.cx.lineTo(this.graph.width, i);
       this.cx.stroke();
     }
@@ -55,15 +55,15 @@ export class BargraphComponent implements AfterViewInit {
     // Animate transition from height 0 to height of bar
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
 
-    for (let i = 0; i < this.graph.size; i++) {
-      const bar: Bar = this.graph.get(i);
-
+    let x = this.graph.barPadding;
+    for (const bar of this.graph.bars) {
       // Use the bar's set color for the actual bar
       this.cx.fillStyle = bar.color;
-      this.cx.fillRect(i * bar.width + 30, this.graph.height, bar.width - 10, - bar.currentHeight);
+      this.cx.fillRect(x, this.graph.height, bar.width, - bar.currentHeight);
       if (bar.currentHeight < bar.height) {
         bar.currentHeight += this.graph.velocity;
       }
+      x += bar.width + 2 * this.graph.barPadding;
     }
 
   }
