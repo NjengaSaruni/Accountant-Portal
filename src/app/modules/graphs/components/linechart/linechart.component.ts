@@ -29,14 +29,14 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     // Draw y axis line
     this.cx.beginPath();
     this.cx.moveTo(40, 0);
-    this.cx.lineTo(40, this.graph.height - 10);
+    this.cx.lineTo(40, this.graph.height - this.graph.startY);
     this.cx.stroke();
     this.cx.closePath();
 
     // Draw x axis line
     this.cx.beginPath();
-    this.cx.moveTo(0, Math.abs(50 - this.graph.height));
-    this.cx.lineTo(this.graph.width,  Math.abs(50 - this.graph.height));
+    this.cx.moveTo(0, Math.abs(this.graph.startY - this.graph.height));
+    this.cx.lineTo(this.graph.width,  Math.abs(this.graph.startY - this.graph.height));
     this.cx.stroke();
     this.cx.closePath();
 
@@ -63,18 +63,33 @@ export class LinechartComponent implements OnInit, AfterViewInit {
       this.cx.strokeStyle = 'black';
 
     }
-    // Draw X axis labels
+    // Draw X axis labels & lines
     for (let i = 0; i < this.graph.size(); i++) {
-      this.cx.strokeText(this.graph.points[i].title, this.graph.points[i].x + 20, canvasEl.height - 30);
-    }
+      this.cx.strokeText(this.graph.points[i].title, this.graph.points[i].x + 15, canvasEl.height - 30);
+      if (i > 0) {
+        // Set strokeStyle for line
+        this.cx.strokeStyle = '#9ccdda';
+
+        // Draw line
+        this.cx.beginPath();
+        this.cx.moveTo(this.graph.points[i].x + 20, Math.abs(this.graph.startY - this.graph.height));
+        this.cx.lineTo(this.graph.points[i].x + 20, 0);
+        this.cx.stroke();
+
+        // Reset strokeStyle
+        this.cx.strokeStyle = 'black';
+      }
+     }
 
     // Line styles for actual line
     this.cx.strokeStyle = this.graph.line.color;
     this.cx.lineWidth = this.graph.line.width;
     this.cx.lineCap = 'round';
-    this.cx.strokeStyle = 'blue';
 
-    this.invertScale(canvasEl);
+    // Invert scale
+    this.cx.translate(0, canvasEl.height);
+    this.cx.scale(1, -1);
+
     let prev = this.graph.points[0];
     for (let i = 0; i < this.graph.size(); i++) {
       // Draw line
@@ -85,11 +100,5 @@ export class LinechartComponent implements OnInit, AfterViewInit {
 
       prev = this.graph.points[i];
     }
-  }
-
-  invertScale(canvasEl: HTMLCanvasElement) {
-    this.cx.lineWidth = this.cx.lineWidth === 1 ? this.graph.line.width : 1;
-    this.cx.translate(0, canvasEl.height);
-    this.cx.scale(1, -1);
   }
 }

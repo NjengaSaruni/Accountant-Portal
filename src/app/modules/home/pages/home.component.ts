@@ -3,9 +3,8 @@ import {BarGraph} from '../../graphs/models/BarChart/BarGraph';
 import {randomColor, randomInt} from '../../../common/utils/randomInt';
 import {Bar} from '../../graphs/models/BarChart/Bar';
 import {PieChart} from '../../graphs/models/PieChart/PieChart';
-import {PieDataObject} from '../../graphs/models/PieChart/PieDataObject';
+import {DataObject} from '../../graphs/models/BaseChart/DataObject';
 import {LineChart} from '../../graphs/models/LineChart/LineChart';
-import {LineChartPointDataObject} from '../../graphs/models/LineChart/LineChartPointDataObject';
 
 @Component({
   selector: 'app-home',
@@ -55,43 +54,30 @@ export class HomeComponent implements OnInit {
     this.pieChart.subtitle = 'A graph of all transactions';
     this.pieChart.unit = 'KES';
     this.pieChart.populate([
-      new PieDataObject('Shopping', randomInt(1, 400), randomColor()),
-      new PieDataObject('Uber', randomInt(1, 400), randomColor()),
-      new PieDataObject('Utilities', randomInt(1, 400), randomColor()),
-      new PieDataObject('Food', randomInt(1, 10), randomColor()),
-      new PieDataObject('Rent', randomInt(1, 10), randomColor()),
-      new PieDataObject('Others', randomInt(1, 1000), randomColor()),
+      new DataObject('Shopping', randomInt(1, 400), randomColor()),
+      new DataObject('Uber', randomInt(1, 400), randomColor()),
+      new DataObject('Utilities', randomInt(1, 400), randomColor()),
+      new DataObject('Food', randomInt(1, 10), randomColor()),
+      new DataObject('Rent', randomInt(1, 10), randomColor()),
+      new DataObject('Others', randomInt(1, 1000), randomColor()),
     ]);
 
     this.lineChart = new LineChart(800, 500);
     this.lineChart.title = 'A sample line chart';
+    this.lineChart.subtitle = 'Money spent this year';
     this.lineChart.populate([
-        new LineChartPointDataObject('Jan', randomInt(350, 400)),
-        new LineChartPointDataObject('Feb', randomInt(350, 400)),
-        new LineChartPointDataObject('Mar', randomInt(350, 400)),
-        new LineChartPointDataObject('Apr', randomInt(40, 400)),
-        new LineChartPointDataObject('May', randomInt(0, 400)),
-        new LineChartPointDataObject('Jun', randomInt(350, 4000)),
-        new LineChartPointDataObject('Jul', randomInt(350, 400)),
-        new LineChartPointDataObject('Aug', randomInt(6, 400)),
-        new LineChartPointDataObject('Sep', randomInt(350, 400)),
-        new LineChartPointDataObject('Oct', randomInt(350, 400)),
-        new LineChartPointDataObject('Nov', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(4, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(56, 400)),
-        new LineChartPointDataObject('Dec', randomInt(23, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
-        new LineChartPointDataObject('Dec', randomInt(350, 400)),
+        new DataObject('Jan', randomInt(0, 120)),
+        new DataObject('Feb', randomInt(0, 120)),
+        new DataObject('Mar', randomInt(0, 120)),
+        new DataObject('Apr', randomInt(0, 120)),
+        new DataObject('May', randomInt(0, 1200)),
+        new DataObject('Jun', randomInt(0, 120)),
+        new DataObject('Jul', randomInt(0, 120)),
+        new DataObject('Aug', randomInt(0, 12000)),
       ]
     );
-    this.lineChart.line.color = '#fa8967';
-    // this.lineChart.line.width = 9;
+    this.lineChart.line.color = randomColor();
+    this.lineChart.line.width = 9;
   }
 
 }

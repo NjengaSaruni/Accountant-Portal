@@ -1,6 +1,6 @@
 import {randomColor} from '../../../../common/utils/randomInt';
 
-export class PieDataObject {
+export class DataObject {
   get color(): string {
     return this._color;
   }
@@ -8,12 +8,12 @@ export class PieDataObject {
   set color(value: string) {
     this._color = value;
   }
-  get name(): string {
-    return this._name;
+  get title(): string {
+    return this._title;
   }
 
-  set name(value: string) {
-    this._name = value;
+  set title(value: string) {
+    this._title = value;
   }
   get value(): number {
     return this._value;
@@ -22,7 +22,7 @@ export class PieDataObject {
   set value(value: number) {
     this._value = value;
   }
-  private _name: string;
+  private _title: string;
   private _value: number;
   private _color: string;
 
@@ -34,7 +34,7 @@ export class PieDataObject {
    * @param color - The desired color of the Pie (A random RGBA color will be used if this is not supplied)
    */
   constructor(name: string, value: number, color: string = randomColor()) {
-    this.name = name;
+    this.title = name;
     this.value = value;
     this.color = color;
   }
