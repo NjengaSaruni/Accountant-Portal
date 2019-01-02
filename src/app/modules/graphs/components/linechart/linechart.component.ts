@@ -25,7 +25,7 @@ export class LinechartComponent implements OnInit, AfterViewInit {
 
     this.cx.fillStyle = this.graph.backgroundColor;
     this.cx.fillRect(0, 0, canvasEl.width, canvasEl.height);
-    this.cx.font = '10pt montserrat';
+    this.cx.font = 'normal 10px DejaVu Sans Light, sans-serif';
 
 
     // Draw y axis line
@@ -67,7 +67,7 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     }
     // Draw X axis labels & lines
     for (let i = 0; i < this.graph.size(); i++) {
-      this.cx.strokeText(this.graph.points[i].title, this.graph.points[i].x + 15.5, canvasEl.height - 30);
+      this.cx.strokeText(this.graph.points[i].title, this.graph.points[i].x, canvasEl.height - 30);
       if (i > 0) {
         // Set strokeStyle for line
         this.cx.strokeStyle = '#9ccdda';

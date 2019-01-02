@@ -1,8 +1,8 @@
 /**
  * @description
  * A utility method that returns a random integer
- * between min (inclusive) and max (exclusive)
- * generate a random integer between min and max
+ * between min (inclusive) and maxValue (exclusive)
+ * generate a random integer between min and maxValue
  * @param min Mininum number exclusive
  * @param max Maximum number exclusive
  * @return random generated integer
