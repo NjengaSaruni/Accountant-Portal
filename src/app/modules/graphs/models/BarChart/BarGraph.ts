@@ -57,6 +57,7 @@ export class BarGraph extends BaseChart {
       const height = ( obj.value / this._max ) * this.height;
       const bar: Bar = new Bar(height);
       bar.title = obj.title;
+      bar.color = obj.color;
       this.add(bar);
     }
     for (const bar of this._bars) {

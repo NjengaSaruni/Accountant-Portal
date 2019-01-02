@@ -4,6 +4,11 @@
 <div class="content" #content>
   <div class="row">
     <div class="col">
+      <div class="padding-s margin-s bordered rounded-s raised chart">
+        <textarea [ngStyle]="{'height.px': lineChart.height }">{{ data | json }}</textarea>
+      </div>
+    </div>
+    <div class="col">
       <app-piechart [chart]="pieChart"></app-piechart>
     </div>
     <div class="col">

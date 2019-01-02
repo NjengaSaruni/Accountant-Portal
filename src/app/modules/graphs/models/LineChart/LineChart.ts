@@ -40,7 +40,7 @@ export class LineChart extends BaseChart {
   private _max = -Infinity;
   private _min = Infinity;
   private _line: LineChartLine;
-  private _startX = 20;
+  private _startX = 50;
   private _startY = 50;
 
   constructor(width: number, height: number) {
