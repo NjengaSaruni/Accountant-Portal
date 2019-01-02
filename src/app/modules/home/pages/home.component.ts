@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       new DataObject('May', randomInt(1, 1000), randomColor()),
       new DataObject('Jun', randomInt(1, 4000), randomColor()),
       new DataObject('Jul', randomInt(1, 4000), randomColor()),
-      new DataObject('Aug', randomInt(1, 1000), randomColor()),
+      new DataObject('Aug', randomInt(1, 10000), randomColor()),
       new DataObject('Sep', randomInt(1, 4000), randomColor()),
       new DataObject('Oct', randomInt(1, 4000), randomColor()),
       new DataObject('Nov', randomInt(1, 4000), randomColor()),
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
 
     this.graphs.push(graph);
 
-    this.pieChart = new PieChart(200, 150);
+    this.pieChart = new PieChart(100, 80);
     this.pieChart.title = 'A simple pie chart';
     this.pieChart.subtitle = 'A graph of all transactions';
     this.pieChart.unit = 'KES';
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.lineChart = new LineChart(600, 400);
     this.lineChart.title = 'A sample line chart';
     this.lineChart.subtitle = 'Money spent this year';
-    this.lineChart.max = 10000;
+    // this.lineChart.max = 20000;
     this.lineChart.populate(this.data);
 
     this.lineChart.line.color = randomColor();

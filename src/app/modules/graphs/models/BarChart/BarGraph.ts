@@ -2,7 +2,6 @@ import {Bar} from './Bar';
 import {BarGraphLine} from './BarGraphLine';
 import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
-import {LineChartLine} from '../LineChart/LineChartLine';
 
 export class BarGraph extends BaseChart {
   get min(): number {
@@ -40,6 +39,8 @@ export class BarGraph extends BaseChart {
   private _barPadding = 10;
   private _max: number;
   private _min: number;
+  private _startX: number;
+  private _startY: number;
 
   constructor(width?: number, height?: number) {
     super();
@@ -60,6 +61,7 @@ export class BarGraph extends BaseChart {
       bar.color = obj.color;
       this.add(bar);
     }
+    // this._bars = this._bars.map(bar => bar.width = (this.width - (this.size * this.barPadding * 2)) / this.size);
     for (const bar of this._bars) {
       bar.width = (this.width - (this.size * this.barPadding * 2)) / this.size;
     }
@@ -68,10 +70,6 @@ export class BarGraph extends BaseChart {
 
   add(bar: Bar) {
     this._bars.push(bar);
-    if (bar.height + 30 > this.height) {
-      this.height = bar.height + 30;
-    }
-
     this.velocity = this.height / 50;
   }
 
