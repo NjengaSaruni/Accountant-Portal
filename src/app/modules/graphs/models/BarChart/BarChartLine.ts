@@ -1,4 +1,4 @@
-export class BarGraphLine {
+export class BarChartLine {
   get color(): string {
     return this._color;
   }

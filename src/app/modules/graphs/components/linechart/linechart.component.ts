@@ -9,6 +9,7 @@ import {LineChart} from '../../models/LineChart/LineChart';
 export class LinechartComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
   @Input() graph: LineChart;
+  @Input() fill: boolean;
   private cx: CanvasRenderingContext2D;
 
   constructor() { }
@@ -98,7 +99,18 @@ export class LinechartComponent implements OnInit, AfterViewInit {
       this.cx.beginPath();
       this.cx.moveTo(prev.x, prev.y);
       this.cx.lineTo(this.graph.points[i].x, this.graph.points[i].y);
-      this.cx.stroke();
+
+
+      if (this.fill) {
+        this.cx.fillStyle = '#41fcff';
+
+        this.cx.lineTo(this.graph.points[i].x, this.graph.startY);
+        this.cx.lineTo(prev.x , this.graph.startY);
+        this.cx.fill();
+      } else {
+        this.cx.stroke();
+        this.cx.closePath();
+      }
 
       prev = this.graph.points[i];
     }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BarGraph} from '../../graphs/models/BarChart/BarGraph';
+import {BarChart} from '../../graphs/models/BarChart/BarChart';
 import {randomColor, randomInt} from '../../../common/utils/randomInt';
 import {PieChart} from '../../graphs/models/PieChart/PieChart';
 import {DataObject} from '../../graphs/models/BaseChart/DataObject';
@@ -11,7 +11,7 @@ import {LineChart} from '../../graphs/models/LineChart/LineChart';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  graphs: BarGraph[] = [];
+  barCharts: BarChart[] = [];
   pieChart: PieChart;
   lineChart: LineChart;
   data: DataObject[];
@@ -34,29 +34,30 @@ export class HomeComponent implements OnInit {
       new DataObject('Dec', randomInt(1, 4000), randomColor()),
     ];
 
-    this.graphs.push(new BarGraph(800, 400));
-    const graph = this.graphs[0];
+    this.barCharts.push(new BarChart(800, 400));
+    const barChart = this.barCharts[0];
 
-    graph.title = `Bar Graph A`;
-    graph.subtitle = `A graph of weekly expenditure in Kshs`;
-    graph.line.pattern = [15, 3, 3, 3];
-    graph.line.width = 0.3;
-    graph.line.color = '#1945ff';
-    graph.populate(this.data);
+    barChart.title = `Bar Graph A`;
+    barChart.subtitle = `A graph of weekly expenditure in Kshs`;
+    barChart.line.pattern = [15, 3, 3, 3];
+    barChart.line.width = 0.3;
+    barChart.line.color = '#1945ff';
+    barChart.populate(this.data);
 
-    this.graphs.push(graph);
+    this.barCharts.push(barChart);
 
     this.pieChart = new PieChart(100, 80);
     this.pieChart.title = 'A simple pie chart';
-    this.pieChart.subtitle = 'A graph of all transactions';
+    this.pieChart.subtitle = 'A barChart of all transactions';
     this.pieChart.unit = 'KES';
     this.pieChart.populate(this.data);
 
     this.lineChart = new LineChart(600, 400);
     this.lineChart.title = 'A sample line chart';
     this.lineChart.subtitle = 'Money spent this year';
-    // this.lineChart.max = 20000;
+    // this.lineChart.max = 40000;
     this.lineChart.populate(this.data);
+
 
     this.lineChart.line.color = randomColor();
     this.lineChart.line.width = randomInt(2, 6);

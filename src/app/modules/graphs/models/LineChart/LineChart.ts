@@ -5,6 +5,13 @@ import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
 
 export class LineChart extends BaseChart {
+  get fill(): boolean {
+    return this._fill;
+  }
+
+  set fill(value: boolean) {
+    this._fill = value;
+  }
   get max(): number {
     return this._max;
   }
