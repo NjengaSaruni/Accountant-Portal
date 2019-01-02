@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
-import {BarGraph} from '../../models/BarChart/BarGraph';
+import {BarChart} from '../../models/BarChart/BarChart';
 import {WindowRefService} from '../../../../common/services/window-ref.service';
 import {ColorService} from '../../../../common/services/color.service';
 import {Bar} from '../../models/BarChart/Bar';
@@ -14,7 +14,7 @@ import {Bar} from '../../models/BarChart/Bar';
 export class BargraphComponent implements AfterViewInit {
 
   @ViewChild('canvas2') public canvas: ElementRef;
-  @Input() graph: BarGraph;
+  @Input() graph: BarChart;
 
   private cx: CanvasRenderingContext2D;
 

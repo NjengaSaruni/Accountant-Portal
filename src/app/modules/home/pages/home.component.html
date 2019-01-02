@@ -9,9 +9,12 @@
     <div class="col">
       <app-linechart [graph]="lineChart"></app-linechart>
     </div>
+    <div class="col">
+      <app-linechart [graph]="lineChart" [fill]="true"></app-linechart>
+    </div>
   </div>
   <div class="row" >
-    <div class="col" *ngFor="let graph of graphs">
+    <div class="col" *ngFor="let graph of barCharts">
       <app-bargraph [graph]="graph"></app-bargraph>
     </div>
   </div>

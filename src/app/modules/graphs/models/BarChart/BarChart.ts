@@ -1,9 +1,9 @@
 import {Bar} from './Bar';
-import {BarGraphLine} from './BarGraphLine';
+import {BarChartLine} from './BarChartLine';
 import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
 
-export class BarGraph extends BaseChart {
+export class BarChart extends BaseChart {
   get min(): number {
     return this._min;
   }
@@ -13,11 +13,11 @@ export class BarGraph extends BaseChart {
   get barPadding(): number {
     return this._barPadding;
   }
-  get line(): BarGraphLine {
+  get line(): BarChartLine {
     return this._line;
   }
 
-  set line(value: BarGraphLine) {
+  set line(value: BarChartLine) {
     this._line = value;
   }
 
@@ -35,7 +35,7 @@ export class BarGraph extends BaseChart {
 
   private _bars: Bar[] = [];
   private _velocity = 1;
-  private _line = new BarGraphLine();
+  private _line = new BarChartLine();
   private _barPadding = 10;
   private _max: number;
   private _min: number;
