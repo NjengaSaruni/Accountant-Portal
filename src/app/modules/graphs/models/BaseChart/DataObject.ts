@@ -1,6 +1,13 @@
 import {randomColor} from '../../../../common/utils/randomInt';
 
 export class DataObject {
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
   get color(): string {
     return this._color;
   }
@@ -25,6 +32,7 @@ export class DataObject {
   private _title: string;
   private _value: number;
   private _color: string;
+  private _id: string;
 
 
   /**

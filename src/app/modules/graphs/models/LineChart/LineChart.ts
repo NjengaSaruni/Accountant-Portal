@@ -5,6 +5,13 @@ import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
 
 export class LineChart extends BaseChart {
+  get max(): number {
+    return this._max;
+  }
+
+  set max(value: number) {
+    this._max = value;
+  }
   get startX(): number {
     return this._startX;
   }
@@ -26,8 +33,8 @@ export class LineChart extends BaseChart {
     this._line = value;
   }
 
-  get max(): number {
-    return this._max;
+  get maxValue(): number {
+    return this._maxValue;
   }
 
   get points(): LineChartPoint[] {
@@ -37,10 +44,10 @@ export class LineChart extends BaseChart {
   private _points: LineChartPoint[] = [];
   private _intervalX = 10;
   private _intervalY;
+  private _maxValue = -Infinity;
   private _max = -Infinity;
-  private _min = Infinity;
   private _line: LineChartLine;
-  private _startX = 20;
+  private _startX = 50;
   private _startY = 50;
 
   constructor(width: number, height: number) {
@@ -55,13 +62,16 @@ export class LineChart extends BaseChart {
   }
 
   public populate(data: DataObject[]) {
-    this._max = BaseChart.getMaxPoint(data);
-    this._min = BaseChart.getMinPoint(data);
+    this._maxValue = BaseChart.getMaxPoint(data);
+    if (this._max < this._maxValue) {
+      this._max = this._maxValue;
+    }
     this._intervalX = (this.width - this._startX) / data.length;
     this.createPoints(data);
   }
 
   private createPoints(data: DataObject[]) {
+
     for (let i = 0; i < data.length; i++) {
       const point = new LineChartPoint(data[i].value);
       point.y = ((point.value / this._max) * (this._intervalY * 10)) + this._startY;
