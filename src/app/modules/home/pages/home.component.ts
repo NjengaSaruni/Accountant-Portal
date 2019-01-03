@@ -52,10 +52,10 @@ export class HomeComponent implements OnInit {
     this.pieChart.unit = 'KES';
     this.pieChart.populate(this.data);
 
-    this.lineChart = new LineChart(600, 400);
+    this.lineChart = new LineChart(500, 400);
     this.lineChart.title = 'A sample line chart';
     this.lineChart.subtitle = 'Money spent this year';
-    // this.lineChart.max = 40000;
+    this.lineChart.max = 10000;
     this.lineChart.populate(this.data);
 
 
