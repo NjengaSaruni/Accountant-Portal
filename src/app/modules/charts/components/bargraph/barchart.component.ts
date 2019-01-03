@@ -39,6 +39,7 @@ export class BargraphComponent implements AfterViewInit {
 
     // Place the dashed lines
     for (let i = this.graph.height; i >= 0; i -= unit ) {
+      this.cx.fillStyle = '#000000';
       this.cx.fillText(Math.ceil(this.graph.height - i).toString(), 0, i);
       this.cx.beginPath();
       this.cx.moveTo(this.graph.barPadding, i);
