@@ -5,6 +5,13 @@ import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
 
 export class LineChart extends BaseChart {
+  get endX(): number {
+    return this._endX;
+  }
+
+  set endX(value: number) {
+    this._endX = value;
+  }
   get max(): number {
     return this._max;
   }
@@ -43,12 +50,14 @@ export class LineChart extends BaseChart {
 
   private _points: LineChartPoint[] = [];
   private _intervalX = 10;
-  private _intervalY;
   private _maxValue = -Infinity;
   private _max = -Infinity;
   private _line: LineChartLine;
   private _startX = 50;
+  private _endX = 50;
   private _startY = 50;
+  private _intervalY: number;
+
 
   constructor(width: number, height: number) {
     super();
@@ -66,12 +75,11 @@ export class LineChart extends BaseChart {
     if (this._max < this._maxValue) {
       this._max = this._maxValue;
     }
-    this._intervalX = (this.width - this._startX) / data.length;
+    this._intervalX = (this.width - this._startX - this._endX) / (data.length - 1);
     this.createPoints(data);
   }
 
   private createPoints(data: DataObject[]) {
-
     for (let i = 0; i < data.length; i++) {
       const point = new LineChartPoint(data[i].value);
       point.y = ((point.value / this._max) * (this._intervalY * 10)) + this._startY;

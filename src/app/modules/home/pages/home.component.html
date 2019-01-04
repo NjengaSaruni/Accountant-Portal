@@ -7,15 +7,15 @@
       <app-piechart [chart]="pieChart"></app-piechart>
     </div>
     <div class="col">
-      <app-linechart [graph]="lineChart"></app-linechart>
+      <app-linechart [chart]="lineChart"></app-linechart>
     </div>
-    <div class="col">
-      <app-linechart [graph]="lineChart" [fill]="true"></app-linechart>
-    </div>
+    <!--<div class="col">-->
+      <!--<app-linechart [chart]="lineChart" [fill]="true"></app-linechart>-->
+    <!--</div>-->
   </div>
   <div class="row" >
     <div class="col" *ngFor="let graph of barCharts">
-      <app-bargraph [graph]="graph"></app-bargraph>
+      <app-barchart [chart]="graph"></app-barchart>
     </div>
   </div>
 </div>
