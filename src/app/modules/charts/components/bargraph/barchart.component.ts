@@ -7,14 +7,14 @@ import {ColorService} from '../../../../common/services/color.service';
 import {Bar} from '../../models/BarChart/Bar';
 
 @Component({
-  selector: 'app-bargraph',
-  templateUrl: './bargraph.component.html',
-  styleUrls: ['./bargraph.component.scss']
+  selector: 'app-barchart',
+  templateUrl: './barchart.component.html',
+  styleUrls: ['./barchart.component.scss']
 })
-export class BargraphComponent implements AfterViewInit {
+export class BarchartComponent implements AfterViewInit {
 
   @ViewChild('canvas2') public canvas: ElementRef;
-  @Input() graph: BarChart;
+  @Input() chart: BarChart;
 
   private cx: CanvasRenderingContext2D;
 
@@ -24,27 +24,59 @@ export class BargraphComponent implements AfterViewInit {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
 
-    canvasEl.width = this.graph.width;
-    canvasEl.height = this.graph.height;
+    canvasEl.width = this.chart.width;
+    canvasEl.height = this.chart.height;
 
     // Place the background color
-    this.cx.fillStyle = this.graph.backgroundColor;
-    this.cx.fillRect(0, 0, this.graph.width, this.graph.height);
+    this.cx.fillStyle = this.chart.backgroundColor;
+    this.cx.fillRect(0, 0, this.chart.width, this.chart.height);
+    this.cx.font = 'normal 12px DejaVu Sans Light, sans-serif';
 
+
+    // Draw y axis line
+    this.cx.beginPath();
+    this.cx.moveTo(this.chart.startX, 0);
+    this.cx.lineTo(this.chart.startX, this.chart.height - this.chart.startY);
+    this.cx.stroke();
+    this.cx.closePath();
+
+
+    // Draw x axis line
+    this.cx.beginPath();
+    this.cx.moveTo(10, Math.abs(this.chart.startY - this.chart.height));
+    this.cx.lineTo(this.chart.width,  Math.abs(this.chart.startY - this.chart.height));
+    this.cx.stroke();
+    this.cx.closePath();
+
+    // Stroke x axis title
+    this.cx.fillStyle = '#000000';
+    this.cx.fillText('Month', this.chart.width / 2,  this.chart.height - 10);
     // Configure the dashed lines
-    const unit = this.graph.height / 10 + 10 - (this.graph.height / 10) % 10;
-    this.cx.setLineDash(this.graph.line.pattern);
-    this.cx.lineWidth = this.graph.line.width;
-    this.cx.strokeStyle = this.graph.line.color;
+    this.cx.setLineDash(this.chart.line.pattern);
+    this.cx.lineWidth = this.chart.line.width;
+    this.cx.strokeStyle = this.chart.line.color;
 
-    // Place the dashed lines
-    for (let i = this.graph.height; i >= 0; i -= unit ) {
-      this.cx.fillStyle = '#000000';
-      this.cx.fillText(Math.ceil(this.graph.height - i).toString(), 0, i);
+
+    // Draw Y axis labels and lines
+    for (let i = 0; i <= this.chart.height; i += this.chart.intervalY ) {
+      const y = this.chart.height - this.chart.startY - i;
+      const label = Math.ceil((i / (this.chart.intervalY * 10) * this.chart.max));
+
+      this.cx.fillText(label.toString(), 15, y - 2);
       this.cx.beginPath();
-      this.cx.moveTo(this.graph.barPadding, i);
-      this.cx.lineTo(this.graph.width, i);
+      this.cx.moveTo(this.chart.startX - 5, y);
+      this.cx.lineTo(this.chart.width, y );
       this.cx.stroke();
+    }
+
+    // Draw X axis labels
+    for (let i = 0; i < this.chart.size; i++) {
+      const totalBarWidth = this.chart.bars[i].width + 2 * this.chart.barPadding;
+      this.cx.fillText(
+        this.chart.bars[i].title,
+        this.chart.startX + (i * totalBarWidth) + this.chart.bars[i].width / 2,
+        canvasEl.height - 30
+      );
     }
 
     this.animateGraph();
@@ -56,15 +88,19 @@ export class BargraphComponent implements AfterViewInit {
     // Animate transition from height 0 to height of bar
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
 
-    let x = this.graph.barPadding;
-    for (const bar of this.graph.bars) {
+    let x = this.chart.barPadding;
+    for (const bar of this.chart.bars) {
       // Use the bar's set color for the actual bar
       this.cx.fillStyle = bar.color;
-      this.cx.fillRect(x, this.graph.height, bar.width, - bar.currentHeight);
-      if (bar.currentHeight < bar.height) {
-        bar.currentHeight += this.graph.velocity;
+      this.cx.fillRect(this.chart.startX + x, this.chart.height - this.chart.startY, bar.width, - bar.currentHeight);
+      if (bar.currentHeight <= bar.height) {
+        if (bar.currentHeight + this.chart.velocity < bar.height) {
+          bar.currentHeight += this.chart.velocity;
+        } else {
+          bar.currentHeight = bar.height;
+        }
       }
-      x += bar.width + 2 * this.graph.barPadding;
+      x += bar.width + 2 * this.chart.barPadding;
     }
 
   }

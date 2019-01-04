@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {BarChart} from '../../graphs/models/BarChart/BarChart';
+import {BarChart} from '../../charts/models/BarChart/BarChart';
 import {randomColor, randomInt} from '../../../common/utils/randomInt';
-import {PieChart} from '../../graphs/models/PieChart/PieChart';
-import {DataObject} from '../../graphs/models/BaseChart/DataObject';
-import {LineChart} from '../../graphs/models/LineChart/LineChart';
+import {PieChart} from '../../charts/models/PieChart/PieChart';
+import {DataObject} from '../../charts/models/BaseChart/DataObject';
+import {LineChart} from '../../charts/models/LineChart/LineChart';
 
 @Component({
   selector: 'app-home',
@@ -20,18 +20,18 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.data = [
-      new DataObject('Jan', randomInt(1, 4000), randomColor()),
-      new DataObject('Feb', randomInt(1, 4000), randomColor()),
-      new DataObject('Mar', randomInt(1, 4000), randomColor()),
-      new DataObject('Apr', randomInt(1, 1000), randomColor()),
-      new DataObject('May', randomInt(1, 1000), randomColor()),
-      new DataObject('Jun', randomInt(1, 4000), randomColor()),
-      new DataObject('Jul', randomInt(1, 4000), randomColor()),
-      new DataObject('Aug', randomInt(1, 10000), randomColor()),
-      new DataObject('Sep', randomInt(1, 4000), randomColor()),
-      new DataObject('Oct', randomInt(1, 4000), randomColor()),
-      new DataObject('Nov', randomInt(1, 4000), randomColor()),
-      new DataObject('Dec', randomInt(1, 4000), randomColor()),
+      new DataObject('Jan', randomInt(1, 10), randomColor()),
+      new DataObject('Feb', randomInt(1, 10), randomColor()),
+      new DataObject('Mar', randomInt(1, 10), randomColor()),
+      new DataObject('Apr', randomInt(1, 10), randomColor()),
+      new DataObject('May', randomInt(1, 10), randomColor()),
+      new DataObject('Jun', randomInt(1, 10), randomColor()),
+      new DataObject('Jul', randomInt(1, 10), randomColor()),
+      new DataObject('Aug', randomInt(1, 10), randomColor()),
+      new DataObject('Sep', randomInt(1, 10), randomColor()),
+      new DataObject('Oct', randomInt(1, 10), randomColor()),
+      new DataObject('Nov', randomInt(1, 10), randomColor()),
+      new DataObject('Dec', randomInt(1, 10), randomColor()),
     ];
 
     this.barCharts.push(new BarChart(800, 400));
@@ -52,10 +52,10 @@ export class HomeComponent implements OnInit {
     this.pieChart.unit = 'KES';
     this.pieChart.populate(this.data);
 
-    this.lineChart = new LineChart(500, 400);
+    this.lineChart = new LineChart(1000, 400);
     this.lineChart.title = 'A sample line chart';
     this.lineChart.subtitle = 'Money spent this year';
-    this.lineChart.max = 10000;
+    // this.lineChart.max = 10000;
     this.lineChart.populate(this.data);
 
 

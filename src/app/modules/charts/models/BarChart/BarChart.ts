@@ -4,6 +4,27 @@ import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
 
 export class BarChart extends BaseChart {
+  get startY(): number {
+    return this._startY;
+  }
+
+  set startY(value: number) {
+    this._startY = value;
+  }
+  get startX(): number {
+    return this._startX;
+  }
+
+  set startX(value: number) {
+    this._startX = value;
+  }
+  get intervalY(): number {
+    return this._intervalY;
+  }
+
+  set intervalY(value: number) {
+    this._intervalY = value;
+  }
   get min(): number {
     return this._min;
   }
@@ -39,12 +60,16 @@ export class BarChart extends BaseChart {
   private _barPadding = 10;
   private _max: number;
   private _min: number;
-  private _startX: number;
-  private _startY: number;
+  private _startX = 50;
+  private _startY = 50;
+  private _intervalY: number;
+
 
   constructor(width?: number, height?: number) {
     super();
     this.width = width; this.height = height;
+    this._intervalY = (this.height - (this._startY * 2)) / 10;
+    this.velocity = this.height / 50;
   }
 
   get size(): number {
@@ -54,23 +79,22 @@ export class BarChart extends BaseChart {
   public populate(data: DataObject[]) {
     this._max = BaseChart.getMaxPoint(data);
     this._min = BaseChart.getMinPoint(data);
-    for (const obj of data) {
-      const height = ( obj.value / this._max ) * this.height;
-      const bar: Bar = new Bar(height);
-      bar.title = obj.title;
-      bar.color = obj.color;
-      this.add(bar);
-    }
-    // this._bars = this._bars.map(bar => bar.width = (this.width - (this.size * this.barPadding * 2)) / this.size);
+    this.createBars(data);
     for (const bar of this._bars) {
-      bar.width = (this.width - (this.size * this.barPadding * 2)) / this.size;
+      bar.width = (this.width - (this.size * this.barPadding * 2) - this._startX) / this.size;
     }
   }
 
 
-  add(bar: Bar) {
-    this._bars.push(bar);
-    this.velocity = this.height / 50;
+  private createBars(data: DataObject[]) {
+    for (const obj of data) {
+      const height = ((obj.value / this._max) * (this.height - this.startY * 2));
+      const bar: Bar = new Bar(height);
+      bar.value = obj.value;
+      bar.title = obj.title;
+      bar.color = obj.color;
+      this._bars.push(bar);
+    }
   }
 
   get(i: number): Bar {

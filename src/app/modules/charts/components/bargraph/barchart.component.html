@@ -1,27 +1,18 @@
-<div class="margin-s padding bordered rounded-s chart" [ngStyle]="{'background-color': graph.backgroundColor}">
+<div class="margin-s padding bordered rounded-s chart" [ngStyle]="{'background-color': chart.backgroundColor}">
   <div class="row">
     <div class="centered col">
-      <p class="margin title color-p">{{graph.title}}</p>
+      <p class="margin title color-p">{{chart.title}}</p>
     </div>
   </div>
   <div class="row">
     <div class="centered col">
-      <p class="sub-title">{{graph.subtitle}}</p>
+      <p class="sub-title">{{chart.subtitle}}</p>
     </div>
   </div>
   <div class="graph-container">
     <div class="row">
       <div class="col">
         <canvas class="segment centered" #canvas2></canvas>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="centered" [ngStyle]="{'width.px': graph.width}">
-          <div *ngFor="let bar of graph.bars" [ngStyle]="{'width.px': bar.width}" class="centered">
-            <span>{{bar.title}}</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>

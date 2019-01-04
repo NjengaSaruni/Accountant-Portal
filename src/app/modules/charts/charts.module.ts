@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BargraphComponent } from './components/bargraph/bargraph.component';
+import { BarchartComponent } from './components/bargraph/barchart.component';
 import { PiechartComponent } from './components/piechart/piechart.component';
 import { LinechartComponent } from './components/linechart/linechart.component';
 
 @NgModule({
-  declarations: [BargraphComponent, PiechartComponent, LinechartComponent],
+  declarations: [BarchartComponent, PiechartComponent, LinechartComponent],
   imports: [
     CommonModule
   ],
-  exports: [ BargraphComponent, PiechartComponent, LinechartComponent ]
+  exports: [ BarchartComponent, PiechartComponent, LinechartComponent ]
 })
-export class GraphsModule { }
+export class ChartsModule { }

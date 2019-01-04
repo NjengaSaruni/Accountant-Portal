@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {GraphsModule} from '../graphs/graphs.module';
+import {ChartsModule} from '../charts/charts.module';
 import {HomeComponent} from './pages/home.component';
 import {HomeRoutingModule} from './home-routing.module';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
@@ -12,7 +12,7 @@ import {SharedModule} from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    GraphsModule,
+    ChartsModule,
     SharedModule,
     HomeRoutingModule,
     AngularFontAwesomeModule,
