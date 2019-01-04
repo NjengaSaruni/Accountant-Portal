@@ -1,0 +1,89 @@
+@import "~src/variables.scss";
+
+.content {
+  .main-body {
+    max-width: 1200px;
+    width: 100%;
+    .headline {
+
+      .headline-title {
+        p {
+          font-size: 45px;
+          font-weight: 200;
+          line-height: 50px;
+          margin: 2px 0;
+        }
+      }
+
+      .headline-subtitle {
+        p {
+          font-weight: 300;
+          line-height: 32px;
+          font-size: 21px;
+          margin: 2px 0;
+        }
+      }
+    }
+
+    .steps {
+      .step:not(:last-child) {
+        border-right: 1px solid #f2f5ed;
+      }
+
+      .step {
+        display: inline-flex;
+        opacity: 0.4;
+        cursor: pointer;
+
+        .step-detail {
+          .step-title {
+            p {
+              font-size: 16px;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .step-icon {
+          margin: auto 0;
+          fa {
+            font-size: 30px;
+          }
+        }
+
+      }
+
+      .step.active {
+        opacity: 1;
+      }
+    }
+
+    .signup-container {
+      display: flex;
+      .signup-form {
+        background: url("../../../../../assets/backgrounds/couch-bg.jpg");
+        background-position: center;
+        background-size: cover;
+        height: 568px;
+
+        .signup-title {
+          p {
+            font-size: 24px;
+            line-height: 36px;
+            font-weight: 300;
+          }
+        }
+      }
+
+
+      .signup-benefits {
+        width: 500px;
+        margin-left: auto;
+
+        .benefits-title {
+
+        }
+      }
+    }
+  }
+}

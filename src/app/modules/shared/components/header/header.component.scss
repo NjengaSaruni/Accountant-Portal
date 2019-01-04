@@ -1,0 +1,60 @@
+.header-wrapper {
+  height: 50px;
+
+  .navigation {
+    display: inline-flex;
+
+    .logo-wrapper {
+      .logo {
+        p {
+          font-size: 50px;
+          font-weight: 700;
+          margin: 0;
+        }
+      }
+    }
+    .elements {
+      position: relative;
+      display: inline-flex;
+      .element {
+        .main-title {
+          font-size: 20px;
+          height: 60px;
+          position: relative;
+
+          .title {
+            border-left: 2px solid #DADADA;
+            display: inline-flex;
+          }
+        }
+      }
+    }
+  }
+
+
+  .options {
+    float: right;
+    display: inline-flex;
+
+    .option {
+      fa {
+        align-self: center;
+        font-size: 20px;
+      }
+    }
+  }
+
+}
+
+//Can be used for the sidebar later
+/*.sidebar {
+  height: 100vh;
+  width: 200px;
+  background: #DADADA;
+  position: absolute;
+  left: 0;
+  top: 0;
+}*/
+
+
+

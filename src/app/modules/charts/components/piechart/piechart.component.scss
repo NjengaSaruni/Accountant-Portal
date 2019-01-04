@@ -1,0 +1,23 @@
+.pie-chart {
+  display: inline-flex;
+
+  .keys {
+    .key {
+      display: inline-flex;
+
+      .color {
+        height: 10px;
+        width: 10px;
+        border-radius: 10px;
+        //border: 2px dotted blueviolet;
+      }
+
+      .color-title {
+        width: 40%;
+      }
+    }
+  }
+}
+canvas {
+  //height: 200px;
+}

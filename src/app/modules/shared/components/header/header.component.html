@@ -1,0 +1,36 @@
+<div class="row no-padding margin-bs header-wrapper">
+  <div class="col">
+    <div class="margin options">
+      <a class="centered padding option"  routerLink="/auth/register">
+        Register
+        <fa name="user" class="padding"></fa>
+      </a>
+      <div class="centered padding option" routerLink="/auth/login">
+        Log In
+        <fa name="user" class="padding"></fa>
+      </div>
+      <div class="centered padding option">
+        Account Settings
+        <fa name="cog" class="padding"></fa>
+      </div>
+    </div>
+    <div class="navigation">
+      <nav class="logo-wrapper padding" routerLink="/home">
+        <div class="logo">
+          <p><span class="color-p">Account</span><span class="color-s">Plus</span></p>
+        </div>
+      </nav>
+      <div class="elements">
+        <div class="element padding centered-v">
+          <div class="main-title padding">
+            <div class="centered-v title">
+              <span class="padding">Dashboard</span>
+              <fa name="dashboard" class="padding"></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="loaderService.loaderState"></app-loader>

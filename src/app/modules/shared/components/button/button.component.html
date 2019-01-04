@@ -1,0 +1,31 @@
+<button *ngIf="fullWidth"
+  class="button"
+  [ngClass]="{
+    'disabled': disabled,
+    'full-width': fullWidth
+  }"
+  [ngStyle]="{
+    'background-color': background,
+    'color': color,
+    'font-size.px': fontSize
+  }"
+  [disabled]="disabled"
+  >
+  {{ text }}
+</button>
+<button *ngIf="!fullWidth"
+  class="button"
+  [ngClass]="{
+    'disabled': disabled
+  }"
+  [ngStyle]="{
+    'background-color': background,
+    'color': color,
+    'font-size.px': fontSize,
+    'width.px': width,
+    'height.px': height
+  }"
+  [disabled]="disabled"
+  >
+  {{ text }}
+</button>
