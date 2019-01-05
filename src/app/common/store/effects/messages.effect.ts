@@ -3,9 +3,9 @@ import {map, switchMap} from 'rxjs/operators';
 
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import * as messageActions from '../actions/messages.action';
-import {MessageService} from '../../services/message.service';
 import {Observable} from 'rxjs';
 import {Action} from '@ngrx/store';
+import {MessageService} from '../../services/message.service';
 
 
 @Injectable()

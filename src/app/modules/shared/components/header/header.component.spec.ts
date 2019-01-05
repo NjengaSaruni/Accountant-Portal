@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {SharedModule} from '../../shared.module';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +11,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [  ],
+      imports: [
+        AngularFontAwesomeModule,
+        SharedModule,
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
