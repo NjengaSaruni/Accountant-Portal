@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BarChart} from '../../charts/models/BarChart/BarChart';
-import {randomColor, randomInt} from '../../../common/utils/randomInt';
+import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../../common/utils/randomInt';
 import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
@@ -19,50 +19,10 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   async ngOnInit() {
-    this.data = [
-      new DataObject('Jan', randomInt(1, 10), randomColor()),
-      new DataObject('Feb', randomInt(1, 10), randomColor()),
-      new DataObject('Mar', randomInt(1, 10), randomColor()),
-      new DataObject('Apr', randomInt(1, 10), randomColor()),
-      new DataObject('May', randomInt(1, 10), randomColor()),
-      new DataObject('Jun', randomInt(1, 10), randomColor()),
-      new DataObject('Jul', randomInt(1, 10), randomColor()),
-      new DataObject('August', randomInt(1, 10), randomColor()),
-      new DataObject('Sep', randomInt(1, 10), randomColor()),
-      new DataObject('Oct', randomInt(1, 10), randomColor()),
-      new DataObject('Nov', randomInt(1, 10), randomColor()),
-      new DataObject('Dec', randomInt(1, 10), randomColor()),
-    ];
-
-    this.barCharts.push(new BarChart(800, 400));
-    const barChart = this.barCharts[0];
-
-    barChart.title = `Bar Graph A`;
-    barChart.subtitle = `A graph of weekly expenditure in Kshs`;
-    barChart.line.pattern = [15, 3, 3, 3];
-    barChart.line.width = 0.3;
-    barChart.line.color = '#1945ff';
-    // barChart.barPadding = 40;
-    barChart.populate(this.data);
-
-
-    this.barCharts.push(barChart);
-
-    this.pieChart = new PieChart(100, 80);
-    this.pieChart.title = 'A simple pie chart';
-    this.pieChart.subtitle = 'A barChart of all transactions';
-    this.pieChart.unit = 'KES';
-    this.pieChart.populate(this.data);
-
-    this.lineChart = new LineChart(1000, 400);
-    this.lineChart.title = 'A sample line chart';
-    this.lineChart.subtitle = 'Money spent this year';
-    // this.lineChart.max = 10000;
-    this.lineChart.populate(this.data);
-
-
-    this.lineChart.line.color = randomColor();
-    this.lineChart.line.width = randomInt(2, 6);
+    this.barCharts.push(getMockBarchart());
+    this.barCharts.push(getMockBarchart());
+    this.pieChart = getMockPiechart();
+    this.lineChart = getMockLinechart();
   }
 
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PiechartComponent } from './piechart.component';
+import {getMockPiechart} from '../../../../common/utils/randomInt';
 
 describe('PiechartComponent', () => {
   let component: PiechartComponent;
@@ -16,6 +17,7 @@ describe('PiechartComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PiechartComponent);
     component = fixture.componentInstance;
+    component.chart = getMockPiechart();
     fixture.detectChanges();
   });
 

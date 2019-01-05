@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BarchartComponent } from './barchart.component';
-import {BarChart} from '../../models/BarChart/BarChart';
+import {BarchartComponent} from './barchart.component';
+import {getMockBarchart} from '../../../../common/utils/randomInt';
 
 describe('BarchartComponent', () => {
   let component: BarchartComponent;
   let fixture: ComponentFixture<BarchartComponent>;
 
+
   beforeEach(async(() => {
-    let expectedChart: BarChart;
     TestBed.configureTestingModule({
       declarations: [ BarchartComponent ]
     })
@@ -18,6 +18,8 @@ describe('BarchartComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BarchartComponent);
     component = fixture.componentInstance;
+    component.chart = getMockBarchart();
+
     fixture.detectChanges();
   });
 
