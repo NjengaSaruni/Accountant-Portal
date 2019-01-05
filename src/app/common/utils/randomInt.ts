@@ -64,15 +64,15 @@ export function getMockLinechart() {
 
   lineChart.title = `Bar Graph A`;
   lineChart.subtitle = `A graph of weekly expenditure in Kshs`;
-  lineChart.line.width = 0.3;
-  lineChart.line.color = '#1945ff';
+  lineChart.line.width = randomInt(2, 6);
+  lineChart.line.color = randomColor();
   lineChart.populate(getMockData());
 
   return lineChart;
 }
 
 export function getMockPiechart() {
-  const piechart = new PieChart(200, 180);
+  const piechart = new PieChart(120, 80);
 
   piechart.title = `Bar Graph A`;
   piechart.subtitle = `A graph of weekly expenditure in Kshs`;

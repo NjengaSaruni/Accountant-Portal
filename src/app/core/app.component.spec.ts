@@ -34,13 +34,4 @@ describe('AppComponent', () => {
     titleService = TestBed.get(Title);
     expect(titleService.getTitle()).toBe('Accountant | Home');
   });
-
-  xit('should render company name', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector(
-      'body > app-root > app-home > div.raised.top-header > app-header > div > div > div.navigation > nav > div > p > span.color-p')
-      .textContent).toContain('Account');
-  });
 });
