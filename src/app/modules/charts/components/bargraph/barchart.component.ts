@@ -69,12 +69,13 @@ export class BarchartComponent implements AfterViewInit {
       this.cx.stroke();
     }
 
+    this.cx.textAlign = 'center';
     // Draw X axis labels
     for (let i = 0; i < this.chart.size; i++) {
       const totalBarWidth = this.chart.bars[i].width + 2 * this.chart.barPadding;
       this.cx.fillText(
         this.chart.bars[i].title,
-        this.chart.startX + (i * totalBarWidth) + this.chart.bars[i].width / 2,
+         this.chart.startX + i * totalBarWidth + this.chart.bars[i].width / 2 + this.chart.barPadding,
         canvasEl.height - 30
       );
     }

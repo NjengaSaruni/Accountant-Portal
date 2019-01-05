@@ -4,6 +4,9 @@ import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
 
 export class BarChart extends BaseChart {
+  set barPadding(value: number) {
+    this._barPadding = value;
+  }
   get startY(): number {
     return this._startY;
   }
@@ -57,7 +60,7 @@ export class BarChart extends BaseChart {
   private _bars: Bar[] = [];
   private _velocity = 1;
   private _line = new BarChartLine();
-  private _barPadding = 10;
+  private _barPadding = 8;
   private _max: number;
   private _min: number;
   private _startX = 50;
