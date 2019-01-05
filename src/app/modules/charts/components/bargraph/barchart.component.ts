@@ -51,11 +51,11 @@ export class BarchartComponent implements AfterViewInit {
     // Stroke x axis title
     this.cx.fillStyle = '#000000';
     this.cx.fillText('Month', this.chart.width / 2,  this.chart.height - 10);
+
     // Configure the dashed lines
     this.cx.setLineDash(this.chart.line.pattern);
     this.cx.lineWidth = this.chart.line.width;
     this.cx.strokeStyle = this.chart.line.color;
-
 
     // Draw Y axis labels and lines
     for (let i = 0; i <= this.chart.height; i += this.chart.intervalY ) {

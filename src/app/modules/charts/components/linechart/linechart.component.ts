@@ -30,6 +30,9 @@ export class LinechartComponent implements OnInit, AfterViewInit {
 
 
     // Draw y axis line
+    // this.cx.setLineDash([15, 3, 3, 3]);
+    this.cx.lineCap = 'round';
+    this.cx.lineJoin = 'round';
     this.cx.beginPath();
     this.cx.moveTo(this.chart.startX, 0);
     this.cx.lineTo(this.chart.startX, this.chart.height - this.chart.startY);

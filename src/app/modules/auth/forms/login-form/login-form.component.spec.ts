@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LoginFormComponent } from './login-form.component';
+import {LoginFormComponent} from './login-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../../../shared/shared.module';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -8,7 +12,13 @@ describe('LoginFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginFormComponent ]
+      declarations: [ LoginFormComponent ],
+      imports: [
+        ReactiveFormsModule,
+        SharedModule,
+        StoreModule.forRoot({}),
+        EffectsModule
+      ]
     })
     .compileComponents();
   }));

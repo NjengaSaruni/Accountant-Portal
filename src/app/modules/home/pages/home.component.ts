@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       new DataObject('Apr', randomInt(1, 10), randomColor()),
       new DataObject('May', randomInt(1, 10), randomColor()),
       new DataObject('Jun', randomInt(1, 10), randomColor()),
-      new DataObject('Jul', randomInt(1, 100), randomColor()),
+      new DataObject('Jul', randomInt(1, 10), randomColor()),
       new DataObject('August', randomInt(1, 10), randomColor()),
       new DataObject('Sep', randomInt(1, 10), randomColor()),
       new DataObject('Oct', randomInt(1, 10), randomColor()),
@@ -42,7 +42,9 @@ export class HomeComponent implements OnInit {
     barChart.line.pattern = [15, 3, 3, 3];
     barChart.line.width = 0.3;
     barChart.line.color = '#1945ff';
+    // barChart.barPadding = 40;
     barChart.populate(this.data);
+
 
     this.barCharts.push(barChart);
 

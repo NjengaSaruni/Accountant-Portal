@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RegisterFormComponent } from './register-form.component';
+import {RegisterFormComponent} from './register-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../../../shared/shared.module';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('RegisterFormComponent', () => {
   let component: RegisterFormComponent;
@@ -8,7 +11,12 @@ describe('RegisterFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterFormComponent ]
+      declarations: [ RegisterFormComponent ],
+      imports: [
+        ReactiveFormsModule,
+        SharedModule,
+        HttpClientModule
+      ],
     })
     .compileComponents();
   }));
