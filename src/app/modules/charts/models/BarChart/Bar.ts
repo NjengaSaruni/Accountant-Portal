@@ -1,4 +1,4 @@
-import {randomInt} from '../../../../common/utils/randomInt';
+import {randomInt} from '../../../shared/utils/randomInt';
 
 export class Bar {
   get value(): number {

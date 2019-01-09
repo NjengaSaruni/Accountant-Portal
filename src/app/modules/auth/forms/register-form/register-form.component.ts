@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
 import {AuthService} from '../../services/auth.service';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+
 
 @Component({
   selector: 'app-register-form',
@@ -14,7 +17,8 @@ export class RegisterFormComponent implements OnInit {
 
   constructor(private loaderService: LoaderService,
               private authService: AuthService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+  ) {
   }
 
   ngOnInit() {
@@ -48,14 +52,12 @@ export class RegisterFormComponent implements OnInit {
         this.profileForm.get('password').value,
       ).subscribe(
         data => {
-          console.log(data);
           this.loaderService.hide();
         },
         error => {
-          console.log(error);
           this.loaderService.hide();
         }
       );
-    }, 6000);
+    }, 0);
   }
 }

@@ -1,4 +1,4 @@
-import {randomInt} from '../../../../common/utils/randomInt';
+import {randomInt} from '../../../shared/utils/randomInt';
 
 export class Pie {
   get percentage(): number {

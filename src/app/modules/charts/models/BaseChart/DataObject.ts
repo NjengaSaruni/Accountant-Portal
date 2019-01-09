@@ -1,4 +1,4 @@
-import {randomColor} from '../../../../common/utils/randomInt';
+import {randomColor} from '../../../shared/utils/randomInt';
 
 export class DataObject {
   get id(): string {

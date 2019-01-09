@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BarChart} from '../../charts/models/BarChart/BarChart';
-import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../../common/utils/randomInt';
+import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
 import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
 import {LineChart} from '../../charts/models/LineChart/LineChart';

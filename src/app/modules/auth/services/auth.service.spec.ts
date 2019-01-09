@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {AuthService} from './auth.service';
 import {HttpClient} from '@angular/common/http';
-import {SettingsService} from '../../../common/services/settings.service';
+import {SettingsService} from '../../shared/services/settings.service';
 
 describe('AuthService', () => {
   let httpSpy: jasmine.SpyObj<HttpClient>;

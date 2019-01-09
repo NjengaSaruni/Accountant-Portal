@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import {LoaderState} from '../../../../common/models/auth';
+
+export interface LoaderState {
+  show: boolean;
+}
 
 @Injectable()
 export class LoaderService {

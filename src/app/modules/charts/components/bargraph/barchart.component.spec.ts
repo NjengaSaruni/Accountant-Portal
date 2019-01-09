@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BarchartComponent} from './barchart.component';
-import {getMockBarchart} from '../../../../common/utils/randomInt';
+import {getMockBarchart} from '../../../shared/utils/randomInt';
 
 describe('BarchartComponent', () => {
   let component: BarchartComponent;
