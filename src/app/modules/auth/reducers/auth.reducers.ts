@@ -1,30 +1,35 @@
-import {AuthActions, AuthActionTypes} from '../actions/auth.actions';
+import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
+import { IUser } from '../models/user';
 
 export interface State {
-  isLoggedIn: boolean;
+  loggedIn: boolean;
+  user: IUser | null;
 }
 
 export const initialState: State = {
-  isLoggedIn: false
+  loggedIn: false,
+  user: null,
 };
-
 
 export function reducer(state = initialState, action: AuthActions): State {
   switch (action.type) {
-    case AuthActionTypes.LOGIN_SUCCESS:
-      return { ...state, isLoggedIn: true };
+    case AuthActionTypes.LOGIN_SUCCESS: {
+      return {
+        ...state,
+        loggedIn: true,
+        user: action.payload.user,
+      };
+    }
 
-    case AuthActionTypes.LOGOUT_CONFIRMED:
-      return initialState; // the initial state has isLoggedIn set to false
+    case AuthActionTypes.LOGOUT: {
+      return initialState;
+    }
 
-    case AuthActionTypes.LOGIN_FAILURE:
-      console.log(state);
-      console.log('Failed');
-      return initialState; // the initial state has isLoggedIn set to false
-
-    default:
+    default: {
       return state;
+    }
   }
 }
 
-export const selectIsLoggedIn = (state: State) => state.isLoggedIn;
+export const getLoggedIn = (state: State) => state.loggedIn;
+export const getUser = (state: State) => state.user;
