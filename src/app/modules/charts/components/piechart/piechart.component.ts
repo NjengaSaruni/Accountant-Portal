@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {PieChart} from '../../models/PieChart/PieChart';
-import {WindowRefService} from '../../../../common/services/window-ref.service';
+import {WindowRefService} from '../../../shared/services/window-ref.service';
 
 @Component({
   selector: 'app-piechart',

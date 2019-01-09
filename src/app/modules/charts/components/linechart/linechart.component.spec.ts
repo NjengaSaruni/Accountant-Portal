@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinechartComponent } from './linechart.component';
-import {getMockLinechart} from '../../../../common/utils/randomInt';
+import {getMockLinechart} from '../../../shared/utils/randomInt';
 
 describe('LinechartComponent', () => {
   let component: LinechartComponent;

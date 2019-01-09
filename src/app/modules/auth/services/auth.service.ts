@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {SettingsService} from '../../../common/services/settings.service';
+import {SettingsService} from '../../shared/services/settings.service';
 
 
 @Injectable({
@@ -12,11 +12,16 @@ export class AuthService {
     return this.settings.apiHost + 'rest-auth/registration/';
   }
 
+  get loginApi(): string {
+    return this.settings.apiHost + 'rest-auth/login/';
+  }
+
   set registrationAPI(value: string) {
     this._registrationAPI = value;
   }
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
   private _registrationAPI: string;
+  private _loginAPI: string;
 
   constructor(private _http: HttpClient, private settings: SettingsService) {
   }
@@ -30,10 +35,10 @@ export class AuthService {
   }
 
   /**
-   *  Login the user then tell all the subscribers about the new status
+   *  LOGIN the user then tell all the subscribers about the new status
    */
   login(username: string, password: string): void {
-    this._http.post(this.registrationAPI, {
+    this._http.post(this.loginApi, {
       username, password
     }).subscribe(
       data => console.log(data),

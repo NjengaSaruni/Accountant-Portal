@@ -11,7 +11,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import {StoreModule} from '@ngrx/store';
 import { EffectsModule} from '@ngrx/effects';
-import { reducers, effects } from '../../common/store';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,6 @@ import { reducers, effects } from '../../common/store';
     RouterModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('acp', reducers),
-    EffectsModule.forFeature(effects),
 
 
     // Internal modules

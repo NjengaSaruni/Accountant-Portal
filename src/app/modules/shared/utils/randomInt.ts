@@ -1,7 +1,7 @@
-import {DataObject} from '../../modules/charts/models/BaseChart/DataObject';
-import {BarChart} from '../../modules/charts/models/BarChart/BarChart';
-import {LineChart} from '../../modules/charts/models/LineChart/LineChart';
-import {PieChart} from '../../modules/charts/models/PieChart/PieChart';
+import {DataObject} from '../../charts/models/BaseChart/DataObject';
+import {BarChart} from '../../charts/models/BarChart/BarChart';
+import {LineChart} from '../../charts/models/LineChart/LineChart';
+import {PieChart} from '../../charts/models/PieChart/PieChart';
 
 /**
  * @description
@@ -31,12 +31,12 @@ export function getMockData(): DataObject[] {
   return [
     new DataObject('Jan', randomInt(1, 10), randomColor()),
     new DataObject('Feb', randomInt(1, 10), randomColor()),
-    new DataObject('Mar', randomInt(1, 10), randomColor()),
-    new DataObject('Apr', randomInt(1, 10), randomColor()),
-    new DataObject('May', randomInt(1, 10), randomColor()),
-    new DataObject('Jun', randomInt(1, 10), randomColor()),
-    new DataObject('Jul', randomInt(1, 10), randomColor()),
-    new DataObject('August', randomInt(1, 10), randomColor()),
+    new DataObject('Mar', randomInt(1, 100), randomColor()),
+    new DataObject('Apr', randomInt(1, 100), randomColor()),
+    new DataObject('May', randomInt(1, 100), randomColor()),
+    new DataObject('Jun', randomInt(1, 100), randomColor()),
+    new DataObject('Jul', randomInt(1, 100), randomColor()),
+    new DataObject('August', randomInt(1, 100), randomColor()),
     new DataObject('Sep', randomInt(1, 10), randomColor()),
     new DataObject('Oct', randomInt(1, 10), randomColor()),
     new DataObject('Nov', randomInt(1, 10), randomColor()),
