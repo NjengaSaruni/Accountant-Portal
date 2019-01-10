@@ -1,17 +1,19 @@
 import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
 import {LoginFormComponent} from './login-form.component';
-import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../../../shared/shared.module';
 import {combineReducers, Store, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import * as fromAuth from '../../store';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {IAuthenticationPayload} from '../../models/user';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
   let fixture: ComponentFixture<LoginFormComponent>;
   let store: Store<fromAuth.AuthState>;
+
   const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(async(() => {
@@ -43,10 +45,7 @@ describe('LoginFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
-    component.loginForm = formBuilder.group({
-      email: 'john@doe.com',
-      password: 'john!@#'
-    });
+    component.loginForm = formBuilder.group(mockAuth);
     fixture.detectChanges();
   });
 
@@ -62,19 +61,13 @@ describe('LoginFormComponent', () => {
   });
 
   it('form value should update from form changes', fakeAsync(() => {
-    updateForm('john@doe.com', 'john!@#');
-    expect(component.loginForm.value).toEqual({
-      email: 'john@doe.com',
-      password: 'john!@#'
-    });
+    updateForm(mockAuth.email, mockAuth.password);
+    expect(component.loginForm.value).toEqual(mockAuth);
   }));
 
   it('should dispatch a login event on submit', () => {
-    updateForm('john@doe.com', 'john!@#');
-    const $event: any = {
-      email: 'john@doe.com',
-      password: 'john!@#'
-    };
+    updateForm(mockAuth.email, mockAuth.password);
+    const $event: any = mockAuth;
     const action = new fromAuth.Login($event);
 
     component.signIn();
@@ -82,3 +75,8 @@ describe('LoginFormComponent', () => {
     expect(store.dispatch).toHaveBeenCalledWith(action);
   });
 });
+
+const mockAuth = <IAuthenticationPayload> {
+  email: 'john@doe.com',
+  password: 'john!@#'
+};
