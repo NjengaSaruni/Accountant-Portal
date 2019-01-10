@@ -10,6 +10,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../../environments/environment';
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {EffectsModule} from '@ngrx/effects';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 export const metaReducers: MetaReducer<any>[] = [];
 
@@ -20,10 +21,12 @@ export const metaReducers: MetaReducer<any>[] = [];
   imports: [
     // External modules
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({
-      router: routerReducer,
-    }, { metaReducers }),
+    // StoreModule.forRoot({
+    //   router: routerReducer,
+    // }, { metaReducers }),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
