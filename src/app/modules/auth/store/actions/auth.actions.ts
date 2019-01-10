@@ -28,8 +28,8 @@ export class LoginSuccess implements Action {
   readonly type = AuthActionTypes.LOGIN_SUCCESS;
   readonly payload: any;
 
-  constructor(user: IUser) {
-    this.payload = user;
+  constructor(token: string) {
+    this.payload = token;
   }
 }
 
