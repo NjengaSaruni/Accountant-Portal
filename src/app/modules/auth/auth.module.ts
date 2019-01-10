@@ -11,8 +11,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from './effects/auth.effects';
-import {reducers} from './reducers';
+import {AuthEffects} from './store/effects/auth.effects';
+import {reducers} from './store/reducers';
 
 
 @NgModule({

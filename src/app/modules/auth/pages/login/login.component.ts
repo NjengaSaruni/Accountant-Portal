@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import * as fromAuth from '../../reducers';
+import * as fromAuth from '../../store/reducers';
 
 @Component({
   selector: 'app-login',

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {IUser} from '../models/user';
+import {IAuthenticationPayload, IUser} from '../../models/user';
 
 export enum AuthActionTypes {
   LOGIN = '[Login Page] Login',
@@ -15,8 +15,8 @@ export enum AuthActionTypes {
 export class Login implements Action {
   readonly type = AuthActionTypes.LOGIN;
   readonly payload: any;
-  constructor(username: string, password: string) {
-    this.payload = { username, password };
+  constructor(payload: IAuthenticationPayload) {
+    this.payload = payload;
   }
 }
 

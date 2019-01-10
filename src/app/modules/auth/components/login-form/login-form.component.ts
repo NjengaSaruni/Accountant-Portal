@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
+import {IAuthenticationPayload} from '../../models/user';
+import {Store} from '@ngrx/store';
+import * as fromAuth from '../../store';
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +17,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private loaderService: LoaderService,
+              private store: Store<fromAuth.AuthState>
   ) { }
 
   ngOnInit() {
@@ -36,9 +40,11 @@ export class LoginFormComponent implements OnInit {
 
   signIn() {
     this.loaderService.show();
+    const auth = <IAuthenticationPayload> {
+      email: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value
+    };
 
-    if (this.loginForm.invalid) {
-    }
+    this.store.dispatch(new fromAuth.Login(auth));
   }
-
 }
