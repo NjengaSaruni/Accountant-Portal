@@ -1,21 +1,33 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RegisterFormComponent} from './register-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../../../shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
+import {combineReducers, Store, StoreModule} from '@ngrx/store';
+import * as fromAuth from '../../store/reducers';
+import {EffectsModule} from '@ngrx/effects';
 
 describe('RegisterFormComponent', () => {
   let component: RegisterFormComponent;
   let fixture: ComponentFixture<RegisterFormComponent>;
+  let store: Store<fromAuth.AuthState>;
+
+  const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RegisterFormComponent ],
-      imports: [
+      imports: [,
         ReactiveFormsModule,
         SharedModule,
-        HttpClientModule
+        StoreModule.forRoot({
+          auth: combineReducers(fromAuth.reducers),
+        }),
+        EffectsModule
+      ],
+      providers: [
+        FormBuilder
       ],
     })
     .compileComponents();
