@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
 import {AuthService} from '../../services/auth.service';
-import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
+import {IRegistrationPayload} from '../../models/user';
+import * as fromAuth from '../../store';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class RegisterFormComponent implements OnInit {
   constructor(private loaderService: LoaderService,
               private authService: AuthService,
               private formBuilder: FormBuilder,
+              private store: Store<fromAuth.AuthState>
   ) {
   }
 
@@ -45,19 +47,13 @@ export class RegisterFormComponent implements OnInit {
       return;
     }
     this.loaderService.show();
-    setTimeout(() => {
-      this.authService.register(
-        this.profileForm.get('email').value,
-        this.profileForm.get('password').value,
-        this.profileForm.get('password').value,
-      ).subscribe(
-        data => {
-          this.loaderService.hide();
-        },
-        error => {
-          this.loaderService.hide();
-        }
-      );
-    }, 0);
+
+    const registrationPayload = <IRegistrationPayload> {
+      email: this.profileForm.get('email').value,
+      password1: this.profileForm.get('password').value,
+      password2: this.profileForm.get('password').value
+    };
+
+    this.store.dispatch(new fromAuth.Register(registrationPayload));
   }
 }

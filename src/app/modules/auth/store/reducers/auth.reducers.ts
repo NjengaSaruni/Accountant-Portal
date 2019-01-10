@@ -1,8 +1,9 @@
-import {AuthActions, AuthActionTypes} from '../actions/auth.actions';
+import {AuthActions, AuthActionTypes} from '../actions';
+import {RESTAuthToken} from '../../models/user';
 
 export interface State {
   loggedIn: boolean;
-  token: string;
+  token: RESTAuthToken;
 }
 
 export const initialState: State = {
