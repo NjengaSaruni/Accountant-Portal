@@ -1,5 +1,5 @@
 export interface IAuthenticationPayload {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -9,7 +9,7 @@ export interface IUser {
   last_name: string;
   id: string;
 }
-export class Person {
-  name: string;
-
+export class RESTAuthToken {
+  key: string;
 }
+

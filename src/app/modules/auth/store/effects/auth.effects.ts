@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import * as authActions from '../actions/auth.actions';
-import {SettingsService} from '../../shared/services/settings.service';
+import {SettingsService} from '../../../shared/services/settings.service';
 
 @Injectable()
 export class AuthEffects {

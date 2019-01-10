@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import * as fromAuth from '../../store/reducers';
 
 @Component({
   selector: 'app-login',
@@ -6,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loggedIn$ = this.store.pipe(select(fromAuth.getLoggedIn));
+
+  constructor(private store: Store<fromAuth.AuthState>) {}
   ngOnInit() {
   }
 }

@@ -1,14 +1,13 @@
-import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
-import { IUser } from '../models/user';
+import {AuthActions, AuthActionTypes} from '../actions/auth.actions';
 
 export interface State {
   loggedIn: boolean;
-  user: IUser | null;
+  token: string;
 }
 
 export const initialState: State = {
   loggedIn: false,
-  user: null,
+  token: null,
 };
 
 export function reducer(state = initialState, action: AuthActions): State {
@@ -17,7 +16,7 @@ export function reducer(state = initialState, action: AuthActions): State {
       return {
         ...state,
         loggedIn: true,
-        user: action.payload.user,
+        token: action.payload,
       };
     }
 
@@ -32,4 +31,4 @@ export function reducer(state = initialState, action: AuthActions): State {
 }
 
 export const getLoggedIn = (state: State) => state.loggedIn;
-export const getUser = (state: State) => state.user;
+export const getToken = (state: State) => state.token;

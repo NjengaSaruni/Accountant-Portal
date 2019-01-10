@@ -9,6 +9,7 @@ import {MetaReducer, StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../../environments/environment';
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {EffectsModule} from '@ngrx/effects';
 
 export const metaReducers: MetaReducer<any>[] = [];
 
@@ -35,6 +36,15 @@ export const metaReducers: MetaReducer<any>[] = [];
 
     // Primary routing module
     AppRoutingModule,
+    /**
+     * EffectsModule.forRoot() is imported once in the root module and
+     * sets up the effects class to be initialized immediately when the
+     * application starts.
+     *
+     * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
+     */
+    EffectsModule.forRoot([]),
+
   ],
   providers: [
     // Internal services
