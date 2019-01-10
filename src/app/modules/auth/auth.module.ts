@@ -11,7 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from './store/effects/auth.effects';
+import {AuthEffects, RegisterEffects} from './store/effects';
 import {reducers} from './store/reducers';
 
 
@@ -30,7 +30,7 @@ import {reducers} from './store/reducers';
 
     // NgRx
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forFeature([AuthEffects, RegisterEffects]),
 
 
     // Internal modules

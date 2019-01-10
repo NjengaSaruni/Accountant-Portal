@@ -48,9 +48,9 @@ export class AuthService {
   /**
    *  Register the user then tell all the subscribers about the new status
    */
-  register(username: string, password1: string, password2: string): Observable<any> {
+  register(email: string, password1: string, password2: string): Observable<any> {
     return this._http.post(this.registrationAPI, {
-      username, password1, password2
+      email, password1, password2
     });
   }
 
