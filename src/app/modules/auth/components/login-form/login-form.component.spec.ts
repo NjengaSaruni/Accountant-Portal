@@ -45,7 +45,7 @@ describe('LoginFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
-    component.loginForm = formBuilder.group(mockAuth);
+    component.loginForm = formBuilder.group(mockAuthenticationPayload);
     fixture.detectChanges();
   });
 
@@ -61,13 +61,13 @@ describe('LoginFormComponent', () => {
   });
 
   it('form value should update from form changes', fakeAsync(() => {
-    updateForm(mockAuth.email, mockAuth.password);
-    expect(component.loginForm.value).toEqual(mockAuth);
+    updateForm(mockAuthenticationPayload.email, mockAuthenticationPayload.password);
+    expect(component.loginForm.value).toEqual(mockAuthenticationPayload);
   }));
 
   it('should dispatch a login event on submit', () => {
-    updateForm(mockAuth.email, mockAuth.password);
-    const $event: any = mockAuth;
+    updateForm(mockAuthenticationPayload.email, mockAuthenticationPayload.password);
+    const $event: any = mockAuthenticationPayload;
     const action = new fromAuth.Login($event);
 
     component.signIn();
@@ -76,7 +76,7 @@ describe('LoginFormComponent', () => {
   });
 });
 
-const mockAuth = <IAuthenticationPayload> {
+export const mockAuthenticationPayload = <IAuthenticationPayload> {
   email: 'john@doe.com',
   password: 'john!@#'
 };

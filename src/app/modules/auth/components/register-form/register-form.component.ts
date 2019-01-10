@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
-import {AuthService} from '../../services/auth.service';
 import {Store} from '@ngrx/store';
 import {IRegistrationPayload} from '../../models/user';
 import * as fromAuth from '../../store';
@@ -17,7 +16,6 @@ export class RegisterFormComponent implements OnInit {
   formLabels: any = {email: false, password: false};
 
   constructor(private loaderService: LoaderService,
-              private authService: AuthService,
               private formBuilder: FormBuilder,
               private store: Store<fromAuth.AuthState>
   ) {
@@ -43,9 +41,6 @@ export class RegisterFormComponent implements OnInit {
   }
 
   signUp() {
-    if (this.profileForm.invalid) {
-      return;
-    }
     this.loaderService.show();
 
     const registrationPayload = <IRegistrationPayload> {

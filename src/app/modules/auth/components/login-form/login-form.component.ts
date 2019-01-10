@@ -40,11 +40,11 @@ export class LoginFormComponent implements OnInit {
 
   signIn() {
     this.loaderService.show();
-    const auth = <IAuthenticationPayload> {
+    const authenticationPayload = <IAuthenticationPayload> {
       email: this.loginForm.get('email').value,
       password: this.loginForm.get('password').value
     };
 
-    this.store.dispatch(new fromAuth.Login(auth));
+    this.store.dispatch(new fromAuth.Login(authenticationPayload));
   }
 }
