@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,5 @@ export class SettingsService {
   set apiHost(value: string) {
     this._apiHost = value;
   }
-  private _apiHost = 'http://localhost:8000/api/v1/';
-  constructor() { }
+  private _apiHost = environment.api;
 }

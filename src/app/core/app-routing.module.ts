@@ -9,6 +9,10 @@ const routes: Routes = [
 
   },
   {
+    path: 'dashboard',
+    loadChildren: '../modules/dashboard/dashboard.module#DashboardModule',
+  },
+  {
     path: 'auth',
     loadChildren: '../modules/auth/auth.module#AuthModule',
     data: { animation: 'auth' }

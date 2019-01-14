@@ -5,9 +5,6 @@
 <div class="centered-h content">
   <div class="segment centered">
     <div class="bg-white margin-s padding-s relative login chart">
-      <div>
-        <p>Logged In : {{ loggedIn$ | async }}</p>
-      </div>
       <div class="bordered-b shaded">
         <div class="centered login-header">
           <h3>AccountPlus</h3>
@@ -29,8 +26,8 @@
       </div>
 
       <div class="absolute-bottom padding-bs">
-        <a href="" class="info link ">Forgot Password?</a>
-        <a href="" class="info link float-right">Create an account</a>
+        <!--<a href="" class="info link ">Forgot Password?</a>-->
+        <a href="" class="info link float-right" routerLink="/auth/register">Create an account</a>
       </div>
     </div>
   </div>
