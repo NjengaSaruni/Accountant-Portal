@@ -6,20 +6,24 @@ import {HomeRoutingModule} from './home-routing.module';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SharedModule} from '../shared/shared.module';
 import {FormsModule} from '@angular/forms';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    DashboardComponent,
+    // DashboardComponent,
   ],
   imports: [
+    // External
     CommonModule,
-    ChartsModule,
-    SharedModule,
-    HomeRoutingModule,
     AngularFontAwesomeModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule,
+
+    // Internal
+    HomeRoutingModule,
+    ChartsModule,
+    SharedModule
   ],
 })
 export class HomeModule { }

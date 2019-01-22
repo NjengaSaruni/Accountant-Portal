@@ -1,21 +1,25 @@
 <div class="raised top-header">
   <app-header></app-header>
 </div>
-<div class="content" #content>
-  <div class="row">
-    <div class="col">
-      <app-piechart [chart]="pieChart"></app-piechart>
-    </div>
-    <div class="col">
-      <app-linechart [chart]="lineChart"></app-linechart>
-    </div>
-    <!--<div class="col">-->
-      <!--<app-linechart [chart]="lineChart" [fill]="true"></app-linechart>-->
-    <!--</div>-->
+<div class="content">
+  <div class="container"
+       fxLayout
+       fxLayout.xs="column"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
+    <div class="item item-1" fxFlex="15%">Item 1</div>
+    <div class="item item-2" fxFlex="20%" fxFlexOrder="3">Item 2</div>
+    <div class="item item-3" fxFlex>Item 3</div>
   </div>
-  <div class="row" >
-    <div class="col" *ngFor="let graph of barCharts">
-      <app-barchart [chart]="graph"></app-barchart>
-    </div>
+
+  <div class="container"
+       fxLayout
+       fxLayout.xs="column"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
+    <div class="item item-4" fxFlex fxFlexOffset="50px"  fxFlexOffset.xs="0">Item 4</div>
+    <div class="item item-5" fxFlex="200px">Item 5</div>
   </div>
 </div>

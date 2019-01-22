@@ -3,14 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'dashboard',
+    loadChildren: '../modules/dashboard/dashboard.module#DashboardModule',
+  },
+  {
     path: 'home',
     loadChildren: '../modules/home/home.module#HomeModule',
     data: { animation: 'home' }
 
-  },
-  {
-    path: 'dashboard',
-    loadChildren: '../modules/dashboard/dashboard.module#DashboardModule',
   },
   {
     path: 'auth',
@@ -25,7 +25,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(
+    routes,
+    {
+
+    }
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
