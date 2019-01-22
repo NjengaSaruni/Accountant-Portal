@@ -2,6 +2,16 @@
   <app-header></app-header>
 </div>
 <div class="content" #content>
+  <div class="container"
+       fxLayout
+       fxLayout.xs="column"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
+    <div class="item item-1" fxFlex *ngFor="let card of cards">
+      <app-card class="centered" [config]="card"></app-card>
+    </div>
+  </div>
   <div class="row">
     <div class="col">
       <app-piechart [chart]="pieChart"></app-piechart>

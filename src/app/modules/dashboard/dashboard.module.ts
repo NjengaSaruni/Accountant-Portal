@@ -4,13 +4,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import {ChartsModule} from '../charts/charts.module';
+import { CardComponent } from './components/card/card.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [
+    DashboardComponent, CardComponent],
   imports: [
     // External
     CommonModule,
-
+    FlexLayoutModule,
     // Internal
     DashboardRoutingModule,
     SharedModule,
