@@ -8,6 +8,10 @@ import { LoaderComponent } from './components/loader/loader.component';
 import {LoaderService} from './components/loader/loader.service';
 import { MessageComponent } from './components/message/message.component';
 import {MessageService} from './components/message/message.service';
+import {StoreModule} from '@ngrx/store';
+import {reducers} from '../auth/store/reducers';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffects, RegisterEffects} from '../auth/store/effects';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import {MessageService} from './components/message/message.service';
     CommonModule,
     AngularFontAwesomeModule,
     RouterModule,
+
+    // NgRx
+    StoreModule.forFeature('auth', reducers),
+    EffectsModule.forFeature([AuthEffects, RegisterEffects]),
   ],
   exports: [
     HeaderComponent,

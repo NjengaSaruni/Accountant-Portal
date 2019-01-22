@@ -1,17 +1,21 @@
 <div class="row no-padding margin-bs header-wrapper">
   <div class="col">
     <div class="margin options">
-      <a class="centered padding option"  routerLink="/auth/register">
+      <a *ngIf="!loggedIn$ | async" class="centered padding option" routerLink="/auth/register">
         Register
         <fa name="user" class="padding"></fa>
       </a>
-      <div class="centered padding option" routerLink="/auth/login">
+      <div *ngIf="!loggedIn$ | async" class="centered padding option" routerLink="/auth/login">
         Log In
         <fa name="user" class="padding"></fa>
       </div>
-      <div class="centered padding option">
+      <div *ngIf="loggedIn$ | async" class="centered padding option">
         Account Settings
         <fa name="cog" class="padding"></fa>
+      </div>
+      <div *ngIf="loggedIn$ | async" class="centered padding option" (click)="signOut()">
+        Sign Out
+        <fa name="user" class="padding"></fa>
       </div>
     </div>
     <div class="navigation">
@@ -20,13 +24,13 @@
           <p><span class="color-p">Account</span><span class="color-s">Plus</span></p>
         </div>
       </nav>
-      <div class="elements">
+      <div class="elements" *ngIf="loggedIn$ | async">
         <div class="element padding centered-v">
           <div class="main-title padding">
-            <div class="centered-v title">
+            <nav class="centered-v title" routerLink="/dashboard">
               <span class="padding">Dashboard</span>
               <fa name="dashboard" class="padding"></fa>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
