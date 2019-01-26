@@ -1,7 +1,6 @@
-<div class="raised dashboard-report-card chart"
-
+<div class="raised dashboard-report-card"
   [ngStyle]="{
-    'background': config.background.color
+    'border-top': '8px solid' + config.title.color
   }">
 
   <div class="centered title padding-s">
@@ -20,13 +19,23 @@
     <p [ngStyle]="{
       'color': config.title.color
     }">
-      {{ config.data.value }} {{config.data.unit }}
+      {{ config.data.value | number: '.2' }} {{ config.data.unit }}
     </p>
   </div>
 
   <div class="centered card-trend">
     <fa name="arrow-up" class="padding color-p" *ngIf="config.data.value > config.data.previous"></fa>
     <fa name="arrow-down" class="padding color-red" *ngIf="config.data.value < config.data.previous"></fa>
-    <p class="color-p"> {{ ((config.data.value - config.data.previous) / config.data.value ) * 100 | number}} % </p>
+
+    <p class="color-p" *ngIf="config.data.value > config.data.previous">
+      {{((config.data.value - config.data.previous) / config.data.value ) * 100 | number: '.1' }}%
+      ({{ config.data.value - config.data.previous  | number: '.2' }} KES)
+    </p>
+
+    <p class="color-red" *ngIf="config.data.value < config.data.previous">
+      {{((config.data.value - config.data.previous) / config.data.value ) * 100 | number: '.1' }}%
+      ({{ config.data.value - config.data.previous | number: '.2'}} KES)
+    </p>
+
   </div>
 </div>

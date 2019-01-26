@@ -16,6 +16,9 @@
     <div class="col">
       <app-linechart [chart]="lineChart"></app-linechart>
     </div>
+    <div class="col">
+      <app-barchart [chart]="barCharts[0]"></app-barchart>
+    </div>
   </div>
   <div class="row" >
     <div class="col" *ngFor="let graph of barCharts">

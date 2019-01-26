@@ -45,8 +45,8 @@ export function getMockData(): DataObject[] {
 }
 
 
-export function getMockBarchart() {
-  const barChart = new BarChart(800, 400);
+export function getMockBarchart(width = 800, height = 400) {
+  const barChart = new BarChart(width, height);
 
   barChart.title = `Bar Graph A`;
   barChart.subtitle = `A graph of weekly expenditure in Kshs`;
@@ -55,7 +55,7 @@ export function getMockBarchart() {
   barChart.line.color = '#1945ff';
   // barChart.barPadding = 40;
   barChart.populate(getMockData());
-
+  barChart.backgroundColor = 'rgba(238, 250, 232, 0.3)';
   return barChart;
 }
 
@@ -67,6 +67,7 @@ export function getMockLinechart(width = 800, height = 400) {
   lineChart.line.width = randomInt(2, 6);
   lineChart.line.color = randomColor();
   lineChart.populate(getMockData());
+  lineChart.backgroundColor = 'rgba(238, 250, 232, 0.3)';
 
   return lineChart;
 }
@@ -77,6 +78,8 @@ export function getMockPiechart() {
   piechart.title = `Bar Graph A`;
   piechart.subtitle = `A graph of weekly expenditure in Kshs`;
   piechart.populate(getMockData());
+  piechart.backgroundColor = 'rgba(238, 250, 232, 0.3)';
+
 
   return piechart;
 }
