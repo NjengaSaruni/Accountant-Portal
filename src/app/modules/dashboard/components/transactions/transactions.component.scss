@@ -1,0 +1,40 @@
+.transactions-component {
+  min-height: 200px;
+  font-family: "DejaVu Sans Mono" !important;
+
+  .title-bar {
+    display: flex;
+
+    #deleted {
+      color: #7f7f7f;
+    }
+
+    .add-transaction-button {
+      float: right;
+    }
+  }
+
+  .title-bar > * {
+    flex: 1 100%;
+  }
+
+  .transaction-table {
+
+    .transaction-list-titles {
+      border-bottom: 2px solid #7f7f7f;
+      text-align: justify;
+
+    }
+
+    .transaction-list-data {
+      tr {
+        td {
+          border-bottom: 2px solid #7f7f7f;
+        }
+      }
+    }
+  }
+
+
+}
+
