@@ -1,12 +1,27 @@
 .dashboard-report-card {
   height: 200px;
   width: 400px;
-  background: #153f41;
+  background: rgba(238, 250, 232, 0.3);
   color: white;
 
   .title {
     p {
+      font-family: "DejaVu Sans Mono";
       font-size: 20px;
+    }
+  }
+
+  .card-value {
+    p {
+      font-family: "DejaVu Sans Mono";
+      font-size: 30px;
+    }
+  }
+
+  .card-trend {
+    fa, p {
+      font-family: "DejaVu Sans Mono";
+      font-size: 15px;
     }
   }
 }

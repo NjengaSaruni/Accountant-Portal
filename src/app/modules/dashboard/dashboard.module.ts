@@ -6,6 +6,7 @@ import {SharedModule} from '../shared/shared.module';
 import {ChartsModule} from '../charts/charts.module';
 import { CardComponent } from './components/card/card.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     // External
     CommonModule,
     FlexLayoutModule,
+    AngularFontAwesomeModule,
+
     // Internal
     DashboardRoutingModule,
     SharedModule,

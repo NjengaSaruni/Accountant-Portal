@@ -5,6 +5,7 @@ import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
 import {getMockBarchart, getMockLinechart, getMockPiechart, randomColor} from '../../shared/utils/randomInt';
 import {IReportCard} from '../models/ReportCard.model';
+import {WindowRefService} from '../../shared/services/window-ref.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,22 +19,28 @@ export class DashboardComponent implements OnInit {
   lineChart: LineChart;
   data: DataObject[];
   cards: IReportCard[] = [];
-  constructor() { }
+  constructor(private winRef: WindowRefService) { }
 
   async ngOnInit() {
     this.barCharts.push(getMockBarchart());
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
-    this.lineChart = getMockLinechart();
+    console.log(this.winRef.nativeWindow);
+    this.lineChart = getMockLinechart(this.winRef.nativeWindow.innerWidth - 100);
 
     this.cards.push(
       <IReportCard> {
         title: {
           name: 'Income',
-          color: '#FAFAFA'
+          color: '#6EC4DB'
         },
         background: {
-          color: 'green'
+          // color: '#6EC4DB'
+        },
+        data: {
+          value: 3000,
+          unit: 'KES',
+          previous: 2000
         }
       }
     );
@@ -42,10 +49,15 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Expense',
-          color: '#FAFAFA'
+          color: '#FA7C92'
         },
         background: {
-          color: 'orange'
+          // color: '#FA7C92'
+        },
+        data: {
+          value: -1450,
+          unit: 'KES',
+          previous: -2000
         }
       }
     );
@@ -54,20 +66,31 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Saved',
-          color: '#FAFAFA'
+          color: '#A239CA'
         },
         background: {
-          color: 'blue'
+          // color: '#FFF7C0'
+        },
+        data: {
+          value: this.cards[0].data.value + this.cards[1].data.value,
+          unit: 'KES',
+          previous: this.cards[0].data.previous + this.cards[1].data.previous
         }
       }
-    );  this.cards.push(
+      );
+
+    this.cards.push(
       <IReportCard> {
         title: {
           name: 'Avg. Monthly Expense',
-          color: '#FAFAFA'
+          color: '#66AB86'
         },
         background: {
-          color: randomColor()
+          // color: '#66AB86'
+        },
+        data: {
+          value: 1000,
+          unit: 'KES'
         }
       }
     );
