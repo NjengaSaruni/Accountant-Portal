@@ -1,0 +1,32 @@
+<div class="raised dashboard-report-card chart"
+
+  [ngStyle]="{
+    'background': config.background.color
+  }">
+
+  <div class="centered title padding-s">
+
+    <p [ngStyle]="{
+      'color': config.title.color
+    }">
+
+      {{ config.title.name }}
+
+    </p>
+
+  </div>
+
+  <div class="centered card-value">
+    <p [ngStyle]="{
+      'color': config.title.color
+    }">
+      {{ config.data.value }} {{config.data.unit }}
+    </p>
+  </div>
+
+  <div class="centered card-trend">
+    <fa name="arrow-up" class="padding color-p" *ngIf="config.data.value > config.data.previous"></fa>
+    <fa name="arrow-down" class="padding color-red" *ngIf="config.data.value < config.data.previous"></fa>
+    <p class="color-p"> {{ ((config.data.value - config.data.previous) / config.data.value ) * 100 | number}} % </p>
+  </div>
+</div>

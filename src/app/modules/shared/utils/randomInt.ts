@@ -59,8 +59,8 @@ export function getMockBarchart() {
   return barChart;
 }
 
-export function getMockLinechart() {
-  const lineChart = new LineChart(800, 400);
+export function getMockLinechart(width = 800, height = 400) {
+  const lineChart = new LineChart(width, height);
 
   lineChart.title = `Bar Graph A`;
   lineChart.subtitle = `A graph of weekly expenditure in Kshs`;
