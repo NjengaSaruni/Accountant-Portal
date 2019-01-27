@@ -8,7 +8,7 @@
        fxLayoutAlign="space-between center"
        fxLayoutGap="16px"
        fxLayoutGap.xs="0">
-    <div class="item item-1" fxFlex *ngFor="let card of cards">
+    <div class="bg-white" fxFlex *ngFor="let card of cards">
       <app-card [config]="card"></app-card>
     </div>
   </div>
@@ -16,10 +16,10 @@
   <div class="margin-s"
        fxLayout
        fxLayout.xs="row"
-       fxLayoutAlign="space-between start"
+       fxLayoutAlign="space-between stretch"
        fxLayoutGap="16px"
        fxLayoutGap.xs="0">
-    <div fxFlex>
+    <div fxFlex class="bg-white">
       <app-transactions></app-transactions>
     </div>
     <div fxFlex>

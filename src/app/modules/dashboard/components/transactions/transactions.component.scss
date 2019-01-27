@@ -4,6 +4,7 @@
 
   .title-bar {
     display: flex;
+    border-bottom: 2px solid black;
 
     #deleted {
       color: #7f7f7f;
@@ -24,7 +25,9 @@
     .transaction-list-titles {
       border-bottom: 2px solid #7f7f7f;
       text-align: justify;
-
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
 
   }

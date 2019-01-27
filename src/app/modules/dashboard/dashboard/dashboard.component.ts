@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
           // color: '#6EC4DB'
         },
         data: {
-          value: 1000,
+          value: 3000,
           unit: 'KES',
           previous: 2000
         }

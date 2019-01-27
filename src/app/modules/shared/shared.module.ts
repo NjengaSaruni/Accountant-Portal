@@ -12,13 +12,15 @@ import {StoreModule} from '@ngrx/store';
 import {reducers} from '../auth/store/reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects, RegisterEffects} from '../auth/store/effects';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     ButtonComponent,
     LoaderComponent,
-    MessageComponent
+    MessageComponent,
+    ModalComponent
   ],
   imports: [
     // External modules

@@ -1,51 +1,54 @@
-<div class="transactions-component bg-white">
-  <div class="title-bar padding">
-    <div class="padding-h row">
-      <div>Transactions <span class="title-bar-label padding bordered">335</span></div>
-      <div id="deleted">Deleted <span class="title-bar-label bordered padding">2</span></div>
+<div class="transactions-component margin-s bg-white">
+  <div class="title-bar padding-bs">
+    <div class="padding-ts"
+       fxLayout
+       fxLayout.xs="row"
+       fxLayoutAlign="space-between end"
+       fxLayoutGap.xs="0">
+      <div fxFlex>TRANSACTIONS <span class="title-bar-label bordered">335</span></div>
+      <div fxFlex id="deleted">Deleted <span class="title-bar-label bordered">2</span></div>
     </div>
     <div>
       <app-button [text]="'Add Transaction'" class="add-transaction-button"></app-button>
     </div>
   </div>
-  <div class="padding">
-    <table class="padding full-width transaction-table">
-      <thead class="transaction-list-titles">
-      <tr class="padding">
-        <th class="padding-h">
-          <p>Date</p>
-        </th>
-        <th class="padding">
-          <p>Amount</p>
-        </th>
-        <th class="padding">
-          <p>Tag</p>
-        </th>
-        <th class="padding">
-          <p>Description</p>
-        </th>
-      </tr>
-      </thead>
-      <tbody class="transaction-list-data">
-      <tr *ngFor="let transaction of transactions" class="bordered-b padding">
-        <td class="padding-h">
-          {{transaction.created_at | date: 'MMM d'}}
-        </td>
-        <td class="padding" [ngClass]="{
+
+  <table class="padding full-width transaction-table">
+    <thead class="transaction-list-titles">
+    <tr class="padding">
+      <th class="padding">
+        <p>Amount</p>
+      </th>
+      <th class="padding">
+        <p>Tag</p>
+      </th>
+      <th class="padding">
+        <p>Description</p>
+      </th>
+      <th class="padding-h">
+        <p>Date</p>
+      </th>
+    </tr>
+    </thead>
+    <tbody class="transaction-list-data">
+    <tr *ngFor="let transaction of transactions" class="bordered-b padding">
+      <td class="padding" [ngClass]="{
         'color-red': transaction.amount < 0,
         'color-p': transaction.amount >= 0
         }">
-          <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
-        </td>
-        <td class="padding">
-          <p href="">{{ transaction.tag.name }}</p>
-        </td>
-        <td class="padding">
-          <p class="transaction-description"> {{ transaction.description }}</p>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
+      </td>
+      <td class="padding">
+        <p href="">{{ transaction.tag.name }}</p>
+      </td>
+      <td class="padding">
+        <p class="transaction-description"> {{ transaction.description }}</p>
+      </td>
+      <td class="padding-h">
+        {{transaction.created_at | date: 'MMM d'}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
-  </div>
 </div>
