@@ -22,11 +22,11 @@ export class DashboardComponent implements OnInit {
   constructor(private winRef: WindowRefService) { }
 
   async ngOnInit() {
-    this.barCharts.push(getMockBarchart());
+    this.barCharts.push(getMockBarchart((this.winRef.nativeWindow.innerWidth - 300) / 2));
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     console.log(this.winRef.nativeWindow);
-    this.lineChart = getMockLinechart(this.winRef.nativeWindow.innerWidth - 100);
+    this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 200) / 2);
 
     this.cards.push(
       <IReportCard> {
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
           // color: '#6EC4DB'
         },
         data: {
-          value: 3000,
+          value: 1000,
           unit: 'KES',
           previous: 2000
         }
@@ -55,9 +55,9 @@ export class DashboardComponent implements OnInit {
           // color: '#FA7C92'
         },
         data: {
-          value: -1450,
+          value: -6000,
           unit: 'KES',
-          previous: -2000
+          previous: -4800
         }
       }
     );
@@ -82,15 +82,16 @@ export class DashboardComponent implements OnInit {
     this.cards.push(
       <IReportCard> {
         title: {
-          name: 'Avg. Monthly Expense',
+          name: 'NET WORTH',
           color: '#66AB86'
         },
         background: {
           // color: '#66AB86'
         },
         data: {
-          value: 1000,
-          unit: 'KES'
+          value: 100000,
+          unit: 'KES',
+          previous: 900,
         }
       }
     );

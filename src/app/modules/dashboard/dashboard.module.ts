@@ -7,10 +7,11 @@ import {ChartsModule} from '../charts/charts.module';
 import { CardComponent } from './components/card/card.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent, CardComponent],
+    DashboardComponent, CardComponent, TransactionsComponent ],
   imports: [
     // External
     CommonModule,

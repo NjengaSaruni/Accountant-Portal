@@ -7,6 +7,9 @@ body, p {
   font-weight: 300;
   font-style: normal;
 }
+body {
+  background-color: #E6ECF0;
+}
 input {
   box-shadow: none;
   border: none;
@@ -42,7 +45,7 @@ li {
   background: #FFFFFF;
 }
 .bg-red {
-  background: #ff2133;
+  background: #FA7C92;
 }
 .bg-blue {
   background: #1a20ff;
@@ -51,10 +54,10 @@ li {
   background: #c3fff7;
 }
 .color-p {
-  color: #0E5A77;
+  color: #6EC4DB;
 }
 .color-red {
-  background: #ff2133;
+  color: #FA7C92;
 }
 .color-s {
   color: #777529;
@@ -68,7 +71,7 @@ li {
 .row {
   display: inline-flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   .col {
     width: 100%;
   }
@@ -207,19 +210,19 @@ li {
 // Custom borders
 
 .bordered {
-  border: 1px solid #DADADA;
+  border: 1px solid #e6ecf0;
 }
 .bordered-t {
-  border-top: 1px solid #DADADA;
+  border-top: 1px solid #e6ecf0;
 }
 .bordered-r {
-  border-right: 1px solid #DADADA;
+  border-right: 1px solid #e6ecf0;
 }
 .bordered-b {
-  border-bottom: 1px solid #DADADA;
+  border-bottom: 1px solid #e6ecf0;
 }
 .bordered-l {
-  border-left: 1px solid #DADADA;
+  border-left: 1px solid #e6ecf0;
 }
 .circular {
   border-radius: 50%;
@@ -237,7 +240,7 @@ li {
   position: relative;
   margin-top: 70px;
   height:95vh;
-  background: #f5f5f5;
+  //background: #f5f5f5;
   //background: url("assets/backgrounds/mountain+range.png");
   //background: url("assets/backgrounds/laptop-money-manage.jpg");
   //background: url("https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?cs=srgb&dl=background-black-colors-952670.jpg&fm=jpg");
