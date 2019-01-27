@@ -24,10 +24,10 @@
   </div>
 
   <div class="centered card-trend">
-    <fa name="arrow-up" class="padding color-p" *ngIf="config.data.value > config.data.previous"></fa>
+    <fa name="arrow-up" class="padding color-green" *ngIf="config.data.value > config.data.previous"></fa>
     <fa name="arrow-down" class="padding color-red" *ngIf="config.data.value < config.data.previous"></fa>
 
-    <p class="color-p" *ngIf="config.data.value > config.data.previous">
+    <p class="color-green" *ngIf="config.data.value > config.data.previous">
       {{((config.data.value - config.data.previous) / config.data.value ) * 100 | number: '.1' }}%
       ({{ config.data.value - config.data.previous  | number: '.2' }} KES)
     </p>

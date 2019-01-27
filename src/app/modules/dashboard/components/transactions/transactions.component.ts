@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ITag, ITranscation} from '../../models/Transaction.model';
+import {ModalService} from '../../../shared/components/modal/modal.service';
 
 @Component({
   selector: 'app-transactions',
@@ -8,7 +9,7 @@ import {ITag, ITranscation} from '../../models/Transaction.model';
 })
 export class TransactionsComponent implements OnInit {
   transactions: ITranscation[] = [];
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
     this.transactions.push(
@@ -59,4 +60,13 @@ export class TransactionsComponent implements OnInit {
       }
     );
   }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
 }

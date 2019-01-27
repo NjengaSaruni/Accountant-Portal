@@ -13,6 +13,7 @@ import {reducers} from '../auth/store/reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects, RegisterEffects} from '../auth/store/effects';
 import { ModalComponent } from './components/modal/modal.component';
+import {ModalService} from './components/modal/modal.service';
 
 @NgModule({
   declarations: [
@@ -36,11 +37,13 @@ import { ModalComponent } from './components/modal/modal.component';
     HeaderComponent,
     ButtonComponent,
     LoaderComponent,
-    MessageComponent
+    MessageComponent,
+    ModalComponent
   ],
   providers: [
     LoaderService,
-    MessageService
+    MessageService,
+    ModalService
   ]
 })
 export class SharedModule { }
