@@ -31,11 +31,31 @@ export class TransactionsComponent implements OnInit {
     );
     this.transactions.push(
       <ITranscation>{
-        amount: 10000,
+        amount: 1000000,
         tag: <ITag> {
           name: 'SAVINGS'
         },
         description: 'Redeemed savings'
+      }
+    );
+    this.transactions.push(
+      <ITranscation>{
+        created_at: new Date(),
+        amount: -230,
+        tag: <ITag> {
+          name: 'UBER'
+        },
+        description: 'Travelled to see my brother in South B.'
+      }
+    );
+    this.transactions.push(
+      <ITranscation>{
+        created_at: new Date('2019-10-12'),
+        amount: -2800,
+        tag: <ITag> {
+          name: 'UBER'
+        },
+        description: 'Travelled to see my brother in South B.'
       }
     );
   }

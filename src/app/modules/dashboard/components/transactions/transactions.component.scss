@@ -19,6 +19,7 @@
   }
 
   .transaction-table {
+    border-collapse: collapse;
 
     .transaction-list-titles {
       border-bottom: 2px solid #7f7f7f;
@@ -26,13 +27,6 @@
 
     }
 
-    .transaction-list-data {
-      tr {
-        td {
-          border-bottom: 2px solid #7f7f7f;
-        }
-      }
-    }
   }
 
 

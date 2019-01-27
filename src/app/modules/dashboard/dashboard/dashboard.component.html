@@ -2,22 +2,27 @@
   <app-header></app-header>
 </div>
 <div class="content" #content>
-  <div class="container"
+  <div class="margin-s container"
        fxLayout
-       fxLayout.xs="column"
-       fxLayoutAlign="center"
-       fxLayoutGap="10px"
+       fxLayout.xs="row"
+       fxLayoutAlign="space-between center"
+       fxLayoutGap="16px"
        fxLayoutGap.xs="0">
     <div class="item item-1" fxFlex *ngFor="let card of cards">
-      <app-card class="centered" [config]="card"></app-card>
+      <app-card [config]="card"></app-card>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
+  <div class="margin-s"
+       fxLayout
+       fxLayout.xs="row"
+       fxLayoutAlign="space-between start"
+       fxLayoutGap="16px"
+       fxLayoutGap.xs="0">
+    <div fxFlex>
       <app-transactions></app-transactions>
     </div>
-    <div class="col">
+    <div fxFlex>
       <app-barchart [chart]="barCharts[0]"></app-barchart>
     </div>
   </div>
