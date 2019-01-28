@@ -4,7 +4,7 @@
 body, p {
   margin: 0;
   font-family: montserrat, sans-serif;
-  font-weight: 300;
+  font-weight: normal;
   font-style: normal;
 }
 body {
@@ -67,6 +67,9 @@ li {
 }
 .color-white {
   color: white;
+}
+.hover-white {
+  color: #cbeeff;
 }
 .color-grey {
   color: #586069;
@@ -233,7 +236,7 @@ li {
 .top-header {
   position: fixed;
   top: 0;
-  z-index: 99999;
+  z-index: 899;
   width: 100%;
   opacity: 1;
   background: white;
@@ -369,7 +372,7 @@ app-modal {
     left: 0;
 
     /* semi-transparent black  */
-    background-color: #000;
+    background-color: #E6ECF0;
     opacity: 0.75;
 
     /* z-index must be below .app-modal and above everything else  */

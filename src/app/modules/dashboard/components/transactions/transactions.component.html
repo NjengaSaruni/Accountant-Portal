@@ -1,40 +1,57 @@
-<div class="transactions-component margin-s bg-white">
-  <div class="title-bar padding-bs">
-    <div class="padding-ts"
+<div class="transactions-component bg-white">
+  <div class="title-bar">
+    <div
        fxLayout
        fxLayout.xs="row"
        fxLayoutAlign="space-between end"
        fxLayoutGap.xs="0">
-      <div fxFlex>TRANSACTIONS <span class="title-bar-label bordered">335</span></div>
-      <div fxFlex id="deleted">Deleted <span class="title-bar-label bordered">2</span></div>
+      <div fxFlex class="full-height title-bar-option" (click)="selectList(0)">
+        <p class="centered full-height full-width">Transactions <span class="title-bar-label bordered">335</span></p>
+        <div class="title-bar-underline" *ngIf="lists[0].selected"></div>
+      </div>
+      <div fxFlex class="full-height title-bar-option" id="deleted" (click)="selectList(1)">
+        <p class="centered full-height full-width">Deleted <span class="title-bar-label bordered">2</span></p>
+        <div class="title-bar-underline" *ngIf="lists[1].selected"></div>
+      </div>
+      <div fxFlex class="full-height">
+        <app-button
+          [text]="'Add Transaction'"
+          [icon]="'plus'"
+          [raised]="true"
+          class="centered add-transaction-button"
+          (click)="openModal('custom-modal-1')">
+        </app-button>
+      </div>
     </div>
-    <div>
-      <app-button [text]="'Add Transaction'" class="add-transaction-button" (click)="openModal('custom-modal-1')"></app-button>
-    </div>
+
   </div>
 
   <table class="padding full-width transaction-table">
-    <thead class="transaction-list-titles">
-    <tr class="padding">
-      <th class="padding">
-        <p>Amount</p>
-      </th>
-      <th class="padding">
-        <p>Tag</p>
-      </th>
-      <th class="padding">
-        <p>Description</p>
-      </th>
-      <th class="padding-h">
-        <p>Date</p>
-      </th>
-    </tr>
-    </thead>
+    <!--<thead class="transaction-list-titles">-->
+    <!--<tr class="padding">-->
+      <!--<th class="padding">-->
+        <!--<p>Amount</p>-->
+      <!--</th>-->
+      <!--<th class="padding">-->
+        <!--<p>Tag</p>-->
+      <!--</th>-->
+      <!--<th class="padding">-->
+        <!--<p>Description</p>-->
+      <!--</th>-->
+      <!--<th class="padding-h">-->
+        <!--<p>Date</p>-->
+      <!--</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
     <tbody class="transaction-list-data">
-    <tr *ngFor="let transaction of transactions" class="bordered-b padding">
+    <tr *ngFor="let transaction of transactions" class="bordered-b padding"
+        [ngClass]="{'raised': transaction.hovered }"
+        (mouseenter)="transaction.hovered = true"
+        (mouseleave)="transaction.hovered = false"
+      >
       <td class="padding" [ngClass]="{
         'color-red': transaction.amount < 0,
-        'color-p': transaction.amount >= 0
+        'color-green': transaction.amount >= 0
         }">
         <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
       </td>
@@ -54,7 +71,7 @@
 </div>
 
 
-<app-modal id="custom-modal-1" >
+<app-modal id="custom-modal-1" [raised]="true">
   <h1>A Custom Modal!</h1>
   <p>Home page text</p>
   <button (click)="closeModal('custom-modal-1');">Close</button>

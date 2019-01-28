@@ -1,14 +1,35 @@
-.button {
-  //width: 250px;
-  height: 50px;
-  border: none;
-  cursor: pointer;
+.button-group {
+  position: relative;
+  .button {
+    //width: 250px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .button.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .button.circular {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .button:hover {
+
+  }
+
+  fa {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(0%, -50%);
+    color: white;
+    /* height: 100%; */
+    font-size: 20px;
+    padding: 13px;
+  }
 }
 
-.button.disabled {
-  opacity: 0.4;
-}
-
-.button:hover {
-
-}

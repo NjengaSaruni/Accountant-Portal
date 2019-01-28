@@ -1,15 +1,34 @@
 import { Component, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 import {ModalService} from './modal.service';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
+  animations: [
+    trigger('slideAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
+  @Input() raised = true;
   private element: any;
 
   constructor(private modalService: ModalService, private el: ElementRef) {

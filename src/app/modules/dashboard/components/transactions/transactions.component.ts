@@ -9,6 +9,16 @@ import {ModalService} from '../../../shared/components/modal/modal.service';
 })
 export class TransactionsComponent implements OnInit {
   transactions: ITranscation[] = [];
+  lists = [
+    {
+      name: 'New',
+      selected: true
+    },
+    {
+      name: 'Deleted',
+      selected: false
+    }
+  ];
   constructor(private modalService: ModalService) { }
 
   ngOnInit() {
@@ -69,4 +79,8 @@ export class TransactionsComponent implements OnInit {
     this.modalService.close(id);
   }
 
+  selectList(i: number) {
+    this.lists[i].selected = true;
+    this.lists[Math.abs(i - 1)].selected = false;
+  }
 }

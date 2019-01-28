@@ -14,10 +14,18 @@ export class ButtonComponent implements OnInit {
   @Input() height = 50;
   @Input() disabled = false;
   @Input() fullWidth: false;
+  @Input() raised = false;
+  @Input() circular = false;
+  @Input() icon = '';
 
-  constructor() { }
+  borderRadius: number;
+
+  constructor() {}
 
   ngOnInit() {
+    if (this.circular) {
+      this.borderRadius = this.height;
+    }
   }
 
 }
