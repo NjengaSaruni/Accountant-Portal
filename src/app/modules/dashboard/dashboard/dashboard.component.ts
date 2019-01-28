@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BarChart} from '../../charts/models/BarChart/BarChart';
 import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
-import {getMockBarchart, getMockLinechart, getMockPiechart, randomColor} from '../../shared/utils/randomInt';
+import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
 import {IReportCard} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
 
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
           // color: '#6EC4DB'
         },
         data: {
-          value: 1000,
+          value: 3000,
           unit: 'KES',
           previous: 2000
         }

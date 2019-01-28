@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ITag, ITranscation} from '../../models/Transaction.model';
+import {ModalService} from '../../../shared/components/modal/modal.service';
 
 @Component({
   selector: 'app-transactions',
@@ -8,7 +9,17 @@ import {ITag, ITranscation} from '../../models/Transaction.model';
 })
 export class TransactionsComponent implements OnInit {
   transactions: ITranscation[] = [];
-  constructor() { }
+  lists = [
+    {
+      name: 'New',
+      selected: true
+    },
+    {
+      name: 'Deleted',
+      selected: false
+    }
+  ];
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
     this.transactions.push(
@@ -58,5 +69,18 @@ export class TransactionsComponent implements OnInit {
         description: 'Travelled to see my brother in South B.'
       }
     );
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+  selectList(i: number) {
+    this.lists[i].selected = true;
+    this.lists[Math.abs(i - 1)].selected = false;
   }
 }

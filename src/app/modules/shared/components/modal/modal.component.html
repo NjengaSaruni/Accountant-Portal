@@ -1,0 +1,11 @@
+<div class="centered app-modal">
+  <div class="app-modal-body"
+       [ngClass]="{
+          'raised': raised
+        }"
+       [@slideAnimation]
+  >
+    <ng-content></ng-content>
+  </div>
+</div>
+<div class="app-modal-background"></div>

@@ -1,31 +1,44 @@
-<button *ngIf="fullWidth"
-  class="button"
-  [ngClass]="{
+<div class="button-group">
+  <button *ngIf="fullWidth"
+          class="button"
+          [ngClass]="{
     'disabled': disabled,
-    'full-width': fullWidth
+    'full-width': fullWidth,
+    'raised': raised
   }"
-  [ngStyle]="{
+          [ngStyle]="{
     'background-color': background,
     'color': color,
-    'font-size.px': fontSize
+    'font-size.px': fontSize,
+    'border-radius.px': borderRadius
   }"
-  [disabled]="disabled"
+          [disabled]="disabled"
   >
-  {{ text }}
-</button>
-<button *ngIf="!fullWidth"
-  class="button"
-  [ngClass]="{
-    'disabled': disabled
+    {{ text }}
+  </button>
+  <button *ngIf="!fullWidth"
+          class="button"
+          [ngClass]="{
+    'disabled': disabled,
+    'raised': raised
   }"
-  [ngStyle]="{
+          [ngStyle]="{
     'background-color': background,
     'color': color,
     'font-size.px': fontSize,
     'width.px': width,
-    'height.px': height
+    'height.px': height,
+    'border-radius.px': borderRadius
   }"
-  [disabled]="disabled"
+          [disabled]="disabled"
   >
-  {{ text }}
-</button>
+    {{ text }}
+  </button>
+  <fa name="plus"
+      [ngStyle]="{
+    'background-color': background,
+    'color': color,
+    'font-size.px': fontSize
+  }"
+  ></fa>
+</div>
