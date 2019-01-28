@@ -5,7 +5,7 @@
   height: 4px;
   display: block;
   width: 100%;
-  background-color: #d7e2e1;
+  background-color: #f5f8fa;
   border-radius: 2px;
   background-clip: padding-box;
   //margin: 0.5rem 0 1rem 0;
@@ -15,10 +15,10 @@
   background-color: inherit;
   top: 0;
   bottom: 0;
-  background-color: #0E5A77;
+  background-color: #6EC4DB;
   transition: width .3s linear; }
 .progress .indeterminate {
-  background-color: #0E5A77; }
+  background-color: #6EC4DB; }
 .progress .indeterminate:before {
   content: '';
   position: absolute;

@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     console.log(this.winRef.nativeWindow);
-    this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 200) / 2);
+    this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
 
     this.cards.push(
       <IReportCard> {

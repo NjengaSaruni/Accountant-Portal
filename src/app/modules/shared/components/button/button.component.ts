@@ -17,6 +17,7 @@ export class ButtonComponent implements OnInit {
   @Input() raised = false;
   @Input() circular = false;
   @Input() icon = '';
+  @Input() iconOnly = false;
 
   borderRadius: number;
 

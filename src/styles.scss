@@ -1,11 +1,16 @@
 @import url('../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css');
 
 @import "variables";
-body, p {
+body, p, button {
   margin: 0;
-  font-family: montserrat, sans-serif;
+  font-family: "DejaVu Sans";
   font-weight: normal;
   font-style: normal;
+}
+
+a {
+  color: #6ec4db;
+  //text-decoration: none;
 }
 body {
   background-color: #E6ECF0;
@@ -39,7 +44,10 @@ li {
   background: ivory;
 }
 .bg-p {
-  background: #000000;
+  background: #E6ECF0;
+}
+.bg-s {
+  background: #f5f8fa;
 }
 .bg-white {
   background: #FFFFFF;
@@ -180,6 +188,9 @@ li {
 }
 .raised {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16),0 3px 6px rgba(0,0,0,0.23);
+}
+.raised-light {
+  box-shadow: 0 2px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 .centered {
   justify-content: center;
@@ -382,5 +393,5 @@ app-modal {
 
 body.app-modal-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
-  overflow: hidden;
+  //overflow: hidden;
 }

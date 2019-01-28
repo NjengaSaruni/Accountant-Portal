@@ -1,5 +1,9 @@
-<div class="button-group">
-  <button *ngIf="fullWidth"
+<div class="button-group"
+  [ngStyle]="{
+    'height': height
+  }
+  ">
+  <button *ngIf="fullWidth && !iconOnly"
           class="button"
           [ngClass]="{
     'disabled': disabled,
@@ -16,7 +20,7 @@
   >
     {{ text }}
   </button>
-  <button *ngIf="!fullWidth"
+  <button *ngIf="!fullWidth && !iconOnly"
           class="button"
           [ngClass]="{
     'disabled': disabled,
@@ -34,11 +38,16 @@
   >
     {{ text }}
   </button>
-  <fa name="plus"
+  <fa name="{{icon}}"
       [ngStyle]="{
     'background-color': background,
     'color': color,
-    'font-size.px': fontSize
+    'font-size.px': fontSize + 3,
+    'border-radius.px': borderRadius
   }"
-  ></fa>
+  *ngIf="icon != ''"
+  [ngClass]="{
+    'icon-only': iconOnly,
+    'raised': iconOnly
+  }"></fa>
 </div>
