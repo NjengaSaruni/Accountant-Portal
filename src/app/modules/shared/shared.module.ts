@@ -14,6 +14,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects, RegisterEffects} from '../auth/store/effects';
 import { ModalComponent } from './components/modal/modal.component';
 import {ModalService} from './components/modal/modal.service';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {ModalService} from './components/modal/modal.service';
     ButtonComponent,
     LoaderComponent,
     MessageComponent,
-    ModalComponent
+    ModalComponent,
+    ClickOutsideDirective
   ],
   imports: [
     // External modules
@@ -38,7 +40,8 @@ import {ModalService} from './components/modal/modal.service';
     ButtonComponent,
     LoaderComponent,
     MessageComponent,
-    ModalComponent
+    ModalComponent,
+    ClickOutsideDirective
   ],
   providers: [
     LoaderService,

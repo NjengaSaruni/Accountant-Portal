@@ -8,10 +8,11 @@ import { CardComponent } from './components/card/card.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { TransactionsComponent } from './components/transactions/transactions.component';
+import { TransactionFormComponent } from './components/transaction-form/transaction-form.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent, CardComponent, TransactionsComponent ],
+    DashboardComponent, CardComponent, TransactionsComponent, TransactionFormComponent ],
   imports: [
     // External
     CommonModule,
