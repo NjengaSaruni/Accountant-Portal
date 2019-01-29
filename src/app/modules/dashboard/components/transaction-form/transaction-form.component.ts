@@ -9,6 +9,35 @@ import {SlideInOutAnimation} from '../../../../animations/slideDown.animation';
 })
 export class TransactionFormComponent implements OnInit {
   transactionBoxAnimationState  = 'out';
+  tag = '';
+  suggestedTags = [];
+  tags = [
+    {
+      'name': 'UBER',
+      'hovered': false,
+      'selected': false
+    },
+    {
+      'name': 'FOOD',
+      'hovered': false,
+      'selected': false
+    },
+    {
+      'name': 'GIRL',
+      'hovered': false,
+      'selected': false
+    },
+    {
+      'name': 'MICROSOFT',
+      'hovered': false,
+      'selected': false
+    },
+    {
+      'name': 'FARE',
+      'hovered': false,
+      'selected': false
+    }
+  ];
   constructor() { }
 
   ngOnInit() {
@@ -24,6 +53,16 @@ export class TransactionFormComponent implements OnInit {
 
   onClickOutside(event: any) {
     this.toggleTransactionBox(!event.value);
+  }
+
+  toUpperCase() {
+    this.suggestedTags = [];
+    this.tag = this.tag.toUpperCase();
+    for (const tag of this.tags) {
+      if (tag.name.indexOf(this.tag) > -1 && this.tag !== '') {
+        this.suggestedTags.push(tag);
+      }
+    }
   }
 
 }

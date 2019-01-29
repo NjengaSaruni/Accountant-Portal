@@ -27,6 +27,20 @@
     .transaction-details {
 
     }
+
+    .transaction-tag {
+      position: relative;
+
+      .tag-suggestions {
+        position: absolute;
+        top: 0;
+
+        .tag-suggestion {
+
+        }
+      }
+
+    }
   }
 
 

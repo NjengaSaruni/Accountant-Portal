@@ -5,16 +5,18 @@ import { trigger, state, style, transition,
 export const SlideInOutAnimation = [
   trigger('slideInOut', [
     state('in', style({
-      'max-height': '500px'
+      'max-height': '500px',
+      'opacity': 1
     })),
     state('out', style({
-      'max-height': '0px'
+      'max-height': '0px',
+      'opacity': 0
     })),
     transition('in => out', [group([
-        // animate('400ms ease-in-out', style({
-        //   'opacity': '0'
-        // })),
-        animate('100ms ease-in-out', style({
+        animate('200ms ease-in-out', style({
+          'opacity': '0'
+        })),
+        animate('200ms ease-in-out', style({
           'max-height': '0px'
         })),
         // animate('700ms ease-in-out', style({
@@ -26,12 +28,12 @@ export const SlideInOutAnimation = [
         // animate('1ms ease-in-out', style({
         //   'visibility': 'visible'
         // })),
-        animate('300ms ease-in-out', style({
+        animate('500ms ease-in-out', style({
           'max-height': '500px'
         })),
-        // animate('800ms ease-in-out', style({
-        //   'opacity': '1'
-        // }))
+        animate('800ms ease-in-out', style({
+          'opacity': '1'
+        }))
       ]
     )])
   ]),
