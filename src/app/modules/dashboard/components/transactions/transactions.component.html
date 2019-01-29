@@ -1,12 +1,16 @@
 <div class="transactions-component bg-white">
   <div class="title-bar">
     <div
+       class="padding-t padding-r"
        fxLayout
        fxLayout.xs="row"
        fxLayoutAlign="space-between end"
        fxLayoutGap.xs="0">
       <div fxFlex class="full-height title-bar-option" (click)="selectList(0)">
-        <p class="centered full-height full-width">Transactions <span class="title-bar-label bordered">335</span></p>
+        <div class="full-height full-width title-group">
+          <fa class="padding" name="list"></fa>
+          <p class="padding">Transactions <span class="title-bar-label bordered">335</span></p>
+        </div>
         <div class="title-bar-underline" *ngIf="lists[0].selected"></div>
       </div>
       <div fxFlex class="full-height title-bar-option" id="deleted" (click)="selectList(1)">
@@ -15,18 +19,18 @@
       </div>
       <div fxFlex class="full-height">
         <app-button
-          [text]="'Add Transaction'"
+          [text]="'Add'"
           [icon]="'plus'"
-          [raised]="true"
-          class="centered add-transaction-button"
+          [width]="150"
+          [circular]="true"
+          class="centered add-transaction-button padding-b"
           (click)="openModal('custom-modal-1')">
         </app-button>
       </div>
     </div>
 
   </div>
-
-  <table class="padding full-width transaction-table">
+  <table class="padding full-width transaction-table bg-s">
     <!--<thead class="transaction-list-titles">-->
     <!--<tr class="padding">-->
       <!--<th class="padding">-->
@@ -45,7 +49,7 @@
     <!--</thead>-->
     <tbody class="transaction-list-data">
     <tr *ngFor="let transaction of transactions" class="bordered-b padding"
-        [ngClass]="{'raised': transaction.hovered }"
+        [ngClass]="{'raised-light': transaction.hovered }"
         (mouseenter)="transaction.hovered = true"
         (mouseleave)="transaction.hovered = false"
       >

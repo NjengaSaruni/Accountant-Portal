@@ -10,7 +10,7 @@ import {WindowRefService} from '../../shared/services/window-ref.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
 
@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
   lineChart: LineChart;
   data: DataObject[];
   cards: IReportCard[] = [];
+  transactionBoxAnimationState = 'out';
+
   constructor(private winRef: WindowRefService) { }
 
   async ngOnInit() {
@@ -26,13 +28,13 @@ export class DashboardComponent implements OnInit {
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     console.log(this.winRef.nativeWindow);
-    this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 200) / 2);
+    this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
 
     this.cards.push(
       <IReportCard> {
         title: {
           name: 'Income',
-          color: '#6EC4DB'
+          color: '#66AB86'
         },
         background: {
           // color: '#6EC4DB'
@@ -83,7 +85,7 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'NET WORTH',
-          color: '#66AB86'
+          color: '#6EC4DB'
         },
         background: {
           // color: '#66AB86'

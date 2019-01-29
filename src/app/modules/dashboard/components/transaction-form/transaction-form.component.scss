@@ -1,0 +1,33 @@
+.transaction-add {
+  position: relative;
+  width: 600px;
+
+  input#transaction-description {
+    width: inherit;
+    height: 54px;
+    border-radius: 54px;
+    padding-left: 27px;
+    max-width: inherit;
+  }
+
+  .transaction-description-focus {
+    border-radius: 20px 20px 0 0 !important;
+    position: relative;
+    border: none;
+  }
+
+  .transaction-form {
+    position: absolute;
+    top: 56px;
+    width: inherit;
+    height: 300px;
+    z-index: 99999;
+    border-radius: 0 0 20px 20px;
+
+    .transaction-details {
+
+    }
+  }
+
+
+}

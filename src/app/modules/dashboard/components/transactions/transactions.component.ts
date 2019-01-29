@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ITag, ITranscation} from '../../models/Transaction.model';
 import {ModalService} from '../../../shared/components/modal/modal.service';
 
