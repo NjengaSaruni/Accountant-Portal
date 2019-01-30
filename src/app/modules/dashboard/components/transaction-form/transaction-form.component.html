@@ -9,6 +9,7 @@
            placeholder="Add a new transaction..."
            class="centered"
            (focus)="toggleTransactionBox(true)"
+           (onkey.escape)="toggleTransactionBox(false)"
            [ngClass]="{
             'transaction-description-focus': transactionBoxAnimationState == 'in'
            }">
@@ -52,9 +53,9 @@
                    class="full-width"
                    (keyup)="toUpperCase()"
                   [(ngModel)]="tag">
-            <div class="tags-suggestions raised-light">
-              <div class="tag-suggestion padding bordered-b"
-                   [ngClass]="{'raised-light': _tag.hovered }"
+            <div class="tags-suggestions raised-light" [@slideInOutSlow]="suggestionsAnimationState">
+              <div class="padding bordered-b bg-s tag-suggestion"
+                   [ngClass]="{'raised': _tag.hovered }"
                    *ngFor="let _tag of suggestedTags"
                     (mouseenter)="_tag.hovered = true"
                     (mouseleave)="_tag.hovered = false">

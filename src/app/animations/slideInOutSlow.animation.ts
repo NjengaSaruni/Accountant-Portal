@@ -2,10 +2,10 @@ import { trigger, state, style, transition,
   animate, group, query, stagger, keyframes
 } from '@angular/animations';
 
-export const SlideInOutAnimation = [
-  trigger('slideInOut', [
+export const SlideInOutAnimationSlow = [
+  trigger('slideInOutSlow', [
     state('in', style({
-      'max-height': '500px',
+      'max-height': '200px',
       'opacity': 1
     })),
     state('out', style({
@@ -13,19 +13,19 @@ export const SlideInOutAnimation = [
       'opacity': 0
     })),
     transition('in => out', [group([
-        animate('200ms ease-in-out', style({
+        animate('500ms ease-in-out', style({
           'opacity': '0'
         })),
-        animate('200ms ease-in-out', style({
+        animate('500ms ease-in-out', style({
           'max-height': '0px'
         })),
       ]
     )]),
     transition('out => in', [group([
-        animate('300ms ease-in-out', style({
-          'max-height': '500px'
+        animate('2000ms ease-in-out', style({
+          'max-height': '200px'
         })),
-        animate('500ms ease-in-out', style({
+        animate('700ms ease-in-out', style({
           'opacity': '1'
         }))
       ]
