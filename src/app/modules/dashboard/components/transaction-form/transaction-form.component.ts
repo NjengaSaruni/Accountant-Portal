@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {SlideInOutAnimation} from '../../../../animations/slideDown.animation';
 import {SlideInOutAnimationSlow} from '../../../../animations/slideInOutSlow.animation';
 
@@ -38,8 +38,14 @@ export class TransactionFormComponent implements OnInit {
       'name': 'FARE',
       'hovered': false,
       'selected': false
+    },
+    {
+      'name': 'SHOPPING',
+      'hovered': false,
+      'selected': false
     }
   ];
+  today = new Date();
   constructor() { }
 
   ngOnInit() {
@@ -68,6 +74,10 @@ export class TransactionFormComponent implements OnInit {
       }
       this.suggestionsAnimationState = 'in';
     }
+  }
+
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    this.toggleTransactionBox(false);
   }
 
 }

@@ -3,19 +3,18 @@
        appClickOutside
        (clickOutside)="onClickOutside($event)"
        >
-
+    <label for="transaction-description" class="full-height centered  bg-s description-label" [@slideInOut]="transactionBoxAnimationState">Description</label>
     <input id="transaction-description"
-           type="search"
+           type="text"
            placeholder="Add a new transaction..."
            class="centered"
            (focus)="toggleTransactionBox(true)"
-           (onkey.escape)="toggleTransactionBox(false)"
+           (keyup.enter)="toggleTransactionBox(true)"
            [ngClass]="{
             'transaction-description-focus': transactionBoxAnimationState == 'in'
            }">
-
     <div class="bg-white raised transaction-form"
-         [@slideInOut]="transactionBoxAnimationState">
+         [@slideInOut]="transactionBoxAnimationState" >
       <div *ngIf="transactionBoxAnimationState == 'in'">
         <div class="transaction-types bordered-b"
              fxLayout
@@ -62,6 +61,20 @@
                 {{ _tag.name }}
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="transaction-types"
+             fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between stretch"
+             fxLayoutGap="16px"
+             fxLayoutGap.xs="0">
+          <div class="transaction-date padding-s" fxFlex>
+            <input type="date" placeholder="Amount" class="full-width" [valueAsDate]="today">
+          </div>
+          <div class="padding-s" fxFlex>
+            <input type="text" placeholder="Account" class="full-width">
           </div>
         </div>
 

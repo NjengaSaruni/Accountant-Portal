@@ -384,10 +384,23 @@ li {
 .relative {
   position: relative;
 }
+.sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
+}
+
+.high {
+  z-index: 999999999;
+}
 
 .absolute-bottom {
   position: absolute;
   bottom:  0;
+}
+.absolute-top {
+  position: absolute;
+  top:  0;
 }
 
 .height-transition {

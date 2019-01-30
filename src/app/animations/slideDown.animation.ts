@@ -13,19 +13,19 @@ export const SlideInOutAnimation = [
       'opacity': 0
     })),
     transition('in => out', [group([
-        animate('200ms ease-in-out', style({
+        animate('0ms ease-in-out', style({
           'opacity': '0'
         })),
-        animate('200ms ease-in-out', style({
+        animate('0ms ease-in-out', style({
           'max-height': '0px'
         })),
       ]
     )]),
     transition('out => in', [group([
-        animate('300ms ease-in-out', style({
+        animate('500ms ease-in-out', style({
           'max-height': '500px'
         })),
-        animate('500ms ease-in-out', style({
+        animate('400ms ease-in-out', style({
           'opacity': '1'
         }))
       ]
