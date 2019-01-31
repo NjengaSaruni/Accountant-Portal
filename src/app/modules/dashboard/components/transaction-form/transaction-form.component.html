@@ -1,4 +1,4 @@
-<form novalidate >
+<form novalidate [formGroup]="transactionForm">
   <div class="centered transaction-add"
        appClickOutside
        (clickOutside)="onClickOutside($event)"
@@ -7,12 +7,13 @@
     <input id="transaction-description"
            type="text"
            placeholder="Add a new transaction..."
-           class="centered"
+           class="centered bg-s"
            (focus)="toggleTransactionBox(true)"
            (keyup.enter)="toggleTransactionBox(true)"
            [ngClass]="{
             'transaction-description-focus': transactionBoxAnimationState == 'in'
-           }">
+           }"
+           formControlName="description">
     <div class="bg-white raised transaction-form"
          [@slideInOut]="transactionBoxAnimationState" >
       <div *ngIf="transactionBoxAnimationState == 'in'">
@@ -45,13 +46,16 @@
              fxLayoutGap="16px"
              fxLayoutGap.xs="0">
           <div class="transaction-amount padding-s" fxFlex>
-            <input type="number" placeholder="Amount" class="full-width">
+            <input type="number"
+                   placeholder="Amount"
+                   class="full-width"
+                   formControlName="amount">
           </div>
           <div class="transaction-tag padding-s" fxFlex>
             <input type="text" placeholder="Tag" name="tag"
                    class="full-width"
                    (keyup)="toUpperCase()"
-                  [(ngModel)]="tag">
+                    formControlName="tag">
             <div class="tags-suggestions raised-light" [@slideInOutSlow]="suggestionsAnimationState">
               <div class="padding bordered-b bg-s tag-suggestion"
                    [ngClass]="{'raised': _tag.hovered }"
@@ -71,7 +75,11 @@
              fxLayoutGap="16px"
              fxLayoutGap.xs="0">
           <div class="transaction-date padding-s" fxFlex>
-            <input type="date" placeholder="Amount" class="full-width" [valueAsDate]="today">
+            <input type="date"
+                   placeholder="Amount"
+                   class="full-width"
+                   [valueAsDate]="today"
+                   formControlName="date">
           </div>
           <div class="padding-s" fxFlex>
             <input type="text" placeholder="Account" class="full-width">
@@ -79,6 +87,7 @@
         </div>
 
       </div>
+
     </div>
   </div>
 </form>

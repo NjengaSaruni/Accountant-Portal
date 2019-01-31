@@ -1,23 +1,36 @@
 <form [formGroup]="profileForm" novalidate class="signup-form">
   <div class="form-control margin-ts">
-    <label for="signup-email" *ngIf="formLabels.email && profileForm.get('email').value.length">
+    <label for="signup-email"
+           *ngIf="formLabels.email && profileForm.get('email').value.length">
       Email:
     </label>
-    <input type="text" id="signup-email" formControlName="email" class="margin-t bg-ivory" placeholder="Email"
-      (focus)="formLabels.email = true">
-    <div class="info error" *ngIf="profileForm.get('email').invalid && profileForm.get('email').dirty">
+
+    <input type="text" id="signup-email"
+           formControlName="email"
+           class="margin-t bg-ivory"
+           placeholder="Email"
+           (focus)="formLabels.email = true">
+
+    <div class="info error"
+         *ngIf="profileForm.get('email').invalid && profileForm.get('email').dirty">
       <span>
         Incorrect email format
       </span>
     </div>
+
     <p class="info margin-h">We’ll occasionally send updates about your account to this inbox. We’ll never share your email address with anyone.</p>
   </div>
 
   <div class="form-control margin-ts">
-    <label for="signup-password" *ngIf="formLabels.password && profileForm.get('password').value.length">
+    <label for="signup-password"
+           *ngIf="formLabels.password && profileForm.get('password').value.length">
       Password:
     </label>
-    <input type="password" id="signup-password"formControlName="password" class="margin-t bg-ivory" placeholder="Password"
+    <input type="password"
+           id="signup-password"
+           formControlName="password"
+           class="margin-t bg-ivory"
+           placeholder="Password"
            (keydown.enter)="signUp()" (focus)="formLabels.password = true">
     <div class="info error" *ngIf="profileForm.get('password').invalid && profileForm.get('password').dirty">
       <span>

@@ -18,22 +18,22 @@
         <app-card [config]="card"></app-card>
       </div>
     </div>
-
-  </div>
-
-  <div class="margin-s"
-       fxLayout
-       fxLayout.xs="row"
-       fxLayoutAlign="space-between stretch"
-       fxLayoutGap="16px"
-       fxLayoutGap.xs="0">
-    <div fxFlex class="bg-white">
-      <app-transactions></app-transactions>
-    </div>
-    <div fxFlex>
-      <app-linechart [chart]="lineChart"></app-linechart>
+    <div class="margin-ts"
+         fxLayout
+         fxLayout.xs="row"
+         fxLayoutAlign="space-between stretch"
+         fxLayoutGap="16px"
+         fxLayoutGap.xs="0">
+      <div fxFlex class="bg-white">
+        <app-transactions></app-transactions>
+      </div>
+      <div fxFlex>
+        <app-linechart [chart]="lineChart"></app-linechart>
+      </div>
     </div>
   </div>
+
+
   <div class="row" >
     <div class="col" *ngFor="let graph of barCharts">
       <app-barchart [chart]="graph"></app-barchart>

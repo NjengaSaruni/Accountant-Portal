@@ -6,9 +6,9 @@ $primary: #6EC4DB;
 $secondary: #3197EE;
 $background: #E6ECF0;
 
-body, p, button {
+body, p, button, input {
   margin: 0;
-  font-family: "DejaVu Sans";
+  font-family: 'Overpass', sans-serif;
   font-weight: normal;
   font-style: normal;
 }
@@ -25,12 +25,12 @@ input {
   border: none;
   border-bottom: 2px solid $primary;
   min-height: 40px;
-  background: white !important;
+  background: white;
   font-size: 16px;
   max-width: 400px;
 }
 input:focus {
-  background: white !important;
+  background: white;
   box-shadow: none;
   outline: none;
 }
@@ -110,8 +110,7 @@ li {
 }
 .bg-s {
   background: #f5f8fa;
-}
-.bg-white {
+}  .bg-white {
   background: #FFFFFF;
 }
 .bg-red {
@@ -133,7 +132,7 @@ li {
   color: #66AB86;
 }
 .color-s {
-  color: #777529;
+  color: #66AB86;
 }
 .color-white {
   color: white;
@@ -387,7 +386,7 @@ li {
 .sticky-top {
   position: -webkit-sticky;
   position: sticky;
-  top: 10px;
+  top: 0;
 }
 
 .high {

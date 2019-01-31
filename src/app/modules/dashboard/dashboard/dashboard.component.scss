@@ -1,8 +1,12 @@
 .container {
   margin-top: 95px;
 
+  .sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 6px
+  }
   .transaction-bar {
-
     .transaction-add {
       position: relative;
       width: 600px;
