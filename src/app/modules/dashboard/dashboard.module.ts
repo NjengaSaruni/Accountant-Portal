@@ -9,7 +9,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { TransactionFormComponent } from './components/transaction-form/transaction-form.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import {FormsModule} from '@angular/forms';
     FlexLayoutModule,
     AngularFontAwesomeModule,
     FormsModule,
+    ReactiveFormsModule,
 
     // Internal
     DashboardRoutingModule,

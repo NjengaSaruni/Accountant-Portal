@@ -6,14 +6,24 @@
        fxLayout.xs="row"
        fxLayoutAlign="space-between end"
        fxLayoutGap.xs="0">
-      <div fxFlex class="full-height title-bar-option" (click)="selectList(0)">
+      <div fxFlex class="full-height title-bar-option"
+           (click)="selectList(0)"
+           [ngClass]="{
+              'bg-s': lists[0].selected
+           }">
         <div class="full-height full-width title-group">
           <fa class="padding" name="list"></fa>
           <p class="padding">Transactions <span class="title-bar-label bordered">335</span></p>
         </div>
         <div class="title-bar-underline" *ngIf="lists[0].selected"></div>
       </div>
-      <div fxFlex class="full-height title-bar-option" id="deleted" (click)="selectList(1)">
+      <div fxFlex
+           class="full-height title-bar-option"
+           id="deleted"
+           (click)="selectList(1)"
+           [ngClass]="{
+              'bg-s': lists[1].selected
+           }">
         <p class="centered full-height full-width">Deleted <span class="title-bar-label bordered">2</span></p>
         <div class="title-bar-underline" *ngIf="lists[1].selected"></div>
       </div>
@@ -30,6 +40,7 @@
     </div>
 
   </div>
+
   <table class="padding full-width transaction-table bg-s">
     <!--<thead class="transaction-list-titles">-->
     <!--<tr class="padding">-->

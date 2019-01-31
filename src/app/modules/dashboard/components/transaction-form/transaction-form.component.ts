@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {SlideInOutAnimation} from '../../../../animations/slideDown.animation';
 import {SlideInOutAnimationSlow} from '../../../../animations/slideInOutSlow.animation';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-transaction-form',
@@ -38,22 +39,64 @@ export class TransactionFormComponent implements OnInit {
       'name': 'FARE',
       'hovered': false,
       'selected': false
+    },
+    {
+      'name': 'SHOPPING',
+      'hovered': false,
+      'selected': false
     }
   ];
-  constructor() { }
+  today = new Date();
+
+  transactionForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.transactionForm = this.formBuilder.group({
+      description: new FormControl(
+        '',
+        [
+          Validators.required
+        ]
+      ),
+      type: new FormControl(
+        '',
+        [
+          Validators.required
+        ]
+      ),
+      amount: new FormControl(
+        '',
+        [
+          Validators.required
+        ]
+      ),
+      date: new FormControl(
+        new Date(),
+        [
+          Validators.required
+        ]
+      ),
+      tag: new FormControl(
+        '',
+        [
+          Validators.required
+        ]
+      ),
+    });
   }
 
-  toggleTransactionBox(value: boolean) {
-    this.transactionBoxAnimationState = value ? 'in' : 'out';
+  // Listen for escape events to hide trasaction box
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    this.toggleTransactionBox(false);
   }
 
-  insideForm(value: boolean) {
-    console.log(value);
+  toggleTransactionBox(show: boolean): void {
+    this.transactionBoxAnimationState = show ? 'in' : 'out';
   }
 
-  onClickOutside(event: any) {
+  onClickOutside(event: any): void {
     this.toggleTransactionBox(!event.value);
   }
 
@@ -61,9 +104,8 @@ export class TransactionFormComponent implements OnInit {
     this.suggestedTags = [];
     this.suggestionsAnimationState = 'out';
 
-    this.tag = this.tag.toUpperCase();
     for (const tag of this.tags) {
-      if (tag.name.indexOf(this.tag) > -1 && this.tag !== '') {
+      if (tag.name.indexOf(    this.transactionForm.get('tag').value) > -1 &&  this.transactionForm.get('tag').value !== '') {
         this.suggestedTags.push(tag);
       }
       this.suggestionsAnimationState = 'in';
