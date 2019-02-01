@@ -8,28 +8,21 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import {SlideInOutAnimation} from '../../../../animations/slideDown.animation';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
-  animations: [
-    trigger('slideAnimation', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('300ms', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+  animations: [ SlideInOutAnimation ]
 })
 
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   @Input() raised = true;
   private element: any;
+
+  modalState = 'in';
 
   constructor(private modalService: ModalService, private el: ElementRef) {
     this.element = el.nativeElement;
@@ -40,7 +33,6 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     // ensure id attribute exists
     if (!this.id) {
-      console.error('modal must have an id');
       return;
     }
 
@@ -48,10 +40,12 @@ export class ModalComponent implements OnInit, OnDestroy {
     document.body.appendChild(this.element);
 
     // close modal on background click
+    const that = this;
     this.element.addEventListener('click', function (e: any) {
-      if (e.target.className === 'app-modal') {
-        modal.close();
-      }
+      console.log(that);
+      // if (e.target.path().join().indexOf(that.id) === -1) {
+      //   modal.close();
+      // }
     });
 
     // add self (this modal instance) to the modal service so it's accessible from controllers
@@ -67,7 +61,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   // open modal
   open(): void {
     this.element.style.display = 'block';
-    console.log(this.element);
     document.body.classList.add('app-modal-open');
   }
 

@@ -11,12 +11,12 @@
     </div>
     <div class="keys padding-s">
       <div *ngFor="let pie of chart.pies" class="full-width key">
-        <div class="centered padding-s color"
+        <div class="centered padding color"
              [ngStyle]="{
         'background-color': pie.color
        }">
         </div>
-        <div class="padding-s color-title">
+        <div class="padding color-title">
           {{ pie.title }}
         </div>
         <div class="full-width centered key-value">

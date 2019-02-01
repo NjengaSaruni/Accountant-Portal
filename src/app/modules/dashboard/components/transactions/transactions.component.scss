@@ -14,20 +14,6 @@
         align-items: center;
         justify-content: center;
       }
-      .title-bar-underline {
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-        bottom: 0;
-        content: '';
-        display: block;
-        height: 3px;
-        left: 0;
-        margin: 0 8px;
-        position: absolute;
-        right: 0;
-        background-color: #6EC4DB;
-      }
-
     }
 
     .title-bar-option:hover {
