@@ -3,7 +3,11 @@
        appClickOutside
        (clickOutside)="onClickOutside($event)"
        >
-    <label for="transaction-description" class="full-height centered  bg-s description-label" [@slideInOut]="transactionBoxAnimationState">Description</label>
+    <label for="transaction-description"
+           class="full-height centered bg-s description-label"
+           [@slideInOut]="transactionBoxAnimationState">
+      Description:
+    </label>
     <input id="transaction-description"
            type="text"
            placeholder="Add a new transaction..."
@@ -49,7 +53,8 @@
             <input type="number"
                    placeholder="Amount"
                    class="full-width"
-                   formControlName="amount">
+                   formControlName="amount"
+                   min="0">
           </div>
           <div class="transaction-tag padding-s" fxFlex>
             <input type="text" placeholder="Tag" name="tag"
@@ -57,13 +62,14 @@
                    (keyup)="toUpperCase()"
                     formControlName="tag">
             <div class="tags-suggestions raised-light" [@slideInOutSlow]="suggestionsAnimationState">
-              <div class="padding bordered-b bg-s tag-suggestion"
-                   [ngClass]="{'raised': _tag.hovered }"
-                   *ngFor="let _tag of suggestedTags"
-                    (mouseenter)="_tag.hovered = true"
-                    (mouseleave)="_tag.hovered = false">
-                {{ _tag.name }}
-              </div>
+              <!--TODO implement this suggester-->
+              <!--<div class="padding bordered-b bg-s tag-suggestion"-->
+                   <!--[ngClass]="{'raised': _tag.hovered }"-->
+                   <!--*ngFor="let _tag of suggestedTags"-->
+                    <!--(mouseenter)="_tag.hovered = true"-->
+                    <!--(mouseleave)="_tag.hovered = false">-->
+                <!--{{ _tag.name }}-->
+              <!--</div>-->
             </div>
           </div>
         </div>
@@ -85,9 +91,16 @@
             <input type="text" placeholder="Account" class="full-width">
           </div>
         </div>
-
       </div>
 
+      <div class="transaction-actions full-width bg-s">
+        <app-button
+          [text]="'Save'"
+          [width]="150"
+          [circular]="true"
+          class="centered add-transaction-button padding-b">
+        </app-button>
+      </div>
     </div>
   </div>
 </form>
