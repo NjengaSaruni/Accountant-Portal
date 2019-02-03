@@ -47,6 +47,20 @@ export class TransactionFormComponent implements OnInit {
     }
   ];
   today = new Date();
+  typeOptions = [{
+      id: 1,
+      type: 'Expense',
+      selected: true
+    }, {
+      id: 2,
+      type: 'Income',
+      selected: false
+    }, {
+      id: 3,
+      type: 'Refund',
+      selected: false
+    }
+  ];
 
   transactionForm: FormGroup;
 
