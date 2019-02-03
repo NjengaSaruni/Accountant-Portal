@@ -12,7 +12,7 @@
   }
 
   .transaction-description-focus {
-    border-radius: 20px 20px 0 0 !important;
+    border-radius: 27px 27px 0 0 !important;
     position: relative;
     border: none;
     padding-left: 150px !important;
@@ -24,7 +24,7 @@
     left: 0;
     z-index: 99999;
     padding: 0 20px;
-    border-top-left-radius: 20px;
+    border-top-left-radius: 27px;
   }
   .transaction-form {
     position: absolute;
@@ -32,7 +32,7 @@
     width: inherit;
     height: 300px;
     z-index: 99999;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 27px 27px;
 
     .transaction-amount {
       input {
@@ -60,7 +60,12 @@
     position: absolute;
     bottom: 0;
     border-radius: 0 0 20px 20px;
-    height: 54px;
+    height: 76px;
+    display: inline-flex;
+    justify-content: flex-end;
+
+    .transaction-button {
+    }
   }
 
 

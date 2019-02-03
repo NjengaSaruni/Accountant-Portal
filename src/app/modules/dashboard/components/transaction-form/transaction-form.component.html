@@ -2,7 +2,7 @@
   <div class="centered transaction-add"
        appClickOutside
        (clickOutside)="onClickOutside($event)"
-       >
+  >
     <label for="transaction-description"
            class="full-height centered bg-s description-label"
            [@slideInOut]="transactionBoxAnimationState">
@@ -26,19 +26,9 @@
              fxLayout.xs="row"
              fxLayoutAlign="space-around"
              fxLayoutGap.xs="0">
-          <div class="radio padding-s centered" fxFlex>
-            <input id="radio-1" name="radio" type="radio" checked>
-            <label for="radio-1" class="radio-label">Expense</label>
-          </div>
-
-          <div class="radio padding-s centered" fxFlex>
-            <input id="radio-2" name="radio" type="radio">
-            <label  for="radio-2" class="radio-label">Income</label>
-          </div>
-
-          <div class="radio padding-s centered" fxFlex>
-            <input id="radio-3" name="radio" type="radio">
-            <label for="radio-3" class="radio-label">Refund</label>
+          <div class="radio padding-s centered" fxFlex *ngFor="let option of typeOptions">
+            <input id="radio-1" name="radio" type="radio" [checked]="option.selected">
+            <label for="radio-1" class="radio-label">{{ option.type }}</label>
           </div>
         </div>
 
@@ -60,15 +50,15 @@
             <input type="text" placeholder="Tag" name="tag"
                    class="full-width"
                    (keyup)="toUpperCase()"
-                    formControlName="tag">
+                   formControlName="tag">
             <div class="tags-suggestions raised-light" [@slideInOutSlow]="suggestionsAnimationState">
               <!--TODO implement this suggester-->
               <!--<div class="padding bordered-b bg-s tag-suggestion"-->
-                   <!--[ngClass]="{'raised': _tag.hovered }"-->
-                   <!--*ngFor="let _tag of suggestedTags"-->
-                    <!--(mouseenter)="_tag.hovered = true"-->
-                    <!--(mouseleave)="_tag.hovered = false">-->
-                <!--{{ _tag.name }}-->
+              <!--[ngClass]="{'raised': _tag.hovered }"-->
+              <!--*ngFor="let _tag of suggestedTags"-->
+              <!--(mouseenter)="_tag.hovered = true"-->
+              <!--(mouseleave)="_tag.hovered = false">-->
+              <!--{{ _tag.name }}-->
               <!--</div>-->
             </div>
           </div>
@@ -94,12 +84,16 @@
       </div>
 
       <div class="transaction-actions full-width bg-s">
-        <app-button
-          [text]="'Save'"
-          [width]="150"
-          [circular]="true"
-          class="centered add-transaction-button padding-b">
-        </app-button>
+        <div class="centered-v action-item" *ngIf="transactionBoxAnimationState == 'in'">
+          <div class="margin add-transaction-button">
+            <app-button
+              [text]="'Save'"
+              [width]="150"
+              [circular]="true"
+              [disabled]="transactionForm.invalid">
+            </app-button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
