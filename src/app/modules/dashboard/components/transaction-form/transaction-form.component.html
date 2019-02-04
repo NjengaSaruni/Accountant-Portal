@@ -26,9 +26,17 @@
              fxLayout.xs="row"
              fxLayoutAlign="space-around"
              fxLayoutGap.xs="0">
-          <div class="radio padding-s centered" fxFlex *ngFor="let option of typeOptions">
-            <input id="radio-1" name="radio" type="radio" [checked]="option.selected">
-            <label for="radio-1" class="radio-label">{{ option.type }}</label>
+          <div class="radio padding-s centered"
+               fxFlex
+               *ngFor="let option of typeOptions"
+               (click)="selectOption($event, option)">
+            <input id="radio-1 + {{option.id}}"
+                   name="radio"
+                   type="radio"
+                   [checked]="option.selected"
+                   formControlName="type"
+                   value="{{option.id}}">
+            <label for="radio-1 + {{option.id}}" class="radio-label">{{ option.type }}</label>
           </div>
         </div>
 
@@ -51,7 +59,8 @@
                    class="full-width"
                    (keyup)="toUpperCase()"
                    formControlName="tag">
-            <div class="tags-suggestions raised-light" [@slideInOutSlow]="suggestionsAnimationState">
+            <div class="tags-suggestions raised-light"
+                 [@slideInOutSlow]="suggestionsAnimationState">
               <!--TODO implement this suggester-->
               <!--<div class="padding bordered-b bg-s tag-suggestion"-->
               <!--[ngClass]="{'raised': _tag.hovered }"-->
@@ -70,7 +79,8 @@
              fxLayoutAlign="space-between stretch"
              fxLayoutGap="16px"
              fxLayoutGap.xs="0">
-          <div class="transaction-date padding-s" fxFlex>
+          <div class="transaction-date padding-s"
+               fxFlex>
             <input type="date"
                    placeholder="Amount"
                    class="full-width"
@@ -84,7 +94,8 @@
       </div>
 
       <div class="transaction-actions full-width bg-s">
-        <div class="centered-v action-item" *ngIf="transactionBoxAnimationState == 'in'">
+        <div class="centered-v action-item"
+             *ngIf="transactionBoxAnimationState == 'in'">
           <div class="margin add-transaction-button">
             <app-button
               [text]="'Save'"

@@ -126,4 +126,8 @@ export class TransactionFormComponent implements OnInit {
     }
   }
 
+  selectOption(event: any, option: any) {
+    console.log(this.transactionForm.getRawValue());
+  }
+
 }
