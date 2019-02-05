@@ -1,1 +1,1 @@
-export * from 'transaction.effects';
+export * from './transaction.effects';
