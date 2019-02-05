@@ -9,7 +9,7 @@ export interface ITag extends IAbstractBase {
   name: string;
   description: string;
 }
-export interface ITranscation extends IAbstractBase {
+export interface ITransaction extends IAbstractBase {
   amount: number;
   description: string;
   tag: ITag;

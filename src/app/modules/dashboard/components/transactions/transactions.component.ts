@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ITag, ITranscation} from '../../models/Transaction.model';
+import {ITag, ITransaction} from '../../models/Transaction.model';
 import {ModalService} from '../../../shared/components/modal/modal.service';
 
 @Component({
@@ -8,7 +8,7 @@ import {ModalService} from '../../../shared/components/modal/modal.service';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
-  transactions: ITranscation[] = [];
+  transactions: ITransaction[] = [];
   lists = [
     {
       name: 'New',
@@ -23,7 +23,7 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit() {
     this.transactions.push(
-      <ITranscation>{
+      <ITransaction>{
         amount: -1000,
         tag: <ITag> {
           name: 'UBER'
@@ -32,7 +32,7 @@ export class TransactionsComponent implements OnInit {
       }
     );
     this.transactions.push(
-      <ITranscation>{
+      <ITransaction>{
         amount: -2000,
         tag: <ITag> {
           name: 'UBER'
@@ -41,7 +41,7 @@ export class TransactionsComponent implements OnInit {
       }
     );
     this.transactions.push(
-      <ITranscation>{
+      <ITransaction>{
         amount: 1000000,
         tag: <ITag> {
           name: 'SAVINGS'
@@ -50,7 +50,7 @@ export class TransactionsComponent implements OnInit {
       }
     );
     this.transactions.push(
-      <ITranscation>{
+      <ITransaction>{
         created_at: new Date(),
         amount: -230,
         tag: <ITag> {
@@ -60,7 +60,7 @@ export class TransactionsComponent implements OnInit {
       }
     );
     this.transactions.push(
-      <ITranscation>{
+      <ITransaction>{
         created_at: new Date('2019-10-12'),
         amount: -2800,
         tag: <ITag> {
