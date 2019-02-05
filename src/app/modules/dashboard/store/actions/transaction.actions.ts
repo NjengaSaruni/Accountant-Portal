@@ -7,8 +7,8 @@ import {ITransaction} from '../../models/Transaction.model';
 
 export enum TransactionActionTypes {
   TRANSACTION_LOAD = '[Dashboard Page] Transaction Load',
-  TRANSACTION_FAIL = '[Dashboard Page] Transaction Fail',
-  TRANSACTION_SUCCESS = '[Dashboard Page] Transaction Success',
+  TRANSACTION_LOAD_FAIL = '[Dashboard Page] Transaction Fail',
+  TRANSACTION_LOAD_SUCCESS = '[Dashboard Page] Transaction Success',
   TRANSACTION_ADD = '[Dashboard Page] Add Transaction Item',
   TRANSACTION_ADD_FAIL = '[Dashboard Page] Add Transaction Item Fail',
   TRANSACTION_ADD_SUCCESS = '[Dashboard Page] Add Transaction Item Success',
@@ -26,12 +26,12 @@ export class LoadTransactions implements Action {
 }
 
 export class LoadTransactionsFail implements Action {
-  readonly type = TransactionActionTypes.TRANSACTION_FAIL;
+  readonly type = TransactionActionTypes.TRANSACTION_LOAD_FAIL;
   constructor(public payload: any) {}
 }
 
 export class LoadTransactionsSuccess implements Action {
-  readonly type = TransactionActionTypes.TRANSACTION_SUCCESS;
+  readonly type = TransactionActionTypes.TRANSACTION_LOAD_SUCCESS;
   constructor(public payload: ITransaction[]) {}
 }
 
