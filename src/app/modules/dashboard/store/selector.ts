@@ -13,22 +13,22 @@ const getIsLoading = (state: State): boolean => state.isLoading;
 
 const getTransactions = (state: State): any => state.transactions;
 
-export const selectMyFeatureState: MemoizedSelector<
+export const selectTransactionsState: MemoizedSelector<
   object,
   State
   > = createFeatureSelector<State>('transactions');
 
 export const selectTransactionsError: MemoizedSelector<object, any> = createSelector(
-  selectMyFeatureState,
+  selectTransactionsState,
   getError
 );
 
 export const selectTransactionsIsLoading: MemoizedSelector<
   object,
   boolean
-  > = createSelector(selectMyFeatureState, getIsLoading);
+  > = createSelector(selectTransactionsState, getIsLoading);
 
 export const selectTransactions: MemoizedSelector<
   object,
   ITransaction[]
-  > = createSelector(selectMyFeatureState, getTransactions);
+  > = createSelector(selectTransactionsState, getTransactions);

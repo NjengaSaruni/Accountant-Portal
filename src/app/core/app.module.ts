@@ -32,14 +32,6 @@ export const metaReducers: MetaReducer<any>[] = [];
 
     // Primary routing module
     AppRoutingModule,
-    /**
-     * EffectsModule.forRoot() is imported once in the root module and
-     * sets up the effects class to be initialized immediately when the
-     * application starts.
-     *
-     * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
-     */
-    EffectsModule.forRoot([]),
 
   ],
   providers: [
