@@ -5,13 +5,11 @@ import {AppComponent} from './app.component';
 import {WindowRefService} from '../modules/shared/services/window-ref.service';
 import {SharedModule} from '../modules/shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
-import {MetaReducer, StoreModule} from '@ngrx/store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {environment} from '../../environments/environment';
-import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {MetaReducer} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {CoreStoreModule} from './store/core.store.module';
 
 export const metaReducers: MetaReducer<any>[] = [];
 
@@ -24,15 +22,8 @@ export const metaReducers: MetaReducer<any>[] = [];
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // StoreModule.forRoot({
-    //   router: routerReducer,
-    // }, { metaReducers }),
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-    }),
-    StoreRouterConnectingModule.forRoot(),
+    CoreStoreModule,
+
     FlexLayoutModule,
     HttpClientModule,
 
