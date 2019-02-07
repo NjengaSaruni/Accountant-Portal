@@ -10,6 +10,10 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { TransactionFormComponent } from './components/transaction-form/transaction-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {StoreModule} from '@ngrx/store';
+import {reducers} from './store/reducers';
+import {EffectsModule} from '@ngrx/effects';
+import {dashboardEffects, TransactionEffects} from './store/effects';
 
 @NgModule({
   declarations: [
@@ -22,10 +26,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
 
+    // Store
+    StoreModule.forFeature('transactions', reducers),
+    EffectsModule.forFeature(dashboardEffects),
+
     // Internal
     DashboardRoutingModule,
     SharedModule,
     ChartsModule
-  ]
+  ],
+  providers: [TransactionEffects]
 })
 export class DashboardModule { }
+

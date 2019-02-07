@@ -8,7 +8,7 @@ import {Action} from '@ngrx/store';
 import * as transactionActions from '../actions/transaction.actions';
 
 @Injectable()
-export class TodoEffects {
+export class TransactionEffects {
   constructor(private transactionsService: TransactionsService, private action$: Actions) {}
 
   @Effect()

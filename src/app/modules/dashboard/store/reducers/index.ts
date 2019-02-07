@@ -1,1 +1,1 @@
-export * from 'transaction.reducers';
+export * from '../../store/reducers/transactions.reducers';
