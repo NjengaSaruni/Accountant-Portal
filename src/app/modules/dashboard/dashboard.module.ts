@@ -26,10 +26,6 @@ import {dashboardEffects, TransactionEffects} from './store/effects';
     FormsModule,
     ReactiveFormsModule,
 
-    // Store
-    StoreModule.forFeature('transactions', reducers),
-    EffectsModule.forFeature(dashboardEffects),
-
     // Internal
     DashboardRoutingModule,
     SharedModule,
