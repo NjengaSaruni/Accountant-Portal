@@ -13,14 +13,14 @@ const routes: Routes = [
 
   },
   {
-    path: 'auth',
+    path: 'account',
     loadChildren: '../modules/auth/auth.module#AuthModule',
     data: { animation: 'auth' }
   },
   {
     path: '',
     pathMatch: 'prefix',
-    redirectTo: 'dashboard'
+    redirectTo: 'home'
   }
 ];
 

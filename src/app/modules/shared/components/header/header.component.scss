@@ -1,10 +1,18 @@
+$primary: #6EC4DB;
+$secondary: #3197EE;
+$background: #E6ECF0;
+
 @media (min-width: 992px) {
   .header-wrapper {
     height: 50px;
     position: fixed;
     //z-index: 800;
     width: 100%;
+    background: $primary;
 
+    p, span, i, fa, div, a {
+      color: whitesmoke;
+    }
     .navigation {
       display: inline-flex;
 

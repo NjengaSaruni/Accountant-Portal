@@ -8,10 +8,10 @@ import {Title} from '@angular/platform-browser';
 })
 export class RegisterComponent implements OnInit {
   signingUp: boolean;
-  constructor(private title: Title) { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
-    this.title.setTitle('Accountant Plus | Register');
+    this.titleService.setTitle('iSave | Account | Register');
   }
 
 }

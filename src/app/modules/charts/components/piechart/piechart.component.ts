@@ -54,23 +54,21 @@ export class PiechartComponent implements OnInit, AfterViewInit {
       currentAngle += pie.angle;
       const middleAngle = currentAngle + 0.5 * pie.angle;
 
-      // labels
-      if (middleAngle < -0.5 * Math.PI || middleAngle > 0.5 * Math.PI) {
-        this.cx.textAlign = 'right';
-      } else {
-        this.cx.textAlign = 'left';
-      }
-      this.cx.textBaseline = 'middle';
-      this.cx.strokeStyle = 'white';
-      this.cx.fillStyle = 'white';
-
     }
+
     // Inner circle
     this.cx.beginPath();
     this.cx.arc(this.chart.outerCircle.radius, this.chart.outerCircle.radius, this.chart.innerCircle.radius, 0, 2 * Math.PI);
     this.cx.fillStyle = 'white';
     this.cx.fill();
     this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
+
+    this.cx.strokeStyle = 'black';
+    this.cx.textAlign = 'center';
+    this.cx.font = '15px Overpass';
+    this.cx.fillStyle = 'black';
+    this.cx.fillText('Total' , this.chart.outerCircle.radius, this.chart.outerCircle.radius - 10);
+    this.cx.fillText( this.chart.total.toString() + ' KES', this.chart.outerCircle.radius, this.chart.outerCircle.radius + 10);
   }
 
   ngOnInit() {

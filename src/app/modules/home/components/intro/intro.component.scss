@@ -1,0 +1,21 @@
+.intro {
+  color: #fff;
+  overflow: hidden;
+  background-size: cover;
+  .item {
+    p {
+      color: black;
+    }
+  }
+  .saving {
+    .transactions-header {
+      height: 40px;
+    }
+  }
+
+  .svg-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

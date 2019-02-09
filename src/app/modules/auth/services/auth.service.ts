@@ -12,13 +12,14 @@ export class AuthService {
     return this.settings.apiHost + 'rest-auth/registration/';
   }
 
-  get loginApi(): string {
+  get loginAPI(): string {
     return this.settings.apiHost + 'rest-auth/login/';
   }
 
   set registrationAPI(value: string) {
     this._registrationAPI = value;
   }
+
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
   private _registrationAPI: string;
   private _loginAPI: string;
@@ -38,7 +39,7 @@ export class AuthService {
    *  LOGIN the user then tell all the subscribers about the new status
    */
   login(username: string, password: string): void {
-    this._http.post(this.loginApi, {
+    this._http.post(this.loginAPI, {
       username, password
     }).subscribe(
       data => console.log(data),

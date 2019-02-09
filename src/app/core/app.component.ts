@@ -11,7 +11,7 @@ import {slideInAnimation} from '../animations/route.animation';
 })
 export class AppComponent {
   constructor(private titleService: Title) {
-    this.titleService.setTitle('Accountant | Home');
+    this.titleService.setTitle('iSave | Home');
   }
 
   getAnimationData(outlet: RouterOutlet) {

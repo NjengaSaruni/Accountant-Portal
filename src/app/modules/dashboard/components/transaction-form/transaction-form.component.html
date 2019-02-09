@@ -31,7 +31,6 @@
                *ngFor="let option of typeOptions"
                (click)="selectOption($event, option)">
             <input id="radio-1 + {{option.id}}"
-                   name="radio"
                    type="radio"
                    [checked]="option.selected"
                    formControlName="type"

@@ -30,8 +30,8 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Accountant | Home'`, () => {
+  it(`should have as title 'iSave | Home'`, () => {
     titleService = TestBed.get(Title);
-    expect(titleService.getTitle()).toBe('Accountant | Home');
+    expect(titleService.getTitle()).toBe('iSave | Home');
   });
 });

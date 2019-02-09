@@ -29,18 +29,29 @@ export function randomColor(opacity: number = 1) {
 
 export function getMockData(): DataObject[] {
   return [
-    new DataObject('Jan', randomInt(1, 10), randomColor()),
-    new DataObject('Feb', randomInt(1, 10), randomColor()),
-    new DataObject('Mar', randomInt(1, 100), randomColor()),
-    new DataObject('Apr', randomInt(1, 100), randomColor()),
-    new DataObject('May', randomInt(1, 100), randomColor()),
-    new DataObject('Jun', randomInt(1, 100), randomColor()),
-    new DataObject('Jul', randomInt(1, 100), randomColor()),
-    new DataObject('August', randomInt(1, 100), randomColor()),
-    new DataObject('Sep', randomInt(1, 10), randomColor()),
-    new DataObject('Oct', randomInt(1, 10), randomColor()),
-    new DataObject('Nov', randomInt(1, 10), randomColor()),
-    new DataObject('Dec', randomInt(1, 10), randomColor())
+    new DataObject('Jan', randomInt(9000, 10000), randomColor()),
+    new DataObject('Feb', randomInt(9000, 12000), randomColor()),
+    new DataObject('Mar', randomInt(9000, 12000), randomColor()),
+    new DataObject('Apr', randomInt(9000, 12000), randomColor()),
+    new DataObject('May', randomInt(9000, 12000), randomColor()),
+    new DataObject('Jun', randomInt(9000, 10000), randomColor()),
+    new DataObject('Jul', randomInt(9000, 10000), randomColor()),
+    new DataObject('Aug', randomInt(9000, 10000), randomColor()),
+    new DataObject('Sep', randomInt(9000, 10000), randomColor()),
+    new DataObject('Oct', randomInt(9000, 10000), randomColor()),
+    new DataObject('Nov', randomInt(9000, 15000), randomColor()),
+    new DataObject('Dec', 20000, randomColor())
+  ];
+}
+
+export function getMockPieData(): DataObject[] {
+  return [
+    new DataObject('SHOPPING', randomInt(9000, 10000), randomColor()),
+    new DataObject('UBER', randomInt(9000, 12000), randomColor()),
+    new DataObject('RENT', randomInt(9000, 12000), randomColor()),
+    new DataObject('FARE', randomInt(9000, 12000), randomColor()),
+    new DataObject('SCHOOL FEES', 27000, randomColor()),
+    new DataObject('FOOD', 12430, randomColor())
   ];
 }
 
@@ -61,8 +72,8 @@ export function getMockBarchart(width = 800, height = 400) {
 export function getMockLinechart(width = 800, height = 400) {
   const lineChart = new LineChart(width, height);
 
-  lineChart.title = `Bar Graph A`;
-  lineChart.subtitle = `A graph of weekly expenditure in Kshs`;
+  lineChart.title = `Your expenditure per month in 2018`;
+  lineChart.subtitle = `Trend in expenses per month in Kshs`;
   lineChart.line.width = randomInt(2, 6);
   lineChart.line.color = randomColor();
   lineChart.populate(getMockData());
@@ -73,9 +84,8 @@ export function getMockLinechart(width = 800, height = 400) {
 export function getMockPiechart() {
   const piechart = new PieChart(120, 80);
 
-  piechart.title = `Bar Graph A`;
-  piechart.subtitle = `A graph of weekly expenditure in Kshs`;
-  piechart.populate(getMockData());
+  piechart.title = `Expenses in January 2018`;
+  piechart.populate(getMockPieData());
 
 
   return piechart;

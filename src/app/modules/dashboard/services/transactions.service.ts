@@ -12,7 +12,7 @@ export class TransactionsService {
               private settings: SettingsService) {}
 
   get transactionsApi(): string {
-    return this.settings.apiHost + 'transactions/';
+    return this.settings.apiHost + 'account/transactions/';
   }
 
   addTransaction(task) {
