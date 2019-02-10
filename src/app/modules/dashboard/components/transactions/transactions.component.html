@@ -13,7 +13,7 @@
            }">
         <div class="full-height full-width title-group">
           <fa class="padding" name="list"></fa>
-          <p class="padding">Transactions <span class="title-bar-label bordered">335</span></p>
+          <p class="padding">Transactions <span class="title-bar-label bordered">{{ (transactions$ | async).length }}</span></p>
         </div>
         <div class="title-bar-underline" *ngIf="lists[0].selected"></div>
       </div>
