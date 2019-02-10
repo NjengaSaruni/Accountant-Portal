@@ -1,4 +1,4 @@
-<form novalidate [formGroup]="transactionForm">
+<form novalidate [formGroup]="transactionForm" autocomplete="off">
   <div class="centered transaction-add"
        appClickOutside
        (clickOutside)="onClickOutside($event)"
@@ -95,7 +95,7 @@
       <div class="transaction-actions full-width bg-s">
         <div class="centered-v action-item"
              *ngIf="transactionBoxAnimationState == 'in'">
-          <div class="margin add-transaction-button">
+          <div class="margin add-transaction-button" (click)="saveTransaction()">
             <app-button
               [text]="'Save'"
               [width]="150"

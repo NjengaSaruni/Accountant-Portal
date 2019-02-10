@@ -2,6 +2,10 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {SlideInOutAnimation} from '../../../../animations/slideDown.animation';
 import {SlideInOutAnimationSlow} from '../../../../animations/slideInOutSlow.animation';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import * as fromTransactionsActions from '../../store/actions';
+import {RootState} from '../../../../core/store/state';
+import {ITransaction} from '../../models/Transaction.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -64,7 +68,8 @@ export class TransactionFormComponent implements OnInit {
 
   transactionForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private store$: Store<RootState>) { }
 
   ngOnInit() {
     this.transactionForm = this.formBuilder.group({
@@ -128,6 +133,15 @@ export class TransactionFormComponent implements OnInit {
 
   selectOption(event: any, option: any) {
     console.log(this.transactionForm.getRawValue());
+  }
+
+  saveTransaction() {
+    const transactionPayload = <ITransaction>{
+      'tag': this.transactionForm.get('tag').value,
+      'description': this.transactionForm.get('description').value,
+      'amount': this.transactionForm.get('amount').value,
+    };
+    this.store$.dispatch(new fromTransactionsActions.AddTransaction(transactionPayload));
   }
 
 }
