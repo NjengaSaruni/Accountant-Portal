@@ -18,4 +18,30 @@
     top: 0;
     left: 0;
   }
+
+  .benefits {
+    display: block;
+
+    p, div {
+      color: black;
+    }
+
+    .benefit-item {
+      margin-bottom: 24px;
+      .benefit-item-heading {
+        display: inline-flex;
+        fa, p {
+          font-size: 25px;
+        }
+      }
+
+      .benefit-item-separator {
+        height: 3px;
+        border: 1px solid black;
+        border-radius: 3px;
+        width: 60px;
+        background: black;
+      }
+    }
+  }
 }

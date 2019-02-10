@@ -86,7 +86,7 @@ export function getMockPiechart() {
 
   piechart.title = `Expenses in January 2018`;
   piechart.populate(getMockPieData());
-
+  piechart.backgroundColor = '#E6ECF0';
 
   return piechart;
 }

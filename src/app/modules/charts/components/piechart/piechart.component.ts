@@ -25,7 +25,8 @@ export class PiechartComponent implements OnInit, AfterViewInit {
     canvasEl.height = this.chart.height;
     canvasEl.width = this.chart.width;
     this.cx = canvasEl.getContext('2d');
-
+    this.cx.fillStyle = this.chart.backgroundColor;
+    this.cx.fill();
     this.animateGraph();
   }
 
