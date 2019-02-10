@@ -6,7 +6,6 @@ import {WindowRefService} from '../modules/shared/services/window-ref.service';
 import {SharedModule} from '../modules/shared/shared.module';
 import {HttpClientModule} from '@angular/common/http';
 import {MetaReducer} from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CoreStoreModule} from './store/core.store.module';

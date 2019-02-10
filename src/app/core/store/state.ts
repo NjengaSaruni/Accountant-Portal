@@ -1,5 +1,5 @@
 import {TransactionsState} from '../../modules/dashboard/store';
 
-export interface State {
-  transactionsState: TransactionsState.State;
+export interface RootState {
+  transactionsState: TransactionsState.TransactionsState;
 }
