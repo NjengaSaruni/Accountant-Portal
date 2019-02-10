@@ -2,12 +2,12 @@
   <div  fxLayout
         fxLayout.xs="column"
         fxLayoutGap="10px"
-        fxLayoutGap.xs="0" class="bg-white">
-    <div class="item full-height" fxFlex="10%"></div>
-    <div class="item" fxFlex="35%">
+        fxLayoutGap.xs="0" class="bg-browny">
+    <div class="item" fxFlex="10%"></div>
+    <div class="item" fxFlex="40%">
       <div class="full-height centered">
         <div class="margin-s padding-s relative">
-          <p class="centered headline-s margin-s">There's an easier way to save.</p>
+          <p class="headline-s">There's an easier way to save.</p>
           <p>iSave helps you record all your expenses and incomes in one place, enabling you to track and monitor
             your spending habits. You can easily create budgets for a particular type of expenditure and set
             targets for savings.</p>
@@ -24,7 +24,7 @@
     </div>
     <div class="item" fxFlex="50%">
       <div class="centered image margin-s padding-s">
-        <img class="centered" src="../../../../../assets/home/monthly-chart.png" alt="">
+        <app-linechart [chart]="lineChart"></app-linechart>
       </div>
     </div>
   </div>
@@ -75,7 +75,7 @@
         fxLayoutGap="10px"
         fxLayoutGap.xs="0" class="bg-white phone-bg">
     <div class="item full-height" fxFlex="10%"></div>
-    <div class="item" fxFlex="35%">
+    <div class="item" fxFlex="45%">
       <div class="full-height centered">
         <div class="margin-s padding-s benefits">
           <p class="headline-s margin-s">Reduce unwanted spending.</p>
@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="item" fxFlex="50%">
+    <div class="item" fxFlex="45%">
       <div class="centered image margin-s padding-s">
         <!--<img class="centered" src="../../../../../assets/home/monthly-chart.png" alt="">-->
       </div>

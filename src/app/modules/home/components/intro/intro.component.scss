@@ -1,7 +1,6 @@
 .intro {
   color: #fff;
   overflow: hidden;
-  background-size: cover;
   .item {
     p {
       color: black;
@@ -46,12 +45,15 @@
   }
 
   .phone-bg {
-    background: #f4f6f8;
+    background: #dad9dc;
     background-image: url(https://images.unsplash.com/photo-1515054562254-30a1b0ebe227?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80);
     background-size: contain;
     background-repeat: no-repeat;
     background-position:right;
   }
 
+  .bg-browny {
+    background: #dad9dc;
+  }
 }
 

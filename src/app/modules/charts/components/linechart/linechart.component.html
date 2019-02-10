@@ -1,7 +1,7 @@
-<div class="bordered" [ngStyle]="{'background-color': chart.backgroundColor}">
+<div [ngStyle]="{'background-color': chart.backgroundColor}">
   <div class="padding-s margin-bs">
-    <p class="centered bold padding">{{chart.title}}</p>
-    <p class="centered info color-grey">{{chart.subtitle }}</p>
+    <p class="centered bold padding color-black">{{chart.title}}</p>
+    <p class="centered info color-black">{{chart.subtitle }}</p>
   </div>
   <div>
     <canvas class="centered padding-s" #canvas></canvas>
