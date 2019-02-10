@@ -15,7 +15,8 @@ export class AuthEffects {
   login$: Observable<Action> = this.actions$.pipe(
     ofType<authActions.Login>(authActions.AuthActionTypes.LOGIN),
     mergeMap(action =>
-      this.http.post(this.loginApi, action.payload).pipe(
+      this.http.post<{key: string}>(this.loginApi, action.payload).pipe(
+        map(data => localStorage.setItem('token', data.key)),
         // If successful, dispatch success action with result
         map(data => ({ type: authActions.AuthActionTypes.LOGIN_SUCCESS, payload: data })),
         // If request fails, dispatch failed action

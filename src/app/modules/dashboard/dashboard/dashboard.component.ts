@@ -6,6 +6,7 @@ import {DataObject} from '../../charts/models/BaseChart/DataObject';
 import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
 import {IReportCard} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,13 +22,15 @@ export class DashboardComponent implements OnInit {
   cards: IReportCard[] = [];
   transactionBoxAnimationState = 'out';
 
-  constructor(private winRef: WindowRefService) { }
+  constructor(private winRef: WindowRefService,
+              private titleService: Title) {
+    this.titleService.setTitle('iSave | Dashboard');
+  }
 
   async ngOnInit() {
     this.barCharts.push(getMockBarchart((this.winRef.nativeWindow.innerWidth - 300) / 2));
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
-    console.log(this.winRef.nativeWindow);
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
 
     this.cards.push(

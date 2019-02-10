@@ -1,0 +1,113 @@
+<div class="intro">
+  <div  fxLayout
+        fxLayout.xs="column"
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0" class="bg-white phone-bg">
+    <div class="item full-height" fxFlex="10%"></div>
+    <div class="item" fxFlex="30%">
+      <div class="full-height centered">
+        <div class="margin-s padding-s relative">
+          <p class="headline-s">There's an easier way to save.</p>
+          <p>iSave helps you record all your expenses and incomes in one place, enabling you to track and monitor
+            your spending habits. You can easily create budgets for a particular type of expenditure and set
+            targets for savings.</p>
+          <div class="margin-ts sticky-top" routerLink="/account/register">
+            <app-button
+              [circular]="true"
+              [text]="'Get Started'"
+              [raised]="true">
+            </app-button>
+          </div>
+          <p class="margin-ts info">Get started with FREE tools, and upgrade as you grow.</p>
+        </div>
+      </div>
+    </div>
+    <div class="item" fxFlex="60%" class="relative">
+    </div>
+  </div>
+  <div  fxLayout
+        fxLayout.xs="column"
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0"
+        class="relative">
+    <div class="item" fxFlex="10%"></div>
+    <div class="item saving" fxFlex="40%">
+      <div class="centered full-height image">
+        <img class="centered" src="../../../../../assets/home/piechart1.png" alt="">
+      </div>
+    </div>
+    <div class="item" fxFlex="50%">
+      <div class="full-height">
+        <div class="margin-s padding-s benefits">
+          <p class= "headline-s margin-s">Understand where your money goes.</p>
+          <p class="margin-ls">Powerful visual tools help you categorize and understand your spending
+            habits so you can change them for the better.</p>
+          <div class="benefit-item full-width padding-t">
+            <div class="benefit-item-heading margin-ls">
+              <fa name="pie-chart" class="padding-rs padding-ts"></fa>
+              <p class="margin-s">Insightful Reports</p>
+            </div>
+            <p class="margin-ls">Powerful tools that help visualize spending trends and easily spot irregularities.</p>
+          </div>
+          <div class="benefit-item full-width padding-t">
+            <div class="benefit-item-heading margin-ls">
+              <fa name="tag" class="padding-rs padding-ts"></fa>
+              <p class="margin-s">Customized Tag Organization</p>
+            </div>
+            <p class="margin-ls">Build your own tagging structure, organized exactly the way you like.</p>
+          </div>
+          <div class="benefit-item full-width padding-t">
+            <div class="benefit-item-heading margin-ls">
+              <fa name="check-circle" class="padding-rs padding-ts"></fa>
+              <p class="margin-s">Automatic Tagging</p>
+            </div>
+            <p class="margin-ls">Automatic tagging rules personalized for your transactions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div  fxLayout
+        fxLayout.xs="column"
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0" class="bg-white">
+    <div class="item" fxFlex="10%"></div>
+    <div class="item" fxFlex="40%">
+      <div class="full-height centered">
+        <div class="margin-s padding-s benefits">
+          <p class="headline-s margin-s">Reduce unwanted spending.</p>
+          <p class="margin-ls">Keep a close eye on your everyday spending with budgets and alerts.</p>
+          <div class="benefit-item full-width padding-t">
+            <div class="benefit-item-heading margin-ls">
+              <fa name="bar-chart" class="padding-rs padding-ts"></fa>
+              <p class="margin-s">Budgets</p>
+            </div>
+            <p class="margin-ls">Set weekly, monthly or yearly spending limits per tag.</p>
+          </div>
+          <div class="benefit-item full-width padding-t">
+            <div class="benefit-item-heading margin-ls">
+              <fa name="bell" class="padding-rs padding-ts"></fa>
+              <p class="margin-s">Real Time Alerts</p>
+            </div>
+            <p class="margin-ls">Get alerts on your mobile device when you exceed your budget.</p>
+          </div>
+          <div class="benefit-item full-width padding-t">
+            <div class="benefit-item-heading margin-ls">
+              <fa name="calendar" class="padding-rs padding-ts"></fa>
+              <p class="margin-s">Reminders</p>
+            </div>
+            <p class="margin-ls">Receive alerts for upcoming bills. Never get hit by a late fee again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" fxFlex="50%">
+      <div class="centered image margin-s padding-s">
+        <app-linechart [chart]="lineChart"></app-linechart>
+      </div>
+    </div>
+  </div>
+</div>
+
+

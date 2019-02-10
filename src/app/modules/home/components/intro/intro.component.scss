@@ -1,0 +1,68 @@
+.intro {
+  color: #fff;
+  overflow: hidden;
+  .item {
+    p {
+      color: black;
+    }
+  }
+  .saving {
+    .transactions-header {
+      height: 40px;
+    }
+  }
+
+  .svg-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .benefits {
+    display: block;
+
+    p, div {
+      color: black;
+    }
+
+    .benefit-item {
+      margin-bottom: 24px;
+      .benefit-item-heading {
+        display: inline-flex;
+        fa, p {
+          font-size: 25px;
+        }
+      }
+
+      .benefit-item-separator {
+        height: 3px;
+        border: 1px solid black;
+        border-radius: 3px;
+        width: 60px;
+        background: black;
+      }
+    }
+  }
+  .benefits.black-works {
+    p, div {
+      color: white;
+    }
+  }
+  .phone-bg {
+    background: #1b190f;
+    background-image: url(https://images.unsplash.com/photo-1543157797-c1bd4ff6928d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+    //background-image: url(https://images.unsplash.com/photo-1423784346385-c1d4dac9893a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    min-height: 500px;
+    div, p, span {
+      color: white;
+    }
+  }
+
+  .bg-browny {
+    background: #dad9dc;
+  }
+}
+
