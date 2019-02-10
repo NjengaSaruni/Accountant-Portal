@@ -57,7 +57,7 @@
     <!--</tr>-->
     <!--</thead>-->
     <tbody class="transaction-list-data">
-    <tr *ngFor="let transaction of transactions" class="bordered-b padding"
+    <tr *ngFor="let transaction of transactions$ | async" class="bordered-b padding"
         [ngClass]="{'raised-light': transaction.hovered }"
         (mouseenter)="transaction.hovered = true"
         (mouseleave)="transaction.hovered = false"

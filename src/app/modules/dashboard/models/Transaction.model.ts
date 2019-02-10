@@ -12,6 +12,6 @@ export interface ITag extends IAbstractBase {
 export interface ITransaction extends IAbstractBase {
   amount: number;
   description: string;
-  tag: ITag;
+  tag: ITag | string;
   account: IAccount;
 }

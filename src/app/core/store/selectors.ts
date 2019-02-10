@@ -8,11 +8,21 @@ export const selectError: MemoizedSelector<object, string> = createSelector(
   }
 );
 
-export const selectIsLoading: MemoizedSelector<
+export const selectLoading: MemoizedSelector<
   object,
   boolean
   > = createSelector(
-  TransactionsSelectors.selectTransactionsIsLoading,
+  TransactionsSelectors.selectTransactionsLoading,
+  (transactions: boolean) => {
+    return transactions;
+  }
+);
+
+export const selectLoaded: MemoizedSelector<
+  object,
+  boolean
+  > = createSelector(
+  TransactionsSelectors.selectTransactionsLoaded,
   (transactions: boolean) => {
     return transactions;
   }

@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ITag, ITransaction} from '../../models/Transaction.model';
 import {ModalService} from '../../../shared/components/modal/modal.service';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {RootState} from '../../../../core/store/state';
+import {TransactionsSelectors} from '../../store';
 
 @Component({
   selector: 'app-transactions',
@@ -9,6 +13,7 @@ import {ModalService} from '../../../shared/components/modal/modal.service';
 })
 export class TransactionsComponent implements OnInit {
   transactions: ITransaction[] = [];
+  transactions$: Observable<ITransaction[]>;
   lists = [
     {
       name: 'New',
@@ -19,7 +24,8 @@ export class TransactionsComponent implements OnInit {
       selected: false
     }
   ];
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService,
+              private store$: Store<RootState>) { }
 
   ngOnInit() {
     this.transactions.push(
@@ -68,6 +74,10 @@ export class TransactionsComponent implements OnInit {
         },
         description: 'Travelled to see my brother in South B.'
       }
+    );
+
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
     );
   }
 

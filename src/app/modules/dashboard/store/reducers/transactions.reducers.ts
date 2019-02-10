@@ -1,17 +1,5 @@
+import {initialState, TransactionsState} from '../state';
 import {TransactionActions, TransactionActionTypes} from '../actions';
-import {ITransaction} from '../../models/Transaction.model';
-
-export interface TransactionsState {
-  transactions: ITransaction[];
-  loading: boolean;
-  loaded: boolean;
-}
-
-export const initialState: TransactionsState = {
-  transactions: [],
-  loading: false,
-  loaded: false
-};
 
 export function reducers(state = initialState, action: TransactionActions): TransactionsState {
   switch (action.type) {

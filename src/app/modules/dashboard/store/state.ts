@@ -1,13 +1,15 @@
 import {ITransaction} from '../models/Transaction.model';
 
-export interface State {
+export interface TransactionsState {
   transactions: ITransaction[] | [];
-  isLoading: boolean;
+  loading: boolean;
+  loaded: boolean;
   error: string;
 }
 
-export const initialState: State = {
+export const initialState: TransactionsState = {
   transactions: [],
-  isLoading: false,
+  loading: false,
+  loaded: false,
   error: null
 };
