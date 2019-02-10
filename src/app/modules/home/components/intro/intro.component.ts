@@ -16,7 +16,7 @@ export class IntroComponent implements OnInit {
     const chartWidth = width > 600 ? (this.winRef.nativeWindow.innerWidth - 0.1 * this.winRef.nativeWindow.innerWidth)
       / 2 : this.winRef.nativeWindow.innerWidth;
     this.lineChart = getMockLinechart(chartWidth);
-    this.lineChart.backgroundColor = '#dad9dc';
+    this.lineChart.backgroundColor = 'white';
   }
 
   ngOnInit() {
