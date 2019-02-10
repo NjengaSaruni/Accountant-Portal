@@ -2,8 +2,8 @@
   <div  fxLayout
         fxLayout.xs="column"
         fxLayoutGap="10px"
-        fxLayoutGap.xs="0" class="bg-white">
-    <div class="item" fxFlex="10%"></div>
+        fxLayoutGap.xs="0" class="bg-white phone-bg">
+    <div class="item full-height" fxFlex="10%"></div>
     <div class="item" fxFlex="40%">
       <div class="full-height centered">
         <div class="margin-s padding-s relative">
@@ -22,10 +22,7 @@
         </div>
       </div>
     </div>
-    <div class="item" fxFlex="50%">
-      <div class="centered image margin-s padding-s">
-        <app-linechart [chart]="lineChart"></app-linechart>
-      </div>
+    <div class="item" fxFlex="50%" class="relative">
     </div>
   </div>
   <div  fxLayout
@@ -73,8 +70,8 @@
   <div  fxLayout
         fxLayout.xs="column"
         fxLayoutGap="10px"
-        fxLayoutGap.xs="0" class="bg-white phone-bg">
-    <div class="item full-height" fxFlex="10%"></div>
+        fxLayoutGap.xs="0" class="bg-white">
+    <div class="item" fxFlex="10%"></div>
     <div class="item" fxFlex="40%">
       <div class="full-height centered">
         <div class="margin-s padding-s benefits">
@@ -104,7 +101,13 @@
         </div>
       </div>
     </div>
-    <div class="item" fxFlex="50%" class="relative">
+
+    <div class="item" fxFlex="50%">
+      <div class="centered image margin-s padding-s">
+        <app-linechart [chart]="lineChart"></app-linechart>
+      </div>
     </div>
   </div>
 </div>
+
+

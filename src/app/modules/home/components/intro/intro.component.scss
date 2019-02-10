@@ -22,7 +22,7 @@
     display: block;
 
     p, div {
-      color: white;
+      color: black;
     }
 
     .benefit-item {
@@ -43,13 +43,21 @@
       }
     }
   }
-
+  .benefits.black-works {
+    p, div {
+      color: white;
+    }
+  }
   .phone-bg {
-    background: #dad9dc;
+    background: #1b190f;
     background-image: url(https://images.unsplash.com/photo-1543157797-c1bd4ff6928d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
+    min-height: 400px;
+    div, p, span {
+      color: white;
+    }
   }
 
   .bg-browny {
