@@ -53,8 +53,21 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.chart.height; i += this.chart.intervalY ) {
       const y = this.chart.height - this.chart.startY - i;
 
-      const label = Math.ceil((i / (this.chart.height - (this.chart.startY * 2)) * this.chart.max));
-      this.cx.strokeText(label.toString(), 10, y);
+      let label = Math.ceil((i / (this.chart.height - (this.chart.startY * 2)) * this.chart.max));
+      let appendM = false;
+      let appendK = false;
+      let labelString = label.toString();
+      if (label >= 1000000) {
+        appendM = true;
+        label /= 1000000;
+        labelString = label.toString() + 'M';
+      } else if (label >= 1000) {
+        appendK = true;
+        label /= 1000;
+        labelString = label.toString() + 'K';
+      }
+
+      this.cx.strokeText(labelString, 10, y);
 
       // Set strokeStyle for line
       this.cx.strokeStyle = '#9ccdda';

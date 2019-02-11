@@ -51,7 +51,7 @@
   .phone-bg {
     background: #1b190f;
     background-image: url(https://images.unsplash.com/photo-1543157797-c1bd4ff6928d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
-    //background-image: url(https://images.unsplash.com/photo-1423784346385-c1d4dac9893a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+    //background-image: url(https://images.unsplash.com/photo-1549442928-10c4ae8da375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
@@ -63,6 +63,18 @@
 
   .bg-browny {
     background: #dad9dc;
+  }
+
+  .intro-set-targets {
+    background: #000000;
+    background-image: url(https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80);
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+
+    div, p, span {
+      color: white;
+    }
   }
 }
 
