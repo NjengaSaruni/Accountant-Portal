@@ -67,6 +67,7 @@ export class TransactionFormComponent implements OnInit {
   ];
 
   transactionForm: FormGroup;
+  errors: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private store$: Store<RootState>) { }
@@ -88,7 +89,8 @@ export class TransactionFormComponent implements OnInit {
       amount: new FormControl(
         '',
         [
-          Validators.required
+          Validators.required,
+          Validators.min(0)
         ]
       ),
       date: new FormControl(
@@ -135,6 +137,10 @@ export class TransactionFormComponent implements OnInit {
     console.log(this.transactionForm.getRawValue());
   }
 
+  f() {
+    return this.transactionForm.controls;
+  }
+
   saveTransaction() {
     const transactionPayload = <ITransaction>{
       'tag': this.transactionForm.get('tag').value,
@@ -142,6 +148,13 @@ export class TransactionFormComponent implements OnInit {
       'amount': this.transactionForm.get('amount').value,
     };
     this.store$.dispatch(new fromTransactionsActions.AddTransaction(transactionPayload));
+  }
+
+  validateAmount() {
+    const re = /^[0-9.]+$/;
+    if (!this.f().amount.value.match(re)) {
+      this.errors = true;
+    }
   }
 
 }

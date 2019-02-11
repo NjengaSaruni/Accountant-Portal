@@ -35,7 +35,7 @@ export class TransactionEffects {
           .addTransaction(action.payload)
           .pipe(
             // If successful, dispatch success action with result
-            map(data => ({ type: transactionActions.TransactionActionTypes.TRANSACTION_ADD_SUCCESS, payload: data })),
+            map(data => ({ type: transactionActions.TransactionActionTypes.TRANSACTION_ADD_SUCCESS, payload: action.payload })),
             // If request fails, dispatch failed action
             catchError(() => of({ type: transactionActions.TransactionActionTypes.TRANSACTION_ADD_FAIL }))
           )
