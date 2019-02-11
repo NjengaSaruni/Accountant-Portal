@@ -50,8 +50,8 @@
             <input type="number"
                    placeholder="Amount"
                    class="full-width"
-                   formControlName="amount"
-                   min="0">
+                   formControlName="amount">
+            <p class="error" *ngIf="f().amount.invalid && f().amount.touched && f().amount.value.toString().length > 0">Invalid amount</p>
           </div>
           <div class="transaction-tag padding-s" fxFlex>
             <input type="text" placeholder="Tag" name="tag"

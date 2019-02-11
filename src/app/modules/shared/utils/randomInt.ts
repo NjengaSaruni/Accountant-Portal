@@ -40,7 +40,7 @@ export function getMockData(): DataObject[] {
     new DataObject('Sep', randomInt(9000, 10000), randomColor()),
     new DataObject('Oct', randomInt(9000, 10000), randomColor()),
     new DataObject('Nov', randomInt(9000, 15000), randomColor()),
-    new DataObject('Dec', 20000, randomColor())
+    new DataObject('Dec', 18000, randomColor())
   ];
 }
 

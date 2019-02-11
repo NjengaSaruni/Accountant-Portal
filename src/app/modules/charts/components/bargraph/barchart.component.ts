@@ -60,9 +60,21 @@ export class BarchartComponent implements AfterViewInit {
     // Draw Y axis labels and lines
     for (let i = 0; i <= this.chart.height; i += this.chart.intervalY ) {
       const y = this.chart.height - this.chart.startY - i;
-      const label = Math.ceil((i / (this.chart.intervalY * 10) * this.chart.max));
+      let label = Math.ceil((i / (this.chart.intervalY * 10) * this.chart.max));
+      let appendM = false;
+      let appendK = false;
+      let labelString = label.toString();
+      if (label >= 1000000) {
+        appendM = true;
+        label /= 1000000;
+        labelString = label.toString() + 'M';
+      } else if (label >= 1000) {
+        appendK = true;
+        label /= 1000;
+        labelString = label.toString() + 'K';
+      }
 
-      this.cx.fillText(label.toString(), 15, y - 2);
+      this.cx.fillText(labelString, 15, y - 2);
       this.cx.beginPath();
       this.cx.moveTo(this.chart.startX - 5, y);
       this.cx.lineTo(this.chart.width, y );
