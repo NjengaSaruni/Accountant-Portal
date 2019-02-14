@@ -4,9 +4,15 @@ import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
 import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
-import {IReportCard} from '../models/ReportCard.model';
+import {IReportCard, IReportCardBackground, IReportCardData} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
 import {Title} from '@angular/platform-browser';
+import {Store} from '@ngrx/store';
+import {RootState} from '../../../core/store/state';
+import {Observable, of} from 'rxjs';
+import {ITransaction} from '../models/Transaction.model';
+import {TransactionsSelectors} from '../store';
+import {reduce} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +20,7 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  transactions$: Observable<ITransaction[]>;
 
   barCharts: BarChart[] = [];
   pieChart: PieChart;
@@ -21,9 +28,13 @@ export class DashboardComponent implements OnInit {
   data: DataObject[];
   cards: IReportCard[] = [];
   transactionBoxAnimationState = 'out';
+  totalIncome$: Observable<number>;
+  totalExpense$: Observable<number>;
+  totalValue$: Observable<number>;
 
   constructor(private winRef: WindowRefService,
-              private titleService: Title) {
+              private titleService: Title,
+              private store$: Store<RootState>) {
     this.titleService.setTitle('iSave | Dashboard');
   }
 
@@ -32,23 +43,36 @@ export class DashboardComponent implements OnInit {
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
-
-    this.cards.push(
-      <IReportCard> {
-        title: {
-          name: 'Income',
-          color: '#66AB86'
-        },
-        background: {
-          // color: '#6EC4DB'
-        },
-        data: {
-          value: 3000,
-          unit: 'KES',
-          previous: 2000
-        }
-      }
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
     );
+
+    this.transactions$.subscribe(
+      data => {
+        this.totalExpense$ = of<number>(data
+          .filter(transaction => transaction.amount < 0)
+          .map(transaction => transaction.amount)
+          .reduce((acc, currentValue) => {
+            return acc + currentValue;
+          }));
+      });
+
+    // this.cards.push(
+    //   <IReportCard> {
+    //     title: {
+    //       name: 'Income',
+    //       color: '#66AB86'
+    //     },
+    //     background: {
+    //       // color: '#6EC4DB'
+    //     },
+    //     data: {
+    //       value: this.totalExpense$,
+    //       unit: 'KES',
+    //       previous: 2000
+    //     }
+    //   }
+    // );
 
     this.cards.push(
       <IReportCard> {
@@ -56,49 +80,49 @@ export class DashboardComponent implements OnInit {
           name: 'Expense',
           color: '#FA7C92'
         },
-        background: {
-          // color: '#FA7C92'
+        background: <IReportCardBackground> {
+          color: '#FA7C92'
         },
-        data: {
-          value: -6000,
+        data: <IReportCardData>{
+          value$: this.totalExpense$,
           unit: 'KES',
           previous: -4800
         }
       }
     );
 
-    this.cards.push(
-      <IReportCard> {
-        title: {
-          name: 'Saved',
-          color: '#A239CA'
-        },
-        background: {
-          // color: '#FFF7C0'
-        },
-        data: {
-          value: this.cards[0].data.value + this.cards[1].data.value,
-          unit: 'KES',
-          previous: this.cards[0].data.previous + this.cards[1].data.previous
-        }
-      }
-      );
-
-    this.cards.push(
-      <IReportCard> {
-        title: {
-          name: 'NET WORTH',
-          color: '#6EC4DB'
-        },
-        background: {
-          // color: '#66AB86'
-        },
-        data: {
-          value: 100000,
-          unit: 'KES',
-          previous: 900,
-        }
-      }
-    );
+    // this.cards.push(
+    //   <IReportCard> {
+    //     title: {
+    //       name: 'Saved',
+    //       color: '#A239CA'
+    //     },
+    //     background: {
+    //       // color: '#FFF7C0'
+    //     },
+    //     data: {
+    //       value: this.cards[0].data.value + this.cards[1].data.value,
+    //       unit: 'KES',
+    //       previous: this.cards[0].data.previous + this.cards[1].data.previous
+    //     }
+    //   }
+    //   );
+    //
+    // this.cards.push(
+    //   <IReportCard> {
+    //     title: {
+    //       name: 'NET WORTH',
+    //       color: '#6EC4DB'
+    //     },
+    //     background: {
+    //       // color: '#66AB86'
+    //     },
+    //     data: {
+    //       value: 100000,
+    //       unit: 'KES',
+    //       previous: 900,
+    //     }
+    //   }
+    // );
   }
 }
