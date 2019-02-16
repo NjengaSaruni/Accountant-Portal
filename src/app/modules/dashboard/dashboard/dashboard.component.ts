@@ -12,7 +12,6 @@ import {RootState} from '../../../core/store/state';
 import {Observable, of} from 'rxjs';
 import {ITransaction} from '../models/Transaction.model';
 import {TransactionsSelectors} from '../store';
-import {reduce} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,36 +42,18 @@ export class DashboardComponent implements OnInit {
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
-    this.transactions$ = this.store$.select(
-      TransactionsSelectors.selectTransactions
+
+    this.cards.push(
+      <IReportCard> {
+        title: {
+          name: 'Income',
+          color: '#66AB86'
+        },
+        background: <IReportCardBackground>{
+          color: '#6EC4DB'
+        }
+      }
     );
-
-    this.transactions$.subscribe(
-      data => {
-        this.totalExpense$ = of<number>(data
-          .filter(transaction => transaction.amount < 0)
-          .map(transaction => transaction.amount)
-          .reduce((acc, currentValue) => {
-            return acc + currentValue;
-          }));
-      });
-
-    // this.cards.push(
-    //   <IReportCard> {
-    //     title: {
-    //       name: 'Income',
-    //       color: '#66AB86'
-    //     },
-    //     background: {
-    //       // color: '#6EC4DB'
-    //     },
-    //     data: {
-    //       value: this.totalExpense$,
-    //       unit: 'KES',
-    //       previous: 2000
-    //     }
-    //   }
-    // );
 
     this.cards.push(
       <IReportCard> {
@@ -83,31 +64,26 @@ export class DashboardComponent implements OnInit {
         background: <IReportCardBackground> {
           color: '#FA7C92'
         },
-        data: <IReportCardData>{
-          value$: this.totalExpense$,
-          unit: 'KES',
-          previous: -4800
-        }
       }
     );
-
+    //
     // this.cards.push(
     //   <IReportCard> {
     //     title: {
     //       name: 'Saved',
     //       color: '#A239CA'
     //     },
-    //     background: {
-    //       // color: '#FFF7C0'
+    //     background: <IReportCardBackground>{
+    //       color: '#FFF7C0'
     //     },
     //     data: {
-    //       value: this.cards[0].data.value + this.cards[1].data.value,
+    //       value$: this.cards[0].data.value + this.cards[1].data.value,
     //       unit: 'KES',
     //       previous: this.cards[0].data.previous + this.cards[1].data.previous
     //     }
     //   }
     //   );
-    //
+
     // this.cards.push(
     //   <IReportCard> {
     //     title: {
