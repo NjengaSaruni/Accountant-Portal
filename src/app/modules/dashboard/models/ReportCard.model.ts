@@ -9,7 +9,7 @@ export interface IReportCardBackground {
   url: string;
 }
 export interface IReportCardData {
-  value$: Observable<number>;
+  value: Observable<number>;
   unit: string | undefined;
   previous: number | undefined;
   positive: boolean;
