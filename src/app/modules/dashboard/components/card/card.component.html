@@ -1,15 +1,15 @@
 <div class="dashboard-report-card raised-light"
   [ngStyle]="{
-    'border-top': '5px solid' + (config$ | async).title.color
+    'border-top': '5px solid' + config.title.color
   }">
 
   <div class="centered title padding-s">
 
     <p [ngStyle]="{
-      'color': (config$ | async).title.color
+      'color': config.title.color
     }">
 
-      {{ (config$ | async).title.name }}
+      {{ config.title.name }}
 
     </p>
 
@@ -17,24 +17,24 @@
 
   <div class="centered card-value">
     <p [ngStyle]="{
-      'color': (config$ | async).title.color
+      'color': config.title.color
     }">
-      {{ (config$ | async).data.value | async | number: '.2' }} {{ (config$ | async).data.unit }}
+      {{ data.value | number: '.2' }} {{ data.unit }}
     </p>
   </div>
 
   <div class="centered card-trend">
-    <fa name="arrow-up" class="padding color-green" *ngIf="(config$ | async).data.value  > (config$ | async).data.previous"></fa>
-    <fa name="arrow-down" class="padding color-red" *ngIf="(config$ | async).data.value  < (config$ | async).data.previous"></fa>
+    <fa name="arrow-up" class="padding color-green" *ngIf="data.value  > data.previous"></fa>
+    <fa name="arrow-down" class="padding color-red" *ngIf="data.value  < data.previous"></fa>
 
-    <p class="color-green" *ngIf="(config$ | async).data.value > (config$ | async).data.previous">
-      {{(((config$ | async).data.value - (config$ | async).data.previous) / (config$ | async).data.value ) * 100 | number: '.1' }}%
-      ({{ (config$ | async).data.value - (config$ | async).data.previous  | number: '.2' }} KES)
+    <p class="color-green" *ngIf="data.value > data.previous">
+      {{((data.value - data.previous) / data.value ) * 100 | number: '.1' }}%
+      ({{ data.value - data.previous  | number: '.2' }} KES)
     </p>
 
-    <p class="color-red" *ngIf="(config$ | async).data.value < (config$ | async).data.previous">
-      {{(((config$ | async).data.value - (config$ | async).data.previous) / (config$ | async).data.value ) * 100 | number: '.1' }}%
-      ({{ (config$ | async).data.value - (config$ | async).data.previous | number: '.2'}} KES)
+    <p class="color-red" *ngIf="data.value < data.previous">
+      {{((data.value - data.previous) / data.value ) * 100 | number: '.1' }}%
+      ({{ data.value - data.previous | number: '.2'}} KES)
     </p>
 
   </div>

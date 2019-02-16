@@ -12,7 +12,6 @@ import {RootState} from '../../../core/store/state';
 import {Observable, of} from 'rxjs';
 import {ITransaction} from '../models/Transaction.model';
 import {TransactionsSelectors} from '../store';
-import {reduce} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +25,7 @@ export class DashboardComponent implements OnInit {
   pieChart: PieChart;
   lineChart: LineChart;
   data: DataObject[];
-  cards: Observable<IReportCard>[] = [];
+  cards: IReportCard[] = [];
   transactionBoxAnimationState = 'out';
   totalIncome$: Observable<number>;
   totalExpense$: Observable<number>;
@@ -43,46 +42,21 @@ export class DashboardComponent implements OnInit {
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
-    this.transactions$ = this.store$.select(
-      TransactionsSelectors.selectTransactions
-    );
-
-    this.transactions$.subscribe(
-      data => {
-        this.totalExpense$ = of(data
-          .filter(transaction => transaction.amount < 0)
-          .map(transaction => transaction.amount)
-          .reduce((acc, currentValue) => {
-            return parseFloat(acc.toString()) + parseFloat(currentValue.toString());
-          }));
-
-        this.totalIncome$ = of(data
-          .filter(transaction => transaction.amount >= 0)
-          .map(transaction => transaction.amount)
-          .reduce((acc, currentValue) => {
-            return parseFloat(acc.toString()) + parseFloat(currentValue.toString());
-          }));
-      });
 
     this.cards.push(
-      of(<IReportCard> {
+      <IReportCard> {
         title: {
           name: 'Income',
           color: '#66AB86'
         },
         background: <IReportCardBackground>{
           color: '#6EC4DB'
-        },
-        data: <IReportCardData>{
-          value: this.totalIncome$,
-          unit: 'KES',
-          previous: 2000
         }
       }
-    ));
+    );
 
     this.cards.push(
-      of(<IReportCard> {
+      <IReportCard> {
         title: {
           name: 'Expense',
           color: '#FA7C92'
@@ -90,13 +64,8 @@ export class DashboardComponent implements OnInit {
         background: <IReportCardBackground> {
           color: '#FA7C92'
         },
-        data: <IReportCardData>{
-          value: this.totalExpense$,
-          unit: 'KES',
-          previous: -4800
-        }
       }
-    ));
+    );
     //
     // this.cards.push(
     //   <IReportCard> {
