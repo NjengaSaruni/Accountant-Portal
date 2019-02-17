@@ -1,4 +1,5 @@
 import {IAbstractBase} from '../../shared/models/AbstractBase.model';
+import {convertToDate, FIRST_OF_CURRENT_MONTH, FIRST_OF_PREVIOUS_MONTH} from '../../shared/utils/timeUtils';
 
 export interface IAccount extends IAbstractBase {
   name: string;
@@ -21,15 +22,14 @@ export class TransactionUtils {
     Grouped static utility methods for transactions
     for convenience
   */
-  public static today = () => new Date();
 
   static getThisMonthTransactions = (transactions: ITransaction[]) =>
-    transactions.filter(transaction => new Date(transaction.created_at) >= TransactionUtils.getFirstOfThisMonth());
+    transactions.filter(transaction => new Date(transaction.created_at) >= FIRST_OF_CURRENT_MONTH);
 
   static getLastMonthTransactions = (transactions: ITransaction[]) =>
     transactions.filter(transaction =>  {
-      const created_at_date = TransactionUtils.convertToDate(transaction.created_at);
-      return created_at_date >= TransactionUtils.getFirstOfLastMonth() && created_at_date < TransactionUtils.getFirstOfThisMonth();
+      const created_at_date = convertToDate(transaction.created_at);
+      return created_at_date >= FIRST_OF_PREVIOUS_MONTH && created_at_date < FIRST_OF_CURRENT_MONTH;
     });
 
   static getExpenses = (transactions: ITransaction[]) =>
@@ -37,20 +37,6 @@ export class TransactionUtils {
 
   static getIncome = (transactions: ITransaction[]) =>
     transactions.filter(transaction => transaction.amount >= 0);
-
-  static getFirstOfThisMonth = () => new Date(
-    TransactionUtils.today().getFullYear(),
-    TransactionUtils.today().getMonth(),
-    1
-  );
-
-  static getFirstOfLastMonth = () => new Date(
-    TransactionUtils.today().getMonth() === 1 ? TransactionUtils.today().getFullYear() - 1 : TransactionUtils.today().getFullYear(),
-    TransactionUtils.today().getMonth() === 1 ? 12 : TransactionUtils.today().getMonth() - 1,
-    1
-  );
-
-  static convertToDate = (date: Date) => new Date(date);
 
   static sumOf = (transactions: ITransaction[]) =>
     transactions.map(transaction => {

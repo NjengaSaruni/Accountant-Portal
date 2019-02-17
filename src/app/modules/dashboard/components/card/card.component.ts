@@ -5,6 +5,7 @@ import {TransactionsSelectors} from '../../store';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
 import {ITransaction, TransactionUtils} from '../../models/Transaction.model';
+import {FIRST_OF_CURRENT_MONTH} from '../../../shared/utils/timeUtils';
 
 @Component({
   selector: 'app-card',
@@ -41,6 +42,7 @@ export class CardComponent implements OnInit {
 
         this.data.value = TransactionUtils.sumOf(data);
       });
+
     this.transactions$.subscribe(
       data => {
 
@@ -55,7 +57,7 @@ export class CardComponent implements OnInit {
         } else {
           data = data.filter(transaction => {
             const created_at_date = new Date(transaction.created_at);
-            return created_at_date < TransactionUtils.getFirstOfThisMonth();
+            return created_at_date < FIRST_OF_CURRENT_MONTH;
           });
         }
 
