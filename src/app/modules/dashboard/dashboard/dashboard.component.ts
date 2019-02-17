@@ -3,14 +3,17 @@ import {BarChart} from '../../charts/models/BarChart/BarChart';
 import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
-import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
+import {getMockBarchart, getMockData, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
 import {ECardType, IReportCard, IReportCardBackground} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
-import {Observable} from 'rxjs';
-import {ITransaction} from '../models/Transaction.model';
+import {Observable, range} from 'rxjs';
+import {ITransaction, TransactionUtils} from '../models/Transaction.model';
+import {TransactionsSelectors} from '../store';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +22,7 @@ import {ITransaction} from '../models/Transaction.model';
 })
 export class DashboardComponent implements OnInit {
   transactions$: Observable<ITransaction[]>;
+  transactionsLoaded$: Observable<boolean>;
 
   barCharts: BarChart[] = [];
   pieChart: PieChart;
@@ -26,17 +30,51 @@ export class DashboardComponent implements OnInit {
   data: DataObject[];
   cards: IReportCard[] = [];
   transactionBoxAnimationState = 'out';
+  dataObjects: DataObject[] = [];
 
   constructor(private winRef: WindowRefService,
-              private titleService: Title) {
+              private titleService: Title,
+              private store$: Store<RootState>) {
     this.titleService.setTitle('iSave | Dashboard');
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.barCharts.push(getMockBarchart((this.winRef.nativeWindow.innerWidth - 300) / 2));
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
+
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
+    );
+
+    this.transactionsLoaded$ = this.store$.select(
+      TransactionsSelectors.selectTransactionsLoaded
+    );
+
+    this.transactions$.subscribe(
+      transactions => {
+        this.dataObjects = [];
+        let count = 11;
+        while (count >= 0) {
+          const currentMonth = moment().subtract(count, 'months');
+          const currentTransactions: ITransaction[] = transactions.filter(
+            transaction => moment(transaction.created_at) <= currentMonth.endOf('month')
+            && moment(transaction.created_at) >= currentMonth.startOf('month')
+          );
+
+          const dataObject: DataObject = new DataObject(
+             currentMonth.format('MMM'),
+             TransactionUtils.sumOf(currentTransactions)
+          );
+
+          this.dataObjects.push(dataObject);
+          count -= 1;
+        }
+
+         this.lineChart.populate(this.dataObjects);
+      }
+    );
 
     this.cards.push(
       <IReportCard> {
