@@ -28,8 +28,7 @@
              fxLayoutGap.xs="0">
           <div class="radio padding-s centered"
                fxFlex
-               *ngFor="let option of typeOptions"
-               (click)="selectOption($event, option)">
+               *ngFor="let option of typeOptions">
             <input id="radio-1 + {{option.id}}"
                    type="radio"
                    [checked]="option.selected"

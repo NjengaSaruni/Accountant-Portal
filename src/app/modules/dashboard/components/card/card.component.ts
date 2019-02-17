@@ -1,6 +1,6 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {IReportCard, IReportCardData} from '../../models/ReportCard.model';
-import {Observable, of} from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
+import {ECardType, IReportCard, IReportCardData} from '../../models/ReportCard.model';
+import {Observable} from 'rxjs';
 import {TransactionsSelectors} from '../../store';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
@@ -23,14 +23,20 @@ export class CardComponent implements OnInit {
       TransactionsSelectors.selectTransactions
     );
 
-    this.data = <IReportCardData>{};
+    this.data = <IReportCardData>{
+      unit: 'KES'
+    };
     this.transactions$.subscribe(
       data => {
-        this.data.value = data.filter(transaction => transaction.amount > 0)
-          .map(transaction => transaction.amount)
+        if (this.config.type === ECardType.Income) {
+          data = data.filter(transaction => transaction.amount > 0);
+        } else if (this.config.type === ECardType.Expense) {
+          data = data.filter(transaction => transaction.amount <= 0);
+        }
+        this.data.value = data.map(transaction => transaction.amount)
           .reduce((acc, currentValue) => {
             return parseFloat(acc.toString()) + parseFloat(currentValue.toString());
-          })
+          }, 0)
           .valueOf();
       });
   }

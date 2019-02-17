@@ -4,14 +4,13 @@ import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
 import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
-import {IReportCard, IReportCardBackground, IReportCardData} from '../models/ReportCard.model';
+import {ECardType, IReportCard, IReportCardBackground} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {ITransaction} from '../models/Transaction.model';
-import {TransactionsSelectors} from '../store';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,13 +26,9 @@ export class DashboardComponent implements OnInit {
   data: DataObject[];
   cards: IReportCard[] = [];
   transactionBoxAnimationState = 'out';
-  totalIncome$: Observable<number>;
-  totalExpense$: Observable<number>;
-  totalValue$: Observable<number>;
 
   constructor(private winRef: WindowRefService,
-              private titleService: Title,
-              private store$: Store<RootState>) {
+              private titleService: Title) {
     this.titleService.setTitle('iSave | Dashboard');
   }
 
@@ -51,7 +46,8 @@ export class DashboardComponent implements OnInit {
         },
         background: <IReportCardBackground>{
           color: '#6EC4DB'
-        }
+        },
+        type: ECardType.Income
       }
     );
 
@@ -64,25 +60,23 @@ export class DashboardComponent implements OnInit {
         background: <IReportCardBackground> {
           color: '#FA7C92'
         },
+        type: ECardType.Expense
       }
     );
-    //
-    // this.cards.push(
-    //   <IReportCard> {
-    //     title: {
-    //       name: 'Saved',
-    //       color: '#A239CA'
-    //     },
-    //     background: <IReportCardBackground>{
-    //       color: '#FFF7C0'
-    //     },
-    //     data: {
-    //       value$: this.cards[0].data.value + this.cards[1].data.value,
-    //       unit: 'KES',
-    //       previous: this.cards[0].data.previous + this.cards[1].data.previous
-    //     }
-    //   }
-    //   );
+
+    this.cards.push(
+      <IReportCard> {
+        title: {
+          name: 'Saved',
+          color: '#1c5155'
+        },
+        background: <IReportCardBackground>{
+          color: '#FFF7C0'
+        },
+        type: ECardType.Saved
+
+      }
+      );
 
     // this.cards.push(
     //   <IReportCard> {

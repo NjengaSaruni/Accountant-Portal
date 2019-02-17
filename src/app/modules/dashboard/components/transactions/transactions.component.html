@@ -39,47 +39,49 @@
 
   </div>
 
-  <table class="padding full-width transaction-table bg-s">
-    <!--<thead class="transaction-list-titles">-->
-    <!--<tr class="padding">-->
+  <div class="transaction-table bg-s">
+    <table class="padding full-width">
+      <!--<thead class="transaction-list-titles">-->
+      <!--<tr class="padding">-->
       <!--<th class="padding">-->
-        <!--<p>Amount</p>-->
+      <!--<p>Amount</p>-->
       <!--</th>-->
       <!--<th class="padding">-->
-        <!--<p>Tag</p>-->
+      <!--<p>Tag</p>-->
       <!--</th>-->
       <!--<th class="padding">-->
-        <!--<p>Description</p>-->
+      <!--<p>Description</p>-->
       <!--</th>-->
       <!--<th class="padding-h">-->
-        <!--<p>Date</p>-->
+      <!--<p>Date</p>-->
       <!--</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <tbody class="transaction-list-data">
-    <tr *ngFor="let transaction of transactions$ | async" class="bordered-b padding"
-        [ngClass]="{'raised-light': transaction.hovered }"
-        (mouseenter)="transaction.hovered = true"
-        (mouseleave)="transaction.hovered = false"
+      <!--</tr>-->
+      <!--</thead>-->
+      <tbody class="transaction-list-data">
+      <tr *ngFor="let transaction of transactions$ | async" class="bordered-b padding"
+          [ngClass]="{'raised-light': transaction.hovered }"
+          (mouseenter)="transaction.hovered = true"
+          (mouseleave)="transaction.hovered = false"
       >
-      <td class="padding" [ngClass]="{
+        <td class="padding" [ngClass]="{
         'color-red': transaction.amount < 0,
         'color-green': transaction.amount >= 0
         }">
-        <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
-      </td>
-      <td class="padding">
-        <a href="">{{ transaction.tag.name }}</a>
-      </td>
-      <td class="padding">
-        <p class="transaction-description"> {{ transaction.description }}</p>
-      </td>
-      <td class="padding-h">
-        {{transaction.created_at | date: 'MMM d'}}
-      </td>
-    </tr>
-    </tbody>
-  </table>
+          <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
+        </td>
+        <td class="padding">
+          <a href="">{{ transaction.tag.name }}</a>
+        </td>
+        <td class="padding">
+          <p class="transaction-description"> {{ transaction.description }}</p>
+        </td>
+        <td class="padding-h">
+          {{transaction.created_at | date: 'MMM d'}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 

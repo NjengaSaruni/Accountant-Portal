@@ -81,7 +81,7 @@ export class TransactionFormComponent implements OnInit {
         ]
       ),
       type: new FormControl(
-        '',
+        '1',
         [
           Validators.required
         ]
@@ -133,19 +133,21 @@ export class TransactionFormComponent implements OnInit {
     }
   }
 
-  selectOption(event: any, option: any) {
-    console.log(this.transactionForm.getRawValue());
-  }
+  selectOption = (event: any, option: any) => console.log(this.transactionForm.getRawValue());
 
-  f() {
-    return this.transactionForm.controls;
-  }
+
+  f = () => this.transactionForm.controls;
 
   saveTransaction() {
+    let amount = Math.abs(this.f().amount.value);
+
+    // Expenses are negative value transactions
+    amount = parseInt(this.f().type.value, 10) === 1 ?  -amount : amount;
+
     const transactionPayload = <ITransaction>{
-      'tag': this.transactionForm.get('tag').value,
-      'description': this.transactionForm.get('description').value,
-      'amount': this.transactionForm.get('amount').value,
+      'tag': this.f().tag.value,
+      'description': this.f().description.value,
+      'amount': amount,
     };
     this.store$.dispatch(new fromTransactionsActions.AddTransaction(transactionPayload));
   }
