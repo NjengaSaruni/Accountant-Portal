@@ -1,4 +1,9 @@
-import {Observable} from 'rxjs';
+export enum ECardType {
+  Income =  'Income',
+  Expense = 'Expense',
+  Saved =  'Saved',
+  NetWorth = 'Net Worth'
+}
 
 export interface IReportCardTitle {
   name: string;
@@ -16,5 +21,6 @@ export interface IReportCardData {
 }
 export interface IReportCard {
   title: IReportCardTitle;
+  type: ECardType;
   background: IReportCardBackground;
 }

@@ -34,21 +34,27 @@
   }
 
   .transaction-table {
-    border-collapse: collapse;
+    overflow: auto;
+    max-height: 400px;
 
-    .transaction-list-titles {
-      border-bottom: 2px solid #7f7f7f;
-      text-align: justify;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
+    table {
+      border-collapse: collapse;
 
-    .transaction-list-data {
-      tr {
-        cursor: pointer;
+      .transaction-list-titles {
+        border-bottom: 2px solid #7f7f7f;
+        text-align: justify;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      .transaction-list-data {
+        tr {
+          cursor: pointer;
+        }
       }
     }
+
   }
 
 }

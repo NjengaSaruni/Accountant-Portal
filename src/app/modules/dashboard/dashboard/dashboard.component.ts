@@ -3,15 +3,17 @@ import {BarChart} from '../../charts/models/BarChart/BarChart';
 import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
-import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
-import {IReportCard, IReportCardBackground, IReportCardData} from '../models/ReportCard.model';
+import {getMockBarchart, getMockData, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
+import {ECardType, IReportCard, IReportCardBackground} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
-import {Observable, of} from 'rxjs';
-import {ITransaction} from '../models/Transaction.model';
+import {Observable, range} from 'rxjs';
+import {ITransaction, TransactionUtils} from '../models/Transaction.model';
 import {TransactionsSelectors} from '../store';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +22,7 @@ import {TransactionsSelectors} from '../store';
 })
 export class DashboardComponent implements OnInit {
   transactions$: Observable<ITransaction[]>;
+  transactionsLoaded$: Observable<boolean>;
 
   barCharts: BarChart[] = [];
   pieChart: PieChart;
@@ -27,9 +30,7 @@ export class DashboardComponent implements OnInit {
   data: DataObject[];
   cards: IReportCard[] = [];
   transactionBoxAnimationState = 'out';
-  totalIncome$: Observable<number>;
-  totalExpense$: Observable<number>;
-  totalValue$: Observable<number>;
+  dataObjects: DataObject[] = [];
 
   constructor(private winRef: WindowRefService,
               private titleService: Title,
@@ -37,11 +38,19 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle('iSave | Dashboard');
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.barCharts.push(getMockBarchart((this.winRef.nativeWindow.innerWidth - 300) / 2));
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
+
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
+    );
+
+    this.transactionsLoaded$ = this.store$.select(
+      TransactionsSelectors.selectTransactionsLoaded
+    );
 
     this.cards.push(
       <IReportCard> {
@@ -51,7 +60,8 @@ export class DashboardComponent implements OnInit {
         },
         background: <IReportCardBackground>{
           color: '#6EC4DB'
-        }
+        },
+        type: ECardType.Income
       }
     );
 
@@ -64,41 +74,35 @@ export class DashboardComponent implements OnInit {
         background: <IReportCardBackground> {
           color: '#FA7C92'
         },
+        type: ECardType.Expense
       }
     );
-    //
-    // this.cards.push(
-    //   <IReportCard> {
-    //     title: {
-    //       name: 'Saved',
-    //       color: '#A239CA'
-    //     },
-    //     background: <IReportCardBackground>{
-    //       color: '#FFF7C0'
-    //     },
-    //     data: {
-    //       value$: this.cards[0].data.value + this.cards[1].data.value,
-    //       unit: 'KES',
-    //       previous: this.cards[0].data.previous + this.cards[1].data.previous
-    //     }
-    //   }
-    //   );
 
-    // this.cards.push(
-    //   <IReportCard> {
-    //     title: {
-    //       name: 'NET WORTH',
-    //       color: '#6EC4DB'
-    //     },
-    //     background: {
-    //       // color: '#66AB86'
-    //     },
-    //     data: {
-    //       value: 100000,
-    //       unit: 'KES',
-    //       previous: 900,
-    //     }
-    //   }
-    // );
+    this.cards.push(
+      <IReportCard> {
+        title: {
+          name: 'Saved',
+          color: '#1c5155'
+        },
+        background: <IReportCardBackground>{
+          color: '#FFF7C0'
+        },
+        type: ECardType.Saved
+
+      }
+      );
+
+    this.cards.push(
+      <IReportCard> {
+        title: {
+          name: 'NET WORTH',
+          color: '#6EC4DB'
+        },
+        type: ECardType.NetWorth,
+        background: {
+          // color: '#66AB86'
+        }
+      }
+    );
   }
 }

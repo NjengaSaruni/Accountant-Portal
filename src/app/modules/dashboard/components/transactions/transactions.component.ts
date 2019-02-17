@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
 import {TransactionsSelectors} from '../../store';
+import {LoaderService} from '../../../shared/components/loader/loader.service';
 
 @Component({
   selector: 'app-transactions',
@@ -14,6 +15,8 @@ import {TransactionsSelectors} from '../../store';
 export class TransactionsComponent implements OnInit {
   transactions: ITransaction[] = [];
   transactions$: Observable<ITransaction[]>;
+  transactionsLoading$: Observable<boolean>;
+
   lists = [
     {
       name: 'New',
@@ -25,6 +28,7 @@ export class TransactionsComponent implements OnInit {
     }
   ];
   constructor(private modalService: ModalService,
+              private loaderService: LoaderService,
               private store$: Store<RootState>) { }
 
   ngOnInit() {
@@ -78,6 +82,15 @@ export class TransactionsComponent implements OnInit {
 
     this.transactions$ = this.store$.select(
       TransactionsSelectors.selectTransactions
+    );
+
+    this.transactionsLoading$ = this.store$.select(
+      TransactionsSelectors.selectTransactionsLoaded
+    );
+     this.store$.select(
+      TransactionsSelectors.selectTransactionsLoaded
+    ).subscribe(
+      data => data ? this.loaderService.hide() : this.loaderService.show()
     );
   }
 

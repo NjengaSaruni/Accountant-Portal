@@ -72,11 +72,10 @@ export function getMockBarchart(width = 800, height = 400) {
 export function getMockLinechart(width = 800, height = 400) {
   const lineChart = new LineChart(width, height);
 
-  lineChart.title = `Your expenditure per month in 2018`;
+  lineChart.title = `Your expenditure per month in the past twelve months`;
   lineChart.subtitle = `Trend in expenses per month in Kshs`;
   lineChart.line.width = randomInt(2, 6);
   lineChart.line.color = randomColor();
-  lineChart.populate(getMockData());
 
   return lineChart;
 }

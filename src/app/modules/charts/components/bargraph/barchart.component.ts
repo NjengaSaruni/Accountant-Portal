@@ -3,8 +3,6 @@ import {fromEvent} from 'rxjs';
 import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 import {BarChart} from '../../models/BarChart/BarChart';
 import {WindowRefService} from '../../../shared/services/window-ref.service';
-import {ColorService} from '../../../shared/services/color.service';
-import {Bar} from '../../models/BarChart/Bar';
 
 @Component({
   selector: 'app-barchart',

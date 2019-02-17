@@ -1,13 +1,5 @@
-import { Component, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
 import {ModalService} from './modal.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
 import {SlideInOutAnimation} from '../../../../animations/slideDown.animation';
 
 @Component({

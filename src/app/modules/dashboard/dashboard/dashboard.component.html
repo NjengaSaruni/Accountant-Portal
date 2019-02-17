@@ -2,7 +2,7 @@
   <app-header></app-header>
 </div>
 <div class="content" #content>
-  <div class="margin-s relative container">
+  <div class="margin-s container">
     <div class="margin-s sticky-top high">
       <div class="transaction-bar">
         <app-transaction-form></app-transaction-form>
@@ -31,15 +31,16 @@
         <app-linechart [chart]="lineChart"></app-linechart>
       </div>
     </div>
-
-    <div fxLayout
+    <div class="margin-ts"
+         fxLayout
          fxLayout.xs="row"
          fxLayoutAlign="space-between stretch"
          fxLayoutGap="16px"
-         fxLayoutGap.xs="0" class="margin-ts">
+         fxLayoutGap.xs="0" >
       <div fxFlex *ngFor="let graph of barCharts">
         <app-barchart [chart]="graph"></app-barchart>
       </div>
     </div>
   </div>
 </div>
+
