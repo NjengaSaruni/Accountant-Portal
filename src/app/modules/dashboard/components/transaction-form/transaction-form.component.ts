@@ -7,6 +7,8 @@ import * as fromTransactionsActions from '../../store/actions';
 import {RootState} from '../../../../core/store/state';
 import {ITransaction} from '../../models/Transaction.model';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-transaction-form',
   templateUrl: './transaction-form.component.html',
@@ -144,10 +146,12 @@ export class TransactionFormComponent implements OnInit {
     // Expenses are negative value transactions
     amount = parseInt(this.f().type.value, 10) === 1 ?  -amount : amount;
 
+    // @ts-ignore
     const transactionPayload = <ITransaction>{
       'tag': this.f().tag.value,
       'description': this.f().description.value,
       'amount': amount,
+      'created_at': moment(this.f().date.value).format('YYYY-MM-DD HH:mm')
     };
     this.store$.dispatch(new fromTransactionsActions.AddTransaction(transactionPayload));
   }

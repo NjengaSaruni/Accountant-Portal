@@ -7,13 +7,15 @@ import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
 import {Observable} from 'rxjs';
 import * as moment from 'moment';
+import {getMockLinechart} from '../../../shared/utils/randomInt';
+import {WindowRefService} from '../../../shared/services/window-ref.service';
 
 @Component({
   selector: 'app-linechart',
   templateUrl: './linechart.component.html',
   styleUrls: ['./linechart.component.scss']
 })
-export class LinechartComponent implements  OnInit {
+export class LinechartComponent implements OnInit {
   @ViewChild('canvas') public canvas: ElementRef;
   @Input() chart: LineChart;
   @Input() fill: boolean;
@@ -22,7 +24,8 @@ export class LinechartComponent implements  OnInit {
   transactions$: Observable<ITransaction[]>;
   dataObjects: DataObject[] = [];
 
-  constructor(private store$: Store<RootState>) { }
+  constructor(private store$: Store<RootState>,
+              private winRef: WindowRefService) { }
 
   ngOnInit() {
     this.transactions$ = this.store$.select(
@@ -49,8 +52,10 @@ export class LinechartComponent implements  OnInit {
           count -= 1;
         }
 
-        this.chart.populate(this.dataObjects);
-        this.draw();
+        const newChart = getMockLinechart();
+        newChart.populate(this.dataObjects);
+        this.chart = newChart;
+        this.draw()
       }
     );
   }
@@ -127,6 +132,10 @@ export class LinechartComponent implements  OnInit {
         // Set strokeStyle for line
         this.cx.strokeStyle = '#9ccdda';
 
+        if (this.chart.points[i].title === 'Jan') {
+          this.cx.strokeStyle = '#404dda';
+        }
+
         // Draw line
         this.cx.beginPath();
         this.cx.moveTo(this.chart.points[i].x, Math.abs(this.chart.startY - this.chart.height));
@@ -146,6 +155,11 @@ export class LinechartComponent implements  OnInit {
     // Invert scale
     this.cx.translate(0, canvasEl.height);
     this.cx.scale(1, -1);
+    this.animateLine();
+  }
+
+  private animateLine() {
+    this.winRef.nativeWindow.requestAnimationFrame(this.animateLine.bind(this));
 
     let prev = this.chart.points[0];
     for (let i = 0; i < this.chart.size(); i++) {
@@ -159,7 +173,7 @@ export class LinechartComponent implements  OnInit {
         this.cx.fillStyle = '#41fcff';
 
         this.cx.lineTo(this.chart.points[i].x, this.chart.startY);
-        this.cx.lineTo(prev.x , this.chart.startY);
+        this.cx.lineTo(prev.x, this.chart.startY);
         this.cx.fill();
       } else {
         this.cx.stroke();
