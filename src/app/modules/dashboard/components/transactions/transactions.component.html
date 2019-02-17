@@ -1,11 +1,11 @@
 <div class="transactions-component bg-white">
   <div class="title-bar">
     <div
-       class="padding-t padding-r"
-       fxLayout
-       fxLayout.xs="row"
-       fxLayoutAlign="space-between end"
-       fxLayoutGap.xs="0">
+      class="padding-t padding-r"
+      fxLayout
+      fxLayout.xs="row"
+      fxLayoutAlign="space-between end"
+      fxLayoutGap.xs="0">
       <div fxFlex class="full-height title-bar-option"
            (click)="selectList(0)"
            [ngClass]="{
@@ -24,15 +24,18 @@
            [ngClass]="{
               'bg-s': lists[1].selected
            }">
-        <p class="centered full-height full-width">Deleted <span class="title-bar-label bordered">2</span></p>
+        <div class="full-height full-width title-group">
+          <fa class="padding" name="trash"></fa>
+          <p class="padding">Deleted <span class="title-bar-label bordered">2</span></p>
+        </div>
         <div class="title-bar-underline" *ngIf="lists[1].selected"></div>
       </div>
-      <div fxFlex class="full-height">
+      <div fxFlex class="full-height padding-b">
         <app-button
           [text]="'View All'"
           [width]="150"
           [circular]="true"
-          class="centered add-transaction-button padding-b">
+          class="centered add-transaction-button">
         </app-button>
       </div>
     </div>

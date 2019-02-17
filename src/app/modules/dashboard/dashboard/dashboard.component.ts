@@ -78,21 +78,17 @@ export class DashboardComponent implements OnInit {
       }
       );
 
-    // this.cards.push(
-    //   <IReportCard> {
-    //     title: {
-    //       name: 'NET WORTH',
-    //       color: '#6EC4DB'
-    //     },
-    //     background: {
-    //       // color: '#66AB86'
-    //     },
-    //     data: {
-    //       value: 100000,
-    //       unit: 'KES',
-    //       previous: 900,
-    //     }
-    //   }
-    // );
+    this.cards.push(
+      <IReportCard> {
+        title: {
+          name: 'NET WORTH',
+          color: '#6EC4DB'
+        },
+        type: ECardType.NetWorth,
+        background: {
+          // color: '#66AB86'
+        }
+      }
+    );
   }
 }
