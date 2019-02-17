@@ -25,7 +25,6 @@ export class CardComponent implements OnInit {
       TransactionsSelectors.selectTransactions
     );
 
-
     this.data = <IReportCardData>{
       unit: 'KES'
     };

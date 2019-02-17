@@ -28,7 +28,10 @@ export class TransactionUtils {
 
   static getLastMonthTransactions = (transactions: ITransaction[]) =>
     transactions.filter(transaction =>  {
-      return moment(transaction.created_at) >= moment() && moment(transaction.created_at) < moment()
+      return moment(transaction.created_at) <= moment()
+          .subtract(1, 'months')
+          .endOf('month')
+        && moment(transaction.created_at) >= moment()
         .subtract(1, 'months')
         .startOf('month');
     });
