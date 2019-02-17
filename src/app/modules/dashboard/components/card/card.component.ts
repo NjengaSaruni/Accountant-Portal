@@ -5,7 +5,7 @@ import {TransactionsSelectors} from '../../store';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
 import {ITransaction, TransactionUtils} from '../../models/Transaction.model';
-import {FIRST_OF_CURRENT_MONTH} from '../../../shared/utils/timeUtils';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-card',
@@ -56,8 +56,7 @@ export class CardComponent implements OnInit {
           data = TransactionUtils.getLastMonthTransactions(data);
         } else {
           data = data.filter(transaction => {
-            const created_at_date = new Date(transaction.created_at);
-            return created_at_date < FIRST_OF_CURRENT_MONTH;
+            return moment(transaction.created_at) < moment().startOf('month');
           });
         }
 

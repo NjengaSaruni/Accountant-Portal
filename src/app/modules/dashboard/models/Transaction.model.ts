@@ -1,5 +1,5 @@
 import {IAbstractBase} from '../../shared/models/AbstractBase.model';
-import {convertToDate, FIRST_OF_CURRENT_MONTH, FIRST_OF_PREVIOUS_MONTH} from '../../shared/utils/timeUtils';
+import * as moment from 'moment';
 
 export interface IAccount extends IAbstractBase {
   name: string;
@@ -24,12 +24,13 @@ export class TransactionUtils {
   */
 
   static getThisMonthTransactions = (transactions: ITransaction[]) =>
-    transactions.filter(transaction => new Date(transaction.created_at) >= FIRST_OF_CURRENT_MONTH);
+    transactions.filter(transaction => moment(transaction.created_at) >= moment().startOf('month'));
 
   static getLastMonthTransactions = (transactions: ITransaction[]) =>
     transactions.filter(transaction =>  {
-      const created_at_date = convertToDate(transaction.created_at);
-      return created_at_date >= FIRST_OF_PREVIOUS_MONTH && created_at_date < FIRST_OF_CURRENT_MONTH;
+      return moment(transaction.created_at) >= moment() && moment(transaction.created_at) < moment()
+        .subtract(1, 'months')
+        .startOf('month');
     });
 
   static getExpenses = (transactions: ITransaction[]) =>
