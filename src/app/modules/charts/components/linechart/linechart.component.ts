@@ -1,26 +1,64 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {LineChart} from '../../models/LineChart/LineChart';
+import {ITransaction, TransactionUtils} from '../../../dashboard/models/Transaction.model';
+import {DataObject} from '../../models/BaseChart/DataObject';
+import {TransactionsSelectors} from '../../../dashboard/store';
+import {Store} from '@ngrx/store';
+import {RootState} from '../../../../core/store/state';
+import {Observable} from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-linechart',
   templateUrl: './linechart.component.html',
   styleUrls: ['./linechart.component.scss']
 })
-export class LinechartComponent implements OnInit, AfterViewInit {
+export class LinechartComponent implements  OnInit {
   @ViewChild('canvas') public canvas: ElementRef;
   @Input() chart: LineChart;
   @Input() fill: boolean;
   private cx: CanvasRenderingContext2D;
 
-  constructor() { }
+  transactions$: Observable<ITransaction[]>;
+  dataObjects: DataObject[] = [];
+
+  constructor(private store$: Store<RootState>) { }
 
   ngOnInit() {
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
+    );
+
+    this.transactions$.subscribe(
+      transactions => {
+        this.dataObjects = [];
+        let count = 11;
+        while (count >= 0) {
+          const currentMonth = moment().subtract(count, 'months');
+          const currentTransactions: ITransaction[] = transactions.filter(
+            transaction => moment(transaction.created_at) <= currentMonth.endOf('month')
+              && moment(transaction.created_at) >= currentMonth.startOf('month')
+          );
+
+          const dataObject: DataObject = new DataObject(
+            currentMonth.format('MMM'),
+            TransactionUtils.sumOf(currentTransactions)
+          );
+
+          this.dataObjects.push(dataObject);
+          count -= 1;
+        }
+
+        this.chart.populate(this.dataObjects);
+        this.draw();
+      }
+    );
   }
 
-  ngAfterViewInit() {
+  draw() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
-
+    console.log(this.chart);
     canvasEl.width = this.chart.width;
     canvasEl.height = this.chart.height;
 
@@ -98,7 +136,7 @@ export class LinechartComponent implements OnInit, AfterViewInit {
         // Reset strokeStyle
         this.cx.strokeStyle = 'black';
       }
-     }
+    }
 
     // Line styles for actual line
     this.cx.strokeStyle = this.chart.line.color;

@@ -52,30 +52,6 @@ export class DashboardComponent implements OnInit {
       TransactionsSelectors.selectTransactionsLoaded
     );
 
-    this.transactions$.subscribe(
-      transactions => {
-        this.dataObjects = [];
-        let count = 11;
-        while (count >= 0) {
-          const currentMonth = moment().subtract(count, 'months');
-          const currentTransactions: ITransaction[] = transactions.filter(
-            transaction => moment(transaction.created_at) <= currentMonth.endOf('month')
-            && moment(transaction.created_at) >= currentMonth.startOf('month')
-          );
-
-          const dataObject: DataObject = new DataObject(
-             currentMonth.format('MMM'),
-             TransactionUtils.sumOf(currentTransactions)
-          );
-
-          this.dataObjects.push(dataObject);
-          count -= 1;
-        }
-
-         this.lineChart.populate(this.dataObjects);
-      }
-    );
-
     this.cards.push(
       <IReportCard> {
         title: {
