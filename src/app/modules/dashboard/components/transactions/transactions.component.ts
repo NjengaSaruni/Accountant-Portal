@@ -106,4 +106,8 @@ export class TransactionsComponent implements OnInit {
     this.lists[i].selected = true;
     this.lists[Math.abs(i - 1)].selected = false;
   }
+
+  deleteTranscation(id: string) {
+
+  }
 }

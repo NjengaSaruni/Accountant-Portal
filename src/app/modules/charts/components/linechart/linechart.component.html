@@ -3,7 +3,7 @@
     <p class="centered bold padding color-black">{{chart.title}}</p>
     <p class="centered info color-black">{{chart.subtitle }}</p>
   </div>
-  <div>
-    <canvas class="centered padding-s" #canvas></canvas>
+  <div class="padding-s">
+    <canvas class="centered" #canvas (mousemove)="mouseEvent($event)"></canvas>
   </div>
 </div>

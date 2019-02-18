@@ -60,13 +60,15 @@ export class BaseChart {
   }
 
   public static getOrder(m: number): number {
+    if (m <= 1) {
+      return 1;
+    }
+    if (m <= 2) {
+      return 2;
+    }
     if (m <= 5) {
       return 5;
     }
-    if (m <= 10) {
-      return 10;
-    }
-
     return this.getOrder(m / 10) * 10;
   }
 
