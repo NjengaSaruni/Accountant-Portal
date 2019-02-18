@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {LineChart} from '../../models/LineChart/LineChart';
 import {ITransaction, TransactionUtils} from '../../../dashboard/models/Transaction.model';
 import {DataObject} from '../../models/BaseChart/DataObject';
@@ -23,11 +23,14 @@ export class LinechartComponent implements OnInit {
 
   transactions$: Observable<ITransaction[]>;
   dataObjects: DataObject[] = [];
+  private mouseX: number;
+  mouseY: number;
 
   constructor(private store$: Store<RootState>,
               private winRef: WindowRefService) { }
 
   ngOnInit() {
+
     this.transactions$ = this.store$.select(
       TransactionsSelectors.selectTransactions
     );
@@ -55,7 +58,7 @@ export class LinechartComponent implements OnInit {
         const newChart = getMockLinechart();
         newChart.populate(this.dataObjects);
         this.chart = newChart;
-        this.draw()
+        this.draw();
       }
     );
   }
@@ -63,7 +66,6 @@ export class LinechartComponent implements OnInit {
   draw() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
-    console.log(this.chart);
     canvasEl.width = this.chart.width;
     canvasEl.height = this.chart.height;
 
@@ -133,7 +135,7 @@ export class LinechartComponent implements OnInit {
         this.cx.strokeStyle = '#9ccdda';
 
         if (this.chart.points[i].title === 'Jan') {
-          this.cx.strokeStyle = '#404dda';
+          this.cx.strokeStyle = '#1eda1f';
         }
 
         // Draw line
@@ -155,19 +157,12 @@ export class LinechartComponent implements OnInit {
     // Invert scale
     this.cx.translate(0, canvasEl.height);
     this.cx.scale(1, -1);
-    this.animateLine();
-  }
-
-  private animateLine() {
-    this.winRef.nativeWindow.requestAnimationFrame(this.animateLine.bind(this));
-
     let prev = this.chart.points[0];
     for (let i = 0; i < this.chart.size(); i++) {
       // Draw line
       this.cx.beginPath();
       this.cx.moveTo(prev.x, prev.y);
-      this.cx.lineTo(this.chart.points[i].x, this.chart.points[i].y);
-
+      this.cx.quadraticCurveTo(prev.x, prev.y, this.chart.points[i].x, this.chart.points[i].y);
 
       if (this.fill) {
         this.cx.fillStyle = '#41fcff';
@@ -182,5 +177,46 @@ export class LinechartComponent implements OnInit {
 
       prev = this.chart.points[i];
     }
+
+    if (this.mouseX && this.mouseY) {
+      try {
+        const point = this.chart.points.filter(
+          p => p.x > this.mouseX
+        )[0];
+
+        this.cx.lineWidth = 1;
+        this.cx.strokeStyle = '#3859da';
+        this.cx.shadowColor = '#898';
+        this.cx.shadowBlur = 20;
+        this.cx.strokeRect(point.x, point.y, 100, 50);
+        this.cx.fillRect(point.x, point.y, 100, 50);
+        this.cx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+        this.cx.fill();
+        // Invert scale
+        this.cx.translate(0, canvasEl.height);
+        this.cx.scale(1, -1);
+        this.cx.strokeText(point.title, point.x + 10, this.canvas.nativeElement.height - point.y - 35);
+        this.cx.strokeText(point.value.toString() + ' Kshs', point.x + 10, this.canvas.nativeElement.height - point.y - 15);
+
+      } catch (e) {}
+    }
+
+    this.winRef.nativeWindow.requestAnimationFrame(this.draw.bind(this));
+
+  }
+
+  mouseEvent = (event: MouseEvent) => {
+    this.mouseX  = this.windowToCanvas(event).x;
+    this.mouseY = this.windowToCanvas(event).y;
+  };
+
+  windowToCanvas(event: MouseEvent) {
+    const bbox = this.canvas.nativeElement.getBoundingClientRect();
+    const x = event.clientX;
+    const y = event.clientY;
+
+    return { x: x - bbox.left * (this.canvas.nativeElement.width  / bbox.width),
+      y: y - bbox.top  * (this.canvas.nativeElement.height / bbox.height)
+    };
   }
 }
