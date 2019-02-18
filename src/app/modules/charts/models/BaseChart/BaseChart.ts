@@ -55,9 +55,19 @@ export class BaseChart {
     return data.reduce((min, p) => p.value < min ? p.value : min, data[0].value);
   }
   public static getMaxPoint(data: DataObject[]): number {
-    let m = data.reduce((max, p) => p.value > max ? p.value : max, data[0].value);
-    m = Math.ceil(m / 10) * 10;
-    return m;
+    const m = data.reduce((max, p) => p.value > max ? p.value : max, data[0].value);
+    return BaseChart.getOrder(m);
+  }
+
+  public static getOrder(m: number): number {
+    if (m <= 5) {
+      return 5;
+    }
+    if (m <= 10) {
+      return 10;
+    }
+
+    return this.getOrder(m / 10) * 10;
   }
 
 }
