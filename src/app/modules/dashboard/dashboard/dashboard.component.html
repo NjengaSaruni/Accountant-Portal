@@ -31,14 +31,24 @@
         <app-linechart [chart]="lineChart"></app-linechart>
       </div>
     </div>
+    <!--<div class="margin-ts"-->
+         <!--fxLayout-->
+         <!--fxLayout.xs="row"-->
+         <!--fxLayoutAlign="space-between stretch"-->
+         <!--fxLayoutGap="16px"-->
+         <!--fxLayoutGap.xs="0" >-->
+      <!--<div fxFlex *ngFor="let graph of barCharts">-->
+        <!--<app-barchart [chart]="graph"></app-barchart>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="margin-ts"
          fxLayout
          fxLayout.xs="row"
          fxLayoutAlign="space-between stretch"
          fxLayoutGap="16px"
-         fxLayoutGap.xs="0" >
-      <div fxFlex *ngFor="let graph of barCharts">
-        <app-barchart [chart]="graph"></app-barchart>
+         fxLayoutGap.xs="0">
+      <div fxFlex class="bg-white">
+        <app-piechart [chart]="pieChart"></app-piechart>
       </div>
     </div>
   </div>

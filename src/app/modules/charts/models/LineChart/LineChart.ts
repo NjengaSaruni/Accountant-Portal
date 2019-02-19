@@ -3,6 +3,7 @@ import {LineChartPoint} from './LineChartPoint';
 import {LineChartLine} from './LineChartLine';
 import {DataObject} from '../BaseChart/DataObject';
 import {BaseChart} from '../BaseChart/BaseChart';
+import {TwoDDataObject} from '../BaseChart/TwoDDataObject';
 
 export class LineChart extends BaseChart {
   get endX(): number {
@@ -49,6 +50,7 @@ export class LineChart extends BaseChart {
   }
 
   private _points: LineChartPoint[] = [];
+  private _lines: LineChartPoint[][] = [];
   private _intervalX = 10;
   private _maxValue = -Infinity;
   private _max = -Infinity;
@@ -69,6 +71,7 @@ export class LineChart extends BaseChart {
   public size() {
     return this._points.length;
   }
+
 
   public populate(data: DataObject[]) {
     this._maxValue = BaseChart.getMaxPoint(data);

@@ -43,7 +43,6 @@ export class LinechartComponent implements OnInit {
           const currentMonth = moment().subtract(count, 'months');
           const currentTransactions: ITransaction[] = transactions.filter(
             transaction => moment(transaction.created_at) <= currentMonth.endOf('month')
-              && moment(transaction.created_at) >= currentMonth.startOf('month')
           );
 
           const dataObject: DataObject = new DataObject(
@@ -186,8 +185,6 @@ export class LinechartComponent implements OnInit {
 
         this.cx.lineWidth = 1;
         this.cx.strokeStyle = '#3859da';
-        this.cx.shadowColor = '#898';
-        this.cx.shadowBlur = 20;
         this.cx.strokeRect(point.x, point.y, 100, 50);
         this.cx.fillRect(point.x, point.y, 100, 50);
         this.cx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
