@@ -19,39 +19,6 @@ export class TransactionFormComponent implements OnInit {
   transactionBoxAnimationState  = 'out';
   suggestionsAnimationState  = 'out';
   tag = '';
-  suggestedTags = [];
-  tags = [
-    {
-      'name': 'UBER',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'FOOD',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'GIRL',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'MICROSOFT',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'FARE',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'SHOPPING',
-      'hovered': false,
-      'selected': false
-    }
-  ];
   today = new Date();
   typeOptions = [{
       id: 1,
@@ -121,18 +88,6 @@ export class TransactionFormComponent implements OnInit {
 
   onClickOutside(event: any): void {
     this.toggleTransactionBox(!event.value);
-  }
-
-  toUpperCase() {
-    this.suggestedTags = [];
-    this.suggestionsAnimationState = 'out';
-
-    for (const tag of this.tags) {
-      if (tag.name.indexOf(    this.transactionForm.get('tag').value) > -1 &&  this.transactionForm.get('tag').value !== '') {
-        this.suggestedTags.push(tag);
-      }
-      this.suggestionsAnimationState = 'in';
-    }
   }
 
   selectOption = (event: any, option: any) => console.log(this.transactionForm.getRawValue());

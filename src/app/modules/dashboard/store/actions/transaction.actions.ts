@@ -66,6 +66,7 @@ export class UpdateTransactionSuccess implements Action {
 
 export class DeleteTransaction implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_DELETE;
+  constructor(public payload: any) {}
 }
 
 export class DeleteTransactionFail implements Action {

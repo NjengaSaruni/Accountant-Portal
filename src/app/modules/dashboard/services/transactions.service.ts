@@ -32,7 +32,7 @@ export class TransactionsService {
     return this.http.put<{ message: string; result: ITransaction }>(this.transactionsApi, update);
   }
 
-  deleteTransactions() {
-    return this.http.delete<{ message: string; result: ITransaction[] }>(this.transactionsApi);
+  deleteTransaction(transaction_id: string) {
+    return this.http.delete<{ message: string; result: ITransaction[] }>(`${this.transactionsApi}${transaction_id}/`);
   }
 }
