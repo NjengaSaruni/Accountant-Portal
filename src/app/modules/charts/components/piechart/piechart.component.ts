@@ -54,6 +54,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
         const newChart = getMockPiechart();
         newChart.populate(this.dataObjects);
         this.chart = newChart;
+        this.chart.title = `Expenses for ${moment().format('MMMM')}`;
         this.animateGraph()
       }
     );

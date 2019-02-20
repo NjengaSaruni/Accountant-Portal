@@ -6,16 +6,20 @@ import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
 import {TransactionsSelectors} from '../../store';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
+import {ShortSlideInOutAnimation} from '../../../../animations/shortSlideDown.animation';
+import * as fromTransactionsActions from '../../store/actions';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.scss']
+  styleUrls: ['./transactions.component.scss'],
+  animations: [ShortSlideInOutAnimation]
 })
 export class TransactionsComponent implements OnInit {
   transactions: ITransaction[] = [];
   transactions$: Observable<ITransaction[]>;
   transactionsLoading$: Observable<boolean>;
+  transactionAnimationState  = 'out';
 
   lists = [
     {
@@ -90,7 +94,9 @@ export class TransactionsComponent implements OnInit {
      this.store$.select(
       TransactionsSelectors.selectTransactionsLoaded
     ).subscribe(
-      data => data ? this.loaderService.hide() : this.loaderService.show()
+      data => {
+        data ? this.loaderService.hide() : this.loaderService.show();
+      }
     );
   }
 
@@ -107,7 +113,9 @@ export class TransactionsComponent implements OnInit {
     this.lists[Math.abs(i - 1)].selected = false;
   }
 
-  deleteTranscation(id: string) {
-
+  deleteTransaction(transaction: ITransaction) {
+    const transactionPayload = transaction.id;
+    this.store$.dispatch(new fromTransactionsActions.DeleteTransaction(transactionPayload));
   }
+
 }

@@ -1,7 +1,7 @@
 import {ITransaction} from '../models/Transaction.model';
 
 export interface TransactionsState {
-  transactions: ITransaction[] | [];
+  transactions: ITransaction[];
   loading: boolean;
   loaded: boolean;
   error: string;

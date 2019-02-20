@@ -82,7 +82,7 @@
           {{transaction.created_at | date: 'MMM d'}}
         </td>
         <td class="padding">
-          <div class="transaction-action-icon" (click)="deleteTransaction(transaction.id)">
+          <div class="transaction-action-icon" (click)="deleteTransaction(transaction)">
             <fa name="trash" class="centered"></fa>
           </div>
         </td>

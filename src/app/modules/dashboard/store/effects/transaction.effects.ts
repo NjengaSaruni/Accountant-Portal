@@ -42,7 +42,25 @@ export class TransactionEffects {
       )
   );
 
-  // TODO handle updates and deletes
+  @Effect()
+  deleteTransaction$:  Observable<Action> = this.action$.pipe(
+    ofType<transactionActions.DeleteTransaction>(transactionActions.TransactionActionTypes.TRANSACTION_DELETE),
+    mergeMap(action =>
+      this.transactionsService
+        .deleteTransaction(action.payload)
+        .pipe(
+          // If successful, dispatch success action with result
+          map(data => {
+            console.log(data);
+            return ({ type: transactionActions.TransactionActionTypes.TRANSACTION_DELETE_SUCCESS, payload: action.payload })
+          }),
+          // If request fails, dispatch failed action
+          catchError(() => of({ type: transactionActions.TransactionActionTypes.TRANSACTION_DELETE_FAIL }))
+        )
+    )
+  );
+
+  // TODO handle updates
   // @Effect()
   // updateTask$ = this.action$.ofType(fromTodo.TODO_UPDATE).pipe(
   //   map((action: fromTodo.updateTodo) => action.payload),
@@ -57,16 +75,4 @@ export class TransactionEffects {
   //   })
   // );
   //
-  // @Effect()
-  // deleteTask$ = this.action$.ofType(fromTodo.TODO_REMOVE_ALL).pipe(
-  //   switchMap(() => {
-  //     return this._todoService.deleteTasks().pipe(
-  //       map(response => {
-  //         const { result } = response;
-  //         return new fromTodo.removeTodosSuccess(result);
-  //       }),
-  //       catchError(err => of(new fromTodo.removeTodosFail()))
-  //     );
-  //   })
-  // );
 }
