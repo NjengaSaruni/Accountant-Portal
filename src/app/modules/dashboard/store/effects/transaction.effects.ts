@@ -15,7 +15,7 @@ export class TransactionEffects {
   loadTransactions$:  Observable<Action> = this.action$.pipe(
       ofType<transactionActions.LoadTransactions>(transactionActions.TransactionActionTypes.TRANSACTION_LOAD),
       startWith(new transactionActions.LoadTransactions()),
-      mergeMap(action =>
+      mergeMap(() =>
         this.transactionsService
           .getTransactions()
           .pipe(
@@ -50,8 +50,7 @@ export class TransactionEffects {
         .deleteTransaction(action.payload)
         .pipe(
           // If successful, dispatch success action with result
-          map(data => {
-            console.log(data);
+          map(() => {
             return ({ type: transactionActions.TransactionActionTypes.TRANSACTION_DELETE_SUCCESS, payload: action.payload })
           }),
           // If request fails, dispatch failed action

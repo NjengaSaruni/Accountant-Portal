@@ -26,7 +26,7 @@ export class CardComponent implements OnInit {
     );
 
     this.data = <IReportCardData>{
-      unit: 'KES'
+      unit: 'Ksh'
     };
     this.transactions$.subscribe(
       data => {
