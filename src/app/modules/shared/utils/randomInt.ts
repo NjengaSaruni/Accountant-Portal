@@ -84,7 +84,6 @@ export function getMockPiechart() {
   const piechart = new PieChart(120, 80);
 
   piechart.title = `Expenses in January 2018`;
-  piechart.backgroundColor = '#E6ECF0';
 
   return piechart;
 }

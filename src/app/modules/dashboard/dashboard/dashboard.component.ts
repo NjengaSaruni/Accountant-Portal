@@ -3,17 +3,16 @@ import {BarChart} from '../../charts/models/BarChart/BarChart';
 import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
-import {getMockBarchart, getMockData, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
+import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
 import {ECardType, IReportCard, IReportCardBackground} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
-import {Observable, range} from 'rxjs';
-import {ITransaction, TransactionUtils} from '../models/Transaction.model';
+import {Observable, pipe} from 'rxjs';
+import {ITag, ITransaction} from '../models/Transaction.model';
 import {TransactionsSelectors} from '../store';
-
-import * as moment from 'moment';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,6 +31,8 @@ export class DashboardComponent implements OnInit {
   transactionBoxAnimationState = 'out';
   dataObjects: DataObject[] = [];
 
+  tags: Set<ITag> = new Set();
+  showTagOptions: boolean;
   constructor(private winRef: WindowRefService,
               private titleService: Title,
               private store$: Store<RootState>) {
@@ -50,6 +51,13 @@ export class DashboardComponent implements OnInit {
 
     this.transactionsLoaded$ = this.store$.select(
       TransactionsSelectors.selectTransactionsLoaded
+    );
+
+    this.transactions$.subscribe(
+      transactions => {
+        const tags: ITag[] = transactions.map(transaction => transaction.tag);
+        this.tags = new Set((_.uniqBy(tags, 'id')));
+      }
     );
 
     this.cards.push(

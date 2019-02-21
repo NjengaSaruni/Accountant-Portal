@@ -1,4 +1,4 @@
-<div class="dashboard-report-card raised-light"
+<div class="dashboard-report-card"
   [ngStyle]="{
     'border-top': '5px solid' + config.title.color
   }">
@@ -29,12 +29,12 @@
 
     <p class="color-green" *ngIf="data.value > data.previous">
       {{((data.value - data.previous) / data.value ) * 100 | number: '.1' }}%
-      ({{ data.value - data.previous  | number: '.2' }} KES)
+      ({{ data.value - data.previous  | number: '.2' }} {{data.unit}})
     </p>
 
     <p class="color-red" *ngIf="data.value < data.previous">
       {{((data.value - data.previous) / data.value ) * 100 | number: '.1' }}%
-      ({{ data.value - data.previous | number: '.2'}} KES)
+      ({{ data.value - data.previous | number: '.2'}} {{data.unit}})
     </p>
 
   </div>
