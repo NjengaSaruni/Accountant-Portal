@@ -8,7 +8,7 @@
          fxLayoutAlign="space-between"
          fxLayoutGap="8px"
          fxLayoutGap.xs="0">
-      <div class="filter centered-v padding-h bordered" flex (mouseenter)="showTagOptions = true" (mouseleave)="showTagOptions = false">
+      <div class="filter centered-v padding-h bordered" flex (click)="showTagOptions = !showTagOptions">
         <fa name="tag" class="centered-v padding-v padding-ls type"></fa>
         <p class="padding-v centered hoverable">All Tags</p>
         <fa name="angle-down" class="centered-v padding-v hoverable arrow"></fa>
