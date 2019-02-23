@@ -113,4 +113,10 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+
+  onClickOutside(event: any): void {
+    if (event.value) {
+      this.showTagOptions = false;
+    }
+  }
 }
