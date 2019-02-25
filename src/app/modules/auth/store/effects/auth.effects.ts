@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable, of } from 'rxjs';
+import {Observable, of, pipe} from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import * as authActions from '../actions/auth.actions';
 import {SettingsService} from '../../../shared/services/settings.service';
+import {AuthService} from '../../services/auth.service';
 
 @Injectable()
 export class AuthEffects {
@@ -15,10 +16,15 @@ export class AuthEffects {
   login$: Observable<Action> = this.actions$.pipe(
     ofType<authActions.Login>(authActions.AuthActionTypes.LOGIN),
     mergeMap(action =>
-      this.http.post<{key: string}>(this.loginApi, action.payload).pipe(
-        map(data => localStorage.setItem('token', data.key)),
-        // If successful, dispatch success action with result
+      this.authService.login(action.payload.email, action.payload.password).pipe(
+        map(data => {
+          localStorage.setItem('token', data.key);
+          return data.key;
+        }),
+
+        // If successful, dispatch success action with token for further requests
         map(data => ({ type: authActions.AuthActionTypes.LOGIN_SUCCESS, payload: data })),
+
         // If request fails, dispatch failed action
         catchError(() => of({ type: authActions.AuthActionTypes.LOGIN_FAILURE }))
       )
@@ -27,7 +33,8 @@ export class AuthEffects {
 
   constructor(private http: HttpClient,
               private actions$: Actions,
-              private settings: SettingsService
+              private settings: SettingsService,
+              private authService: AuthService
   ) {}
 
   get loginApi(): string {

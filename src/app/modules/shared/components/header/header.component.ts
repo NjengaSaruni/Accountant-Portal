@@ -9,17 +9,17 @@ import * as fromAuth from '../../../auth/store';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  loggedIn$ = this.store.pipe(select(fromAuth.getLoggedIn));
+  loggedIn$ = this.store$.pipe(select(fromAuth.getLoggedIn));
 
   constructor(
     public loaderService: LoaderService,
-    private store: Store<fromAuth.AuthState>
+    private store$: Store<fromAuth.AuthState>
   ) { }
 
   ngOnInit() {
   }
 
   signOut() {
-    this.store.dispatch(new fromAuth.Logout());
+    this.store$.dispatch(new fromAuth.Logout());
   }
 }

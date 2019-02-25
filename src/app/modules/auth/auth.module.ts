@@ -9,6 +9,8 @@ import {RegisterFormComponent} from './components/register-form/register-form.co
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './pages/login/login.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthHttpInterceptor} from './services/auth.httpinterceptor';
 
 
 @NgModule({
@@ -29,6 +31,13 @@ import {LoginFormComponent} from './components/login-form/login-form.component';
 
     // routing
     AuthRoutingModule,
-  ]
+  ],
+  // providers: [
+  //   {
+  //     provide: HTTP_INTERCEPTORS,
+  //     useClass: AuthHttpInterceptor,
+  //     multi: true
+  //   }
+  // ]
 })
 export class AuthModule { }
