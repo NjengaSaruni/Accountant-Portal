@@ -91,11 +91,12 @@ export class TransactionsComponent implements OnInit {
     this.transactionsLoading$ = this.store$.select(
       TransactionsSelectors.selectTransactionsLoaded
     );
+
      this.store$.select(
-      TransactionsSelectors.selectTransactionsLoaded
+      TransactionsSelectors.selectTransactionsLoading
     ).subscribe(
       data => {
-        data ? this.loaderService.hide() : this.loaderService.show();
+        data ? this.loaderService.show() : this.loaderService.hide();
       }
     );
   }
