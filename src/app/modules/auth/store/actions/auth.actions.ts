@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import {IAuthenticationPayload, IUser} from '../../models/user';
+import {HideLoader, ShowLoader} from '../../../shared/decorators/loading.decorators';
 
 export enum AuthActionTypes {
   LOGIN = '[Login Page] Login',
@@ -7,11 +8,12 @@ export enum AuthActionTypes {
   LOGIN_SUCCESS = '[Auth API] Login Success',
   LOGIN_FAILURE = '[Auth API] Login Failure',
   CHECK_LOGIN = '[Auth] Check Login',
-  LOGOUT = '[Auth] Confirm Logout',
+  LOGOUT = '[Auth] Logout',
   LOGOUT_CANCELLED = '[Auth] Logout Cancelled',
   LOGOUT_CONFIRMED = '[Auth] Logout Confirmed'
 }
 
+@ShowLoader()
 export class Login implements Action {
   readonly type = AuthActionTypes.LOGIN;
   readonly payload: any;
@@ -20,10 +22,12 @@ export class Login implements Action {
   }
 }
 
+@HideLoader(AuthActionTypes.LOGIN_COMPLETE)
 export class LoginComplete implements Action {
   readonly type = AuthActionTypes.LOGIN_COMPLETE;
 }
 
+@HideLoader(AuthActionTypes.LOGIN_SUCCESS)
 export class LoginSuccess implements Action {
   readonly type = AuthActionTypes.LOGIN_SUCCESS;
   readonly payload: any;
@@ -33,6 +37,7 @@ export class LoginSuccess implements Action {
   }
 }
 
+@HideLoader(AuthActionTypes.LOGIN_FAILURE)
 export class LoginFailure implements Action {
   readonly type = AuthActionTypes.LOGIN_FAILURE;
 
@@ -43,14 +48,17 @@ export class CheckLogin implements Action {
   readonly type = AuthActionTypes.CHECK_LOGIN;
 }
 
+@ShowLoader()
 export class Logout implements Action {
   readonly type = AuthActionTypes.LOGOUT;
 }
 
+@HideLoader(AuthActionTypes.LOGOUT_CONFIRMED)
 export class LogoutConfirmed implements Action {
   readonly type = AuthActionTypes.LOGOUT_CONFIRMED;
 }
 
+@HideLoader(AuthActionTypes.LOGOUT_CANCELLED)
 export class LogoutCancelled implements Action {
   readonly type = AuthActionTypes.LOGOUT_CANCELLED;
 }

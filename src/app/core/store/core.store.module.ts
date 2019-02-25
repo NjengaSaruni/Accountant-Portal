@@ -8,12 +8,27 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../../../environments/environment';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
+import * as authActions from '../../modules/auth/store/actions/auth.actions'
+import {SharedStoreModule} from '../../modules/shared/store/shared.store.module';
+
+export function clearState(reducer) {
+  return function (state, action) {
+
+    if (action.type === authActions.AuthActionTypes.LOGOUT) {
+      state = undefined;
+    }
+
+    return reducer(state, action);
+  };
+}
+
 @NgModule({
   imports: [
     CommonModule,
     AuthStoreModule,
     DashboardStoreModule,
-    StoreModule.forRoot({}),
+    SharedStoreModule,
+    StoreModule.forRoot({},  { metaReducers: [clearState] }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

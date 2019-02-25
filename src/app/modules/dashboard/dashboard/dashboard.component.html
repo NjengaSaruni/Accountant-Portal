@@ -3,42 +3,60 @@
 </div>
 <div class="content" #content>
   <div class="margin-s container">
-    <div class="filters left"  fxLayout
+    <div fxLayout
          fxLayout.xs="row"
          fxLayoutAlign="space-between"
          fxLayoutGap="8px"
          fxLayoutGap.xs="0">
-      <div class="filter centered-v padding-h bordered" flex (mouseenter)="showTagOptions = true" (mouseleave)="showTagOptions = false">
-        <fa name="tag" class="centered-v padding-v padding-ls type"></fa>
-        <p class="padding-v centered hoverable">All Tags</p>
-        <fa name="angle-down" class="centered-v padding-v hoverable arrow"></fa>
-        <div class="raised options bg-s" *ngIf="showTagOptions">
-          <p *ngFor="let tag of tags" class="padding hoverable bordered margin rounded-s">{{ tag.name }}</p>
+      <div flex>
+        <div class="filters"  fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between"
+             fxLayoutGap="8px"
+             fxLayoutGap.xs="0">
+          <div class="filter centered-v padding-h bordered hoverable"
+               flex (click)="showTagOptions = !showTagOptions"
+               appClickOutside
+               (clickOutside)="onClickOutside($event)">
+            <fa name="tag" class="centered-v padding-v padding-ls type"></fa>
+            <p class="padding-v centered ">All Tags</p>
+            <fa name="angle-down" class="centered-v padding-v arrow"></fa>
+            <div class="raised options bg-s" *ngIf="showTagOptions">
+              <p *ngFor="let tag of tags" class="padding bordered margin rounded-s">{{ tag.name }}</p>
+            </div>
+          </div>
+          <div class="filter centered-v padding-h bordered" flex>
+            <fa name="calendar" class="centered-v padding-v padding-ls type"></fa>
+            <p class="padding-v centered">This Month</p>
+            <fa name="angle-down" class="centered-v padding-v arrow"></fa>
+          </div>
         </div>
       </div>
-      <div class="filter centered-v padding-h bordered" flex>
-        <fa name="calendar" class="centered-v padding-v padding-ls type"></fa>
-        <p class="padding-v centered">This Month</p>
-        <fa name="angle-down" class="centered-v padding-v arrow"></fa>
-      </div>
-    </div>
-    <div class="filters right margin-rs"  fxLayout
-         fxLayout.xs="row"
-         fxLayoutAlign="space-between"
-         fxLayoutGap="8px"
-         fxLayoutGap.xs="0">
-      <div class="filter centered-v padding-h bordered hoverable" flex>
-        <div class="padding-l">
-          <i class="flag flag-48 flag-ke centered-v"></i>
+      <div flex>
+        <div class="relative">
+          <div class="margin-bs sticky-top high">
+            <div class="transaction-bar">
+              <app-transaction-form></app-transaction-form>
+            </div>
+          </div>
         </div>
-        <p class="padding-v centered">Kshs</p>
-        <fa name="angle-down" class="centered-v padding-v arrow"></fa>
       </div>
-    </div>
-    <div class="margin-ts margin-bs sticky-top high">
-      <div class="transaction-bar">
-        <app-transaction-form></app-transaction-form>
+      <div flex>
+        <div class="filters right margin-rs"  fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between"
+             fxLayoutGap="8px"
+             fxLayoutGap.xs="0">
+          <div class="filter centered-v padding-h bordered hoverable" flex>
+            <div class="padding-l">
+              <i class="flag flag-48 flag-ke centered-v"></i>
+            </div>
+            <p class="padding-v centered">Kshs</p>
+            <fa name="angle-down" class="centered-v padding-v arrow"></fa>
+          </div>
+        </div>
       </div>
+
     </div>
     <div class="cards"
          fxLayout
@@ -64,14 +82,14 @@
       </div>
     </div>
     <!--<div class="margin-ts"-->
-         <!--fxLayout-->
-         <!--fxLayout.xs="row"-->
-         <!--fxLayoutAlign="space-between stretch"-->
-         <!--fxLayoutGap="16px"-->
-         <!--fxLayoutGap.xs="0" >-->
-      <!--<div fxFlex *ngFor="let graph of barCharts">-->
-        <!--<app-barchart [chart]="graph"></app-barchart>-->
-      <!--</div>-->
+    <!--fxLayout-->
+    <!--fxLayout.xs="row"-->
+    <!--fxLayoutAlign="space-between stretch"-->
+    <!--fxLayoutGap="16px"-->
+    <!--fxLayoutGap.xs="0" >-->
+    <!--<div fxFlex *ngFor="let graph of barCharts">-->
+    <!--<app-barchart [chart]="graph"></app-barchart>-->
+    <!--</div>-->
     <!--</div>-->
     <div class="margin-ts"
          fxLayout

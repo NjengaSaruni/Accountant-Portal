@@ -11,7 +11,9 @@ import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
 import {Observable, pipe} from 'rxjs';
 import {ITag, ITransaction} from '../models/Transaction.model';
-import {TransactionsSelectors} from '../store';
+import {TransactionsSelectors } from '../store';
+import * as fromActions from '../store/actions/transaction.actions'
+
 import * as _ from 'lodash';
 
 @Component({
@@ -44,6 +46,8 @@ export class DashboardComponent implements OnInit {
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
+
+    this.store$.dispatch(new fromActions.LoadTransactions());
 
     this.transactions$ = this.store$.select(
       TransactionsSelectors.selectTransactions
@@ -112,5 +116,11 @@ export class DashboardComponent implements OnInit {
         }
       }
     );
+  }
+
+  onClickOutside(event: any): void {
+    if (event.value) {
+      this.showTagOptions = false;
+    }
   }
 }
