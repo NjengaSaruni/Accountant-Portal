@@ -1,7 +1,7 @@
 import {TransactionsState} from '../../modules/dashboard/store';
-import {LoaderState} from '../../modules/shared/store/reducers';
+import {LoadingState} from '../../modules/shared/store/selector';
 
 export interface RootState {
   transactionsState: TransactionsState.TransactionsState;
-  loaderState: LoaderState;
+  loaderState: LoadingState;
 }

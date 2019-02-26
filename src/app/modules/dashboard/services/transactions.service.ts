@@ -24,7 +24,7 @@ export class TransactionsService {
     params.set('created_at_lte', created_at_lte);
     params.set('created_at_gte', created_at_gte);
 
-    return this.http.get<{ message: string; result: ITransaction[] }>(this.transactionsApi, {params: params});
+    return this.http.get<ITransaction[]>(this.transactionsApi, {params: params});
   }
 
   // TODO Handle updates and deletes

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import {ITransaction} from '../../models/Transaction.model';
-import {HideLoader, ShowLoader} from '../../../shared/decorators/loading.decorators';
+import {HideLoader, ShowLoader} from '../../../shared/decorators';
 
 /*
   TRANSACTION ACTIONS
@@ -26,13 +26,13 @@ export class LoadTransactions implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_LOAD;
 }
 
-@HideLoader(TransactionActionTypes.TRANSACTION_LOAD_FAIL)
+@HideLoader(TransactionActionTypes.TRANSACTION_LOAD)
 export class LoadTransactionsFail implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_LOAD_FAIL;
   constructor(public payload: any) {}
 }
 
-@HideLoader(TransactionActionTypes.TRANSACTION_LOAD_SUCCESS)
+@HideLoader(TransactionActionTypes.TRANSACTION_LOAD)
 export class LoadTransactionsSuccess implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_LOAD_SUCCESS;
   constructor(public payload: ITransaction[]) {}
@@ -44,12 +44,12 @@ export class AddTransaction implements Action {
   constructor(public payload: ITransaction) {}
 }
 
-@HideLoader( TransactionActionTypes.TRANSACTION_ADD_FAIL)
+@HideLoader( TransactionActionTypes.TRANSACTION_ADD)
 export class AddTransactionFail implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_ADD_FAIL;
 }
 
-@HideLoader( TransactionActionTypes.TRANSACTION_ADD_SUCCESS)
+@HideLoader( TransactionActionTypes.TRANSACTION_ADD)
 export class AddTransactionSuccess implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_ADD_SUCCESS;
   constructor(public payload: ITransaction) {}
@@ -61,12 +61,12 @@ export class UpdateTransaction implements Action {
   constructor(public payload: any) {}
 }
 
-@HideLoader( TransactionActionTypes.TRANSACTION_UPDATE_FAIL)
+@HideLoader( TransactionActionTypes.TRANSACTION_UPDATE)
 export class UpdateTransactionFail implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_UPDATE_FAIL;
 }
 
-@HideLoader( TransactionActionTypes.TRANSACTION_UPDATE_SUCCESS)
+@HideLoader(TransactionActionTypes.TRANSACTION_UPDATE)
 export class UpdateTransactionSuccess implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_UPDATE_SUCCESS;
   constructor(public payload: any) {}
@@ -78,12 +78,12 @@ export class DeleteTransaction implements Action {
   constructor(public payload: any) {}
 }
 
-@HideLoader( TransactionActionTypes.TRANSACTION_DELETE_FAIL)
+@HideLoader(TransactionActionTypes.TRANSACTION_DELETE)
 export class DeleteTransactionFail implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_DELETE_FAIL;
 }
 
-@HideLoader( TransactionActionTypes.TRANSACTION_DELETE_SUCCESS)
+@HideLoader(TransactionActionTypes.TRANSACTION_DELETE)
 export class DeleteTransactionSuccess implements Action {
   readonly type = TransactionActionTypes.TRANSACTION_DELETE_SUCCESS;
   constructor(public payload: any) {}
