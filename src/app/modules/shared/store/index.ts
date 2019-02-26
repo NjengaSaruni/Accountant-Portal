@@ -14,11 +14,11 @@ import * as fromLoader from './reducers/loader.reducers';
  */
 
 export interface State {
-  loading: fromLoader.State
+  loading: fromLoader.LoaderState
 }
 
 export const reducers = {
-  loading: fromLoader.reducer
+  loading: fromLoader.reducers
 };
 
 

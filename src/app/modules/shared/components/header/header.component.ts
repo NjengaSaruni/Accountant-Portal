@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
 
 
   signOut() {
+    localStorage.removeItem('token');
     this.store$.dispatch(new fromAuth.Logout());
   }
 }

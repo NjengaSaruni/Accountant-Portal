@@ -18,13 +18,17 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    request = request.clone({
-      responseType: 'json',
-      setHeaders: {
-        Authorization: `Token ${localStorage.getItem('token')}`
-        // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    });
+    // Only add token to headers if token is available
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      request = request.clone({
+        responseType: 'json',
+        setHeaders: {
+          Authorization: `Token ${localStorage.getItem('token')}`
+          // 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      });
+    }
 
     return next.handle(request).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {

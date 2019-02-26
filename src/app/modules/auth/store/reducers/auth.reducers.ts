@@ -5,10 +5,10 @@ export interface State {
   loggedIn: boolean;
   token: RESTAuthToken;
 }
-
+const token = localStorage.getItem('token');
 export const initialState: State = {
-  loggedIn: false,
-  token: null,
+  loggedIn:  token !== null,
+  token: <RESTAuthToken>{key: token}
 };
 
 export function reducer(state = initialState, action: AuthActions): State {
@@ -22,7 +22,10 @@ export function reducer(state = initialState, action: AuthActions): State {
     }
 
     case AuthActionTypes.LOGOUT: {
-      return initialState;
+      return { ...state,
+      loggedIn: false,
+      token: null
+    };
     }
 
     default: {
