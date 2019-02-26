@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import {IAuthenticationPayload, IUser} from '../../models/user';
-import {HideLoader, ShowLoader} from '../../../shared/decorators/loading.decorators';
+import {HideLoader, ShowLoader} from '../../../shared/decorators';
 
 export enum AuthActionTypes {
   LOGIN = '[Login Page] Login',
@@ -22,12 +22,12 @@ export class Login implements Action {
   }
 }
 
-@HideLoader(AuthActionTypes.LOGIN_COMPLETE)
+@HideLoader(AuthActionTypes.LOGIN)
 export class LoginComplete implements Action {
   readonly type = AuthActionTypes.LOGIN_COMPLETE;
 }
 
-@HideLoader(AuthActionTypes.LOGIN_SUCCESS)
+@HideLoader(AuthActionTypes.LOGIN)
 export class LoginSuccess implements Action {
   readonly type = AuthActionTypes.LOGIN_SUCCESS;
   readonly payload: any;
@@ -53,12 +53,12 @@ export class Logout implements Action {
   readonly type = AuthActionTypes.LOGOUT;
 }
 
-@HideLoader(AuthActionTypes.LOGOUT_CONFIRMED)
+@HideLoader(AuthActionTypes.LOGOUT)
 export class LogoutConfirmed implements Action {
   readonly type = AuthActionTypes.LOGOUT_CONFIRMED;
 }
 
-@HideLoader(AuthActionTypes.LOGOUT_CANCELLED)
+@HideLoader(AuthActionTypes.LOGOUT)
 export class LogoutCancelled implements Action {
   readonly type = AuthActionTypes.LOGOUT_CANCELLED;
 }

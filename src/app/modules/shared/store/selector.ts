@@ -5,17 +5,19 @@ import {
 } from '@ngrx/store';
 
 
-import {LoaderState} from './reducers';
+import * as fromReducers from './reducers';
 
-const getLoader = (state: LoaderState): number => state.active;
+export interface LoadingState {
+  loading: fromReducers.LoaderState
+}
 
-export const selectLoaderState: MemoizedSelector<
-  object,
-  LoaderState
-  > = createFeatureSelector<LoaderState>('loader');
+export const reducers = {
+  loading: fromReducers.reducers
+};
 
-export const selectLoader: MemoizedSelector<
-  object,
-  number
-  > = createSelector(selectLoaderState, getLoader);
+export const getLoadingState = (state: LoadingState) => state.loading;
 
+export const getLoader = createSelector(
+  getLoadingState,
+  fromReducers.isLoaderActive
+);

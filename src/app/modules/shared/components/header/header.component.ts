@@ -4,7 +4,7 @@ import {select, Store} from '@ngrx/store';
 import * as fromAuth from '../../../auth/store';
 import {Observable} from 'rxjs';
 import {RootState} from '../../../../core/store/state';
-import {selectLoader} from '../../store/selector';
+import {dashboardEffects} from '../../../dashboard/store/effects';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +13,7 @@ import {selectLoader} from '../../store/selector';
 })
 export class HeaderComponent implements OnInit {
   loggedIn$ = this.store$.pipe(select(fromAuth.getLoggedIn));
-  isLoading$: Observable<any>;
-
+  showLoader = 0;
 
   constructor(
     public loaderService: LoaderService,
@@ -22,12 +21,9 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isLoading$ = this.store$.pipe(
-      select(selectLoader)
+    this.store$.subscribe(
+      data => this.showLoader = data['loader'].active
     );
-
-    this.isLoading$.subscribe(data => console.log(data));
-
   }
 
 

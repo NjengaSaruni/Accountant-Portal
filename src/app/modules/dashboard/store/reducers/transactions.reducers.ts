@@ -18,7 +18,8 @@ export function reducers(state = initialState, action: TransactionActions): Tran
       };
     }
     case TransactionActionTypes.TRANSACTION_LOAD_SUCCESS: {
-      const transactions = [...state.transactions, ...action.payload];
+      console.log(action);
+      const transactions = [...action.payload];
       return {
         ...state,
         transactions,
