@@ -11,22 +11,24 @@ import {SettingsService} from '../../../shared/services/settings.service';
 
 @Injectable()
 export class RegisterEffects {
+
   // Listen for the 'REGISTER' action
   @Effect()
   register$: Observable<Action> = this.actions$.pipe(
     ofType<registerActions.Register>(registerActions.RegisterActionTypes.REGISTER),
     mergeMap(action =>
-      this.http.post(this.registerApi, action.payload).pipe(
+      this.http.post<{key: string}>(this.registerApi, action.payload).pipe(
+
         // If successful, dispatch success action with result
-        switchMap(data => [
-          {
-            type: registerActions.RegisterActionTypes.REGISTER_SUCCESS,
-            payload: data
-          }, {
-            type: authActions.AuthActionTypes.LOGIN_SUCCESS,
-            payload: data
-          }
-        ]),
+        switchMap(data => {
+          localStorage.setItem('token', data.key);
+          return [
+            new registerActions.RegisterSuccess(data.key),
+            {
+              type: authActions.AuthActionTypes.LOGIN_SUCCESS,
+              payload: data
+            }];
+        }),
         // If request fails, dispatch failed action
         catchError(() => of({ type: registerActions.RegisterActionTypes.REGISTER_FAILURE }))
       )
