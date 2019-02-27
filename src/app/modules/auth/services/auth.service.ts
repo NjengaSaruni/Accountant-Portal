@@ -38,13 +38,11 @@ export class AuthService {
   /**
    *  LOGIN the user then tell all the subscribers about the new status
    */
-  login(username: string, password: string): void {
-    this._http.post(this.loginAPI, {
-      username, password
-    }).subscribe(
-      data => console.log(data),
-      error => console.log(error)
-    );
+  login(email: string, password: string): Observable<{key: string}> {
+    return this._http.post<{key: string}>(this.loginAPI, {
+      'email': email,
+      'password': password
+    });
   }
   /**
    *  Register the user then tell all the subscribers about the new status

@@ -4,12 +4,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {WindowRefService} from '../modules/shared/services/window-ref.service';
 import {SharedModule} from '../modules/shared/shared.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MetaReducer} from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CoreStoreModule} from './store/core.store.module';
+import {AuthGuard} from '../modules/auth/services/auth.guard.service';
+import {AuthHttpInterceptor} from '../modules/auth/services/auth.httpinterceptor';
 
 export const metaReducers: MetaReducer<any>[] = [];
 
@@ -36,7 +37,13 @@ export const metaReducers: MetaReducer<any>[] = [];
   ],
   providers: [
     // Internal services
-    WindowRefService
+    WindowRefService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

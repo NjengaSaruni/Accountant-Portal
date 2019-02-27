@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     this.loggedIn$.subscribe(
       state => {
         if (state) {
-          this.router.navigate(['home']);
+          this.router.navigate(['dashboard']);
         }
       }
     );

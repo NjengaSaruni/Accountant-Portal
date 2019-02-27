@@ -36,7 +36,7 @@ export class DataObject {
 
 
   /**
-   * Represents a data object to be used as a Pie in a PieChart
+   * Represents a data object to be used as a pie in a PieChart or a line in a LineChart or a bar in a BarChart
    * @param name - The title for the Pie
    * @param value - The absolute value of the data object
    * @param color - The desired color of the Pie (A random RGBA color will be used if this is not supplied)

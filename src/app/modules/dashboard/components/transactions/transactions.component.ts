@@ -1,14 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {ITag, ITransaction} from '../../models/Transaction.model';
 import {ModalService} from '../../../shared/components/modal/modal.service';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {RootState} from '../../../../core/store/state';
+import {TransactionsSelectors} from '../../store';
+import {LoaderService} from '../../../shared/components/loader/loader.service';
+import {ShortSlideInOutAnimation} from '../../../../animations/shortSlideDown.animation';
+import * as fromTransactionsActions from '../../store/actions';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.scss']
+  styleUrls: ['./transactions.component.scss'],
+  animations: [ShortSlideInOutAnimation]
 })
 export class TransactionsComponent implements OnInit {
   transactions: ITransaction[] = [];
+  transactions$: Observable<ITransaction[]>;
+  transactionsLoading$: Observable<boolean>;
+  transactionAnimationState  = 'out';
+
   lists = [
     {
       name: 'New',
@@ -19,7 +31,9 @@ export class TransactionsComponent implements OnInit {
       selected: false
     }
   ];
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService,
+              private loaderService: LoaderService,
+              private store$: Store<RootState>) { }
 
   ngOnInit() {
     this.transactions.push(
@@ -69,6 +83,22 @@ export class TransactionsComponent implements OnInit {
         description: 'Travelled to see my brother in South B.'
       }
     );
+
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
+    );
+
+    this.transactionsLoading$ = this.store$.select(
+      TransactionsSelectors.selectTransactionsLoaded
+    );
+
+     this.store$.select(
+      TransactionsSelectors.selectTransactionsLoading
+    ).subscribe(
+      data => {
+        data ? this.loaderService.show() : this.loaderService.hide();
+      }
+    );
   }
 
   openModal(id: string) {
@@ -83,4 +113,10 @@ export class TransactionsComponent implements OnInit {
     this.lists[i].selected = true;
     this.lists[Math.abs(i - 1)].selected = false;
   }
+
+  deleteTransaction(transaction: ITransaction) {
+    const transactionPayload = transaction.id;
+    this.store$.dispatch(new fromTransactionsActions.DeleteTransaction(transactionPayload));
+  }
+
 }

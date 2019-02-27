@@ -1,26 +1,70 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {LineChart} from '../../models/LineChart/LineChart';
+import {ITransaction, TransactionUtils} from '../../../dashboard/models/Transaction.model';
+import {DataObject} from '../../models/BaseChart/DataObject';
+import {TransactionsSelectors} from '../../../dashboard/store';
+import {Store} from '@ngrx/store';
+import {RootState} from '../../../../core/store/state';
+import {Observable} from 'rxjs';
+import * as moment from 'moment';
+import {getMockLinechart} from '../../../shared/utils/randomInt';
+import {WindowRefService} from '../../../shared/services/window-ref.service';
 
 @Component({
   selector: 'app-linechart',
   templateUrl: './linechart.component.html',
   styleUrls: ['./linechart.component.scss']
 })
-export class LinechartComponent implements OnInit, AfterViewInit {
+export class LinechartComponent implements OnInit {
   @ViewChild('canvas') public canvas: ElementRef;
   @Input() chart: LineChart;
   @Input() fill: boolean;
   private cx: CanvasRenderingContext2D;
 
-  constructor() { }
+  transactions$: Observable<ITransaction[]>;
+  dataObjects: DataObject[] = [];
+  private mouseX: number;
+  mouseY: number;
+
+  constructor(private store$: Store<RootState>,
+              private winRef: WindowRefService) { }
 
   ngOnInit() {
+
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
+    );
+
+    this.transactions$.subscribe(
+      transactions => {
+        this.dataObjects = [];
+        let count = 11;
+        while (count >= 0) {
+          const currentMonth = moment().subtract(count, 'months');
+          const currentTransactions: ITransaction[] = transactions.filter(
+            transaction => moment(transaction.created_at) <= currentMonth.endOf('month')
+          );
+
+          const dataObject: DataObject = new DataObject(
+            currentMonth.format('MMM'),
+            TransactionUtils.sumOf(currentTransactions)
+          );
+
+          this.dataObjects.push(dataObject);
+          count -= 1;
+        }
+
+        const newChart = getMockLinechart();
+        newChart.populate(this.dataObjects);
+        this.chart = newChart;
+        this.draw();
+      }
+    );
   }
 
-  ngAfterViewInit() {
+  draw() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
-
     canvasEl.width = this.chart.width;
     canvasEl.height = this.chart.height;
 
@@ -53,8 +97,21 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.chart.height; i += this.chart.intervalY ) {
       const y = this.chart.height - this.chart.startY - i;
 
-      const label = Math.ceil((i / (this.chart.height - (this.chart.startY * 2)) * this.chart.max));
-      this.cx.strokeText(label.toString(), 10, y);
+      let label = Math.ceil((i / (this.chart.height - (this.chart.startY * 2)) * this.chart.max));
+      let appendM = false;
+      let appendK = false;
+      let labelString = label.toString();
+      if (label >= 1000000) {
+        appendM = true;
+        label /= 1000000;
+        labelString = label.toString() + 'M';
+      } else if (label >= 1000) {
+        appendK = true;
+        label /= 1000;
+        labelString = label.toString() + 'K';
+      }
+
+      this.cx.strokeText(labelString, 10, y);
 
       // Set strokeStyle for line
       this.cx.strokeStyle = '#9ccdda';
@@ -76,6 +133,10 @@ export class LinechartComponent implements OnInit, AfterViewInit {
         // Set strokeStyle for line
         this.cx.strokeStyle = '#9ccdda';
 
+        if (this.chart.points[i].title === 'Jan') {
+          this.cx.strokeStyle = '#1eda1f';
+        }
+
         // Draw line
         this.cx.beginPath();
         this.cx.moveTo(this.chart.points[i].x, Math.abs(this.chart.startY - this.chart.height));
@@ -85,7 +146,7 @@ export class LinechartComponent implements OnInit, AfterViewInit {
         // Reset strokeStyle
         this.cx.strokeStyle = 'black';
       }
-     }
+    }
 
     // Line styles for actual line
     this.cx.strokeStyle = this.chart.line.color;
@@ -95,20 +156,18 @@ export class LinechartComponent implements OnInit, AfterViewInit {
     // Invert scale
     this.cx.translate(0, canvasEl.height);
     this.cx.scale(1, -1);
-
     let prev = this.chart.points[0];
     for (let i = 0; i < this.chart.size(); i++) {
       // Draw line
       this.cx.beginPath();
       this.cx.moveTo(prev.x, prev.y);
-      this.cx.lineTo(this.chart.points[i].x, this.chart.points[i].y);
-
+      this.cx.quadraticCurveTo(prev.x, prev.y, this.chart.points[i].x, this.chart.points[i].y);
 
       if (this.fill) {
         this.cx.fillStyle = '#41fcff';
 
         this.cx.lineTo(this.chart.points[i].x, this.chart.startY);
-        this.cx.lineTo(prev.x , this.chart.startY);
+        this.cx.lineTo(prev.x, this.chart.startY);
         this.cx.fill();
       } else {
         this.cx.stroke();
@@ -117,5 +176,44 @@ export class LinechartComponent implements OnInit, AfterViewInit {
 
       prev = this.chart.points[i];
     }
+
+    if (this.mouseX && this.mouseY) {
+      try {
+        const point = this.chart.points.filter(
+          p => p.x > this.mouseX
+        )[0];
+
+        this.cx.lineWidth = 1;
+        this.cx.strokeStyle = '#3859da';
+        this.cx.strokeRect(point.x, point.y, 100, 50);
+        this.cx.fillRect(point.x, point.y, 100, 50);
+        this.cx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+        this.cx.fill();
+        // Invert scale
+        this.cx.translate(0, canvasEl.height);
+        this.cx.scale(1, -1);
+        this.cx.strokeText(point.title, point.x + 10, this.canvas.nativeElement.height - point.y - 35);
+        this.cx.strokeText(point.value.toString() + ' Kshs', point.x + 10, this.canvas.nativeElement.height - point.y - 15);
+
+      } catch (e) {}
+    }
+
+    this.winRef.nativeWindow.requestAnimationFrame(this.draw.bind(this));
+
+  }
+
+  mouseEvent = (event: MouseEvent) => {
+    this.mouseX  = this.windowToCanvas(event).x;
+    this.mouseY = this.windowToCanvas(event).y;
+  };
+
+  windowToCanvas(event: MouseEvent) {
+    const bbox = this.canvas.nativeElement.getBoundingClientRect();
+    const x = event.clientX;
+    const y = event.clientY;
+
+    return { x: x - bbox.left * (this.canvas.nativeElement.width  / bbox.width),
+      y: y - bbox.top  * (this.canvas.nativeElement.height / bbox.height)
+    };
   }
 }

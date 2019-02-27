@@ -1,11 +1,11 @@
 <div class="transactions-component bg-white">
   <div class="title-bar">
     <div
-       class="padding-t padding-r"
-       fxLayout
-       fxLayout.xs="row"
-       fxLayoutAlign="space-between end"
-       fxLayoutGap.xs="0">
+      class="padding-t padding-r"
+      fxLayout
+      fxLayout.xs="row"
+      fxLayoutAlign="space-between end"
+      fxLayoutGap.xs="0">
       <div fxFlex class="full-height title-bar-option"
            (click)="selectList(0)"
            [ngClass]="{
@@ -13,7 +13,7 @@
            }">
         <div class="full-height full-width title-group">
           <fa class="padding" name="list"></fa>
-          <p class="padding">Transactions <span class="title-bar-label bordered">335</span></p>
+          <p class="padding">Transactions <span class="title-bar-label bordered">{{ (transactions$ | async).length }}</span></p>
         </div>
         <div class="title-bar-underline" *ngIf="lists[0].selected"></div>
       </div>
@@ -24,62 +24,77 @@
            [ngClass]="{
               'bg-s': lists[1].selected
            }">
-        <p class="centered full-height full-width">Deleted <span class="title-bar-label bordered">2</span></p>
+        <div class="full-height full-width title-group">
+          <fa class="padding" name="trash"></fa>
+          <p class="padding">Deleted <span class="title-bar-label bordered">2</span></p>
+        </div>
         <div class="title-bar-underline" *ngIf="lists[1].selected"></div>
       </div>
-      <div fxFlex class="full-height">
+      <div fxFlex class="full-height padding-b">
         <app-button
           [text]="'View All'"
           [width]="150"
           [circular]="true"
-          class="centered add-transaction-button padding-b">
+          class="centered add-transaction-button">
         </app-button>
       </div>
     </div>
 
   </div>
 
-  <table class="padding full-width transaction-table bg-s">
-    <!--<thead class="transaction-list-titles">-->
-    <!--<tr class="padding">-->
+  <div class="transaction-table bg-s">
+    <table class="padding full-width">
+      <!--<thead class="transaction-list-titles">-->
+      <!--<tr class="padding">-->
       <!--<th class="padding">-->
-        <!--<p>Amount</p>-->
+      <!--<p>Amount</p>-->
       <!--</th>-->
       <!--<th class="padding">-->
-        <!--<p>Tag</p>-->
+      <!--<p>Tag</p>-->
       <!--</th>-->
       <!--<th class="padding">-->
-        <!--<p>Description</p>-->
+      <!--<p>Description</p>-->
       <!--</th>-->
       <!--<th class="padding-h">-->
-        <!--<p>Date</p>-->
+      <!--<p>Date</p>-->
       <!--</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <tbody class="transaction-list-data">
-    <tr *ngFor="let transaction of transactions" class="bordered-b padding"
-        [ngClass]="{'raised-light': transaction.hovered }"
-        (mouseenter)="transaction.hovered = true"
-        (mouseleave)="transaction.hovered = false"
+      <!--</tr>-->
+      <!--</thead>-->
+      <tbody class="transaction-list-data">
+      <tr *ngFor="let transaction of transactions$ | async" class="bordered-b padding"
+          [ngClass]="{'raised-light': transaction.hovered }"
+          (mouseenter)="transaction.hovered = true"
+          (mouseleave)="transaction.hovered = false"
       >
-      <td class="padding" [ngClass]="{
+        <td class="padding" [ngClass]="{
         'color-red': transaction.amount < 0,
         'color-green': transaction.amount >= 0
         }">
-        <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
-      </td>
-      <td class="padding">
-        <a href="">{{ transaction.tag.name }}</a>
-      </td>
-      <td class="padding">
-        <p class="transaction-description"> {{ transaction.description }}</p>
-      </td>
-      <td class="padding-h">
-        {{transaction.created_at | date: 'MMM d'}}
-      </td>
-    </tr>
-    </tbody>
-  </table>
+          <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
+        </td>
+        <td class="padding">
+          <a href="">{{ transaction.tag.name }}</a>
+        </td>
+        <td class="padding">
+          <p class="transaction-description"> {{ transaction.description }}</p>
+        </td>
+        <td class="padding-h">
+          {{transaction.created_at | date: 'MMM d'}}
+        </td>
+        <td class="padding">
+          <div class="transaction-action-icon" (click)="deleteTransaction(transaction)">
+            <fa name="trash" class="centered"></fa>
+          </div>
+        </td>
+        <td>
+          <div class="transaction-action-icon hovicon-mini effect-1 sub-a">
+            <fa name="ellipsis-h" class="centered"></fa>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 

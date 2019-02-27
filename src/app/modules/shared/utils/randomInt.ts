@@ -40,7 +40,7 @@ export function getMockData(): DataObject[] {
     new DataObject('Sep', randomInt(9000, 10000), randomColor()),
     new DataObject('Oct', randomInt(9000, 10000), randomColor()),
     new DataObject('Nov', randomInt(9000, 15000), randomColor()),
-    new DataObject('Dec', 20000, randomColor())
+    new DataObject('Dec', 18000, randomColor())
   ];
 }
 
@@ -72,11 +72,10 @@ export function getMockBarchart(width = 800, height = 400) {
 export function getMockLinechart(width = 800, height = 400) {
   const lineChart = new LineChart(width, height);
 
-  lineChart.title = `Your expenditure per month in 2018`;
-  lineChart.subtitle = `Trend in expenses per month in Kshs`;
+  lineChart.title = `Your savings per month in the past twelve months`;
+  lineChart.subtitle = `Trend in savings per month in Kshs`;
   lineChart.line.width = randomInt(2, 6);
   lineChart.line.color = randomColor();
-  lineChart.populate(getMockData());
 
   return lineChart;
 }
@@ -85,8 +84,6 @@ export function getMockPiechart() {
   const piechart = new PieChart(120, 80);
 
   piechart.title = `Expenses in January 2018`;
-  piechart.populate(getMockPieData());
-  piechart.backgroundColor = '#E6ECF0';
 
   return piechart;
 }

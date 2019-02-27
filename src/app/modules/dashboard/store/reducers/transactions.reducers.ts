@@ -1,17 +1,5 @@
+import {initialState, TransactionsState} from '../state';
 import {TransactionActions, TransactionActionTypes} from '../actions';
-import {ITransaction} from '../../models/Transaction.model';
-
-export interface TransactionsState {
-  transactions: ITransaction[];
-  loading: boolean;
-  loaded: boolean;
-}
-
-export const initialState: TransactionsState = {
-  transactions: [],
-  loading: false,
-  loaded: false
-};
 
 export function reducers(state = initialState, action: TransactionActions): TransactionsState {
   switch (action.type) {
@@ -30,7 +18,8 @@ export function reducers(state = initialState, action: TransactionActions): Tran
       };
     }
     case TransactionActionTypes.TRANSACTION_LOAD_SUCCESS: {
-      const transactions = [...state.transactions, ...action.payload];
+      console.log(action);
+      const transactions = [...action.payload];
       return {
         ...state,
         transactions,
@@ -55,7 +44,7 @@ export function reducers(state = initialState, action: TransactionActions): Tran
       };
     }
     case TransactionActionTypes.TRANSACTION_ADD_SUCCESS: {
-      const transactions = [...state.transactions, action.payload];
+      const transactions = [action.payload, ...state.transactions ];
       return {
         ...state,
         transactions,
@@ -93,31 +82,30 @@ export function reducers(state = initialState, action: TransactionActions): Tran
     //   };
     // }
     //   TODO deal with removal
-    //   // TO DO REMOVE CASES
-    //   case TransactionActionTypes.TRANSACTION_REMOVE_ALL: {
-    //     return {
-    //       ...state,
-    //       loading: true,
-    //       loaded: false
-    //     };
-    //   }
-    //   case TransactionActionTypes.TRANSACTION_REMOVE_FAIL: {
-    //     return {
-    //       ...state,
-    //       loading: false,
-    //       loaded: false
-    //     };
-    //   }
-    //   case TransactionActionTypes.TRANSACTION_REMOVE_SUCCESS: {
-    //     let todo = action.payload;
-    //     return {
-    //       ...state,
-    //       todo,
-    //       loading: false,
-    //       loaded: true
-    //     };
-    //   }
-    // }
+    case TransactionActionTypes.TRANSACTION_DELETE: {
+      return {
+        ...state,
+        loading: true,
+        loaded: false
+      };
+    }
+    case TransactionActionTypes.TRANSACTION_DELETE_FAIL: {
+      return {
+        ...state,
+        loading: false,
+        loaded: true
+      };
+    }
+    case TransactionActionTypes.TRANSACTION_DELETE_SUCCESS: {
+      const transactions = state.transactions.filter(transaction => transaction.id !== action.payload);
+      console.log(transactions);
+      return {
+        ...state,
+        transactions,
+        loading: false,
+        loaded: true
+      };
+    }
     // default return if case not match
   }
   return state;

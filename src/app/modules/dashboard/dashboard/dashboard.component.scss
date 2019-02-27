@@ -1,11 +1,54 @@
+@import "~src/variables.scss";
+
 .container {
   margin-top: 95px;
-  height: 400px;
 
   .sticky-top {
     position: -webkit-sticky;
     position: sticky;
     top: 6px
+  }
+
+
+  .filters {
+    height: 70px;
+    z-index: 0;
+    .hoverable {
+      cursor: pointer !important;
+    }
+
+    .hoverable:hover {
+      background: $grey;
+      color: $primary;
+    }
+
+    .filter {
+      border-top: 2px solid $primary;
+      display: inline-flex;
+      min-width: 160px;
+      position: relative;
+      height: 32px;
+
+      .flag {}
+
+      fa.arrow {
+        position: absolute;
+        right: 0;
+      }
+
+      .options {
+        position: absolute;
+        top: 100%;
+        width: 150%;
+        max-height: 220px;
+        overflow: auto;
+      }
+
+    }
+
+  }
+  .filters.right {
+    right: 0;
   }
   .transaction-bar {
     .transaction-add {

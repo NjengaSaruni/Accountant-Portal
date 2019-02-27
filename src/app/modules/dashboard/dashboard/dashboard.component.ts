@@ -4,9 +4,17 @@ import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
 import {DataObject} from '../../charts/models/BaseChart/DataObject';
 import {getMockBarchart, getMockLinechart, getMockPiechart} from '../../shared/utils/randomInt';
-import {IReportCard} from '../models/ReportCard.model';
+import {ECardType, IReportCard, IReportCardBackground} from '../models/ReportCard.model';
 import {WindowRefService} from '../../shared/services/window-ref.service';
 import {Title} from '@angular/platform-browser';
+import {Store} from '@ngrx/store';
+import {RootState} from '../../../core/store/state';
+import {Observable, pipe} from 'rxjs';
+import {ITag, ITransaction} from '../models/Transaction.model';
+import {TransactionsSelectors } from '../store';
+import * as fromActions from '../store/actions/transaction.actions'
+
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +22,8 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  transactions$: Observable<ITransaction[]>;
+  transactionsLoaded$: Observable<boolean>;
 
   barCharts: BarChart[] = [];
   pieChart: PieChart;
@@ -21,17 +31,38 @@ export class DashboardComponent implements OnInit {
   data: DataObject[];
   cards: IReportCard[] = [];
   transactionBoxAnimationState = 'out';
+  dataObjects: DataObject[] = [];
 
+  tags: Set<ITag> = new Set();
+  showTagOptions: boolean;
   constructor(private winRef: WindowRefService,
-              private titleService: Title) {
+              private titleService: Title,
+              private store$: Store<RootState>) {
     this.titleService.setTitle('iSave | Dashboard');
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.barCharts.push(getMockBarchart((this.winRef.nativeWindow.innerWidth - 300) / 2));
     this.barCharts.push(getMockBarchart());
     this.pieChart = getMockPiechart();
     this.lineChart = getMockLinechart((this.winRef.nativeWindow.innerWidth - 300) / 2);
+
+    this.store$.dispatch(new fromActions.LoadTransactions());
+
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
+    );
+
+    this.transactionsLoaded$ = this.store$.select(
+      TransactionsSelectors.selectTransactionsLoaded
+    );
+
+    this.transactions$.subscribe(
+      transactions => {
+        const tags: ITag[] = transactions.map(transaction => transaction.tag);
+        this.tags = new Set((_.uniqBy(tags, 'id')));
+      }
+    );
 
     this.cards.push(
       <IReportCard> {
@@ -39,14 +70,10 @@ export class DashboardComponent implements OnInit {
           name: 'Income',
           color: '#66AB86'
         },
-        background: {
-          // color: '#6EC4DB'
+        background: <IReportCardBackground>{
+          color: '#6EC4DB'
         },
-        data: {
-          value: 3000,
-          unit: 'KES',
-          previous: 2000
-        }
+        type: ECardType.Income
       }
     );
 
@@ -56,14 +83,10 @@ export class DashboardComponent implements OnInit {
           name: 'Expense',
           color: '#FA7C92'
         },
-        background: {
-          // color: '#FA7C92'
+        background: <IReportCardBackground> {
+          color: '#FA7C92'
         },
-        data: {
-          value: -6000,
-          unit: 'KES',
-          previous: -4800
-        }
+        type: ECardType.Expense
       }
     );
 
@@ -71,16 +94,13 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Saved',
-          color: '#A239CA'
+          color: '#1c5155'
         },
-        background: {
-          // color: '#FFF7C0'
+        background: <IReportCardBackground>{
+          color: '#FFF7C0'
         },
-        data: {
-          value: this.cards[0].data.value + this.cards[1].data.value,
-          unit: 'KES',
-          previous: this.cards[0].data.previous + this.cards[1].data.previous
-        }
+        type: ECardType.Saved
+
       }
       );
 
@@ -90,15 +110,17 @@ export class DashboardComponent implements OnInit {
           name: 'NET WORTH',
           color: '#6EC4DB'
         },
+        type: ECardType.NetWorth,
         background: {
           // color: '#66AB86'
-        },
-        data: {
-          value: 100000,
-          unit: 'KES',
-          previous: 900,
         }
       }
     );
+  }
+
+  onClickOutside(event: any): void {
+    if (event.value) {
+      this.showTagOptions = false;
+    }
   }
 }

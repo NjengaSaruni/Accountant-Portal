@@ -15,7 +15,7 @@
       "severity": "warn"
     },
     "eofline": true,
-    "forin": true,
+//    "forin": true,
     "import-blacklist": [
       true,
       "rxjs/Rx"
@@ -90,7 +90,7 @@
     ],
     "radix": true,
     "semicolon": [
-      true,
+      false,
       "always"
     ],
     "triple-equals": [

@@ -1,6 +1,16 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {PieChart} from '../../models/PieChart/PieChart';
 import {WindowRefService} from '../../../shared/services/window-ref.service';
+import {Store} from '@ngrx/store';
+import {RootState} from '../../../../core/store/state';
+import {TransactionsSelectors} from '../../../dashboard/store';
+import {Observable} from 'rxjs';
+import {ITransaction, TransactionUtils} from '../../../dashboard/models/Transaction.model';
+import {DataObject} from '../../models/BaseChart/DataObject';
+import * as moment from 'moment';
+import * as _ from 'lodash';
+
+import {getMockPiechart} from '../../../shared/utils/randomInt';
 
 @Component({
   selector: 'app-piechart',
@@ -9,28 +19,55 @@ import {WindowRefService} from '../../../shared/services/window-ref.service';
 })
 export class PiechartComponent implements OnInit, AfterViewInit {
   @Input() chart: PieChart;
+  transactions$: Observable<ITransaction[]>;
+  dataObjects: DataObject[] = [];
 
   @ViewChild('canvas1') public canvas: ElementRef;
   private cx: CanvasRenderingContext2D;
 
-  constructor(private winRef: WindowRefService
-  ) { }
+  constructor(private winRef: WindowRefService,
+              private store$: Store<RootState>) { }
 
   public ngAfterViewInit() {
-    const initialValue = 0;
-    const sum = this.chart.pies.reduce(function (accumulator, pie) {
-      return accumulator + pie.angle;
-    }, initialValue);
+
+    this.transactions$ = this.store$.select(
+      TransactionsSelectors.selectTransactions
+    );
+
+    this.transactions$.subscribe(
+      transactions => {
+        this.dataObjects = [];
+
+        transactions = transactions.filter(
+          transaction => moment(transaction.created_at) >= moment().startOf('month')
+          && transaction.amount < 0
+        );
+
+        const grouped = _.groupBy(transactions, 'tag.name');
+        for (const tag in grouped) {
+          this.dataObjects.push(new DataObject(
+            tag,
+            Math.abs(TransactionUtils.sumOf(grouped[tag]))
+          ))
+        }
+
+        const newChart = getMockPiechart();
+        newChart.populate(this.dataObjects);
+        this.chart = newChart;
+        this.chart.title = `Expenses for ${moment().format('MMMM')}`;
+        this.animateGraph()
+      }
+    );
+  }
+
+  private animateGraph() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     canvasEl.height = this.chart.height;
     canvasEl.width = this.chart.width;
     this.cx = canvasEl.getContext('2d');
     this.cx.fillStyle = this.chart.backgroundColor;
     this.cx.fill();
-    this.animateGraph();
-  }
 
-  private animateGraph() {
     // start at the top
     let currentAngle = -0.5 * Math.PI;
     for (const pie of this.chart.pies) {
@@ -53,8 +90,6 @@ export class PiechartComponent implements OnInit, AfterViewInit {
       }
 
       currentAngle += pie.angle;
-      const middleAngle = currentAngle + 0.5 * pie.angle;
-
     }
 
     // Inner circle

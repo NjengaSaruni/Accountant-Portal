@@ -10,6 +10,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {TransactionsComponent} from './components/transactions/transactions.component';
 import {TransactionFormComponent} from './components/transaction-form/transaction-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthHttpInterceptor} from '../auth/services/auth.httpinterceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     DashboardRoutingModule,
     SharedModule,
     ChartsModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+    }
   ]
 })
 export class DashboardModule { }

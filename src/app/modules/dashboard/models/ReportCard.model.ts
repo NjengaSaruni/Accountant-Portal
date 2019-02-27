@@ -1,3 +1,10 @@
+export enum ECardType {
+  Income =  'Income',
+  Expense = 'Expense',
+  Saved =  'Saved',
+  NetWorth = 'Net Worth'
+}
+
 export interface IReportCardTitle {
   name: string;
   color: string;
@@ -14,8 +21,6 @@ export interface IReportCardData {
 }
 export interface IReportCard {
   title: IReportCardTitle;
+  type: ECardType;
   background: IReportCardBackground;
-  width: number;
-  height: number;
-  data: IReportCardData;
 }

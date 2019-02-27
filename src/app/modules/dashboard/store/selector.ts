@@ -4,29 +4,36 @@ import {
   MemoizedSelector
 } from '@ngrx/store';
 
-import { State } from './state';
+import { TransactionsState } from './state';
 import {ITransaction} from '../models/Transaction.model';
 
-const getError = (state: State): any => state.error;
+const getError = (state: TransactionsState): any => state.error;
 
-const getIsLoading = (state: State): boolean => state.isLoading;
+const getLoading = (state: TransactionsState): boolean => state.loading;
 
-const getTransactions = (state: State): any => state.transactions;
+const getLoaded = (state: TransactionsState): boolean => state.loaded;
+
+const getTransactions = (state: TransactionsState): any => state.transactions;
 
 export const selectTransactionsState: MemoizedSelector<
   object,
-  State
-  > = createFeatureSelector<State>('transactions');
+  TransactionsState
+  > = createFeatureSelector<TransactionsState>('transactions');
 
 export const selectTransactionsError: MemoizedSelector<object, any> = createSelector(
   selectTransactionsState,
   getError
 );
 
-export const selectTransactionsIsLoading: MemoizedSelector<
+export const selectTransactionsLoading: MemoizedSelector<
   object,
   boolean
-  > = createSelector(selectTransactionsState, getIsLoading);
+  > = createSelector(selectTransactionsState, getLoading);
+
+export const selectTransactionsLoaded: MemoizedSelector<
+  object,
+  boolean
+  > = createSelector(selectTransactionsState, getLoaded);
 
 export const selectTransactions: MemoizedSelector<
   object,

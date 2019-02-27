@@ -2,6 +2,12 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {SlideInOutAnimation} from '../../../../animations/slideDown.animation';
 import {SlideInOutAnimationSlow} from '../../../../animations/slideInOutSlow.animation';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import * as fromTransactionsActions from '../../store/actions';
+import {RootState} from '../../../../core/store/state';
+import {ITransaction} from '../../models/Transaction.model';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-transaction-form',
@@ -13,39 +19,6 @@ export class TransactionFormComponent implements OnInit {
   transactionBoxAnimationState  = 'out';
   suggestionsAnimationState  = 'out';
   tag = '';
-  suggestedTags = [];
-  tags = [
-    {
-      'name': 'UBER',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'FOOD',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'GIRL',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'MICROSOFT',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'FARE',
-      'hovered': false,
-      'selected': false
-    },
-    {
-      'name': 'SHOPPING',
-      'hovered': false,
-      'selected': false
-    }
-  ];
   today = new Date();
   typeOptions = [{
       id: 1,
@@ -63,8 +36,10 @@ export class TransactionFormComponent implements OnInit {
   ];
 
   transactionForm: FormGroup;
+  errors: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private store$: Store<RootState>) { }
 
   ngOnInit() {
     this.transactionForm = this.formBuilder.group({
@@ -75,7 +50,7 @@ export class TransactionFormComponent implements OnInit {
         ]
       ),
       type: new FormControl(
-        '',
+        '1',
         [
           Validators.required
         ]
@@ -83,7 +58,8 @@ export class TransactionFormComponent implements OnInit {
       amount: new FormControl(
         '',
         [
-          Validators.required
+          Validators.required,
+          Validators.min(0)
         ]
       ),
       date: new FormControl(
@@ -114,20 +90,32 @@ export class TransactionFormComponent implements OnInit {
     this.toggleTransactionBox(!event.value);
   }
 
-  toUpperCase() {
-    this.suggestedTags = [];
-    this.suggestionsAnimationState = 'out';
+  selectOption = (event: any, option: any) => console.log(this.transactionForm.getRawValue());
 
-    for (const tag of this.tags) {
-      if (tag.name.indexOf(    this.transactionForm.get('tag').value) > -1 &&  this.transactionForm.get('tag').value !== '') {
-        this.suggestedTags.push(tag);
-      }
-      this.suggestionsAnimationState = 'in';
-    }
+
+  f = () => this.transactionForm.controls;
+
+  saveTransaction() {
+    let amount = Math.abs(this.f().amount.value);
+
+    // Expenses are negative value transactions
+    amount = parseInt(this.f().type.value, 10) === 1 ?  -amount : amount;
+
+    // @ts-ignore
+    const transactionPayload = <ITransaction>{
+      'tag': this.f().tag.value,
+      'description': this.f().description.value,
+      'amount': amount,
+      'created_at': moment(this.f().date.value).format('YYYY-MM-DD HH:mm')
+    };
+    this.store$.dispatch(new fromTransactionsActions.AddTransaction(transactionPayload));
   }
 
-  selectOption(event: any, option: any) {
-    console.log(this.transactionForm.getRawValue());
+  validateAmount() {
+    const re = /^[0-9.]+$/;
+    if (!this.f().amount.value.match(re)) {
+      this.errors = true;
+    }
   }
 
 }
