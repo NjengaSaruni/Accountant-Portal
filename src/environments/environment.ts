@@ -5,8 +5,8 @@
 // environment.ts
 export const environment = {
   production: false,
-  // api: 'http://localhost:8000/api/v1/'
-  api: 'https://api.isave.co.ke/api/v1/'
+  api: 'http://localhost:8000/api/v1/'
+  // api: 'https://api.isave.co.ke/api/v1/'
 };
 
 /*
