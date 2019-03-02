@@ -9,7 +9,8 @@ import * as transactionActions from '../actions/transaction.actions';
 
 @Injectable()
 export class TransactionEffects {
-  constructor(private transactionsService: TransactionsService, private action$: Actions) {}
+  constructor(private transactionsService: TransactionsService,
+              private action$: Actions) {}
 
   @Effect()
   loadTransactions$:  Observable<Action> = this.action$.pipe(
@@ -50,9 +51,7 @@ export class TransactionEffects {
         .deleteTransaction(action.payload)
         .pipe(
           // If successful, dispatch success action with result
-          map(() => {
-            return ({ type: transactionActions.TransactionActionTypes.TRANSACTION_DELETE_SUCCESS, payload: action.payload })
-          }),
+          map(data => new transactionActions.DeleteTransactionSuccess(action.payload)),
           // If request fails, dispatch failed action
           catchError(() => of({ type: transactionActions.TransactionActionTypes.TRANSACTION_DELETE_FAIL }))
         )

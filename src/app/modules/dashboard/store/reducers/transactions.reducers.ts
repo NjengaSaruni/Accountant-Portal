@@ -2,6 +2,7 @@ import {initialState, TransactionsState} from '../state';
 import {TransactionActions, TransactionActionTypes} from '../actions';
 
 export function reducers(state = initialState, action: TransactionActions): TransactionsState {
+  console.log(action);
   switch (action.type) {
 
     case TransactionActionTypes.TRANSACTION_LOAD: {

@@ -75,7 +75,7 @@
          fxLayoutGap="16px"
          fxLayoutGap.xs="0">
       <div fxFlex class="bg-white">
-        <app-transactions></app-transactions>
+        <app-piechart [chart]="pieChart"></app-piechart>
       </div>
       <div fxFlex>
         <app-linechart [chart]="lineChart"></app-linechart>
@@ -98,7 +98,7 @@
          fxLayoutGap="16px"
          fxLayoutGap.xs="0">
       <div fxFlex class="bg-white">
-        <app-piechart [chart]="pieChart"></app-piechart>
+        <app-transactions></app-transactions>
       </div>
     </div>
   </div>

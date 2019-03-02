@@ -42,7 +42,11 @@ export class TransactionFormComponent implements OnInit {
               private store$: Store<RootState>) { }
 
   ngOnInit() {
-    this.transactionForm = this.formBuilder.group({
+    this.transactionForm = this.getTransactionForm();
+  }
+
+  private getTransactionForm() {
+    return this.formBuilder.group({
       description: new FormControl(
         '',
         [
@@ -77,7 +81,7 @@ export class TransactionFormComponent implements OnInit {
     });
   }
 
-  // Listen for escape events to hide trasaction box
+// Listen for escape events to hide trasaction box
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.toggleTransactionBox(false);
   }
@@ -109,7 +113,7 @@ export class TransactionFormComponent implements OnInit {
       'created_at': moment(this.f().date.value).format('YYYY-MM-DD HH:mm')
     };
     this.store$.dispatch(new fromTransactionsActions.AddTransaction(transactionPayload));
-    this.transactionForm.reset();
+    this.transactionForm = this.getTransactionForm();
     this.transactionBoxAnimationState = 'out';
   }
 
