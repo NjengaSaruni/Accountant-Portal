@@ -16,7 +16,7 @@ export class TransactionsService {
   }
 
   addTransaction(task) {
-    return this.http.post<{ message: string; result: ITransaction }>(this.transactionsApi, task);
+    return this.http.post<ITransaction>(this.transactionsApi, task);
   }
 
   getTransactions(created_at_lte= null, created_at_gte= null) {

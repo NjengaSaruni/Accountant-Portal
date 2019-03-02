@@ -50,7 +50,7 @@ export class TransactionFormComponent implements OnInit {
         ]
       ),
       type: new FormControl(
-        '1',
+        1,
         [
           Validators.required
         ]
@@ -109,6 +109,8 @@ export class TransactionFormComponent implements OnInit {
       'created_at': moment(this.f().date.value).format('YYYY-MM-DD HH:mm')
     };
     this.store$.dispatch(new fromTransactionsActions.AddTransaction(transactionPayload));
+    this.transactionForm.reset();
+    this.transactionBoxAnimationState = 'out';
   }
 
   validateAmount() {
