@@ -2,7 +2,6 @@ import {initialState, TransactionsState} from '../state';
 import {TransactionActions, TransactionActionTypes} from '../actions';
 
 export function reducers(state = initialState, action: TransactionActions): TransactionsState {
-  console.log(action);
   switch (action.type) {
 
     case TransactionActionTypes.TRANSACTION_LOAD: {
@@ -99,7 +98,6 @@ export function reducers(state = initialState, action: TransactionActions): Tran
     }
     case TransactionActionTypes.TRANSACTION_DELETE_SUCCESS: {
       const transactions = state.transactions.filter(transaction => transaction.id !== action.payload);
-      console.log(transactions);
       return {
         ...state,
         transactions,
