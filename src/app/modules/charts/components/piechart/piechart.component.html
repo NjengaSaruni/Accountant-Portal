@@ -10,14 +10,17 @@
       <canvas class="centered" #canvas1></canvas>
     </div>
     <div class="keys padding-s">
-      <div *ngFor="let pie of chart.pies" class="full-width key">
-        <div class="centered padding color"
-             [ngStyle]="{
-        'background-color': pie.color
+      <div *ngFor="let pie of chart.pies" class="full-width key padding">
+        <div class="key-tag">
+          <div class="padding color"
+               [ngStyle]="{
+        'background-color': pie.color,
+        'color': invertColor(pie.color, true)
        }">
-        </div>
-        <div class="padding color-title">
-          {{ pie.title }}
+            <span>  {{ pie.title }}</span>
+
+          </div>
+
         </div>
         <div class="full-width centered key-value">
           <p class="full-height text-left full-width bold">{{ chart.unit }}  {{ pie.value | number : '1.2-2'}} </p>
