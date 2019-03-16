@@ -81,7 +81,7 @@ export function getMockLinechart(width = 800, height = 400) {
 }
 
 export function getMockPiechart() {
-  const piechart = new PieChart(120, 80);
+  const piechart = new PieChart(120, 110);
 
   piechart.title = `Expenses in January 2018`;
 
