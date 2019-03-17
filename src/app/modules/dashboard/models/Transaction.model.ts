@@ -9,6 +9,7 @@ export interface IAccount extends IAbstractBase {
 export interface ITag extends IAbstractBase {
   name: string;
   description: string;
+  color: string;
 }
 export interface ITransaction extends IAbstractBase {
   amount: number;

@@ -33,3 +33,6 @@ export class CustomRouterStateSerializer
     return { url, params, queryParams };
   }
 }
+
+
+export function println(o) { console.log(o) }

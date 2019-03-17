@@ -73,7 +73,7 @@
           <span *ngIf="transaction.amount > 0">+</span>{{ transaction.amount | number: '.2' }}
         </td>
         <td class="padding">
-          <a href="">{{ transaction.tag.name }}</a>
+          <a [ngStyle]="{color: transaction.tag.color}">{{ transaction.tag.name }}</a>
         </td>
         <td class="padding">
           <p class="transaction-description"> {{ transaction.description }}</p>

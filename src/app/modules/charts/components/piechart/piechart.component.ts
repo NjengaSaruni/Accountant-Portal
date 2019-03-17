@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 
 import {getMockPiechart} from '../../../shared/utils/randomInt';
+import {println} from '../../../shared/utils/utils';
 
 @Component({
   selector: 'app-piechart',
@@ -47,7 +48,8 @@ export class PiechartComponent implements OnInit, AfterViewInit {
         for (const tag in grouped) {
           this.dataObjects.push(new DataObject(
             tag,
-            Math.abs(TransactionUtils.sumOf(grouped[tag]))
+            Math.abs(TransactionUtils.sumOf(grouped[tag])),
+            grouped[tag][0].tag.color
           ))
         }
 
@@ -61,6 +63,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   }
 
   private animateGraph() {
+    this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     canvasEl.height = this.chart.height;
     canvasEl.width = this.chart.width;
@@ -84,7 +87,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
       this.cx.fill();
 
       if (pie.rendered_angle < pie.angle) {
-        pie.rendered_angle += 0.12;
+        pie.rendered_angle += 0.20;
       } else {
         pie.rendered_angle = pie.angle;
       }
@@ -97,7 +100,6 @@ export class PiechartComponent implements OnInit, AfterViewInit {
     this.cx.arc(this.chart.outerCircle.radius, this.chart.outerCircle.radius, this.chart.innerCircle.radius, 0, 2 * Math.PI);
     this.cx.fillStyle = 'white';
     this.cx.fill();
-    this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
 
     this.cx.strokeStyle = 'black';
     this.cx.textAlign = 'center';
