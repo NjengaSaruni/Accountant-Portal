@@ -1,7 +1,7 @@
 import {initialState, TransactionsState} from '../state';
 import {TransactionActions, TransactionActionTypes} from '../actions';
 
-export function reducers(state = initialState, action: TransactionActions): TransactionsState {
+export function transactionsReducers(state = initialState, action: TransactionActions): TransactionsState {
   switch (action.type) {
 
     case TransactionActionTypes.TRANSACTION_LOAD: {

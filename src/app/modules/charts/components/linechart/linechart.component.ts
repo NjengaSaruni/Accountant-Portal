@@ -2,7 +2,7 @@ import {Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleCha
 import {LineChart} from '../../models/LineChart/LineChart';
 import {ITransaction, TransactionUtils} from '../../../dashboard/models/Transaction.model';
 import {DataObject} from '../../models/BaseChart/DataObject';
-import {TransactionsSelectors} from '../../../dashboard/store';
+import * as fromStore from '../../../dashboard/store';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
 import {Observable} from 'rxjs';
@@ -32,7 +32,7 @@ export class LinechartComponent implements OnInit {
   ngOnInit() {
 
     this.transactions$ = this.store$.select(
-      TransactionsSelectors.selectTransactions
+      fromStore.selectTransactions
     );
 
     this.transactions$.subscribe(

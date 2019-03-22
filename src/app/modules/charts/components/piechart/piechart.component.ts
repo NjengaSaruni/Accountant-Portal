@@ -3,7 +3,7 @@ import {PieChart} from '../../models/PieChart/PieChart';
 import {WindowRefService} from '../../../shared/services/window-ref.service';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
-import {TransactionsSelectors} from '../../../dashboard/store';
+import * as fromStore from '../../../dashboard/store';
 import {Observable} from 'rxjs';
 import {ITransaction, TransactionUtils} from '../../../dashboard/models/Transaction.model';
 import {DataObject} from '../../models/BaseChart/DataObject';
@@ -32,7 +32,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit() {
 
     this.transactions$ = this.store$.select(
-      TransactionsSelectors.selectTransactions
+      fromStore.selectTransactions
     );
 
     this.transactions$.subscribe(

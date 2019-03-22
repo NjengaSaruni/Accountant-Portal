@@ -4,11 +4,11 @@ import {ModalService} from '../../../shared/components/modal/modal.service';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
-import {TransactionsSelectors} from '../../store';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
 import {ShortSlideInOutAnimation} from '../../../../animations/shortSlideDown.animation';
 import * as fromTransactionsActions from '../../store/actions';
 import {ITag} from '../../models/Tag.model';
+import {selectTransactions, selectTransactionsLoaded, selectTransactionsLoading} from '../../store/reducers';
 
 @Component({
   selector: 'app-transactions',
@@ -86,15 +86,15 @@ export class TransactionsComponent implements OnInit {
     );
 
     this.transactions$ = this.store$.select(
-      TransactionsSelectors.selectTransactions
+      selectTransactions
     );
 
     this.transactionsLoading$ = this.store$.select(
-      TransactionsSelectors.selectTransactionsLoaded
+      selectTransactionsLoaded
     );
 
      this.store$.select(
-      TransactionsSelectors.selectTransactionsLoading
+      selectTransactionsLoading
     ).subscribe(
       data => {
         data ? this.loaderService.show() : this.loaderService.hide();

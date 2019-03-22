@@ -10,7 +10,7 @@ import {reducers} from './reducers';
     CommonModule,
 
     // Store
-    StoreModule.forFeature('transactions', reducers),
+    StoreModule.forFeature('finance', reducers),
     EffectsModule.forFeature(dashboardEffects),
   ],
   providers: dashboardEffects

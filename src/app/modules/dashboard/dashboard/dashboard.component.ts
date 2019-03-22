@@ -11,8 +11,8 @@ import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
 import {Observable, pipe} from 'rxjs';
 import {ITransaction} from '../models/Transaction.model';
-import {TransactionsSelectors } from '../store';
 import * as fromActions from '../store/actions/transaction.actions'
+import * as fromStore from '../store'
 
 import * as _ from 'lodash';
 import {ITag} from '../models/Tag.model';
@@ -51,11 +51,11 @@ export class DashboardComponent implements OnInit {
     this.store$.dispatch(new fromActions.LoadTransactions());
 
     this.transactions$ = this.store$.select(
-      TransactionsSelectors.selectTransactions
+      fromStore.selectTransactions
     );
 
     this.transactionsLoaded$ = this.store$.select(
-      TransactionsSelectors.selectTransactionsLoaded
+      fromStore.selectTransactionsLoaded
     );
 
     this.transactions$.subscribe(
