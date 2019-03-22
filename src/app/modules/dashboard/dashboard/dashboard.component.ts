@@ -10,11 +10,12 @@ import {Title} from '@angular/platform-browser';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
 import {Observable, pipe} from 'rxjs';
-import {ITag, ITransaction} from '../models/Transaction.model';
+import {ITransaction} from '../models/Transaction.model';
 import {TransactionsSelectors } from '../store';
 import * as fromActions from '../store/actions/transaction.actions'
 
 import * as _ from 'lodash';
+import {ITag} from '../models/Tag.model';
 
 @Component({
   selector: 'app-dashboard',

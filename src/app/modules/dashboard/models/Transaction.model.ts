@@ -1,16 +1,8 @@
 import {IAbstractBase} from '../../shared/models/AbstractBase.model';
 import * as moment from 'moment';
+import {ITag} from './Tag.model';
+import {IAccount} from './IAccount.model';
 
-export interface IAccount extends IAbstractBase {
-  name: string;
-  balance: number;
-  description: string;
-}
-export interface ITag extends IAbstractBase {
-  name: string;
-  description: string;
-  color: string;
-}
 export interface ITransaction extends IAbstractBase {
   amount: number;
   description: string;

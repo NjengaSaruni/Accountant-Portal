@@ -12,10 +12,12 @@ import {TransactionFormComponent} from './components/transaction-form/transactio
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthHttpInterceptor} from '../auth/services/auth.httpinterceptor';
+import { TargetsComponent } from './components/targets/targets.component';
+import { BudgetsComponent } from './components/budgets/budgets.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent, CardComponent, TransactionsComponent, TransactionFormComponent ],
+    DashboardComponent, CardComponent, TransactionsComponent, TransactionFormComponent, TargetsComponent, BudgetsComponent ],
   imports: [
     // External
     CommonModule,

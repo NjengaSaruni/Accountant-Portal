@@ -54,7 +54,7 @@ export class LinechartComponent implements OnInit {
           count -= 1;
         }
 
-        const newChart = getMockLinechart();
+        const newChart = getMockLinechart(600);
         newChart.populate(this.dataObjects);
         this.chart = newChart;
         this.draw();

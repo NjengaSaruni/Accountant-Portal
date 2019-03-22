@@ -3,6 +3,7 @@
 </div>
 <div class="content" #content>
   <div class="margin-s container">
+
     <div fxLayout
          fxLayout.xs="row"
          fxLayoutAlign="space-between"
@@ -58,51 +59,64 @@
       </div>
 
     </div>
-    <div class="cards"
-         fxLayout
+    <div fxLayout
          fxLayout.xs="row"
-         fxLayoutAlign="space-between center"
-         fxLayoutGap="16px"
+         fxLayoutAlign="space-between"
+         fxLayoutGap="8px"
          fxLayoutGap.xs="0">
-      <div class="bg-white" fxFlex *ngFor="let card of cards">
-        <app-card [config]="card"></app-card>
+      <div fxFlex="1 1 20%">
+        <div class="bg-white full-height bordered margin-rs">
+          <app-budgets></app-budgets>
+        </div>
       </div>
-    </div>
-    <div class="margin-ts"
-         fxLayout
-         fxLayout.xs="row"
-         fxLayoutAlign="space-between stretch"
-         fxLayoutGap="16px"
-         fxLayoutGap.xs="0">
-      <div fxFlex class="bg-white">
-        <app-piechart [chart]="pieChart"></app-piechart>
-      </div>
-      <div fxFlex>
-        <app-linechart [chart]="lineChart"></app-linechart>
-      </div>
-    </div>
+      <div fxFlex="1 1 80%">
+        <div class="cards"
+             fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between center"
+             fxLayoutGap="16px"
+             fxLayoutGap.xs="0">
+          <div class="bg-white" fxFlex *ngFor="let card of cards">
+            <app-card [config]="card"></app-card>
+          </div>
+        </div>
+        <div class="margin-ts"
+             fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between stretch"
+             fxLayoutGap="16px"
+             fxLayoutGap.xs="0">
+          <div fxFlex class="bg-white">
+            <app-piechart [chart]="pieChart"></app-piechart>
+          </div>
+          <div fxFlex>
+            <app-linechart [chart]="lineChart"></app-linechart>
+          </div>
+        </div>
 
-    <div class="margin-ts"
-         fxLayout
-         fxLayout.xs="row"
-         fxLayoutAlign="space-between stretch"
-         fxLayoutGap="16px"
-         fxLayoutGap.xs="0">
-      <div fxFlex class="bg-white">
-        <app-transactions></app-transactions>
+        <div class="margin-ts"
+             fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between stretch"
+             fxLayoutGap="16px"
+             fxLayoutGap.xs="0">
+          <div fxFlex class="bg-white">
+            <app-transactions></app-transactions>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!--<div class="margin-ts"-->
-         <!--fxLayout-->
-         <!--fxLayout.xs="row"-->
-         <!--fxLayoutAlign="space-between stretch"-->
-         <!--fxLayoutGap="16px"-->
-         <!--fxLayoutGap.xs="0" >-->
-      <!--<div fxFlex *ngFor="let graph of barCharts">-->
-        <!--<app-barchart [chart]="graph"></app-barchart>-->
-      <!--</div>-->
-    <!--</div>-->
   </div>
+  <!--<div class="margin-ts"-->
+  <!--fxLayout-->
+  <!--fxLayout.xs="row"-->
+  <!--fxLayoutAlign="space-between stretch"-->
+  <!--fxLayoutGap="16px"-->
+  <!--fxLayoutGap.xs="0" >-->
+  <!--<div fxFlex *ngFor="let graph of barCharts">-->
+  <!--<app-barchart [chart]="graph"></app-barchart>-->
+  <!--</div>-->
+  <!--</div>-->
+
 </div>
 

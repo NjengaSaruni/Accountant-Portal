@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ITag, ITransaction} from '../../models/Transaction.model';
+import {ITransaction} from '../../models/Transaction.model';
 import {ModalService} from '../../../shared/components/modal/modal.service';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
@@ -8,6 +8,7 @@ import {TransactionsSelectors} from '../../store';
 import {LoaderService} from '../../../shared/components/loader/loader.service';
 import {ShortSlideInOutAnimation} from '../../../../animations/shortSlideDown.animation';
 import * as fromTransactionsActions from '../../store/actions';
+import {ITag} from '../../models/Tag.model';
 
 @Component({
   selector: 'app-transactions',

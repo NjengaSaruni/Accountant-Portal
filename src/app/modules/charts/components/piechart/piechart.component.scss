@@ -2,14 +2,15 @@
   display: inline-flex;
 
   .keys {
+    width: 300px;
     .key {
       display: inline-flex;
 
       .key-tag {
-        width: 140px;
+        width: 180px;
         .color {
           height: 10px;
-          width: fit-content;
+          width: -webkit-fill-available;
           align-items: center;
           //border: 2px dotted blueviolet;
         }
