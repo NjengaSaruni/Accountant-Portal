@@ -11,7 +11,6 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 
 import {getMockPiechart} from '../../../shared/utils/randomInt';
-import {println} from '../../../shared/utils/utils';
 
 @Component({
   selector: 'app-piechart',

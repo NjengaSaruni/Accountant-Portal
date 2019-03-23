@@ -101,7 +101,11 @@ export class LinechartComponent implements OnInit {
       let appendM = false;
       let appendK = false;
       let labelString = label.toString();
-      if (label >= 1000000) {
+      if (label >= 1000000000) {
+        appendM = true;
+        label /= 1000000000;
+        labelString = label.toString() + 'B';
+      } else if (label >= 1000000) {
         appendM = true;
         label /= 1000000;
         labelString = label.toString() + 'M';

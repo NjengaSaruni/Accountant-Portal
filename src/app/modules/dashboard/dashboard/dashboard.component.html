@@ -15,12 +15,12 @@
              fxLayoutAlign="space-between"
              fxLayoutGap="8px"
              fxLayoutGap.xs="0">
-          <div class="padding-h">
-            <button (click)="showSide = !showSide">
+          <div (click)="showSide = !showSide" class="menu-icon padding-h">
+            <div class="padding-h full-height bordered centered">
               <fa name="bars"
                   class="padding">
               </fa>
-            </button>
+            </div>
           </div>
           <div class="filter centered-v padding-h bordered hoverable"
                flex (click)="showTagOptions = !showTagOptions"
