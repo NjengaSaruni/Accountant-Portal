@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   dataObjects: DataObject[] = [];
 
   tags: Set<ITag> = new Set();
+  showSide = true;
   showTagOptions: boolean;
   constructor(private winRef: WindowRefService,
               private titleService: Title,

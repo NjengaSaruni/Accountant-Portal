@@ -15,6 +15,13 @@
              fxLayoutAlign="space-between"
              fxLayoutGap="8px"
              fxLayoutGap.xs="0">
+          <div class="padding-h">
+            <button (click)="showSide = !showSide">
+              <fa name="bars"
+                  class="padding">
+              </fa>
+            </button>
+          </div>
           <div class="filter centered-v padding-h bordered hoverable"
                flex (click)="showTagOptions = !showTagOptions"
                appClickOutside
@@ -64,12 +71,49 @@
          fxLayoutAlign="space-between"
          fxLayoutGap="8px"
          fxLayoutGap.xs="0">
-      <div fxFlex="1 1 20%">
-        <div class="bg-white full-height bordered margin-rs">
+
+      <div fxFlex="1 1 20%" *ngIf="showSide">
+        <div class="bg-white full-height margin-r">
           <app-budgets></app-budgets>
         </div>
       </div>
-      <div fxFlex="1 1 80%">
+      <div fxFlex="1 1 80%" *ngIf="showSide">
+        <div class="cards"
+             fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between center"
+             fxLayoutGap="16px"
+             fxLayoutGap.xs="0">
+          <div class="bg-white" fxFlex *ngFor="let card of cards">
+            <app-card [config]="card"></app-card>
+          </div>
+        </div>
+        <div class="margin-ts"
+             fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between stretch"
+             fxLayoutGap="16px"
+             fxLayoutGap.xs="0">
+          <div fxFlex class="bg-white">
+            <app-piechart [chart]="pieChart"></app-piechart>
+          </div>
+          <div fxFlex>
+            <app-linechart [chart]="lineChart"></app-linechart>
+          </div>
+        </div>
+
+        <div class="margin-ts"
+             fxLayout
+             fxLayout.xs="row"
+             fxLayoutAlign="space-between stretch"
+             fxLayoutGap="16px"
+             fxLayoutGap.xs="0">
+          <div fxFlex class="bg-white">
+            <app-transactions></app-transactions>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="1 1 100%" *ngIf="!showSide">
         <div class="cards"
              fxLayout
              fxLayout.xs="row"
