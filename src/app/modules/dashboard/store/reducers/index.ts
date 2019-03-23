@@ -6,6 +6,7 @@ import * as fromRegister from '../../../auth/store/reducers/register.reducers';
 import {AuthState} from '../../../auth/store/reducers';
 import {limitsReducers} from './limits.reducers';
 import {transactionsReducers} from './transactions.reducers';
+import {ILimit} from '../../models/Limit.model';
 
 export interface FinanceState {
   limits: LimitsState;
@@ -22,11 +23,6 @@ export const selectFinanceState: MemoizedSelector<
 export const selectTransactionsState = createSelector(
   selectFinanceState,
   (state: FinanceState) => state.transactions
-);
-
-export const selectLimitsState = createSelector(
-  selectFinanceState,
-  (state: FinanceState) => state.limits
 );
 
 const getTransactionsError = (state: TransactionsState): any => state.error;
@@ -52,6 +48,34 @@ export const selectTransactions: MemoizedSelector<
   ITransaction[]
   > = createSelector(selectTransactionsState, getTransactions);
 
+
+export const selectLimitsState = createSelector(
+  selectFinanceState,
+  (state: FinanceState) => state.limits
+);
+
+const getLimitsError = (state: LimitsState): any => state.error;
+
+const getLimitsLoading = (state: LimitsState): boolean => state.loading;
+
+const getLimitsLoaded = (state: LimitsState): boolean => state.loaded;
+
+const getLimits = (state: LimitsState): any => state.limits;
+
+export const selectLimitsLoading: MemoizedSelector<
+  object,
+  boolean
+  > = createSelector(selectLimitsState, getLimitsLoading);
+
+export const selectLimitsLoaded: MemoizedSelector<
+  object,
+  boolean
+  > = createSelector(selectLimitsState, getLimitsLoaded);
+
+export const selectLimits: MemoizedSelector<
+  object,
+  ILimit[]
+  > = createSelector(selectLimitsState, getLimits);
 
 export const reducers: ActionReducerMap<FinanceState> = {
   limits: limitsReducers,
