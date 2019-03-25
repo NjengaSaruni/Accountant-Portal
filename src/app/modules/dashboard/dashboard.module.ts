@@ -14,10 +14,11 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthHttpInterceptor} from '../auth/services/auth.httpinterceptor';
 import { TargetsComponent } from './components/targets/targets.component';
 import { BudgetsComponent } from './components/budgets/budgets.component';
+import { BudgetsFormComponent } from './components/budgets-form/budgets-form.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent, CardComponent, TransactionsComponent, TransactionFormComponent, TargetsComponent, BudgetsComponent ],
+    DashboardComponent, CardComponent, TransactionsComponent, TransactionFormComponent, TargetsComponent, BudgetsComponent, BudgetsFormComponent ],
   imports: [
     // External
     CommonModule,

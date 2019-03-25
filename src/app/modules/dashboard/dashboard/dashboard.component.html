@@ -14,8 +14,8 @@
              fxLayoutAlign="space-between"
              fxLayoutGap="8px"
              fxLayoutGap.xs="0">
-          <div (click)="showSide = !showSide" class="menu-icon padding-h">
-            <div class="padding-h full-height bordered centered">
+          <div (click)="showSide = !showSide" class="padding-h menu-icon">
+            <div class="padding-h full-height bordered centered hoverable">
               <fa name="bars"
                   class="padding">
               </fa>
@@ -72,7 +72,7 @@
          fxLayoutGap.xs="0">
 
       <div fxFlex="1 1 20%" *ngIf="showSide">
-        <div class="bg-white raised full-height margin-r">
+        <div class="bg-white full-height margin-r">
           <app-budgets></app-budgets>
         </div>
       </div>
@@ -119,7 +119,7 @@
              fxLayoutAlign="space-between center"
              fxLayoutGap="16px"
              fxLayoutGap.xs="0">
-          <div class="bg-white" fxFlex *ngFor="let card of cards">
+          <div class="rounded-s bg-white" fxFlex *ngFor="let card of cards">
             <app-card [config]="card"></app-card>
           </div>
         </div>
