@@ -1,42 +1,37 @@
 <div class="row no-padding padding-bs header-wrapper">
   <div class="col">
-    <div class="margin options high">
-      <a *ngIf="!(loggedIn$ | async)" class="centered padding option" routerLink="/account/register">
+
+    <div class="centered-v elements">
+      <a class="logo padding-s element" routerLink="/home">
+        <span class="color-p">i</span>
+        <span class="color-s">Save</span>
+      </a>
+      <a href="" class="padding-s element"  routerLink="/dashboard"  *ngIf="loggedIn$ | async">
+        <span class="padding">Dashboard</span>
+        <fa name="dashboard" class="padding"></fa>
+      </a>
+
+      <a href="" class="padding-s element" routerLink="/home"  *ngIf="loggedIn$ | async">
+        <span class="padding">Loans</span>
+        <fa name="money" class="padding"></fa>
+      </a>
+
+      <a *ngIf="!(loggedIn$ | async)" class="padding element" routerLink="/account/register">
         Register
         <fa name="user" class="padding"></fa>
       </a>
-      <div *ngIf="!(loggedIn$ | async)" class="centered padding option" routerLink="/account/login">
+      <a *ngIf="!(loggedIn$ | async)" class="padding element" routerLink="/account/login">
         Log In
         <fa name="user" class="padding"></fa>
-      </div>
-      <div *ngIf="loggedIn$ | async" class="centered padding option">
+      </a>
+      <a *ngIf="loggedIn$ | async" class="padding element">
         Account Settings
         <fa name="cog" class="padding"></fa>
-      </div>
-      <div *ngIf="loggedIn$ | async" class="centered padding option" (click)="signOut()">
+      </a>
+      <a *ngIf="loggedIn$ | async" class="padding element" (click)="signOut()">
         Sign Out
         <fa name="user" class="padding"></fa>
-      </div>
-    </div>
-    <div class="navigation">
-      <nav class="logo-wrapper padding" routerLink="/home">
-        <div class="logo">
-          <p>
-            <span class="color-p">i</span>
-            <span class="color-s">Save</span>
-          </p>
-        </div>
-      </nav>
-      <div class="elements" *ngIf="loggedIn$ | async">
-        <div class="element padding centered-v">
-          <div class="main-title padding">
-            <nav class="centered-v title" routerLink="/dashboard">
-              <span class="padding">Dashboard</span>
-              <fa name="dashboard" class="padding"></fa>
-            </nav>
-          </div>
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

@@ -10,7 +10,6 @@ import * as _ from 'lodash';
 import {DataObject} from '../../../charts/models/BaseChart/DataObject';
 import {ITransaction, TransactionUtils} from '../../models/Transaction.model';
 import {invertColor} from '../../../shared/utils/colors.utils';
-import {Data} from '@angular/router';
 
 @Component({
   selector: 'app-budgets',
@@ -51,8 +50,6 @@ export class BudgetsComponent implements OnInit {
             grouped[tag][0].tag.color
           ))
         }
-
-        console.log(this.dataObjects);
       }
     );
 

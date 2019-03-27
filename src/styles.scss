@@ -1,6 +1,6 @@
 @import url('../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css');
 
-@import "~src/variables.scss";
+@import "~src/variables";
 body, p, button, input {
   margin: 0;
   font-family: 'Overpass', sans-serif;
@@ -9,7 +9,7 @@ body, p, button, input {
 }
 
 a {
-  color: #6ec4db;
+  color: $primary;
   //text-decoration: none;
 }
 body {
@@ -121,7 +121,7 @@ li {
   background: #c3fff7;
 }
 .color-p {
-  color: #6EC4DB;
+  color: $primary;
 }
 .color-red {
   color: #FA7C92;
@@ -314,11 +314,11 @@ li {
   width: 100%;
   opacity: 1;
   background: white;
-  height: 66px;
+  height: 56px;
 }
 .content {
   //position: relative;
-  margin-top: 66px;
+  margin-top: 56px;
   height:95vh;
   //background: #f5f5f5;
   //background: url("assets/backgrounds/mountain+range.png");

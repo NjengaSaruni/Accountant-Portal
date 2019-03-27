@@ -39,7 +39,7 @@
  * Googlebot uses a renderer based on Chrome 41.
  * https://developers.google.com/search/docs/guides/rendering
  **/
-// import 'core-js/es6/array';
+import 'core-js/es6/array';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
@@ -59,7 +59,7 @@
  * user can disable parts of macroTask/DomEvents patch by setting following flags
  */
 
- // (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
+ (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
  // (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
  (window as any).__zone_symbol__BLACK_LISTED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
 
