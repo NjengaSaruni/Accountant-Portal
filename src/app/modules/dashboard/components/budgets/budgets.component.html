@@ -4,7 +4,6 @@
     <a class="float-right add-limit-tag" routerLink="budgets/">Add</a>
   </div>
   <div
-      [ngStyle]="{'border-color': limit.tag.color}"
       *ngFor="let limit of limits$ | async"
        class="bordered padding margin-bs limit-container">
     <div class="limit-detail">
@@ -18,19 +17,11 @@
         <span class="float-right">Ksh. {{ limit.amount }}</span>
       </div>
     </div>
-    <div class="bg-s bordered limit-progress">
+    <div class="bg-s bordered margin-ts limit-progress">
       <div
-        *ngIf="getPercentage(limit, getDataObject(limit)) < 70"
+        *ngIf="getPercentage(limit, getDataObject(limit)) < 90"
         [ngStyle]="{
-        'background': '#66AB86',
-        'width.%': getPercentage(limit, getDataObject(limit))
-      }"
-        class="limit">
-      </div>
-      <div
-        *ngIf="getPercentage(limit, getDataObject(limit)) < 90 && getPercentage(limit, getDataObject(limit)) >= 70"
-        [ngStyle]="{
-        'background': '#6EC4DB',
+        'background': '#14A098',
         'width.%': getPercentage(limit, getDataObject(limit))
       }"
         class="limit">
@@ -38,7 +29,7 @@
       <div
         *ngIf="getPercentage(limit, getDataObject(limit)) <= 100 && getPercentage(limit, getDataObject(limit)) >= 90"
         [ngStyle]="{
-        'background': '#FA7C92',
+        'background': '#CB2D6F',
         'width.%': getPercentage(limit, getDataObject(limit))
       }"
         class="limit">

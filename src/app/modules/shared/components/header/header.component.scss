@@ -5,10 +5,9 @@
     height: 40px;
     position: fixed;
     width: 100%;
-    background: $primary;
 
     p, span, i, fa, div, a {
-      color: whitesmoke;
+      color: $primary;
     }
 
     .navigation {
@@ -37,6 +36,10 @@
               display: inline-flex;
             }
           }
+        }
+
+        .element.left {
+          margin-left: auto;
         }
 
         .element:hover {

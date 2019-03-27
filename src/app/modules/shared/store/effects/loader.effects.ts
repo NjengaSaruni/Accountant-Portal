@@ -20,7 +20,6 @@ export class LoadingIndicatorEffects {
   @Effect()
   hideLoader$ = this.actions$.pipe(
     map(action => {
-      console.log(action);
       return action;
     }),
     filter((action: any) => {

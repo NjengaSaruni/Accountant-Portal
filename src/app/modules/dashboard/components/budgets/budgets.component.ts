@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import {ILimit} from '../../models/Limit.model';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
-import {selectLimits} from '../../store/reducers';
 import * as fromStore from '../../store';
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -22,15 +21,17 @@ export class BudgetsComponent implements OnInit {
   dataObjects: DataObject[] = [];
 
 
-  constructor(private store$: Store<RootState>) { }
+  constructor(private store$: Store<RootState>) {}
 
   ngOnInit() {
-    this.limits$ = this.store$.select(
-      selectLimits
-    );
+    this.store$.dispatch(new fromStore.LoadLimits());
 
     this.transactions$ = this.store$.select(
       fromStore.selectTransactions
+    );
+
+    this.limits$ = this.store$.select(
+      fromStore.selectLimits
     );
 
     this.transactions$.subscribe(
@@ -52,7 +53,6 @@ export class BudgetsComponent implements OnInit {
         }
       }
     );
-
   }
 
   invertColor(color, bw) {

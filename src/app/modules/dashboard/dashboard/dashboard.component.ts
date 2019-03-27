@@ -16,6 +16,7 @@ import * as fromStore from '../store'
 
 import * as _ from 'lodash';
 import {ITag} from '../models/Tag.model';
+import {ILimit} from '../models/Limit.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +26,7 @@ import {ITag} from '../models/Tag.model';
 export class DashboardComponent implements OnInit {
   transactions$: Observable<ITransaction[]>;
   transactionsLoaded$: Observable<boolean>;
+  limits$: Observable<ILimit[]>;
 
   barCharts: BarChart[] = [];
   pieChart: PieChart;
@@ -54,6 +56,9 @@ export class DashboardComponent implements OnInit {
     this.transactions$ = this.store$.select(
       fromStore.selectTransactions
     );
+    this.limits$ = this.store$.select(
+      fromStore.selectLimits
+    );
 
     this.transactionsLoaded$ = this.store$.select(
       fromStore.selectTransactionsLoaded
@@ -70,10 +75,10 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Income',
-          color: '#66AB86'
+          color: '#14a098'
         },
         background: <IReportCardBackground>{
-          color: '#6EC4DB'
+          color: '#14a098'
         },
         type: ECardType.Income
       }
@@ -83,10 +88,10 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Expense',
-          color: '#FA7C92'
+          color: '#CB2D6F'
         },
         background: <IReportCardBackground> {
-          color: '#FA7C92'
+          color: '#CB2D6F'
         },
         type: ECardType.Expense
       }
@@ -96,10 +101,10 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Saved',
-          color: '#1c5155'
+          color: '#14A098'
         },
         background: <IReportCardBackground>{
-          color: '#FFF7C0'
+          color: '#14A098'
         },
         type: ECardType.Saved
 
@@ -110,7 +115,7 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'NET WORTH',
-          color: '#6EC4DB'
+          color: '#14A098'
         },
         type: ECardType.NetWorth,
         background: {
