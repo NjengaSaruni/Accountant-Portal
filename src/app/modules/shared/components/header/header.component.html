@@ -16,19 +16,19 @@
         <fa name="money" class="padding"></fa>
       </a>
 
-      <a *ngIf="!(loggedIn$ | async)" class="padding element" routerLink="/account/register">
+      <a *ngIf="!(loggedIn$ | async)" class="padding-s element" routerLink="/account/register">
         Register
         <fa name="user" class="padding"></fa>
       </a>
-      <a *ngIf="!(loggedIn$ | async)" class="padding element" routerLink="/account/login">
+      <a *ngIf="!(loggedIn$ | async)" class="padding-s element" routerLink="/account/login">
         Log In
         <fa name="user" class="padding"></fa>
       </a>
-      <a *ngIf="loggedIn$ | async" class="padding element left">
+      <a *ngIf="loggedIn$ | async" class="padding-s element left">
         Account Settings
         <fa name="cog" class="padding"></fa>
       </a>
-      <a *ngIf="loggedIn$ | async" class="padding element" (click)="signOut()">
+      <a *ngIf="loggedIn$ | async" class="padding-s element" (click)="signOut()">
         Sign Out
         <fa name="user" class="padding"></fa>
       </a>

@@ -10,44 +10,38 @@
       color: $primary;
     }
 
-    .navigation {
+
+    .elements {
+      position: relative;
       display: inline-flex;
 
-      .logo-wrapper {
-        .logo {
-          p {
-            font-size: 50px;
-            margin: 0;
+
+      .logo {
+        //font-size: 25px;
+        margin: 0;
+      }
+
+      .element {
+        .main-title {
+          font-size: 20px;
+          height: 60px;
+          position: relative;
+
+          .title {
+            display: inline-flex;
           }
         }
       }
 
-      .elements {
-        position: relative;
-        display: inline-flex;
+      .element.left {
+        margin-left: auto;
+      }
 
-        .element {
-          .main-title {
-            font-size: 20px;
-            height: 60px;
-            position: relative;
+      .element:hover {
+        -webkit-transition: background 0.2s ease-in-out;
+        transition: background 0.2s ease-in-out;
+        background: #b0d7db;
 
-            .title {
-              display: inline-flex;
-            }
-          }
-        }
-
-        .element.left {
-          margin-left: auto;
-        }
-
-        .element:hover {
-          -webkit-transition: background 0.2s ease-in-out;
-          transition: background 0.2s ease-in-out;
-          background: #b0d7db;
-
-        }
       }
     }
   }
