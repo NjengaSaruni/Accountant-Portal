@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {PRIMARY} from '../../../../../assets/colors';
 
 @Component({
   selector: 'app-button',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   @Input() text;
-  @Input() background = '#59253A';
+  @Input() background = PRIMARY;
   @Input() color = '#fff';
   @Input() fontSize = 17;
   @Input() width = 240;

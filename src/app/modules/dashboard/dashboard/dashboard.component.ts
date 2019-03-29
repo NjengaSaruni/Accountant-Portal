@@ -13,7 +13,7 @@ import {Observable, pipe} from 'rxjs';
 import {ITransaction} from '../models/Transaction.model';
 import * as fromActions from '../store/actions/transaction.actions'
 import * as fromStore from '../store'
-
+import * as colors from '../../../../assets/colors'
 import * as _ from 'lodash';
 import {ITag} from '../models/Tag.model';
 import {ILimit} from '../models/Limit.model';
@@ -75,10 +75,10 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Income',
-          color: '#14a098'
+          color: colors.PRIMARY
         },
         background: <IReportCardBackground>{
-          color: '#14a098'
+          color: colors.PRIMARY
         },
         type: ECardType.Income
       }
@@ -88,10 +88,10 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Expense',
-          color: '#CB2D6F'
+          color: colors.PRIMARY
         },
         background: <IReportCardBackground> {
-          color: '#CB2D6F'
+          color: colors.SECONDARY
         },
         type: ECardType.Expense
       }
@@ -101,10 +101,10 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'Saved',
-          color: '#14A098'
+          color: colors.PRIMARY
         },
         background: <IReportCardBackground>{
-          color: '#14A098'
+          color: colors.PRIMARY
         },
         type: ECardType.Saved
 
@@ -115,11 +115,11 @@ export class DashboardComponent implements OnInit {
       <IReportCard> {
         title: {
           name: 'NET WORTH',
-          color: '#14A098'
+          color: colors.PRIMARY
         },
         type: ECardType.NetWorth,
         background: {
-          // color: '#66AB86'
+          color: colors.PRIMARY
         }
       }
     );

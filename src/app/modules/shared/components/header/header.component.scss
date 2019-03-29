@@ -5,12 +5,12 @@
     height: 40px;
     position: fixed;
     width: 100%;
-    background: $green;
+    background: $primary;
 
     p, span, i, fa, div, a {
       color: $white;
+      text-decoration: none;
     }
-
 
     .elements {
       position: relative;
@@ -18,11 +18,19 @@
 
 
       .logo {
-        //font-size: 25px;
+        font-size: 35px;
         margin: 0;
+        background: $grey;
+        min-width: 200px;
+        span {
+          color: $primary !important;
+        }
       }
 
       .element {
+        height: inherit;
+        cursor: pointer;
+
         .main-title {
           font-size: 20px;
           height: 60px;
@@ -32,17 +40,23 @@
             display: inline-flex;
           }
         }
+
+
       }
 
       .element.left {
         margin-left: auto;
       }
 
+      .element.active {
+        border-bottom: 2px solid $primary;
+      }
       .element:hover {
-        -webkit-transition: background 0.2s ease-in-out;
-        transition: background 0.2s ease-in-out;
-        background: #b0d7db;
-
+        .hoverable {
+          -webkit-transition: background 0.2s ease-in-out;
+          transition: background 0.2s ease-in-out;
+          background: $primary-dark;
+        }
       }
     }
   }

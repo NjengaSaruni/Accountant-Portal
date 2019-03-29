@@ -1,36 +1,51 @@
 <div class="row no-padding padding-bs header-wrapper">
   <div class="col">
 
-    <div class="centered-v elements">
-      <a class="logo padding-s element" routerLink="/home">
+    <div class="centered-v full-height elements">
+      <a class="logo padding centered element" routerLink="/home">
         <span class="color-p">i</span>
         <span class="color-s">Save</span>
       </a>
-      <a href="" class="padding-s element"  routerLink="/dashboard"  *ngIf="loggedIn$ | async">
-        <span class="padding">Dashboard</span>
-        <fa name="dashboard" class="padding"></fa>
+      <a href="" class="padding centered element"  routerLink="/dashboard"  *ngIf="loggedIn$ | async">
+        <span class="padding rounded-s hoverable">Dashboard
+                <fa name="dashboard" class="padding"></fa>
+        </span>
+
       </a>
 
-      <a href="" class="padding-s element" routerLink="/home"  *ngIf="loggedIn$ | async">
-        <span class="padding">Loans</span>
-        <fa name="money" class="padding"></fa>
+      <a href="" class="padding centered element" routerLink="/home"  *ngIf="loggedIn$ | async">
+        <span class="padding rounded-s hoverable">Loans
+              <fa name="money" class="padding"></fa>
+        </span>
+
       </a>
 
-      <a *ngIf="!(loggedIn$ | async)" class="padding-s element" routerLink="/account/register">
-        Register
+      <a *ngIf="!(loggedIn$ | async)" class="padding centered element" routerLink="/account/register">
+        <span class="hoverable">
+                  Register
         <fa name="user" class="padding"></fa>
+        </span>
+
       </a>
-      <a *ngIf="!(loggedIn$ | async)" class="padding-s element" routerLink="/account/login">
-        Log In
-        <fa name="user" class="padding"></fa>
+      <a *ngIf="!(loggedIn$ | async)" class="padding centered element" routerLink="/account/login">
+        <span class="hoverable">
+          Log In
+          <fa name="user" class="padding"></fa>
+        </span>
+
       </a>
-      <a *ngIf="loggedIn$ | async" class="padding-s element left">
+      <a *ngIf="loggedIn$ | async" class="padding centered element left">
+        <span class="hoverable padding rounded-s">
         Account Settings
         <fa name="cog" class="padding"></fa>
+        </span>
       </a>
-      <a *ngIf="loggedIn$ | async" class="padding-s element" (click)="signOut()">
-        Sign Out
+      <a *ngIf="loggedIn$ | async" class="padding centered element" (click)="signOut()">
+        <span class="hoverable padding rounded-s">
+                  Sign Out
         <fa name="user" class="padding"></fa>
+        </span>
+
       </a>
     </div>
   </div>
