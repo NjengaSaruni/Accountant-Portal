@@ -22,7 +22,6 @@
   .description-label {
     position: absolute;
     left: 0;
-    z-index: 99999;
     padding: 0 20px;
     border-top-left-radius: 27px;
   }
@@ -31,7 +30,6 @@
     top: 60px;
     width: inherit;
     height: 300px;
-    z-index: 99999;
     border-radius: 0 0 27px 27px;
 
     .transaction-amount {

@@ -15,6 +15,7 @@ import {AuthHttpInterceptor} from '../auth/services/auth.httpinterceptor';
 import { TargetsComponent } from './components/targets/targets.component';
 import { BudgetsComponent } from './components/budgets/budgets.component';
 import { BudgetsFormComponent } from './components/budgets-form/budgets-form.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BudgetsFormComponent } from './components/budgets-form/budgets-form.com
     AngularFontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
 
     // Internal
     DashboardRoutingModule,

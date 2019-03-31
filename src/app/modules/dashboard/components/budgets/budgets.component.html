@@ -1,40 +1,57 @@
 <div class="padding-s">
   <div class="margin-bs">
-    <span>BUDGETS AND ALERTS</span>
-    <a class="float-right add-limit-tag" routerLink="budgets/">Add</a>
-  </div>
-  <div
-      *ngFor="let limit of limits$ | async"
-       class="bordered padding margin-bs limit-container">
-    <div class="limit-detail">
-      <p class="bold-700 margin-b" [ngStyle]="{'color': limit.tag.color}">{{ limit.tag.name }}</p>
-      <div class="margin-b">
-        <span>{{ limit.start_date | date }}</span>
-        <span class="float-right">{{ limit.end_date | date}}</span>
+    <div>
+      <span>BUDGETS AND ALERTS</span>
+      <div class="float-right">
+        <app-button
+          (click)="openDialog()"
+          [icon]="'plus'"
+          [height]="50"
+          [width]="50"
+          [iconOnly]="true"
+          [circular]="true">
+        </app-button>
       </div>
-      <div>
-        <span>Kshs. {{ getDataObject(limit).value }}</span>
-        <span class="float-right">Ksh. {{ limit.amount }}</span>
-      </div>
+
     </div>
-    <div class="bg-s bordered margin-ts limit-progress">
-      <div
-        *ngIf="getPercentage(limit, getDataObject(limit)) < 90"
-        [ngStyle]="{
+
+  </div>
+  <div *ngIf="(limits$ | async).length">
+    <div
+      *ngFor="let limit of limits$ | async"
+      class="bordered padding margin-bs limit-container">
+      <div class="limit-detail">
+        <p class="bold-700 margin-b" [ngStyle]="{'color': limit.tag.color}">{{ limit.tag.name }}</p>
+        <div class="margin-b">
+          <span>{{ limit.start_date | date }}</span>
+          <span class="float-right">{{ limit.end_date | date}}</span>
+        </div>
+        <div>
+          <span>Kshs. {{ getDataObject(limit).value }}</span>
+          <span class="float-right">Ksh. {{ limit.amount }}</span>
+        </div>
+      </div>
+      <div class="bg-s bordered margin-ts limit-progress">
+        <div
+          *ngIf="getPercentage(limit, getDataObject(limit)) < 90"
+          [ngStyle]="{
         'background': '#14A098',
         'width.%': getPercentage(limit, getDataObject(limit))
       }"
-        class="limit">
-      </div>
-      <div
-        *ngIf="getPercentage(limit, getDataObject(limit)) <= 100 && getPercentage(limit, getDataObject(limit)) >= 90"
-        [ngStyle]="{
+          class="limit">
+        </div>
+        <div
+          *ngIf="getPercentage(limit, getDataObject(limit)) <= 100 && getPercentage(limit, getDataObject(limit)) >= 90"
+          [ngStyle]="{
         'background': '#CB2D6F',
         'width.%': getPercentage(limit, getDataObject(limit))
       }"
-        class="limit">
+          class="limit">
+        </div>
       </div>
     </div>
-
+  </div>
+  <div *ngIf="!(limits$ | async).length">
+    <h4>No budgets found</h4>
   </div>
 </div>

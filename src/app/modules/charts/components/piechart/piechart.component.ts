@@ -20,6 +20,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   @Input() chart: PieChart;
   transactions$: Observable<ITransaction[]>;
   dataObjects: DataObject[] = [];
+  unselectedTags: string[] = [];
 
   @ViewChild('canvas1') public canvas: ElementRef;
   private cx: CanvasRenderingContext2D;
@@ -112,5 +113,43 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+  }
+
+  toggleTag(name: string) {
+    const index = this.unselectedTags.indexOf(name);
+    if (index !== -1) {
+      this.unselectedTags.splice(index, 1);
+    } else {
+      this.unselectedTags.push(name)
+    }
+
+    console.log(this.unselectedTags);
+    this.transactions$.subscribe(
+      transactions => {
+        this.dataObjects = [];
+
+        transactions = transactions.filter(
+          transaction => moment(transaction.created_at) >= moment().startOf('month')
+            && transaction.amount < 0
+        );
+
+        const grouped = _.groupBy(transactions, 'tag.name');
+        for (const tag in grouped) {
+          if (this.unselectedTags.indexOf(tag) === -1) {
+            this.dataObjects.push(new DataObject(
+              tag,
+              Math.abs(TransactionUtils.sumOf(grouped[tag])),
+              grouped[tag][0].tag.color
+            ))
+          }
+        }
+
+        const newChart = new PieChart(150, 120);
+        newChart.populate(this.dataObjects);
+        this.chart = newChart;
+        this.chart.title = `Expenses for ${moment().format('MMMM')}`;
+        this.animateGraph()
+      }
+    );
   }
 }

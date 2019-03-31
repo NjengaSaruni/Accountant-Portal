@@ -9,6 +9,8 @@ import * as _ from 'lodash';
 import {DataObject} from '../../../charts/models/BaseChart/DataObject';
 import {ITransaction, TransactionUtils} from '../../models/Transaction.model';
 import {invertColor} from '../../../shared/utils/colors.utils';
+import {MatDialog} from '@angular/material';
+import {BudgetsFormComponent} from '../budgets-form/budgets-form.component';
 
 @Component({
   selector: 'app-budgets',
@@ -21,7 +23,9 @@ export class BudgetsComponent implements OnInit {
   dataObjects: DataObject[] = [];
 
 
-  constructor(private store$: Store<RootState>) {}
+  constructor(
+    public dialog: MatDialog,
+    private store$: Store<RootState>) {}
 
   ngOnInit() {
     this.store$.dispatch(new fromStore.LoadLimits());
@@ -66,5 +70,16 @@ export class BudgetsComponent implements OnInit {
   getPercentage(limit: ILimit, dataObject: DataObject): number {
     const value: number = (dataObject.value / limit.amount) * 100;
     return value < 100 ? value : 100;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(BudgetsFormComponent, {
+      width: '500px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

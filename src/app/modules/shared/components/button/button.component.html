@@ -1,6 +1,7 @@
 <div class="button-group"
-  [ngStyle]="{
-    'height': height
+     [ngStyle]="{
+    'height': height,
+    'width': width
   }
   ">
   <button *ngIf="fullWidth && !iconOnly"
@@ -38,16 +39,24 @@
   >
     {{ text }}
   </button>
-  <fa name="{{icon}}"
-      [ngStyle]="{
+  <div
+    class="padding hoverable"
+    [ngStyle]="{
     'background-color': background,
-    'color': color,
-    'font-size.px': fontSize + 3,
-    'border-radius.px': borderRadius
-  }"
-  *ngIf="icon != ''"
-  [ngClass]="{
-    'icon-only': iconOnly,
-    'raised': iconOnly
-  }"></fa>
+     'width': width
+    }"
+    *ngIf="icon != ''">
+    <fa
+      class="centered-v"
+      name="{{icon}}"
+      [ngStyle]="{
+        'background-color': background,
+        'color': color,
+        'font-size.px': fontSize + 3
+       }"
+      [ngClass]="{
+    'icon-only': iconOnly}">
+    </fa>
+  </div>
+
 </div>

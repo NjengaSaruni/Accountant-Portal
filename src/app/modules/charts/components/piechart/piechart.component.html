@@ -15,7 +15,7 @@
                [ngStyle]="{
         'background-color': pie.color,
         'color': invertColor(pie.color, true)
-       }">
+       }" (click)="toggleTag(pie.title)">
             <span>  {{ pie.title }}</span>
 
           </div>

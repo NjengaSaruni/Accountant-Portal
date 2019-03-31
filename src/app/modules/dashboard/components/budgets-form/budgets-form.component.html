@@ -1,6 +1,28 @@
-<div class="raised top-header">
-  <app-header></app-header>
+<div>
+  <p>Add budget</p>
 </div>
-<div class="content" #content>
-  Add a budget here
+<div class="full-width centered">
+  <form [formGroup]="budgetForm" novalidate class="bg-white centered full-width">
+    <div class="form-control margin">
+      <label for="budget-amount">
+        Amount:
+      </label>
+
+      <input type="text" id="budget-amount"
+             formControlName="amount"
+             class="margin-t bg-ivory"
+             placeholder="Amount">
+    </div>
+
+    <div class="form-control margin">
+      <label for="budget-tag">
+        Tag:
+      </label>
+
+      <input type="text" id="budget-tag"
+             formControlName="tag"
+             class="margin-t bg-ivory"
+             placeholder="Tag">
+    </div>
+  </form>
 </div>

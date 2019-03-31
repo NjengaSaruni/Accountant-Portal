@@ -80,12 +80,16 @@
         top: 56px;
         width: inherit;
         height: 300px;
-        z-index: 99999;
         border-radius: 0 0 20px 20px;
       }
 
     }
 
+  }
+  .transactions-block {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 }
 app-modal {

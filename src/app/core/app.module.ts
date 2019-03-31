@@ -11,6 +11,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {CoreStoreModule} from './store/core.store.module';
 import {AuthGuard} from '../modules/auth/services/auth.guard.service';
 import {AuthHttpInterceptor} from '../modules/auth/services/auth.httpinterceptor';
+import {MatSidenavModule} from '@angular/material';
 
 export const metaReducers: MetaReducer<any>[] = [];
 
@@ -24,9 +25,9 @@ export const metaReducers: MetaReducer<any>[] = [];
     BrowserAnimationsModule,
     HttpClientModule,
     CoreStoreModule,
-
     FlexLayoutModule,
     HttpClientModule,
+    MatSidenavModule,
 
     // Internal modules
     SharedModule,

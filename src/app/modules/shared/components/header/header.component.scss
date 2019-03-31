@@ -18,7 +18,7 @@
 
 
       .logo {
-        font-size: 35px;
+        font-size: 30px;
         margin: 0;
         background: $grey;
         min-width: 200px;
@@ -41,15 +41,18 @@
           }
         }
 
-
       }
 
       .element.left {
         margin-left: auto;
       }
 
-      .element.active {
-        border-bottom: 2px solid $primary;
+      .active {
+        .hoverable {
+          -webkit-transition: background 0.2s ease-in-out;
+          transition: background 0.2s ease-in-out;
+          background: $primary-dark;
+        }
       }
       .element:hover {
         .hoverable {
