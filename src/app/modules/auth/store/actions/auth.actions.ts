@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import {IAuthenticationPayload, IUser} from '../../models/user';
+import {Action} from '@ngrx/store';
+import {IAuthenticationPayload} from '../../models/user';
 import {HideLoader, ShowLoader} from '../../../shared/decorators';
 
 export enum AuthActionTypes {

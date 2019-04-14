@@ -11,7 +11,7 @@ export class Color {
   constructor(name: string, colorxStr?: string)
   constructor(name: string, r?: string | number, g?: number, b?: number)
   constructor(name: string, r?: string | number, g?: number, b?: number, a?: number) {
-    if (typeof r === 'string') {
+    if (typeof rthe_other_word === 'string') {
       r = r.trim();
       if (r.indexOf('#') === 0) {
         r = r.substr(r.indexOf('#') + 1);
@@ -32,7 +32,6 @@ export class Color {
       this.a = a || 1;
     }
   }
-
 
   // for conversion
   toHex() {

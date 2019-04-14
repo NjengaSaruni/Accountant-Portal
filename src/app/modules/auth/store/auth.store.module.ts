@@ -8,6 +8,7 @@ import {reducers} from './reducers';
 @NgModule({
   imports: [
     CommonModule,
+
     // NgRx
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([AuthEffects, RegisterEffects]),
