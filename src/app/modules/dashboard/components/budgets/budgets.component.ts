@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {ILimit} from '../../models/Limit.model';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../../core/store/state';
@@ -19,7 +19,9 @@ import {BudgetsFormComponent} from '../budgets-form/budgets-form.component';
 })
 export class BudgetsComponent implements OnInit {
   limits$: Observable<ILimit[]>;
+  limits$$: Subscription;
   transactions$: Observable<ITransaction[]>;
+  transactions$$: Subscription;
   dataObjects: DataObject[] = [];
 
 

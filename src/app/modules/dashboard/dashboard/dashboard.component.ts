@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BarChart} from '../../charts/models/BarChart/BarChart';
 import {PieChart} from '../../charts/models/PieChart/PieChart';
 import {LineChart} from '../../charts/models/LineChart/LineChart';
@@ -9,7 +9,7 @@ import {WindowRefService} from '../../shared/services/window-ref.service';
 import {Title} from '@angular/platform-browser';
 import {Store} from '@ngrx/store';
 import {RootState} from '../../../core/store/state';
-import {Observable, pipe} from 'rxjs';
+import {Observable, pipe, Subscription} from 'rxjs';
 import {ITransaction} from '../models/Transaction.model';
 import * as fromActions from '../store/actions/transaction.actions'
 import * as fromStore from '../store'
@@ -23,10 +23,14 @@ import {ILimit} from '../models/Limit.model';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   transactions$: Observable<ITransaction[]>;
+  transaction$$: Subscription;
+
   transactionsLoaded$: Observable<boolean>;
   limits$: Observable<ILimit[]>;
+  limits$$: Subscription;
+
 
   barCharts: BarChart[] = [];
   pieChart: PieChart;
@@ -64,7 +68,7 @@ export class DashboardComponent implements OnInit {
       fromStore.selectTransactionsLoaded
     );
 
-    this.transactions$.subscribe(
+    this.transaction$$ = this.transactions$.subscribe(
       transactions => {
         const tags: ITag[] = transactions.map(transaction => transaction.tag);
         this.tags = new Set((_.uniqBy(tags, 'id')));
@@ -129,5 +133,10 @@ export class DashboardComponent implements OnInit {
     if (event.value) {
       this.showTagOptions = false;
     }
+  }
+
+  ngOnDestroy() {
+      // this.limits$$.unsubscribe();
+      this.transaction$$.unsubscribe();
   }
 }
