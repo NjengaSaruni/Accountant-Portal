@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {LineChart} from '../../models/LineChart/LineChart';
 import {ITransaction, TransactionUtils} from '../../../dashboard/models/Transaction.model';
 import {DataObject} from '../../models/BaseChart/DataObject';
