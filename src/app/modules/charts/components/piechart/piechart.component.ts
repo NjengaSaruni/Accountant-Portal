@@ -62,7 +62,7 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   }
 
   private animateGraph() {
-    this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
+    // this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     canvasEl.height = this.chart.height;
     canvasEl.width = this.chart.width;

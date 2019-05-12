@@ -202,7 +202,7 @@ export class LinechartComponent implements OnInit {
       } catch (e) {}
     }
 
-    this.winRef.nativeWindow.requestAnimationFrame(this.draw.bind(this));
+    // this.winRef.nativeWindow.requestAnimationFrame(this.draw.bind(this));
 
   }
 

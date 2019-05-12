@@ -78,9 +78,16 @@
         </a>
 
         <a *ngIf="loggedIn$ | async"
+           class="padding centered element"
+           (click)="signOut()">
+            <span class="hoverable padding rounded-s">
+              <fa name="bell" class="padding"></fa>
+            </span>
+        </a>
+
+        <a *ngIf="loggedIn$ | async"
            class="padding centered element left">
           <span class="hoverable padding rounded-s">
-            Account Settings
             <fa name="cog" class="padding"></fa>
           </span>
         </a>
@@ -89,10 +96,11 @@
            class="padding centered element"
            (click)="signOut()">
             <span class="hoverable padding rounded-s">
-              Sign Out
               <fa name="user" class="padding"></fa>
             </span>
         </a>
+
+
 
       </div>
     </div>
