@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {PieChart} from '../../models/PieChart/PieChart';
 import {WindowRefService} from '../../../shared/services/window-ref.service';
 import {Store} from '@ngrx/store';
@@ -16,7 +16,7 @@ import {invertColor} from '../../../shared/utils/colors.utils';
   templateUrl: './piechart.component.html',
   styleUrls: ['./piechart.component.scss']
 })
-export class PiechartComponent implements OnInit, AfterViewInit {
+export class PiechartComponent implements AfterViewInit {
   @Input() chart: PieChart;
   transactions$: Observable<ITransaction[]>;
   dataObjects: DataObject[] = [];
@@ -26,7 +26,9 @@ export class PiechartComponent implements OnInit, AfterViewInit {
   private cx: CanvasRenderingContext2D;
 
   constructor(private winRef: WindowRefService,
-              private store$: Store<RootState>) { }
+              private ngZone: NgZone,
+              private store$: Store<RootState>) {
+  }
 
   public ngAfterViewInit() {
 
@@ -56,30 +58,35 @@ export class PiechartComponent implements OnInit, AfterViewInit {
         newChart.populate(this.dataObjects);
         this.chart = newChart;
         this.chart.title = `Expenses for ${moment().format('MMMM')}`;
-        this.animateGraph()
+
+        this.ngZone.runOutsideAngular(() => {
+          requestAnimationFrame(this.animateGraph.bind(this));
+        });
       }
     );
   }
 
   private animateGraph() {
-    // this.winRef.nativeWindow.requestAnimationFrame(this.animateGraph.bind(this));
+    console.log('Animating');
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
-    canvasEl.height = this.chart.height;
+    canvasEl.height = 500;
     canvasEl.width = this.chart.width;
     this.cx = canvasEl.getContext('2d');
-    this.cx.fillStyle = this.chart.backgroundColor;
+    // this.cx.fillStyle = this.chart.backgroundColor;
+    this.cx.fillStyle = '#000';
     this.cx.fill();
 
     // start at the top
     let currentAngle = -0.5 * Math.PI;
     for (const pie of this.chart.pies) {
+
       // pie slices
       this.cx.beginPath();
       this.cx.arc(
         this.chart.outerCircle.radius,
         this.chart.outerCircle.radius,
         this.chart.outerCircle.radius,
-        currentAngle, currentAngle + pie.rendered_angle
+        currentAngle, pie.angle
       );
       this.cx.lineTo(this.chart.outerCircle.radius, this.chart.outerCircle.radius);
       this.cx.fillStyle = pie.color;
@@ -110,9 +117,6 @@ export class PiechartComponent implements OnInit, AfterViewInit {
 
   invertColor(color, bw) {
     return invertColor(color, bw);
-  }
-
-  ngOnInit(): void {
   }
 
   toggleTag(name: string) {

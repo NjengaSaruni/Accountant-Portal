@@ -19,9 +19,7 @@ import {BudgetsFormComponent} from '../budgets-form/budgets-form.component';
 })
 export class BudgetsComponent implements OnInit {
   limits$: Observable<ILimit[]>;
-  limits$$: Subscription;
   transactions$: Observable<ITransaction[]>;
-  transactions$$: Subscription;
   dataObjects: DataObject[] = [];
 
 
@@ -66,10 +64,19 @@ export class BudgetsComponent implements OnInit {
   }
 
   getDataObject(limit: ILimit): DataObject {
-    return this.dataObjects.find(dataObject => dataObject.title === limit.tag.name)
+    let dataObject: DataObject = this.dataObjects.find(_dataObject => _dataObject.title === limit.tag.name);
+
+    if (dataObject == null ) {
+      dataObject = new DataObject(limit.tag.name, 0, limit.tag.color);
+    }
+
+    return dataObject;
   }
 
   getPercentage(limit: ILimit, dataObject: DataObject): number {
+    if (dataObject == null) {
+      return 0;
+    }
     const value: number = (dataObject.value / limit.amount) * 100;
     return value < 100 ? value : 100;
   }
